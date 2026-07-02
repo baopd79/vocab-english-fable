@@ -24,7 +24,7 @@ Web app học từ vựng tiếng Anh tích hợp AI cho người Việt, launch
 
 | Layer | Công nghệ | Ghi chú |
 |---|---|---|
-| Frontend | Next.js 15 (App Router), TypeScript, TanStack Query, Tailwind CSS | pnpm |
+| Frontend | Next.js 16 (App Router), TypeScript, TanStack Query, Tailwind CSS | pnpm |
 | Backend | Python 3.12, Django 5.x + Django REST Framework | uv quản lý deps |
 | Auth | Google OAuth only → `djangorestframework-simplejwt` (JWT) | Frontend lấy Google ID token, Django verify + cấp JWT. Chi tiết token: mục 6.6 |
 | Database | PostgreSQL 16 | |
