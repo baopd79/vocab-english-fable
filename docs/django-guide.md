@@ -152,6 +152,15 @@ Lý do: logic test được không cần HTTP, transaction rõ ràng, view khôn
 5. **Migration files phải loại khỏi ruff** (`extend-exclude` trong pyproject) — code sinh tự động không theo style của mình.
 6. **`google-auth` cần extra `requests`** (`uv add 'google-auth[requests]'`) mới có transport để verify token.
 
+## 11. Sync hay async? (câu hỏi kinh điển từ FastAPI)
+
+Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ đích:
+
+- Async chỉ thắng khi request phải "ôm" I/O chậm trong lúc chờ (hàng nghìn kết nối đồng thời, streaming, websocket). Endpoint của mình toàn CRUD vài mili-giây vào Postgres cục bộ — gunicorn vài worker là thừa cho quy mô MVP.
+- **I/O chậm duy nhất là gọi Gemini (1–5s), và kiến trúc đã đẩy nó ra khỏi request cycle** (SPEC §6.1): POST thêm từ chỉ enqueue Celery task rồi trả về ngay, FE poll trạng thái. FastAPI giải bài này bằng `await` trong endpoint; Django giải bằng background worker — cùng mục đích, khác công cụ.
+- Đi async với Django+DRF là bơi ngược hệ sinh thái: DRF chưa hỗ trợ async view chính thức, ORM async còn nửa vời. Được ít, trả giá friction mọi lớp.
+- Nghĩ lại chỉ khi cần: stream AI trực tiếp (SSE), websocket, concurrency rất cao — lúc đó tách phần đó ra ASGI/microservice riêng.
+
 ## Nhật ký theo task
 
 > Sau mỗi task, mục này được bổ sung: task làm gì, khái niệm Django nào mới xuất hiện, đọc file nào để hiểu.
