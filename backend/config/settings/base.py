@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "apps.accounts",
     "apps.common",
+    "apps.vocab",
 ]
 
 MIDDLEWARE = [

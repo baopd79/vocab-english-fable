@@ -188,6 +188,18 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
 - Phía Django không đổi; điểm liên quan: cookie refresh hoạt động xuyên proxy dev vì FE/BE same-origin (Next rewrites `/api` → :8000).
 - Bài học phía client: access token giữ in-memory, silent refresh + retry 1 lần khi 401 (`frontend/src/lib/api.ts`).
 
+### Task 7 — vocab models + chuẩn hóa từ
+- 3 model mới: `Deck`, `WordCache` (cache AI toàn hệ thống), `UserWord` (bản sao riêng + SRS state) — [apps/vocab/models.py](../backend/apps/vocab/models.py); util thuần `normalize_word()` — [apps/vocab/normalization.py](../backend/apps/vocab/normalization.py).
+- Khái niệm Django mới:
+  - **`TextChoices`** — enum cho field choices (`WordCache.Status.PENDING`): vừa là hằng số Python vừa sinh validate + label; so với FastAPI là thay cho `Enum` của Pydantic nhưng gắn thẳng vào cột DB.
+  - **`JSONField`** (`raw_response`) — cột JSONB của Postgres, đọc/ghi dict Python trực tiếp.
+  - **`on_delete` từng FK là quyết định nghiệp vụ:** Deck→UserWord dùng `CASCADE` (xóa deck mất từ), WordCache→UserWord dùng `SET_NULL` (xóa cache, bản sao của user còn nguyên). ReviewLog sau này cũng `SET_NULL` để giữ lịch sử học.
+  - **`UniqueConstraint` nhiều cột** trong `Meta.constraints` (`(owner, name)`, `(deck, word_text)`) thay vì `unique=True` một cột; test bằng `pytest.raises(IntegrityError)`.
+  - **`default=timezone.now`** (truyền callable, không gọi `()`) — như `default_factory` của Pydantic.
+  - **factory-boy nâng cao:** `SubFactory` lồng nhau + `SelfAttribute("..user")` để deck của UserWordFactory tự thuộc đúng user.
+- Vì sao có `normalization.py` riêng: logic domain thuần (không import Django) → test không cần DB, tái dùng ở serializer (Task 12) lẫn typing check khi ôn tập.
+- Đọc: `apps/vocab/models.py`, `normalization.py`, `tests/test_models.py` (cascade + constraint), `tests/test_normalization.py` (parametrize).
+
 ### Bổ sung — API docs cho dev
 - drf-spectacular (Swagger UI tại `/api/docs/`, chỉ khi DEBUG) + BrowsableAPIRenderer trong `dev.py`.
 - Khái niệm mới: renderer per-environment, `@extend_schema`, lệnh `manage.py spectacular` kiểm tra schema.

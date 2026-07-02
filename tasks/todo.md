@@ -15,7 +15,7 @@
 - [x] ✅ Checkpoint 1: success criterion #1 — login Google thật OK (2026-07-02)
 
 ## Phase 2 — Deck, từ vựng, AI enrichment (stories 2,3,4)
-- [ ] Task 7: vocab models + normalize_word (M)
+- [x] Task 7: vocab models + normalize_word (M)
 - [ ] Task 8: Deck API (S)
 - [ ] Task 9: Deck UI (M)
 - [ ] Task 10: Enrichment providers — Gemini + Fake (M, song song 8-9)
