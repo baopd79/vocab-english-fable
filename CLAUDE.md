@@ -34,6 +34,8 @@ pnpm build
 
 Ruff is the only Python checker (no mypy), but full type hints are still required. Migrations are excluded from ruff.
 
+API docs (dev only, `DEBUG=true`): Swagger UI at `http://localhost:8000/api/docs/` (drf-spectacular) and DRF's browsable API on every endpoint. New `APIView` methods need an `@extend_schema` annotation or they are dropped from the schema.
+
 ## Architecture
 
 Monorepo: `backend/` (Django 5 + DRF, Python 3.13 venv at `backend/.venv`) and `frontend/` (Next.js 16 App Router, TS strict, TanStack Query, Tailwind 4). FE and BE are **same-origin by design** — Next.js rewrites in dev, Nginx single domain in prod — so there is no CORS config and the auth cookie just works. Never call `localhost:8000` directly from frontend code; always go through `/api`.

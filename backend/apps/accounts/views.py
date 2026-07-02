@@ -3,6 +3,7 @@
 import contextlib
 
 from django.conf import settings
+from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -12,7 +13,7 @@ from rest_framework_simplejwt.serializers import TokenRefreshSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from .exceptions import InvalidRefreshToken, RefreshCookieMissing
-from .serializers import GoogleAuthSerializer, UserSerializer
+from .serializers import AccessTokenSerializer, GoogleAuthSerializer, UserSerializer
 from .services import authenticate_google_user
 
 REFRESH_COOKIE_NAME = "refresh_token"
@@ -36,6 +37,7 @@ class GoogleLoginView(APIView):
     authentication_classes: list = []
     permission_classes: list = []
 
+    @extend_schema(request=GoogleAuthSerializer, responses=AccessTokenSerializer, auth=[])
     def post(self, request: Request) -> Response:
         serializer = GoogleAuthSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -50,6 +52,7 @@ class RefreshView(APIView):
     authentication_classes: list = []
     permission_classes: list = []
 
+    @extend_schema(request=None, responses=AccessTokenSerializer, auth=[])
     def post(self, request: Request) -> Response:
         raw_token = request.COOKIES.get(REFRESH_COOKIE_NAME)
         if raw_token is None:
@@ -68,6 +71,7 @@ class LogoutView(APIView):
     authentication_classes: list = []
     permission_classes: list = []
 
+    @extend_schema(request=None, responses={204: None}, auth=[])
     def post(self, request: Request) -> Response:
         raw_token = request.COOKIES.get(REFRESH_COOKIE_NAME)
         if raw_token:
@@ -80,5 +84,6 @@ class LogoutView(APIView):
 
 
 class MeView(APIView):
+    @extend_schema(responses=UserSerializer)
     def get(self, request: Request) -> Response:
         return Response(UserSerializer(request.user).data)
