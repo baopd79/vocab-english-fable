@@ -161,6 +161,8 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
 - Đi async với Django+DRF là bơi ngược hệ sinh thái: DRF chưa hỗ trợ async view chính thức, ORM async còn nửa vời. Được ít, trả giá friction mọi lớp.
 - Nghĩ lại chỉ khi cần: stream AI trực tiếp (SSE), websocket, concurrency rất cao — lúc đó tách phần đó ra ASGI/microservice riêng.
 
+**Lưu ý về `await db.execute(...)` bên FastAPI:** await không làm query nhanh hơn — query 5ms vẫn mất 5ms; nó chỉ cho event loop phục vụ request khác trong lúc chờ. Async chỉ thắng khi *(số request đồng thời × thời gian chờ)* đủ lớn: query 5ms thì sync 4 workers đã dư sức ~800 req/s (nghẽn ở Postgres trước), nhưng gọi API ngoài 2s trong request thì sync 4 workers chỉ chịu được 2 req/s — đó là chỗ async thắng, và cũng là bài Django giải bằng Celery. Ba bẫy phía FastAPI: driver sync trong `async def` chặn cả event loop; `def` thường trong FastAPI chạy threadpool (nhiều project dùng sync SQLAlchemy vẫn ổn); async dễ vỡ connection pool DB vì không tự giới hạn concurrency như sync worker.
+
 ## Nhật ký theo task
 
 > Sau mỗi task, mục này được bổ sung: task làm gì, khái niệm Django nào mới xuất hiện, đọc file nào để hiểu.
