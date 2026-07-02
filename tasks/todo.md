@@ -12,7 +12,7 @@
 - [x] Task 4: accounts models — User + UserSettings (M)
 - [x] Task 5: Auth API + error format nền (M)
 - [x] Task 6: Login UI + auth client (M)
-- [ ] ✅ Checkpoint 1: success criterion #1
+- [x] ✅ Checkpoint 1: success criterion #1 — login Google thật OK (2026-07-02)
 
 ## Phase 2 — Deck, từ vựng, AI enrichment (stories 2,3,4)
 - [ ] Task 7: vocab models + normalize_word (M)
