@@ -44,6 +44,6 @@
 
 ## Prerequisites (ngoài code)
 - [x] Tạo GitHub repo (trước task 3) — github.com/baopd79/vocab-english-fable (private)
-- [ ] Google OAuth Client ID (trước task 5)
+- [x] Google OAuth Client ID (trước task 5) — đã lưu trong .env (gitignored)
 - [x] Gemini API key (trước checkpoint 2) — đã lưu trong .env (gitignored)
 - [ ] Domain + VPS (trước task 21)

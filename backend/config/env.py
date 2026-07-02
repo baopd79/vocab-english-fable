@@ -1,6 +1,7 @@
 """Minimal .env loader — avoids an extra dependency for a simple need.
 
-Reads KEY=VALUE lines from the repository root .env file into os.environ.
+Reads KEY=VALUE lines from backend/.env into os.environ. The frontend keeps
+its own frontend/.env.local (Next.js convention); the two files never mix.
 Variables already present in the environment are never overridden.
 """
 
@@ -9,7 +10,7 @@ from pathlib import Path
 
 
 def load_dotenv() -> None:
-    env_file = Path(__file__).resolve().parents[2] / ".env"
+    env_file = Path(__file__).resolve().parents[1] / ".env"
     if not env_file.exists():
         return
     for raw_line in env_file.read_text().splitlines():

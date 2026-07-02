@@ -372,15 +372,16 @@ Coverage backend tối thiểu **70%**, test chạy trong CI mọi PR. Gọi AI 
 
 **Log & giám sát tối thiểu:** log qua `docker compose logs` (json-file, giới hạn size); deploy workflow gọi `GET /api/v1/health` để verify sau khi up; uptime check ngoài (vd UptimeRobot) trỏ vào `/api/v1/health`.
 
-**Env vars** (nguồn cho `.env.example`):
+**Env vars** — tách theo app, mỗi bên có `.env.example` riêng:
 
-| Biến | Ghi chú |
-|---|---|
-| `DJANGO_SECRET_KEY`, `DJANGO_DEBUG`, `ALLOWED_HOSTS` | |
-| `DATABASE_URL`, `REDIS_URL` | |
-| `AI_PROVIDER` | default `gemini` |
-| `GEMINI_API_KEY`, `GEMINI_MODEL` | model default `gemini-2.5-flash` |
-| `GOOGLE_OAUTH_CLIENT_ID` | backend verify ID token; frontend dùng `NEXT_PUBLIC_GOOGLE_CLIENT_ID` cùng giá trị |
+| File | Biến | Ghi chú |
+|---|---|---|
+| `backend/.env` | `DJANGO_SECRET_KEY`, `DJANGO_DEBUG`, `ALLOWED_HOSTS` | |
+| `backend/.env` | `DATABASE_URL`, `REDIS_URL` | |
+| `backend/.env` | `AI_PROVIDER` | default `gemini` |
+| `backend/.env` | `GEMINI_API_KEY`, `GEMINI_MODEL` | model default `gemini-2.5-flash` |
+| `backend/.env` | `GOOGLE_OAUTH_CLIENT_ID` | backend verify `aud` của ID token |
+| `frontend/.env.local` | `NEXT_PUBLIC_GOOGLE_CLIENT_ID` | cùng giá trị với backend, cho nút GIS |
 
 ## 14. Success Criteria (điều kiện nghiệm thu MVP)
 
