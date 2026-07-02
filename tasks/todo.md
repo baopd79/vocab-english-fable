@@ -3,10 +3,10 @@
 > Chi tiết từng task (AC, verify, deps): `tasks/plan.md`
 
 ## Phase 0 — Nền móng
-- [ ] Task 1: Khởi tạo repo + Django skeleton (M)
-- [ ] Task 2: Next.js skeleton (M)
-- [ ] Task 3: CI GitHub Actions (S)
-- [ ] ✅ Checkpoint 0: dev env trọn vẹn, CI xanh
+- [x] Task 1: Khởi tạo repo + Django skeleton (M)
+- [x] Task 2: Next.js skeleton (M) — Next.js 16 (spec đã cập nhật)
+- [x] Task 3: CI GitHub Actions (S)
+- [x] ✅ Checkpoint 0: dev env trọn vẹn, CI xanh (run 28595289802)
 
 ## Phase 1 — Auth (story 1)
 - [ ] Task 4: accounts models — User + UserSettings (M)
@@ -43,7 +43,7 @@
 - [ ] ✅ Checkpoint 5: success criteria #10, 11 → MVP hoàn thành
 
 ## Prerequisites (ngoài code)
-- [ ] Tạo GitHub repo (trước task 3)
+- [x] Tạo GitHub repo (trước task 3) — github.com/baopd79/vocab-english-fable (private)
 - [ ] Google OAuth Client ID (trước task 5)
-- [ ] Gemini API key (trước checkpoint 2)
+- [x] Gemini API key (trước checkpoint 2) — đã lưu trong .env (gitignored)
 - [ ] Domain + VPS (trước task 21)
