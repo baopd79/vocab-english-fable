@@ -9,7 +9,7 @@
 - [x] ✅ Checkpoint 0: dev env trọn vẹn, CI xanh (run 28595289802)
 
 ## Phase 1 — Auth (story 1)
-- [ ] Task 4: accounts models — User + UserSettings (M)
+- [x] Task 4: accounts models — User + UserSettings (M)
 - [ ] Task 5: Auth API + error format nền (M)
 - [ ] Task 6: Login UI + auth client (M)
 - [ ] ✅ Checkpoint 1: success criterion #1
