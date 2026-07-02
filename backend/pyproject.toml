@@ -6,6 +6,8 @@ requires-python = ">=3.12"
 dependencies = [
     "django>=5.1,<6.0",
     "djangorestframework>=3.15",
+    "djangorestframework-simplejwt>=5.5.1",
+    "google-auth[requests]>=2.55.1",
     "psycopg[binary]>=3.2",
 ]
 
