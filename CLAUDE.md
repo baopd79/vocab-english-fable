@@ -8,6 +8,7 @@ Vocab English — AI-integrated English vocabulary learning web app for Vietname
 
 - **SPEC.md is the authoritative spec** (Vietnamese). Section numbers referenced in code comments (e.g. "SPEC §6.6") point there. Update SPEC.md when a design decision changes.
 - Work proceeds task-by-task per `tasks/plan.md` (22 tasks, 6 phases) with the checklist in `tasks/todo.md`. Finish and verify one task before starting the next; the user gives explicit go-aheads and prefers discussing decisions (via questions) before code is written.
+- The user is learning Django (FastAPI background). After each task, append to the "Nhật ký theo task" section of `docs/django-guide.md`: what the task did, which Django concepts appeared for the first time, and which files to read — in Vietnamese, referencing real files.
 - Convention: code + docstrings in English; project docs and user communication in Vietnamese.
 - Commits: no `Co-Authored-By` trailer. Push to `main` triggers CI (`.github/workflows/ci.yml`, backend + frontend jobs).
 
