@@ -11,7 +11,7 @@
 ## Phase 1 — Auth (story 1)
 - [x] Task 4: accounts models — User + UserSettings (M)
 - [x] Task 5: Auth API + error format nền (M)
-- [ ] Task 6: Login UI + auth client (M)
+- [x] Task 6: Login UI + auth client (M)
 - [ ] ✅ Checkpoint 1: success criterion #1
 
 ## Phase 2 — Deck, từ vựng, AI enrichment (stories 2,3,4)
