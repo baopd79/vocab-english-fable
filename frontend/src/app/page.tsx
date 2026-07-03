@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import { RequireAuth } from "@/components/require-auth";
 import { useAuth } from "@/lib/auth-context";
@@ -41,7 +42,11 @@ function HomeContent() {
           </button>
         </div>
       </header>
-      <p className="text-gray-600">Deck của bạn sẽ xuất hiện ở đây.</p>
+      <nav className="flex flex-col gap-2">
+        <Link href="/decks" className="text-blue-600 hover:underline">
+          → Bộ từ vựng của bạn
+        </Link>
+      </nav>
     </main>
   );
 }

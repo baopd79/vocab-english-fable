@@ -211,6 +211,11 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
   - **Test:** `APIClient.force_authenticate(user=...)` bỏ qua tầng JWT để test thẳng logic view; `create_batch(51)` của factory-boy để test phân trang.
 - Đọc: `apps/vocab/{views,services,selectors,serializers}.py`, `tests/test_deck_api.py`.
 
+### Task 9 — Deck UI (frontend, ít Django)
+- Phía Django không đổi. Điểm liên quan hợp đồng API: UI dựa vào đúng shape phân trang `{count, next, previous, results}` và code lỗi `deck_name_conflict` / `validation_error` mà Task 8 định nghĩa — đã smoke test bằng token mint tại chỗ (`RefreshToken.for_user` trong `manage.py`-style script) để xác nhận backend trả đúng.
+- Bài học phía client (tham khảo, không phải Django): TanStack Query `useQuery`/`useMutation` + `invalidateQueries(["decks"])` để list tự refetch sau create/update/delete; form tách khỏi mutation (dumb component nhận `onSubmit`); map `ApiError.code` → thông báo tiếng Việt. Bẫy test: không bật `globals` thì RTL không tự cleanup DOM giữa test → phải gọi `cleanup()` trong `vitest.setup.ts`.
+- Đọc: `frontend/src/lib/decks.ts`, `components/deck-form.tsx`, `app/decks/page.tsx`.
+
 ### Bổ sung — API docs cho dev
 - drf-spectacular (Swagger UI tại `/api/docs/`, chỉ khi DEBUG) + BrowsableAPIRenderer trong `dev.py`.
 - Khái niệm mới: renderer per-environment, `@extend_schema`, lệnh `manage.py spectacular` kiểm tra schema.
