@@ -200,6 +200,17 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
 - Vì sao có `normalization.py` riêng: logic domain thuần (không import Django) → test không cần DB, tái dùng ở serializer (Task 12) lẫn typing check khi ôn tập.
 - Đọc: `apps/vocab/models.py`, `normalization.py`, `tests/test_models.py` (cascade + constraint), `tests/test_normalization.py` (parametrize).
 
+### Task 8 — Deck API (lát cắt CRUD đầu tiên qua đủ các lớp)
+- Endpoint `/decks` (GET list + POST) và `/decks/{id}` (GET/PATCH/DELETE) — đây là lần đầu chạy trọn kiến trúc layered: View → Serializer → Service/Selector → Model.
+- Khái niệm Django/DRF mới:
+  - **Phân vai rõ:** `selectors.py` (READ có logic: `list_decks` filter theo owner + order) vs `services.py` (WRITE: `create_deck`/`update_deck`/`delete_deck`). View chỉ gọi, không `.save()`.
+  - **⚠️ Bắt `IntegrityError` phải nằm NGOÀI `atomic()`** — dùng dạng context manager `with transaction.atomic(): ...` bọc trong `try/except`, KHÔNG dùng decorator `@transaction.atomic`. Lý do: sau khi IntegrityError bắn, transaction đã hỏng, mọi ORM call tiếp theo trong block đều lỗi; Django yêu cầu catch ở ngoài rồi mới xử lý. Đây là cách biến unique-constraint clash thành 409 sạch sẽ ([services.py](../backend/apps/vocab/services.py)).
+  - **Chống IDOR bằng `get_object_or_404(Deck, pk=pk, owner=request.user)`** — id của user khác trả **404** (không phải 403) vì không được để lộ "có tồn tại nhưng không thuộc bạn" (SPEC §9). Http404 được exception handler format thành `{"detail","code":"not_found"}`.
+  - **Pagination:** `PageNumberPagination` (page_size 50) trong [apps/common/pagination.py](../backend/apps/common/pagination.py); với APIView phải phân trang **thủ công** (`paginator.paginate_queryset(...)` → `get_paginated_response(...)`) vì auto-pagination chỉ áp cho generic view. Response bọc `{count, next, previous, results}`.
+  - **`ModelSerializer` + `read_only_fields`** (`visibility`, timestamps) — field read-only bị loại khỏi `validated_data` nên client gửi `visibility=public` bị bỏ qua an toàn; `validate_<field>` (vd `validate_name`) để trim + chặn rỗng.
+  - **Test:** `APIClient.force_authenticate(user=...)` bỏ qua tầng JWT để test thẳng logic view; `create_batch(51)` của factory-boy để test phân trang.
+- Đọc: `apps/vocab/{views,services,selectors,serializers}.py`, `tests/test_deck_api.py`.
+
 ### Bổ sung — API docs cho dev
 - drf-spectacular (Swagger UI tại `/api/docs/`, chỉ khi DEBUG) + BrowsableAPIRenderer trong `dev.py`.
 - Khái niệm mới: renderer per-environment, `@extend_schema`, lệnh `manage.py spectacular` kiểm tra schema.

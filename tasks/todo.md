@@ -16,7 +16,7 @@
 
 ## Phase 2 — Deck, từ vựng, AI enrichment (stories 2,3,4)
 - [x] Task 7: vocab models + normalize_word (M)
-- [ ] Task 8: Deck API (S)
+- [x] Task 8: Deck API (S)
 - [ ] Task 9: Deck UI (M)
 - [ ] Task 10: Enrichment providers — Gemini + Fake (M, song song 8-9)
 - [ ] Task 11: Enrich service + Celery task (M)
