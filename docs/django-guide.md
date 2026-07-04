@@ -239,6 +239,17 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
   - **`config/settings/test.py` mới:** pytest chạy settings riêng — cache LocMem + tắt throttle (CI không có Redis; PK user lặp lại giữa các test rollback nên counter throttle sẽ "rò" giữa test nếu bật thật).
 - Đọc: `apps/enrichment/{services,tasks}.py`, `config/celery.py`, `tests/test_enrichment_flow.py` (đủ 4 AC: hit không gọi AI, 2 request → 1 call, failed-as-miss, hết retry → failed cả hai).
 
+### Task 12 — Words API
+- 3 endpoint mới: `GET/POST /decks/{id}/words`, `GET/PATCH/DELETE /words/{id}`, `POST /words/{id}/retry-enrichment` — vẫn theo template layered của Task 8, thêm 3 exception nghiệp vụ (`invalid_word` 400, `word_conflict` 409, `enrichment_not_failed` 409).
+- Khái niệm mới:
+  - **DRF throttling (SPEC §8):** `UserRateThrottle` mặc định 1000/giờ + `ScopedRateThrottle` scope `enrichment` 50/ngày dùng chung cho POST words, retry, và PATCH đổi `word_text` (chống đi vòng). Counter lưu trong **Redis cache** (share giữa các gunicorn worker). Override `get_throttles()` để throttle theo method/nội dung request (chỉ POST, chỉ PATCH có `word_text`).
+  - **⚠️ Bẫy `THROTTLE_RATES`:** DRF gắn `api_settings.DEFAULT_THROTTLE_RATES` vào **class attribute** lúc import — `override_settings(REST_FRAMEWORK=...)` không đổi được rate trong test; phải patch thẳng `SimpleRateThrottle.THROTTLE_RATES` (fixture trong [test_word_api.py](../backend/apps/vocab/tests/test_word_api.py)).
+  - **`transaction.on_commit(...)`:** enqueue Celery task chỉ sau khi transaction commit — nếu `.delay()` ngay trong atomic, worker có thể chạy trước khi row tồn tại. Trong test, transaction không bao giờ commit (pytest rollback) → dùng fixture `django_capture_on_commit_callbacks(execute=True)` của pytest-django để callback chạy.
+  - **Whitelist bằng Serializer thường (không phải ModelSerializer):** `UserWordUpdateSerializer` chỉ khai báo 6 field sửa được; client gửi `ease_factor`/`enrichment_status` bị lặng lẽ bỏ qua — read-only tuyệt đối không cần code phòng thủ thêm.
+  - **Semantics PATCH đổi `word_text` (SPEC §9):** chuẩn hóa lại → check trùng 409 → giữ SRS, reset pending, cắt link `word_cache`, enqueue re-enrich; content field gửi kèm bị bỏ qua. Đây là logic service, serializer không biết gì.
+  - **`config/settings/test.py`** tắt throttle toàn cục vì counter throttle sống trong cache còn PK user thì lặp lại giữa các test (DB rollback nhưng cache thì không) → nếu bật thật sẽ dính 429 ngẫu nhiên giữa các test.
+- Đọc: `apps/vocab/{services,views,serializers,exceptions}.py` (phần words), `tests/test_word_api.py` (21 test đủ nhánh).
+
 ### Bổ sung — API docs cho dev
 - drf-spectacular (Swagger UI tại `/api/docs/`, chỉ khi DEBUG) + BrowsableAPIRenderer trong `dev.py`.
 - Khái niệm mới: renderer per-environment, `@extend_schema`, lệnh `manage.py spectacular` kiểm tra schema.

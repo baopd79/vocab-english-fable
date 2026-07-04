@@ -89,6 +89,10 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_PAGINATION_CLASS": "apps.common.pagination.DefaultPagination",
     "PAGE_SIZE": 50,
+    # SPEC §8 — `enrichment` (50/day) guards POST words, retry-enrichment and
+    # word_text changes; everything else falls under the per-user rate.
+    "DEFAULT_THROTTLE_CLASSES": ["rest_framework.throttling.UserRateThrottle"],
+    "DEFAULT_THROTTLE_RATES": {"user": "1000/hour", "enrichment": "50/day"},
 }
 
 SPECTACULAR_SETTINGS = {
