@@ -27,8 +27,8 @@
 ## Phase 3 — SRS (story 5)
 - [x] Task 14: SM-2 engine thuần, coverage 100% (S, song song phase 2 được)
 - [x] Task 15: ReviewLog + queue + answer API (M)
-- [ ] Task 16: Review UI — typing → flip → 4 nút + TTS (M–L)
-- [ ] ✅ Checkpoint 3: success criterion #5
+- [x] Task 16: Review UI — typing → flip → 4 nút + TTS (M–L)
+- [x] ✅ Checkpoint 3: success criterion #5 — queue/quota + typing→flip + 4 nút SM-2 + Again re-queue (smoke live 2026-07-04)
 
 ## Phase 4 — Settings & Stats (stories 6,7)
 - [ ] Task 17: Settings API + UI (M) — criterion #6

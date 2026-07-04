@@ -284,6 +284,16 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
   - Response queue `{"due": [...], "new": [...]}` shape bằng `ReviewQueueSerializer` (Serializer thường lồng `UserWordSerializer(many=True)`) để drf-spectacular vẫn sinh schema.
 - Đọc: `apps/srs/{models,selectors,services,views,serializers}.py`, `tests/test_queue_selector.py` (quota + timezone), `tests/test_review_api.py`.
 
+### Task 16 — Review UI (frontend, ít Django)
+- Trang `/review`: fetch queue 1 lần → phiên ôn giữ **local** (Again re-queue vào cuối, không refetch) → màn tổng kết. Thành phần: [review-card.tsx](../frontend/src/components/review-card.tsx) (typing → flip → 4 nút), [app/review/page.tsx](../frontend/src/app/review/page.tsx) (session runner), util thuần [normalize.ts](../frontend/src/lib/normalize.ts) + [tts.ts](../frontend/src/lib/tts.ts).
+- ⚠️ **Bài học Django quan trọng nhất của task:** smoke test live báo `ProgrammingError: relation "srs_reviewlog" does not exist`. Nguyên nhân: Task 15 chạy `makemigrations` (sinh **file** migration) nhưng chưa `migrate` (áp lên **DB dev**). Test suite luôn xanh vì pytest tự dựng DB test từ migration mỗi lần chạy; còn Postgres dev là DB thật, tồn tại lâu dài, phải `uv run python manage.py migrate` thủ công sau khi thêm model. `makemigrations` ≠ `migrate` — cái đầu mô tả thay đổi, cái sau thực thi lên DB đang chạy.
+- Phía client (tham khảo, không phải Django):
+  - **Session là state cục bộ, không phải server state:** queue fetch 1 lần (`staleTime: Infinity`), phiên ôn là `useState` mảng thẻ; Again = `setSession(s => [...s, card])` + `POST /review/answer`. Server chỉ biết từng lượt chấm (ghi ReviewLog); thứ tự re-queue là việc của frontend (đúng SPEC §6.3).
+  - **Auto-check gõ:** `normalizeWord()` bên TS soi gương §6.5 backend (trim→lower→NFC→collapse) rồi so khớp **chính xác** với `word_text` (đã chuẩn hóa sẵn) — không fuzzy.
+  - **TTS miễn phí:** `SpeechSynthesis` ngay trên browser, có guard cho môi trường không có API (SSR/jsdom) nên test không crash.
+  - **Thẻ new bỏ bước typing:** `first_reviewed_at === null` → vào thẳng flip; phím tắt 1–4 chấm điểm.
+- Đọc: `frontend/src/lib/{review,normalize,tts}.ts`, `components/review-card.tsx`, `app/review/page.tsx`, các test tương ứng.
+
 ### Bổ sung — API docs cho dev
 - drf-spectacular (Swagger UI tại `/api/docs/`, chỉ khi DEBUG) + BrowsableAPIRenderer trong `dev.py`.
 - Khái niệm mới: renderer per-environment, `@extend_schema`, lệnh `manage.py spectacular` kiểm tra schema.

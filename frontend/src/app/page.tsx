@@ -43,6 +43,9 @@ function HomeContent() {
         </div>
       </header>
       <nav className="flex flex-col gap-2">
+        <Link href="/review" className="text-blue-600 hover:underline">
+          → Ôn tập hôm nay
+        </Link>
         <Link href="/decks" className="text-blue-600 hover:underline">
           → Bộ từ vựng của bạn
         </Link>
