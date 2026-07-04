@@ -250,6 +250,15 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
   - **`config/settings/test.py`** tắt throttle toàn cục vì counter throttle sống trong cache còn PK user thì lặp lại giữa các test (DB rollback nhưng cache thì không) → nếu bật thật sẽ dính 429 ngẫu nhiên giữa các test.
 - Đọc: `apps/vocab/{services,views,serializers,exceptions}.py` (phần words), `tests/test_word_api.py` (21 test đủ nhánh).
 
+### Task 13 — Words UI (frontend, ít Django)
+- Trang `/decks/[id]`: bảng từ + trạng thái enrichment, form thêm từ, sửa 6 field, xóa (confirm), retry khi failed. Route động App Router: thư mục `[id]`, client component đọc param bằng `useParams()`.
+- Điểm đáng nhớ phía client:
+  - **Poll theo SPEC §11:** `useWord(id)` với `refetchInterval: (q) => q.state.data?.enrichment_status === "pending" ? 2000 : false` — mỗi row pending tự poll 2s, hoàn thành thì tự dừng, không cần state ngoài.
+  - **Row sở hữu query riêng** (`useWord(word.id, word)` với `initialData` từ list) — list không phải refetch liên tục, chỉ row pending poll.
+  - **Test hook poll bằng fake timers:** `vi.useFakeTimers()` + `advanceTimersByTimeAsync(2000)`; bẫy: React Query commit data sau một tick phụ → cần advance thêm ~100ms trước khi assert.
+  - Form thêm từ nhận `onSubmit` trả Promise — resolve thì tự xóa input, reject thì giữ nguyên cho user sửa; error message map từ `code` (`invalid_word`, `word_conflict`, `throttled`).
+- Đọc: `frontend/src/lib/words.ts`, `components/add-word-form.tsx`, `app/decks/[id]/page.tsx`, `lib/words.test.tsx`.
+
 ### Bổ sung — API docs cho dev
 - drf-spectacular (Swagger UI tại `/api/docs/`, chỉ khi DEBUG) + BrowsableAPIRenderer trong `dev.py`.
 - Khái niệm mới: renderer per-environment, `@extend_schema`, lệnh `manage.py spectacular` kiểm tra schema.

@@ -13,7 +13,7 @@ export type Deck = {
   updated_at: string;
 };
 
-type Paginated<T> = {
+export type Paginated<T> = {
   count: number;
   next: string | null;
   previous: string | null;
@@ -28,6 +28,13 @@ export function useDecks() {
   return useQuery({
     queryKey: decksKey,
     queryFn: () => api<Paginated<Deck>>("/api/v1/decks"),
+  });
+}
+
+export function useDeck(id: number) {
+  return useQuery({
+    queryKey: ["deck", id] as const,
+    queryFn: () => api<Deck>(`/api/v1/decks/${id}`),
   });
 }
 

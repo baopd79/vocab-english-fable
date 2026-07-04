@@ -21,7 +21,7 @@
 - [x] Task 10: Enrichment providers — Gemini + Fake (M, song song 8-9)
 - [x] Task 11: Enrich service + Celery task (M)
 - [x] Task 12: Words API (M)
-- [ ] Task 13: Words UI (M)
+- [x] Task 13: Words UI (M)
 - [ ] ✅ Checkpoint 2: success criteria #2, 3, 4, 8, 9
 
 ## Phase 3 — SRS (story 5)

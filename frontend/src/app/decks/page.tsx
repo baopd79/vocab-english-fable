@@ -136,7 +136,9 @@ function DeckRow({
   return (
     <div className="flex items-start justify-between gap-4">
       <div>
-        <p className="font-medium">{deck.name}</p>
+        <Link href={`/decks/${deck.id}`} className="font-medium hover:underline">
+          {deck.name}
+        </Link>
         {deck.description && <p className="text-sm text-gray-600">{deck.description}</p>}
       </div>
       <div className="flex shrink-0 gap-2">
