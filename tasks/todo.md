@@ -25,7 +25,7 @@
 - [x] ✅ Checkpoint 2: success criteria #2, 3, 4, 8, 9 — verify sống với Gemini thật (2026-07-04)
 
 ## Phase 3 — SRS (story 5)
-- [ ] Task 14: SM-2 engine thuần, coverage 100% (S, song song phase 2 được)
+- [x] Task 14: SM-2 engine thuần, coverage 100% (S, song song phase 2 được)
 - [ ] Task 15: ReviewLog + queue + answer API (M)
 - [ ] Task 16: Review UI — typing → flip → 4 nút + TTS (M–L)
 - [ ] ✅ Checkpoint 3: success criterion #5

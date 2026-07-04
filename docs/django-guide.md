@@ -259,6 +259,18 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
   - Form thêm từ nhận `onSubmit` trả Promise — resolve thì tự xóa input, reject thì giữ nguyên cho user sửa; error message map từ `code` (`invalid_word`, `word_conflict`, `throttled`).
 - Đọc: `frontend/src/lib/words.ts`, `components/add-word-form.tsx`, `app/decks/[id]/page.tsx`, `lib/words.test.tsx`.
 
+### Task 14 — SM-2 engine thuần (lõi thuật toán)
+- [apps/srs/engine.py](../backend/apps/srs/engine.py): `Rating` (enum), `CardState`/`ReviewResult` (dataclass frozen), `apply_review(state, rating)` cài đúng bảng SPEC §6.2. **Không import Django** — đây là điểm khác biệt kiến trúc quan trọng nhất của task này.
+- Vì sao tách riêng khỏi Django (giống triết lý FastAPI: business logic không phụ thuộc framework):
+  - Test **không cần DB, không cần `django_db`** — chạy trong 0.14s, không cần Postgres/Redis. Chính vì thuần nên bắt được coverage **100%** dễ dàng (AC bắt buộc, vì đây là "nguồn chân lý" của lịch ôn mọi user).
+  - App `srs` **chưa đăng ký vào `INSTALLED_APPS`** ở task này — nó mới chỉ là package Python chứa logic thuần; Task 15 thêm model `ReviewLog` mới đăng ký. Django không bắt buộc mọi thư mục dưới `apps/` phải là app đã đăng ký.
+- Khái niệm/quyết định mới:
+  - **Engine không biết đồng hồ:** trả `due_offset: timedelta` (stdlib, không phải Django) thay vì tính `due_at` tuyệt đối — tầng service (Task 15) mới cộng vào thời điểm review. Giữ hàm thuần, dễ test.
+  - **`match rating:` (Python 3.13)** dispatch 4 nhánh Rating — sạch hơn if/elif.
+  - **Quyết định làm tròn Easy (đã hỏi & chốt):** `ceil(interval × EF × 1.3)` — ceil **một lần** trên số thực (triết lý Anki), không nhân đôi sai số làm tròn. Gói trong helper `_good_interval()` trả giá trị Good **trước khi ceil** để cả Good lẫn Easy dùng chung.
+  - **Test golden-table:** `@pytest.mark.parametrize` với bảng `(state, rating) → kỳ vọng`, id rõ ràng cho từng ca; `pytest.approx` cho `ease_factor` vì float (2.5−0.2 ≠ đúng 2.3 trong IEEE754). Có test bất biến: input `CardState` frozen không bị mutate.
+- Đọc: `apps/srs/engine.py`, `tests/test_engine.py` (21 test: 4 nút × 3 trạng thái + edge + floor + single-ceil).
+
 ### Bổ sung — API docs cho dev
 - drf-spectacular (Swagger UI tại `/api/docs/`, chỉ khi DEBUG) + BrowsableAPIRenderer trong `dev.py`.
 - Khái niệm mới: renderer per-environment, `@extend_schema`, lệnh `manage.py spectacular` kiểm tra schema.
