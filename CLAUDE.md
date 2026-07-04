@@ -19,6 +19,7 @@ docker compose -f docker-compose.dev.yml up -d   # dev infra: Postgres 16 + Redi
 
 # Backend (cd backend/) — Python via uv, never pip
 uv sync
+uv run python manage.py makemigrations   # đọc models.py → sinh file migration (diff)
 uv run python manage.py migrate
 uv run python manage.py runserver                # :8000
 uv run pytest                                    # full suite + coverage (fail_under=70)

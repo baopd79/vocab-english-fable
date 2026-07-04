@@ -216,6 +216,18 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
 - Bài học phía client (tham khảo, không phải Django): TanStack Query `useQuery`/`useMutation` + `invalidateQueries(["decks"])` để list tự refetch sau create/update/delete; form tách khỏi mutation (dumb component nhận `onSubmit`); map `ApiError.code` → thông báo tiếng Việt. Bẫy test: không bật `globals` thì RTL không tự cleanup DOM giữa test → phải gọi `cleanup()` trong `vitest.setup.ts`.
 - Đọc: `frontend/src/lib/decks.ts`, `components/deck-form.tsx`, `app/decks/page.tsx`.
 
+### Task 10 — Enrichment providers (adapter pattern cho AI)
+- App mới `apps/enrichment` hiện chỉ có package `providers/` — một app Django **không bắt buộc phải có models.py**; vẫn khai báo trong `INSTALLED_APPS` để Celery autodiscover `tasks.py` ở Task 11.
+- Kiến trúc adapter (SPEC §6.1): business logic chỉ biết `AIProvider` + `WordEnrichment` ([providers/base.py](../backend/apps/enrichment/providers/base.py)); đổi vendor AI = thêm 1 class + đổi env `AI_PROVIDER`, không sửa service.
+- Khái niệm mới:
+  - **`typing.Protocol`** — structural typing ("duck typing có kiểm tra"): `FakeProvider` và `GeminiProvider` không kế thừa gì cả, chỉ cần có đúng method `enrich_word(word) -> WordEnrichment` là thỏa interface. Khác ABC (phải kế thừa tường minh); với FastAPI bạn thường đạt cùng mục đích qua `Depends` + interface ngầm.
+  - **Pydantic sống chung với Django:** DRF serializer validate **HTTP input từ client**, còn pydantic validate **output của AI** ([providers/schema.py](../backend/apps/enrichment/providers/schema.py)) — cũng là dữ liệu không tin được (SPEC §9) nhưng không đi qua request cycle. Quyết định đã chốt: field vượt giới hạn độ dài → **reject** (raise `EnrichmentError` → Celery retry ở Task 11), không cắt bớt, vì dữ liệu vào `WordCache` dùng chung phải sạch. Schema pydantic này đồng thời được gửi cho Gemini làm `response_schema` (structured output) — nhưng ranh giới tin cậy là validate phía mình, không phải lời hứa của API.
+  - **`settings` là mặt cấu hình:** `settings.AI_PROVIDER` / `GEMINI_API_KEY` / `GEMINI_MODEL` đọc từ env trong `base.py`; test đổi cấu hình bằng **`@override_settings(AI_PROVIDER="fake")`** — tương đương override dependency trong FastAPI test.
+  - **`ImproperlyConfigured`** — exception chuẩn Django cho lỗi cấu hình (thiếu key, provider lạ): fail sớm và ồn ào lúc khởi tạo thay vì lỗi khó hiểu lúc gọi.
+  - **Mock tại biên ngoài cùng:** test patch `genai.Client` (constructor) rồi gắn `generate_content.return_value` — không mock method của chính mình; giống pattern đã dùng với `id_token.verify_oauth2_token` ở Task 5.
+- Đã smoke test 1 call Gemini thật (key trong `.env`): `enrich_word("serendipity")` trả đủ 5 field hợp lệ.
+- Đọc: `apps/enrichment/providers/{base,schema,fake,gemini,factory}.py`, `tests/test_providers.py`.
+
 ### Bổ sung — API docs cho dev
 - drf-spectacular (Swagger UI tại `/api/docs/`, chỉ khi DEBUG) + BrowsableAPIRenderer trong `dev.py`.
 - Khái niệm mới: renderer per-environment, `@extend_schema`, lệnh `manage.py spectacular` kiểm tra schema.

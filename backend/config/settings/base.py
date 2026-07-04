@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "apps.accounts",
     "apps.common",
+    "apps.enrichment",
     "apps.vocab",
 ]
 
@@ -106,6 +107,11 @@ SIMPLE_JWT = {
 }
 
 GOOGLE_OAUTH_CLIENT_ID = os.getenv("GOOGLE_OAUTH_CLIENT_ID", "")
+
+# AI enrichment (SPEC §6.1) — provider swap is an env change, not a code change.
+AI_PROVIDER = os.getenv("AI_PROVIDER", "gemini")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 
 # All datetimes are stored in UTC; conversion to the user's timezone happens
 # only when computing "days" (review queue, streak, stats) — see SPEC §5.

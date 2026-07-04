@@ -18,7 +18,7 @@
 - [x] Task 7: vocab models + normalize_word (M)
 - [x] Task 8: Deck API (S)
 - [x] Task 9: Deck UI (M)
-- [ ] Task 10: Enrichment providers — Gemini + Fake (M, song song 8-9)
+- [x] Task 10: Enrichment providers — Gemini + Fake (M, song song 8-9)
 - [ ] Task 11: Enrich service + Celery task (M)
 - [ ] Task 12: Words API (M)
 - [ ] Task 13: Words UI (M)
