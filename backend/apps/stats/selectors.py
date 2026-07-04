@@ -61,9 +61,7 @@ def reviews_today(*, user: User, now: datetime, tz: ZoneInfo) -> int:
     """Distinct cards reviewed today (Again on one card counts once)."""
     day_start = _local_midnight_utc(now.astimezone(tz).date(), tz)
     return (
-        ReviewLog.objects.filter(
-            user=user, reviewed_at__gte=day_start, user_word__isnull=False
-        )
+        ReviewLog.objects.filter(user=user, reviewed_at__gte=day_start, user_word__isnull=False)
         .values("user_word")
         .distinct()
         .count()
