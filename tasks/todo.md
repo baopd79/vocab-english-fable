@@ -31,7 +31,7 @@
 - [x] ✅ Checkpoint 3: success criterion #5 — queue/quota + typing→flip + 4 nút SM-2 + Again re-queue (smoke live 2026-07-04)
 
 ## Phase 4 — Settings & Stats (stories 6,7)
-- [ ] Task 17: Settings API + UI (M) — criterion #6
+- [x] Task 17: Settings API + UI (M) — criterion #6
 - [ ] Task 18: Stats API (S–M)
 - [ ] Task 19: Stats UI (S–M) — ⚠️ chart lib mới phải hỏi trước
 - [ ] ✅ Checkpoint 4: success criterion #7

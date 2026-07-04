@@ -294,6 +294,16 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
   - **Thẻ new bỏ bước typing:** `first_reviewed_at === null` → vào thẳng flip; phím tắt 1–4 chấm điểm.
 - Đọc: `frontend/src/lib/{review,normalize,tts}.ts`, `components/review-card.tsx`, `app/review/page.tsx`, các test tương ứng.
 
+### Task 17 — Settings API + UI (criterion #6)
+- `GET/PATCH /me/settings` thêm vào app `accounts` (không model mới → **không migration**): `UserSettingsSerializer`, service `update_user_settings`, `MeSettingsView`. Trang `/settings` bên frontend.
+- Khái niệm/quyết định mới:
+  - **GET tự tạo settings nếu thiếu:** view gọi `create_user_settings` (idempotent get_or_create) trước khi trả — không bao giờ 500 vì thiếu row, kể cả user cũ.
+  - **Validate 2 tầng rõ ràng:** serializer khai `IntegerField(min_value, max_value)` tường minh (thay vì phó mặc DRF suy từ model validator) + `validate_timezone` tái dùng `validate_timezone_name`; service thêm `full_clean()` (defense-in-depth: serializer → full_clean → DB constraint, SPEC §9). PATCH sai biên → 400 `validation_error` + `errors[field]`.
+  - **Serializer validate nhưng KHÔNG lưu:** view validate bằng serializer rồi gọi `update_user_settings(**serializer.validated_data)` — đúng luật "serializer không ghi, service ghi".
+  - **Bẫy test — cached reverse relation:** `user.settings` cache trên instance sau lần truy cập đầu; sau khi PATCH đổi DB, gọi lại `build_review_queue(user=user)` vẫn thấy giá trị cũ trong cùng 1 test. Fix: load lại `User.objects.get(pk=...)`. Production không gặp vì mỗi request load user mới. Đây chính là cách verify **criterion #6** (đổi `new_words_per_day` → queue phản ánh).
+  - **UX phía client (tham khảo):** input `type=number` có `max`/`min` → trình duyệt (và jsdom) **chặn submit** giá trị ngoài biên trước cả khi gọi API; timezone là `<select>` danh sách rút gọn nên luôn hợp lệ. Vì vậy test "server reject" phải gửi giá trị hợp lệ rồi cho stub trả 400 để chạm nhánh hiển thị lỗi.
+- Đọc: `apps/accounts/{serializers,services,views}.py` (phần settings), `tests/test_settings_api.py`; `frontend/src/lib/settings.ts`, `app/settings/page.tsx`.
+
 ### Bổ sung — API docs cho dev
 - drf-spectacular (Swagger UI tại `/api/docs/`, chỉ khi DEBUG) + BrowsableAPIRenderer trong `dev.py`.
 - Khái niệm mới: renderer per-environment, `@extend_schema`, lệnh `manage.py spectacular` kiểm tra schema.

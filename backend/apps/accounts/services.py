@@ -21,6 +21,20 @@ def create_user_settings(*, user: User) -> UserSettings:
 
 
 @transaction.atomic
+def update_user_settings(*, user_settings: UserSettings, **fields: object) -> UserSettings:
+    """Apply validated study-limit / timezone changes (SPEC §6, §9).
+
+    The serializer has already validated input; full_clean() here is
+    defense-in-depth (serializer → full_clean → DB constraint).
+    """
+    for name, value in fields.items():
+        setattr(user_settings, name, value)
+    user_settings.full_clean()
+    user_settings.save(update_fields=[*fields.keys(), "updated_at"])
+    return user_settings
+
+
+@transaction.atomic
 def authenticate_google_user(*, credential: str) -> User:
     """Verify a Google ID token and return the matching user, creating it on first login.
 

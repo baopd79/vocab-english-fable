@@ -22,7 +22,9 @@ uv sync
 uv run python manage.py makemigrations   # đọc models.py → sinh file migration (diff)
 uv run python manage.py migrate
 uv run python manage.py runserver                # :8000
-uv run celery -A config worker -l info           # worker cho enrichment (cần khi test AI thật ở dev)
+uv run celery -A config worker -l info           # worker cho enrichment (chỉ cần khi test AI trong browser; pytest KHÔNG cần — task chạy eager)
+pgrep -fl "celery -A config worker"              # check worker đang chạy nền
+pkill -f "celery -A config worker"               # tắt worker (warm shutdown: đợi task đang chạy xong)
 uv run pytest                                    # full suite + coverage (fail_under=70)
 uv run pytest apps/accounts/tests/test_auth_api.py -k rotation --no-cov   # single test, skip coverage
 uv run ruff check --fix . && uv run ruff format .

@@ -13,8 +13,13 @@ from rest_framework_simplejwt.serializers import TokenRefreshSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from .exceptions import InvalidRefreshToken, RefreshCookieMissing
-from .serializers import AccessTokenSerializer, GoogleAuthSerializer, UserSerializer
-from .services import authenticate_google_user
+from .serializers import (
+    AccessTokenSerializer,
+    GoogleAuthSerializer,
+    UserSerializer,
+    UserSettingsSerializer,
+)
+from .services import authenticate_google_user, create_user_settings, update_user_settings
 
 REFRESH_COOKIE_NAME = "refresh_token"
 # Scoped so the browser only ever sends the refresh token to the auth endpoints.
@@ -87,3 +92,19 @@ class MeView(APIView):
     @extend_schema(responses=UserSerializer)
     def get(self, request: Request) -> Response:
         return Response(UserSerializer(request.user).data)
+
+
+class MeSettingsView(APIView):
+    @extend_schema(responses=UserSettingsSerializer)
+    def get(self, request: Request) -> Response:
+        # create_user_settings is idempotent — guarantees the row exists.
+        settings_obj = create_user_settings(user=request.user)
+        return Response(UserSettingsSerializer(settings_obj).data)
+
+    @extend_schema(request=UserSettingsSerializer, responses=UserSettingsSerializer)
+    def patch(self, request: Request) -> Response:
+        settings_obj = create_user_settings(user=request.user)
+        serializer = UserSettingsSerializer(settings_obj, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        settings_obj = update_user_settings(user_settings=settings_obj, **serializer.validated_data)
+        return Response(UserSettingsSerializer(settings_obj).data)

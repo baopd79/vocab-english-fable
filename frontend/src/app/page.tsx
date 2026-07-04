@@ -49,6 +49,9 @@ function HomeContent() {
         <Link href="/decks" className="text-blue-600 hover:underline">
           → Bộ từ vựng của bạn
         </Link>
+        <Link href="/settings" className="text-blue-600 hover:underline">
+          → Cài đặt
+        </Link>
       </nav>
     </main>
   );
