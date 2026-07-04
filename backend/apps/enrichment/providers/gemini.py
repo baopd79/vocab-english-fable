@@ -35,9 +35,11 @@ Plain text only in every field — no markdown, no HTML."""
 
 
 class GeminiProvider:
+    name = "gemini"
+
     def __init__(self, *, api_key: str | None = None, model: str | None = None) -> None:
         self._api_key = api_key if api_key is not None else settings.GEMINI_API_KEY
-        self._model = model if model is not None else settings.GEMINI_MODEL
+        self.model = model if model is not None else settings.GEMINI_MODEL
         if not self._api_key:
             raise ImproperlyConfigured("GEMINI_API_KEY is not set")
         self._client = genai.Client(
@@ -48,7 +50,7 @@ class GeminiProvider:
     def enrich_word(self, word: str) -> WordEnrichment:
         try:
             response = self._client.models.generate_content(
-                model=self._model,
+                model=self.model,
                 contents=PROMPT_TEMPLATE.format(word=word),
                 config={
                     "response_mime_type": "application/json",

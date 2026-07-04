@@ -228,6 +228,17 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
 - Đã smoke test 1 call Gemini thật (key trong `.env`): `enrich_word("serendipity")` trả đủ 5 field hợp lệ.
 - Đọc: `apps/enrichment/providers/{base,schema,fake,gemini,factory}.py`, `tests/test_providers.py`.
 
+### Task 11 — Enrich service + Celery task
+- Luồng SPEC §6.1 nằm trọn trong [apps/enrichment/services.py](../backend/apps/enrichment/services.py) (orchestrator `enrich_user_word` + các hàm ghi nhỏ) và wrapper mỏng [tasks.py](../backend/apps/enrichment/tasks.py); Celery app ở [config/celery.py](../backend/config/celery.py) (`config_from_object(namespace="CELERY")` + `autodiscover_tasks()` — quét `tasks.py` của mọi app trong `INSTALLED_APPS`).
+- Khái niệm mới:
+  - **Claim atomic bằng UPDATE có điều kiện:** `filter(pk=..., status__in=[pending, failed]).update(status=processing)` — 2 worker đua nhau thì WHERE chỉ khớp cho đúng 1; không dùng `select_for_update` (không giữ lock trong lúc gọi AI). Trả về số dòng bị ảnh hưởng → `bool` = có claim được không.
+  - **Orchestrator KHÔNG bọc transaction** — ngoại lệ có chủ đích của quy tắc "mỗi service = 1 `@transaction.atomic`": nếu bọc, transaction sẽ ôm luôn call Gemini 2-30s. Chỉ các hàm ghi con là atomic.
+  - **`queryset.update()` vs `instance.save()`:** update() ghi thẳng SQL — không chạy `full_clean`, không `auto_now`, nhưng **an toàn với race** (từ bị xóa giữa chừng → 0 rows, không crash). Phải tự set `updated_at=timezone.now()`.
+  - **Retry của Celery:** `bind=True` để có `self`; `self.retry(countdown=...)` ném exception `Retry` cho worker re-queue; `self.request.retries` đếm lần thử; backoff mũ `5 * 2**retries` (5s/10s/20s); hết 3 lần → cả WordCache lẫn UserWord = failed. `rate_limit="30/m"` áp ở mức worker cho call ra Gemini.
+  - **Test task không cần broker:** `task.apply(args=[...])` chạy eager ngay tại chỗ (kể cả vòng retry, bỏ qua countdown) — không Redis, không worker. FastAPI tương đương là `BackgroundTasks` nhưng Celery tách hẳn process nên phải test kiểu này.
+  - **`config/settings/test.py` mới:** pytest chạy settings riêng — cache LocMem + tắt throttle (CI không có Redis; PK user lặp lại giữa các test rollback nên counter throttle sẽ "rò" giữa test nếu bật thật).
+- Đọc: `apps/enrichment/{services,tasks}.py`, `config/celery.py`, `tests/test_enrichment_flow.py` (đủ 4 AC: hit không gọi AI, 2 request → 1 call, failed-as-miss, hết retry → failed cả hai).
+
 ### Bổ sung — API docs cho dev
 - drf-spectacular (Swagger UI tại `/api/docs/`, chỉ khi DEBUG) + BrowsableAPIRenderer trong `dev.py`.
 - Khái niệm mới: renderer per-environment, `@extend_schema`, lệnh `manage.py spectacular` kiểm tra schema.

@@ -113,6 +113,21 @@ AI_PROVIDER = os.getenv("AI_PROVIDER", "gemini")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 
+REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
+
+# Redis-backed cache — required by DRF throttling (SPEC §8) so counters are
+# shared across gunicorn workers. Tests swap this for LocMemCache.
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": REDIS_URL,
+    }
+}
+
+CELERY_BROKER_URL = REDIS_URL
+CELERY_TASK_SERIALIZER = "json"
+CELERY_TIMEZONE = "UTC"
+
 # All datetimes are stored in UTC; conversion to the user's timezone happens
 # only when computing "days" (review queue, streak, stats) — see SPEC §5.
 LANGUAGE_CODE = "en-us"

@@ -24,4 +24,7 @@ class EnrichmentError(Exception):
 
 
 class AIProvider(Protocol):
+    name: str  # audit trail on WordCache (SPEC §5: provider, model)
+    model: str
+
     def enrich_word(self, word: str) -> WordEnrichment: ...

@@ -4,6 +4,9 @@ from apps.enrichment.providers.base import WordEnrichment
 
 
 class FakeProvider:
+    name = "fake"
+    model = "fake"
+
     def enrich_word(self, word: str) -> WordEnrichment:
         return WordEnrichment(
             part_of_speech="noun",

@@ -22,6 +22,7 @@ uv sync
 uv run python manage.py makemigrations   # đọc models.py → sinh file migration (diff)
 uv run python manage.py migrate
 uv run python manage.py runserver                # :8000
+uv run celery -A config worker -l info           # worker cho enrichment (cần khi test AI thật ở dev)
 uv run pytest                                    # full suite + coverage (fail_under=70)
 uv run pytest apps/accounts/tests/test_auth_api.py -k rotation --no-cov   # single test, skip coverage
 uv run ruff check --fix . && uv run ruff format .
@@ -78,7 +79,7 @@ Google Identity Services popup on the frontend → ID token → `POST /api/v1/au
 
 ### Config & env
 
-Settings: `config/settings/{base,dev,prod}.py`; pytest runs with `dev`. Env vars load from `backend/.env` via the minimal loader `config/env.py` (no python-dotenv dep); frontend uses `frontend/.env.local` (Next.js convention). Both are gitignored and hold real secrets — never commit them; `.env.example` files carry placeholders. `.vscode/settings.json` (local-only) pins the interpreter to `backend/.venv`.
+Settings: `config/settings/{base,dev,test,prod}.py`; pytest runs with `test` (LocMemCache, throttling off — throttle tests re-enable via `override_settings` + cleared cache; no Redis in CI). Celery broker + DRF throttle cache use `REDIS_URL`; enqueue always via `transaction.on_commit` so the worker never races an uncommitted row. Env vars load from `backend/.env` via the minimal loader `config/env.py` (no python-dotenv dep); frontend uses `frontend/.env.local` (Next.js convention). Both are gitignored and hold real secrets — never commit them; `.env.example` files carry placeholders. `.vscode/settings.json` (local-only) pins the interpreter to `backend/.venv`.
 
 ### Testing
 
