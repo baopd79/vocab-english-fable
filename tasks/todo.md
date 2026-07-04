@@ -22,7 +22,7 @@
 - [x] Task 11: Enrich service + Celery task (M)
 - [x] Task 12: Words API (M)
 - [x] Task 13: Words UI (M)
-- [ ] ✅ Checkpoint 2: success criteria #2, 3, 4, 8, 9
+- [x] ✅ Checkpoint 2: success criteria #2, 3, 4, 8, 9 — verify sống với Gemini thật (2026-07-04)
 
 ## Phase 3 — SRS (story 5)
 - [ ] Task 14: SM-2 engine thuần, coverage 100% (S, song song phase 2 được)
