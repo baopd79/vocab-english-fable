@@ -315,6 +315,14 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
   - **Serializer đọc được dataclass:** trả `StatsOverview`/`DailyPoint` (dataclass) cho `Serializer(instance).data` — DRF đọc field qua getattr nên dataclass hay dict đều được.
 - Đọc: `apps/stats/{selectors,serializers,views}.py`, `tests/test_stats_selectors.py` (streak + timezone + distinct), `tests/test_stats_api.py`.
 
+### Task 19 — Stats UI (frontend, ít Django)
+- Trang `/stats`: 3 thẻ trạng thái + streak + "đã ôn hôm nay" + bar chart 30 ngày. Phía Django không đổi — chỉ tiêu thụ 2 endpoint của Task 18.
+- Quyết định (đã hỏi, đúng boundary "thêm dependency mới"): **vẽ bar chart bằng SVG thuần, không thêm chart lib** — component [daily-bar-chart.tsx](../frontend/src/components/daily-bar-chart.tsx) ~40 dòng, `<rect>` scale theo max, `<title>` cho tooltip. Bundle nhẹ, 0 dependency mới.
+- Bài học phía client (tham khảo):
+  - **`getByTitle` của RTL chỉ match `svg > title` (con trực tiếp của svg)** — `<title>` lồng trong `<rect>` không tìm được dù browser vẫn hiện tooltip khi hover. Test phải query `container.querySelectorAll("title")` rồi so text content.
+  - Chống chia cho 0: `max = Math.max(1, ...counts)` để ngày toàn 0 không vỡ layout.
+- Đọc: `frontend/src/lib/stats.ts`, `components/daily-bar-chart.tsx`, `app/stats/page.tsx`, các test.
+
 ### Bổ sung — API docs cho dev
 - drf-spectacular (Swagger UI tại `/api/docs/`, chỉ khi DEBUG) + BrowsableAPIRenderer trong `dev.py`.
 - Khái niệm mới: renderer per-environment, `@extend_schema`, lệnh `manage.py spectacular` kiểm tra schema.

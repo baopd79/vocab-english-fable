@@ -33,8 +33,8 @@
 ## Phase 4 — Settings & Stats (stories 6,7)
 - [x] Task 17: Settings API + UI (M) — criterion #6
 - [x] Task 18: Stats API (S–M)
-- [ ] Task 19: Stats UI (S–M) — ⚠️ chart lib mới phải hỏi trước
-- [ ] ✅ Checkpoint 4: success criterion #7
+- [x] Task 19: Stats UI (S–M) — SVG thuần, không thêm dep
+- [x] ✅ Checkpoint 4: success criterion #7 — stats hiển thị đúng (3 trạng thái + streak + daily chart)
 
 ## Phase 5 — Production & launch
 - [ ] Task 20: Docker prod + Nginx 1 domain (M)
