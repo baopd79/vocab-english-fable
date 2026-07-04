@@ -304,6 +304,17 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
   - **UX phía client (tham khảo):** input `type=number` có `max`/`min` → trình duyệt (và jsdom) **chặn submit** giá trị ngoài biên trước cả khi gọi API; timezone là `<select>` danh sách rút gọn nên luôn hợp lệ. Vì vậy test "server reject" phải gửi giá trị hợp lệ rồi cho stub trả 400 để chạm nhánh hiển thị lỗi.
 - Đọc: `apps/accounts/{serializers,services,views}.py` (phần settings), `tests/test_settings_api.py`; `frontend/src/lib/settings.ts`, `app/settings/page.tsx`.
 
+### Task 18 — Stats API
+- App mới `apps/stats` **không có model** (thống kê tính từ `ReviewLog` + `UserWord`) — giống `srs` giai đoạn Task 14, nhưng lần này có đăng ký `INSTALLED_APPS` cho gọn (app không model thì không sinh migration). 2 endpoint `GET /stats/overview` + `GET /stats/daily?days=`.
+- Khái niệm/quyết định mới:
+  - **3 trạng thái từ là partition (SPEC §5):** `new` = `first_reviewed_at IS NULL`; `learning` = đã ôn và `interval < 21`; `mastered` = `interval ≥ 21`. Không dùng `repetitions` (Again reset về 0). Vì thẻ mới luôn interval 0, ba nhóm không chồng lấn.
+  - **Streak (§6.4) tính Python-side theo local date:** gom tập các *ngày địa phương* có ≥1 ReviewLog rồi đếm chuỗi liên tục kết thúc hôm nay (hoặc hôm qua nếu hôm nay chưa ôn). Chọn cách gom set-ngày trong Python thay vì SQL `date_trunc` theo timezone để né SQL phụ thuộc DB và test tất định. Quyết định đã chốt: daily + `reviewed_today` đếm **thẻ distinct** (Again không thổi số), khớp story 7 "số từ đã ôn".
+  - **Zero-fill cho chart:** `daily_reviews` trả đủ mọi ngày trong khoảng (kể cả count 0) để trục x liên tục — không chỉ ngày có dữ liệu.
+  - **Validate query param bằng serializer:** `DailyQuerySerializer(days IntegerField(min_value=1, max_value=365, default=30))` chạy trên `request.query_params` → `days` sai/ngoài biên → 400 `validation_error`. Sạch hơn parse tay.
+  - **DI `now` + `tz` cho selector:** mọi hàm cần "hôm nay" nhận `now`/`tz` để test freeze-time không cần freezegun; test chứng minh review 23:00 vs 00:30 giờ địa phương rơi vào ngày khác nhau.
+  - **Serializer đọc được dataclass:** trả `StatsOverview`/`DailyPoint` (dataclass) cho `Serializer(instance).data` — DRF đọc field qua getattr nên dataclass hay dict đều được.
+- Đọc: `apps/stats/{selectors,serializers,views}.py`, `tests/test_stats_selectors.py` (streak + timezone + distinct), `tests/test_stats_api.py`.
+
 ### Bổ sung — API docs cho dev
 - drf-spectacular (Swagger UI tại `/api/docs/`, chỉ khi DEBUG) + BrowsableAPIRenderer trong `dev.py`.
 - Khái niệm mới: renderer per-environment, `@extend_schema`, lệnh `manage.py spectacular` kiểm tra schema.

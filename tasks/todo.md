@@ -32,7 +32,7 @@
 
 ## Phase 4 — Settings & Stats (stories 6,7)
 - [x] Task 17: Settings API + UI (M) — criterion #6
-- [ ] Task 18: Stats API (S–M)
+- [x] Task 18: Stats API (S–M)
 - [ ] Task 19: Stats UI (S–M) — ⚠️ chart lib mới phải hỏi trước
 - [ ] ✅ Checkpoint 4: success criterion #7
 

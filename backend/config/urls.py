@@ -8,6 +8,7 @@ urlpatterns = [
     path("api/v1/", include("apps.accounts.urls")),
     path("api/v1/", include("apps.vocab.urls")),
     path("api/v1/", include("apps.srs.urls")),
+    path("api/v1/", include("apps.stats.urls")),
 ]
 
 if settings.DEBUG:
