@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     "apps.accounts",
     "apps.common",
     "apps.enrichment",
+    "apps.srs",
     "apps.vocab",
 ]
 

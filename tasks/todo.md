@@ -26,7 +26,7 @@
 
 ## Phase 3 — SRS (story 5)
 - [x] Task 14: SM-2 engine thuần, coverage 100% (S, song song phase 2 được)
-- [ ] Task 15: ReviewLog + queue + answer API (M)
+- [x] Task 15: ReviewLog + queue + answer API (M)
 - [ ] Task 16: Review UI — typing → flip → 4 nút + TTS (M–L)
 - [ ] ✅ Checkpoint 3: success criterion #5
 

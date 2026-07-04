@@ -271,6 +271,19 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
   - **Test golden-table:** `@pytest.mark.parametrize` với bảng `(state, rating) → kỳ vọng`, id rõ ràng cho từng ca; `pytest.approx` cho `ease_factor` vì float (2.5−0.2 ≠ đúng 2.3 trong IEEE754). Có test bất biến: input `CardState` frozen không bị mutate.
 - Đọc: `apps/srs/engine.py`, `tests/test_engine.py` (21 test: 4 nút × 3 trạng thái + edge + floor + single-ceil).
 
+### Task 15 — ReviewLog + review queue + answer API
+- Đây là lúc app `srs` **chính thức thành Django app**: thêm `models.py` (`ReviewLog`), đăng ký `apps.srs` vào `INSTALLED_APPS`, `makemigrations srs` sinh `0001_initial`. Engine thuần Task 14 vẫn không import Django; các file mới (selectors/services/views) mới là tầng Django bọc ngoài.
+- `ReviewLog`: `user_word` dùng **`SET_NULL`** (xóa từ/deck → log giữ lại, `user_word=null`) vì streak/stats là lịch sử học không đổi hồi tố; `user` dùng CASCADE. Có `reviewed_at` riêng (không dựa `created_at`) để khớp đúng `now` đã dùng tính `due_at`, và index `(user, reviewed_at)` cho truy vấn quota/streak.
+- Khái niệm/quyết định mới:
+  - **Timezone-aware "ngày" (SPEC §6.3):** mọi thứ lưu UTC, nhưng "hôm nay" tính theo `UserSettings.timezone`. Helper `user_day_start()` đổi `now` sang giờ địa phương → lấy nửa đêm → đổi lại UTC làm mốc lọc. Test chứng minh review lúc 23:00 địa phương (hôm qua) vs 00:30 (hôm nay) trừ quota khác nhau.
+  - **Dependency injection `now` thay cho freezegun:** `build_review_queue(*, user, now=None)` và `apply_review_answer(..., now=None)` nhận `now` để test tất định, không thêm dependency. Đây là mẹo giữ hàm thuần-hóa một phần.
+  - **Quota "distinct cards":** đếm `ReviewLog.values("user_word").distinct().count()` — bấm Again nhiều lần trên 1 thẻ chỉ tốn 1 suất; test phân biệt count-rows (sai) vs count-distinct (đúng).
+  - **Thẻ mới tách khỏi nhóm due:** due filter thêm `first_reviewed_at__isnull=False` để thẻ mới (due_at mặc định = now) không lọt cả 2 nhóm.
+  - **`apply_review_answer` nối engine → persistence:** đọc SRS field vào `CardState`, gọi `apply_review`, ghi lại + `due_at = now + result.due_offset`, set `first_reviewed_at` **đúng 1 lần** (Again không reset), tạo `ReviewLog`. Cả service là 1 `@transaction.atomic`.
+  - **Endpoint answer chấp nhận thẻ chưa due (SPEC §9):** không filter `due_at`, chỉ filter theo `user` (404 nếu của người khác) — cần cho luồng Again mà frontend giữ trong session.
+  - Response queue `{"due": [...], "new": [...]}` shape bằng `ReviewQueueSerializer` (Serializer thường lồng `UserWordSerializer(many=True)`) để drf-spectacular vẫn sinh schema.
+- Đọc: `apps/srs/{models,selectors,services,views,serializers}.py`, `tests/test_queue_selector.py` (quota + timezone), `tests/test_review_api.py`.
+
 ### Bổ sung — API docs cho dev
 - drf-spectacular (Swagger UI tại `/api/docs/`, chỉ khi DEBUG) + BrowsableAPIRenderer trong `dev.py`.
 - Khái niệm mới: renderer per-environment, `@extend_schema`, lệnh `manage.py spectacular` kiểm tra schema.
