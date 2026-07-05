@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 
+import { Button } from "@/components/ui/button";
+import { Input, Textarea } from "@/components/ui/input";
+
 export type DeckFormValues = { name: string; description: string };
 
 export function DeckForm({
@@ -28,46 +31,38 @@ export function DeckForm({
         event.preventDefault();
         onSubmit({ name: name.trim(), description });
       }}
-      className="flex flex-col gap-2 rounded border border-gray-200 p-3"
+      className="border-border bg-surface-2 flex flex-col gap-3 rounded-2xl border p-4"
     >
-      <input
+      <Input
         aria-label="Tên deck"
         value={name}
         onChange={(event) => setName(event.target.value)}
         placeholder="Tên deck"
         maxLength={100}
-        className="rounded border border-gray-300 px-2 py-1"
+        className="bg-surface"
       />
-      <textarea
+      <Textarea
         aria-label="Mô tả"
         value={description}
         onChange={(event) => setDescription(event.target.value)}
         placeholder="Mô tả (tùy chọn)"
         maxLength={500}
         rows={2}
-        className="rounded border border-gray-300 px-2 py-1"
+        className="bg-surface"
       />
       {errorMessage && (
-        <p role="alert" className="text-sm text-red-600">
+        <p role="alert" className="text-grade-again text-sm font-medium">
           {errorMessage}
         </p>
       )}
       <div className="flex gap-2">
-        <button
-          type="submit"
-          disabled={submitting || name.trim().length === 0}
-          className="rounded bg-black px-3 py-1 text-sm text-white disabled:opacity-50"
-        >
+        <Button type="submit" size="sm" disabled={submitting || name.trim().length === 0}>
           {submitLabel}
-        </button>
+        </Button>
         {onCancel && (
-          <button
-            type="button"
-            onClick={onCancel}
-            className="rounded border border-gray-300 px-3 py-1 text-sm hover:bg-gray-50"
-          >
+          <Button type="button" variant="outline" size="sm" onClick={onCancel}>
             Hủy
-          </button>
+          </Button>
         )}
       </div>
     </form>

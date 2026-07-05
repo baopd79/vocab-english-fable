@@ -5,6 +5,8 @@ import { useState } from "react";
 
 import { ReviewCard } from "@/components/review-card";
 import { RequireAuth } from "@/components/require-auth";
+import { Badge } from "@/components/ui/badge";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { isNewCard, useReviewQueue, useSubmitAnswer, type Rating } from "@/lib/review";
 import type { UserWord } from "@/lib/words";
 
@@ -30,7 +32,7 @@ export function ReviewContent() {
   if (cards.length === 0) {
     return (
       <Centered>
-        <p>Hôm nay bạn không có thẻ nào cần ôn. 🎉</p>
+        <p className="text-lg font-semibold">Hôm nay bạn không có thẻ nào cần ôn. 🎉</p>
         <HomeLink />
       </Centered>
     );
@@ -50,8 +52,11 @@ function ReviewRunner({ initialCards }: { initialCards: UserWord[] }) {
   if (step >= session.length) {
     return (
       <Centered>
-        <p className="text-lg font-medium">Xong phiên ôn! 🎉</p>
-        <p className="text-sm text-gray-600">
+        <div className="bg-accent/10 text-accent flex h-16 w-16 items-center justify-center rounded-full text-3xl">
+          🎉
+        </div>
+        <p className="font-display text-2xl font-bold">Xong phiên ôn!</p>
+        <p className="text-muted-fg text-sm">
           Đã ôn {completed} thẻ{againCount > 0 && `, ${againCount} lượt Again`}.
         </p>
         <HomeLink />
@@ -77,12 +82,32 @@ function ReviewRunner({ initialCards }: { initialCards: UserWord[] }) {
   }
 
   const remaining = session.length - step;
+  const progress = Math.round((step / session.length) * 100);
 
   return (
-    <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-4 p-8">
-      <header className="flex items-center justify-between text-sm text-gray-600">
-        <span>{isNewCard(card) ? "Thẻ mới" : "Ôn lại"}</span>
-        <span>Còn lại: {remaining}</span>
+    <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-4 p-6 sm:p-8">
+      <header className="flex flex-col gap-2">
+        <div className="flex items-center justify-between text-sm">
+          <Badge variant={isNewCard(card) ? "accent" : "primary"}>
+            {isNewCard(card) ? "Thẻ mới" : "Ôn lại"}
+          </Badge>
+          <div className="flex items-center gap-3">
+            <span className="text-muted-fg">Còn lại: {remaining}</span>
+            <ThemeToggle />
+          </div>
+        </div>
+        <div
+          className="bg-surface-2 h-2 w-full overflow-hidden rounded-full"
+          role="progressbar"
+          aria-valuenow={progress}
+          aria-valuemin={0}
+          aria-valuemax={100}
+        >
+          <div
+            className="bg-primary h-full rounded-full transition-[width] duration-300"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
       </header>
       <ReviewCard
         key={step}
@@ -97,7 +122,7 @@ function ReviewRunner({ initialCards }: { initialCards: UserWord[] }) {
 
 function Centered({ children }: { children: React.ReactNode }) {
   return (
-    <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col items-center justify-center gap-3 p-8 text-center text-gray-700">
+    <main className="text-fg mx-auto flex w-full max-w-2xl flex-1 flex-col items-center justify-center gap-3 p-8 text-center">
       {children}
     </main>
   );
@@ -105,7 +130,10 @@ function Centered({ children }: { children: React.ReactNode }) {
 
 function HomeLink() {
   return (
-    <Link href="/" className="text-sm text-blue-600 hover:underline">
+    <Link
+      href="/"
+      className="text-primary hover:text-primary-hover mt-2 text-sm font-semibold hover:underline"
+    >
       ← Về trang chủ
     </Link>
   );

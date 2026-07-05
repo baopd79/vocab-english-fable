@@ -1,11 +1,14 @@
 "use client";
 
-import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 
 import { AddWordForm } from "@/components/add-word-form";
 import { RequireAuth } from "@/components/require-auth";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Field, Input } from "@/components/ui/input";
+import { PageHeader } from "@/components/ui/page-header";
 import { useDeck } from "@/lib/decks";
 import {
   useAddWord,
@@ -35,13 +38,12 @@ export function DeckWordsContent({ deckId }: { deckId: number }) {
   const addWord = useAddWord(deckId);
 
   return (
-    <main className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-6 p-8">
-      <header className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">{deckQuery.data?.name ?? "…"}</h1>
-        <Link href="/decks" className="text-sm text-gray-600 hover:underline">
-          ← Danh sách deck
-        </Link>
-      </header>
+    <main className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-6 p-6 sm:p-8">
+      <PageHeader
+        title={deckQuery.data?.name ?? "…"}
+        backHref="/decks"
+        backLabel="← Danh sách deck"
+      />
 
       <AddWordForm
         submitting={addWord.isPending}
@@ -50,17 +52,17 @@ export function DeckWordsContent({ deckId }: { deckId: number }) {
       />
 
       {wordsQuery.isPending ? (
-        <p className="text-sm text-gray-600">Đang tải…</p>
+        <p className="text-muted-fg text-sm">Đang tải…</p>
       ) : wordsQuery.isError ? (
-        <p className="text-sm text-red-600">Không tải được danh sách từ.</p>
+        <p className="text-grade-again text-sm">Không tải được danh sách từ.</p>
       ) : wordsQuery.data.results.length === 0 ? (
-        <p className="text-sm text-gray-600">
+        <p className="text-muted-fg text-sm">
           Chưa có từ nào. Thêm từ đầu tiên — AI sẽ tự tra nghĩa, phiên âm và ví dụ.
         </p>
       ) : (
-        <ul className="flex flex-col gap-2">
+        <ul className="flex flex-col gap-3">
           {wordsQuery.data.results.map((word) => (
-            <li key={word.id} className="rounded border border-gray-200 p-3">
+            <li key={word.id} className="border-border bg-surface rounded-2xl border p-4 shadow-sm">
               <WordRow word={word} deckId={deckId} />
             </li>
           ))}
@@ -100,26 +102,22 @@ function WordRow({ word, deckId }: { word: UserWord; deckId: number }) {
 
   if (confirming) {
     return (
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm">
-          Xóa từ <span className="font-medium">{displayed.word_text}</span>?
+          Xóa từ <span className="font-semibold">{displayed.word_text}</span>?
         </p>
         <div className="flex shrink-0 gap-2">
-          <button
-            type="button"
+          <Button
+            variant="danger"
+            size="sm"
             onClick={() => deleteWord.mutate(word.id)}
             disabled={deleteWord.isPending}
-            className="rounded bg-red-600 px-3 py-1 text-sm text-white disabled:opacity-50"
           >
             Xóa
-          </button>
-          <button
-            type="button"
-            onClick={() => setConfirming(false)}
-            className="rounded border border-gray-300 px-3 py-1 text-sm hover:bg-gray-50"
-          >
+          </Button>
+          <Button variant="outline" size="sm" onClick={() => setConfirming(false)}>
             Hủy
-          </button>
+          </Button>
         </div>
       </div>
     );
@@ -128,32 +126,28 @@ function WordRow({ word, deckId }: { word: UserWord; deckId: number }) {
   return (
     <div className="flex items-start justify-between gap-4">
       <div className="min-w-0">
-        <p className="font-medium">
-          {displayed.word_text}
-          {displayed.ipa && <span className="ml-2 font-normal text-gray-500">{displayed.ipa}</span>}
-          {displayed.part_of_speech && (
-            <span className="ml-2 text-sm font-normal italic text-gray-500">
-              {displayed.part_of_speech}
-            </span>
-          )}
+        <p className="flex flex-wrap items-baseline gap-2">
+          <span className="font-display text-lg font-semibold">{displayed.word_text}</span>
+          {displayed.ipa && <span className="text-muted-fg text-sm">{displayed.ipa}</span>}
+          {displayed.part_of_speech && <Badge variant="primary">{displayed.part_of_speech}</Badge>}
         </p>
         <WordStatus word={displayed} onRetry={() => retry.mutate(word.id)} retry={retry} />
       </div>
-      <div className="flex shrink-0 gap-2">
+      <div className="flex shrink-0 gap-3 text-sm font-medium">
         <button
           type="button"
           onClick={() => {
             updateWord.reset();
             setEditing(true);
           }}
-          className="text-sm text-gray-600 hover:underline"
+          className="text-muted-fg hover:text-primary cursor-pointer transition-colors"
         >
           Sửa
         </button>
         <button
           type="button"
           onClick={() => setConfirming(true)}
-          className="text-sm text-red-600 hover:underline"
+          className="text-grade-again cursor-pointer transition-opacity hover:opacity-70"
         >
           Xóa
         </button>
@@ -172,24 +166,24 @@ function WordStatus({
   retry: { isPending: boolean; isError: boolean; error: unknown };
 }) {
   if (word.enrichment_status === "pending") {
-    return <p className="text-sm text-amber-600">Đang tra cứu…</p>;
+    return <p className="text-streak mt-1 text-sm font-medium">Đang tra cứu…</p>;
   }
   if (word.enrichment_status === "failed") {
     return (
-      <div className="flex flex-col gap-1">
-        <p className="text-sm text-red-600">
+      <div className="mt-1 flex flex-col gap-1">
+        <p className="text-grade-again text-sm">
           Tra cứu thất bại.{" "}
           <button
             type="button"
             onClick={onRetry}
             disabled={retry.isPending}
-            className="underline disabled:opacity-50"
+            className="cursor-pointer font-medium underline disabled:opacity-50"
           >
             Thử lại
           </button>
         </p>
         {retry.isError && (
-          <p role="alert" className="text-sm text-red-600">
+          <p role="alert" className="text-grade-again text-sm">
             {wordErrorMessage(retry.error)}
           </p>
         )}
@@ -197,13 +191,13 @@ function WordStatus({
     );
   }
   return (
-    <div className="text-sm text-gray-700">
-      <p>{word.meaning_vi}</p>
+    <div className="mt-1 text-sm">
+      <p className="text-fg">{word.meaning_vi}</p>
       {word.example_en && (
-        <p className="mt-1 text-gray-500">
-          {word.example_en}
-          {word.example_vi && <span className="block">{word.example_vi}</span>}
-        </p>
+        <div className="border-primary/30 mt-1.5 border-l-2 pl-3">
+          <p className="text-muted-fg">{word.example_en}</p>
+          {word.example_vi && <p className="text-muted-fg">{word.example_vi}</p>}
+        </div>
       )}
     </div>
   );
@@ -233,16 +227,14 @@ function WordEditForm({
 
   function field(key: keyof WordUpdateInput, label: string, maxLength: number) {
     return (
-      <label className="flex flex-col gap-1 text-sm">
-        <span className="text-gray-600">{label}</span>
-        <input
+      <Field label={label}>
+        <Input
           aria-label={label}
           value={values[key]}
           maxLength={maxLength}
           onChange={(event) => setValues((prev) => ({ ...prev, [key]: event.target.value }))}
-          className="rounded border border-gray-300 px-2 py-1"
         />
-      </label>
+      </Field>
     );
   }
 
@@ -252,10 +244,10 @@ function WordEditForm({
         event.preventDefault();
         onSubmit(values);
       }}
-      className="flex flex-col gap-2"
+      className="flex flex-col gap-3"
     >
       {field("word_text", "Từ", 64)}
-      <p className="text-xs text-gray-500">
+      <p className="text-muted-fg -mt-1 text-xs">
         Đổi “Từ” sẽ tra cứu lại bằng AI — nội dung bên dưới sẽ bị ghi đè.
       </p>
       {field("part_of_speech", "Loại từ", 50)}
@@ -264,25 +256,21 @@ function WordEditForm({
       {field("example_en", "Ví dụ (EN)", 1000)}
       {field("example_vi", "Ví dụ (VI)", 1000)}
       {errorMessage && (
-        <p role="alert" className="text-sm text-red-600">
+        <p role="alert" className="text-grade-again text-sm font-medium">
           {errorMessage}
         </p>
       )}
       <div className="flex gap-2">
-        <button
+        <Button
           type="submit"
+          size="sm"
           disabled={submitting || values.word_text.trim().length === 0}
-          className="rounded bg-black px-3 py-1 text-sm text-white disabled:opacity-50"
         >
           Lưu
-        </button>
-        <button
-          type="button"
-          onClick={onCancel}
-          className="rounded border border-gray-300 px-3 py-1 text-sm hover:bg-gray-50"
-        >
+        </Button>
+        <Button type="button" variant="outline" size="sm" onClick={onCancel}>
           Hủy
-        </button>
+        </Button>
       </div>
     </form>
   );

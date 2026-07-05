@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
 export function AddWordForm({
   onSubmit,
   submitting = false,
@@ -27,24 +30,19 @@ export function AddWordForm({
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2">
       <div className="flex gap-2">
-        <input
+        <Input
           aria-label="Từ mới"
           value={word}
           onChange={(event) => setWord(event.target.value)}
           placeholder="Nhập từ tiếng Anh…"
           maxLength={64}
-          className="flex-1 rounded border border-gray-300 px-3 py-2"
         />
-        <button
-          type="submit"
-          disabled={submitting || word.trim().length === 0}
-          className="rounded bg-black px-4 py-2 text-sm text-white disabled:opacity-50"
-        >
+        <Button type="submit" disabled={submitting || word.trim().length === 0}>
           Thêm từ
-        </button>
+        </Button>
       </div>
       {errorMessage && (
-        <p role="alert" className="text-sm text-red-600">
+        <p role="alert" className="text-grade-again text-sm font-medium">
           {errorMessage}
         </p>
       )}

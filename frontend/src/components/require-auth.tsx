@@ -17,7 +17,7 @@ export function RequireAuth({ children }: { children: React.ReactNode }) {
   if (status !== "authenticated") {
     return (
       <main className="flex flex-1 items-center justify-center p-8">
-        <p className="text-sm text-gray-600">Đang tải…</p>
+        <p className="text-muted-fg text-sm">Đang tải…</p>
       </main>
     );
   }

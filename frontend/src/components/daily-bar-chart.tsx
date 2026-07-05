@@ -14,7 +14,7 @@ export function DailyBarChart({ points }: { points: DailyPoint[] }) {
   const width = points.length * step;
 
   return (
-    <div className="overflow-x-auto">
+    <div className="border-border bg-surface overflow-x-auto rounded-2xl border p-4 shadow-sm">
       <svg
         role="img"
         aria-label="Số thẻ đã ôn theo ngày"
@@ -31,7 +31,8 @@ export function DailyBarChart({ points }: { points: DailyPoint[] }) {
               y={CHART_HEIGHT - barHeight}
               width={BAR_WIDTH}
               height={barHeight}
-              className="fill-green-600"
+              rx={2}
+              className="fill-primary"
             >
               <title>{`${point.date}: ${point.count} thẻ`}</title>
             </rect>

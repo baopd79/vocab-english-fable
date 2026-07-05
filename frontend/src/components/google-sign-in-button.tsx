@@ -58,7 +58,8 @@ export function GoogleSignInButton({
     };
   }, [clientId]);
 
-  if (!clientId) return <p className="text-sm text-red-600">Thiếu cấu hình Google Client ID.</p>;
-  if (error) return <p className="text-sm text-red-600">{error}</p>;
+  if (!clientId)
+    return <p className="text-grade-again text-sm font-medium">Thiếu cấu hình Google Client ID.</p>;
+  if (error) return <p className="text-grade-again text-sm font-medium">{error}</p>;
   return <div ref={containerRef} />;
 }
