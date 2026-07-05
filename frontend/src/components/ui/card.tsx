@@ -2,12 +2,7 @@ import type { HTMLAttributes } from "react";
 
 import { cn } from "@/lib/cn";
 
-/** Elevated surface block — the base container of the block-based style. */
+/** Elevated glass surface — the base container of the v2 glassmorphism style. */
 export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div
-      className={cn("border-border bg-surface rounded-2xl border p-6 shadow-sm", className)}
-      {...props}
-    />
-  );
+  return <div className={cn("glass rounded-3xl p-6", className)} {...props} />;
 }

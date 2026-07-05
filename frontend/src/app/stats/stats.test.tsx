@@ -44,8 +44,8 @@ test("shows overview counts, streak and the daily chart", async () => {
   ]);
   const { container } = renderStats();
 
-  // Streak + reviewed today.
-  const streakLine = await screen.findByText(/Streak:/);
+  // Streak + reviewed today (one line holds both numbers).
+  const streakLine = await screen.findByText(/Chuỗi/);
   expect(streakLine).toHaveTextContent("4");
   expect(streakLine).toHaveTextContent("7");
 

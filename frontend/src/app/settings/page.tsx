@@ -5,7 +5,7 @@ import { useState } from "react";
 import { RequireAuth } from "@/components/require-auth";
 import { Button } from "@/components/ui/button";
 import { Field, Input, Select } from "@/components/ui/input";
-import { PageHeader } from "@/components/ui/page-header";
+import { PageHeading } from "@/components/ui/page-header";
 import {
   settingsErrorMessage,
   TIMEZONES,
@@ -26,13 +26,13 @@ export function SettingsContent() {
   const query = useSettings();
 
   return (
-    <main className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-6 p-6 sm:p-8">
-      <PageHeader title="Cài đặt" backHref="/" backLabel="← Trang chủ" />
+    <main className="mx-auto flex w-full max-w-[560px] flex-1 flex-col gap-6 px-4 py-10 sm:px-8">
+      <PageHeading title="Cài đặt" subtitle="Điều chỉnh nhịp học cho phù hợp với bạn." />
 
       {query.isPending ? (
         <p className="text-muted-fg text-sm">Đang tải…</p>
       ) : query.isError ? (
-        <p className="text-grade-again text-sm">Không tải được cài đặt.</p>
+        <p className="text-danger-text text-sm">Không tải được cài đặt.</p>
       ) : (
         <SettingsForm initial={query.data} />
       )}
@@ -64,7 +64,10 @@ function SettingsForm({ initial }: { initial: UserSettings }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+    <form
+      onSubmit={handleSubmit}
+      className="glass animate-card-in flex flex-col gap-5 rounded-[22px] p-6 sm:p-7"
+    >
       <Field label="Từ mới mỗi ngày" hint="0–100, đặt 0 để tạm dừng học từ mới">
         <Input
           type="number"
@@ -102,15 +105,19 @@ function SettingsForm({ initial }: { initial: UserSettings }) {
       </Field>
 
       {update.isError && (
-        <p role="alert" className="text-grade-again text-sm font-medium">
+        <p role="alert" className="text-danger-text text-sm font-medium">
           {settingsErrorMessage(update.error)}
         </p>
       )}
-      {saved && !update.isError && <p className="text-accent text-sm font-medium">Đã lưu.</p>}
 
-      <Button type="submit" className="self-start" disabled={update.isPending}>
-        Lưu
-      </Button>
+      <div className="flex items-center gap-3.5">
+        <Button type="submit" disabled={update.isPending}>
+          Lưu
+        </Button>
+        {saved && !update.isError && (
+          <p className="text-primary-text animate-pop-in text-sm font-bold">Đã lưu.</p>
+        )}
+      </div>
     </form>
   );
 }

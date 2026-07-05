@@ -326,3 +326,11 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
 ### Bổ sung — API docs cho dev
 - drf-spectacular (Swagger UI tại `/api/docs/`, chỉ khi DEBUG) + BrowsableAPIRenderer trong `dev.py`.
 - Khái niệm mới: renderer per-environment, `@extend_schema`, lệnh `manage.py spectacular` kiểm tra schema.
+
+### UI v2 — Redesign "Duolingo-green glassmorphism" (kèm 1 thay đổi backend nhỏ)
+- Redesign toàn bộ frontend theo file design `Vocab English v2.dc.html` (claude.ai/design): nền gradient xanh lá, card kính (glassmorphism), nút 3D kiểu Duolingo, font **Bricolage Grotesque** + Be Vietnam Pro, header điều hướng chung + trang chủ dạng dashboard. Logic `src/lib/` giữ nguyên.
+- Phần Django mới (đáng đọc):
+  - **Annotate `Count` có điều kiện:** `list_decks` giờ trả kèm `word_count=Count("words")` và `mastered_count=Count("words", filter=Q(words__interval_days__gte=21))` — đếm bằng **1 câu SQL cho cả trang list** (GROUP BY), tránh N+1 query khi mỗi deck tự `.count()`. `Q(...)` trong `filter=` của aggregate là cách Django viết `COUNT(...) FILTER (WHERE ...)` của Postgres.
+  - **SerializerMethodField có fallback:** `DeckSerializer.get_word_count` đọc thuộc tính annotate nếu có (`getattr(deck, "word_count", None)`), không có thì tự query — vì các path một-object (POST create, GET/PATCH detail qua `get_object_or_404`) không đi qua selector nên không có annotation. Đổi 2 query/deck ở detail lấy sự đơn giản; list (nhiều deck) vẫn 0 query thừa.
+  - **Cross-app import một chiều:** `vocab` import hằng `MASTERED_INTERVAL_DAYS` từ `apps.stats.selectors` (stats chỉ import *models* của vocab nên không tạo vòng import). Ngưỡng "mastered ≥ 21 ngày" chỉ định nghĩa một chỗ.
+- Đọc: `apps/vocab/selectors.py` (annotate), `apps/vocab/serializers.py` (fallback), `tests/test_deck_api.py::TestListDecks::test_word_and_mastered_counts`; frontend: `src/app/globals.css` (token 2 theme + `.glass`), `components/app-header.tsx`, `app/page.tsx` (dashboard).

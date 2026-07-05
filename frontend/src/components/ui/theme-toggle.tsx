@@ -66,7 +66,7 @@ export function ThemeToggle() {
       type="button"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       aria-label="Đổi giao diện sáng/tối"
-      className="border-border text-muted-fg hover:bg-surface-2 hover:text-primary focus-visible:ring-ring focus-visible:ring-offset-bg inline-flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+      className="border-chip-border bg-surface-2 text-muted-fg hover:text-primary-text hover:bg-surface focus-visible:ring-ring focus-visible:ring-offset-bg inline-flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border backdrop-blur-md transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
     >
       {theme === "dark" ? <SunIcon /> : <MoonIcon />}
     </button>

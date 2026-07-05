@@ -9,6 +9,8 @@ export type Deck = {
   name: string;
   description: string;
   visibility: string;
+  word_count: number;
+  mastered_count: number;
   created_at: string;
   updated_at: string;
 };

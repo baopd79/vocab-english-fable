@@ -2,7 +2,6 @@
 
 import { DailyBarChart } from "@/components/daily-bar-chart";
 import { RequireAuth } from "@/components/require-auth";
-import { PageHeader } from "@/components/ui/page-header";
 import { useDailyReviews, useStatsOverview, type StatsOverview } from "@/lib/stats";
 
 const DAILY_WINDOW = 30;
@@ -20,25 +19,34 @@ export function StatsContent() {
   const daily = useDailyReviews(DAILY_WINDOW);
 
   return (
-    <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-6 p-6 sm:p-8">
-      <PageHeader title="Thống kê" backHref="/" backLabel="← Trang chủ" />
+    <main className="mx-auto flex w-full max-w-[840px] flex-1 flex-col gap-7 px-4 py-10 sm:px-8">
+      <header className="animate-card-in">
+        <h1 className="font-display text-3xl font-extrabold tracking-tight">Thống kê</h1>
+        {overview.data && (
+          <p className="text-muted-fg mt-2 flex items-center gap-1.5 text-base">
+            <FlameIcon />
+            Chuỗi <strong className="text-fg">{overview.data.streak} ngày</strong> liên tiếp · Hôm
+            nay đã ôn <strong className="text-fg">{overview.data.reviewed_today} thẻ</strong>
+          </p>
+        )}
+      </header>
 
       {overview.isPending ? (
         <p className="text-muted-fg text-sm">Đang tải…</p>
       ) : overview.isError ? (
-        <p className="text-grade-again text-sm">Không tải được thống kê.</p>
+        <p className="text-danger-text text-sm">Không tải được thống kê.</p>
       ) : (
         <Overview data={overview.data} />
       )}
 
-      <section className="flex flex-col gap-3">
-        <h2 className="font-display text-lg font-semibold">
+      <section className="glass animate-card-in flex flex-col gap-4 rounded-[22px] p-6 sm:p-7">
+        <h2 className="font-display text-lg font-bold tracking-tight">
           Số thẻ đã ôn ({DAILY_WINDOW} ngày gần nhất)
         </h2>
         {daily.isPending ? (
           <p className="text-muted-fg text-sm">Đang tải…</p>
         ) : daily.isError ? (
-          <p className="text-grade-again text-sm">Không tải được biểu đồ.</p>
+          <p className="text-danger-text text-sm">Không tải được biểu đồ.</p>
         ) : (
           <DailyBarChart points={daily.data.results} />
         )}
@@ -49,29 +57,22 @@ export function StatsContent() {
 
 function Overview({ data }: { data: StatsOverview }) {
   return (
-    <div className="flex flex-col gap-4">
-      <div className="bg-streak/10 border-streak/20 flex items-center gap-3 rounded-2xl border p-4">
-        <FlameIcon />
-        <p className="text-lg">
-          Streak: <span className="font-display font-bold">{data.streak}</span> ngày · Đã ôn hôm
-          nay: <span className="font-display font-bold">{data.reviewed_today}</span> thẻ
-        </p>
-      </div>
-      <div className="grid grid-cols-3 gap-3">
-        <StatCard label="Từ mới" value={data.new} tint="bg-surface-2" valueClass="text-fg" />
-        <StatCard
-          label="Đang học"
-          value={data.learning}
-          tint="bg-streak/10"
-          valueClass="text-streak"
-        />
-        <StatCard
-          label="Thành thạo"
-          value={data.mastered}
-          tint="bg-accent/10"
-          valueClass="text-accent"
-        />
-      </div>
+    <div className="animate-card-in grid grid-cols-3 gap-4">
+      <StatCard
+        label="Từ mới"
+        value={data.new}
+        className="bg-surface-2 border-chip-border text-muted-fg"
+      />
+      <StatCard
+        label="Đang học"
+        value={data.learning}
+        className="bg-streak/15 border-streak/35 text-streak-text"
+      />
+      <StatCard
+        label="Thành thạo"
+        value={data.mastered}
+        className="bg-primary/15 border-primary/40 text-primary-text"
+      />
     </div>
   );
 }
@@ -79,18 +80,18 @@ function Overview({ data }: { data: StatsOverview }) {
 function StatCard({
   label,
   value,
-  tint,
-  valueClass,
+  className,
 }: {
   label: string;
   value: number;
-  tint: string;
-  valueClass: string;
+  className: string;
 }) {
   return (
-    <div className={`flex flex-col items-center gap-1 rounded-2xl p-4 ${tint}`}>
-      <span className={`font-display text-3xl font-bold ${valueClass}`}>{value}</span>
-      <span className="text-muted-fg text-sm">{label}</span>
+    <div
+      className={`flex flex-col items-center gap-1 rounded-[20px] border-[1.5px] p-5 backdrop-blur-md ${className}`}
+    >
+      <span className="font-display text-4xl font-extrabold">{value}</span>
+      <span className="text-muted-fg text-sm font-semibold">{label}</span>
     </div>
   );
 }
@@ -98,14 +99,14 @@ function StatCard({
 function FlameIcon() {
   return (
     <svg
-      width="28"
-      height="28"
+      width="16"
+      height="16"
       viewBox="0 0 24 24"
       fill="currentColor"
       className="text-streak shrink-0"
       aria-hidden="true"
     >
-      <path d="M12 2s4 3.5 4 8a4 4 0 0 1-8 0c0-1 .3-1.8.5-2.3C7 8.5 6 10.2 6 12.5a6 6 0 1 0 12 0c0-4.8-3.6-8.5-6-10.5Z" />
+      <path d="M12 22c4.4 0 7.5-3 7.5-7.2 0-2.9-1.6-5.3-3.3-7.2-.5-.6-1.5-.2-1.5.6 0 1.1-.3 2.2-1 3-.6-2.6-1.8-5.6-4.5-7.7-.6-.5-1.5 0-1.4.8.2 1.9-.5 3.7-1.6 5.4C4.9 11.5 4 13.5 4 15c0 4.1 3.6 7 8 7z" />
     </svg>
   );
 }

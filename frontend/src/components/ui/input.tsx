@@ -3,9 +3,9 @@ import type { ReactNode } from "react";
 
 import { cn } from "@/lib/cn";
 
-/** Shared control styling — token-driven, 44px-tall for touch. */
+/** Shared control styling — token-driven, translucent over the glass. */
 export const fieldBase =
-  "border-border bg-surface-2 text-fg placeholder:text-muted-fg focus-visible:ring-ring focus-visible:border-primary w-full rounded-xl border transition-colors focus-visible:ring-2 focus-visible:outline-none";
+  "border-border bg-surface text-fg placeholder:text-subtle-fg focus-visible:border-primary focus-visible:ring-primary/20 w-full rounded-xl border-[1.5px] transition-colors focus-visible:ring-[3px] focus-visible:outline-none";
 
 export function Input({ className, ...props }: InputHTMLAttributes<HTMLInputElement>) {
   return <input className={cn(fieldBase, "h-11 px-4", className)} {...props} />;
@@ -32,9 +32,9 @@ export function Field({
 }) {
   return (
     <label className="flex flex-col gap-1.5">
-      <span className="text-sm font-semibold">{label}</span>
+      <span className="text-sm font-bold">{label}</span>
       {children}
-      {hint && <span className="text-muted-fg text-xs">{hint}</span>}
+      {hint && <span className="text-subtle-fg text-xs">{hint}</span>}
     </label>
   );
 }

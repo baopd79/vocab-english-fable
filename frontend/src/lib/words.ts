@@ -27,6 +27,18 @@ export type UserWord = {
   updated_at: string;
 };
 
+export type WordStatus = "new" | "learning" | "mastered";
+
+// Mirror of the backend threshold (SPEC §5): interval ≥ 21 days = mastered.
+const MASTERED_INTERVAL_DAYS = 21;
+
+/** Derived word state — never stored, computed the same way as the backend:
+ * new = never reviewed; mastered = interval ≥ 21d; learning = the rest. */
+export function wordStatus(word: UserWord): WordStatus {
+  if (word.first_reviewed_at === null) return "new";
+  return word.interval_days >= MASTERED_INTERVAL_DAYS ? "mastered" : "learning";
+}
+
 export type WordUpdateInput = Partial<
   Pick<
     UserWord,

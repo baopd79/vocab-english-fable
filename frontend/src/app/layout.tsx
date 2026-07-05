@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Baloo_2, Be_Vietnam_Pro } from "next/font/google";
+import { Be_Vietnam_Pro, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
+import { AppHeader } from "@/components/app-header";
 import { Providers } from "./providers";
 
-// Display face: rounded, playful — headings and buttons (gamified feel).
-const baloo = Baloo_2({
-  variable: "--font-baloo",
+// Display face: chunky grotesque — headings and brand (gamified feel).
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin", "vietnamese"],
-  weight: ["500", "600", "700"],
 });
 
 // Body face: designed for Vietnamese diacritics — all UI/body copy.
@@ -35,13 +35,16 @@ export default function RootLayout({
     <html
       lang="vi"
       suppressHydrationWarning
-      className={`${baloo.variable} ${beVietnam.variable} h-full antialiased`}
+      className={`${bricolage.variable} ${beVietnam.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body suppressHydrationWarning className="flex min-h-full flex-col">
-        <Providers>{children}</Providers>
+        <Providers>
+          <AppHeader />
+          {children}
+        </Providers>
       </body>
     </html>
   );

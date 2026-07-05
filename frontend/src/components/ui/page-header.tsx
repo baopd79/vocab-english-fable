@@ -1,30 +1,23 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { ThemeToggle } from "@/components/ui/theme-toggle";
-
-/** Standard page header: gamified display title + theme toggle + a muted back link. */
-export function PageHeader({
+/** Standard page heading: big display title, muted subtitle, optional action
+ * (button/link) pinned to the right. Navigation lives in the global AppHeader. */
+export function PageHeading({
   title,
-  backHref,
-  backLabel,
+  subtitle,
+  action,
 }: {
   title: ReactNode;
-  backHref: string;
-  backLabel: string;
+  subtitle?: ReactNode;
+  action?: ReactNode;
 }) {
   return (
-    <header className="flex items-center justify-between gap-4">
-      <h1 className="font-display truncate text-2xl font-bold tracking-tight">{title}</h1>
-      <div className="flex shrink-0 items-center gap-3">
-        <Link
-          href={backHref}
-          className="text-muted-fg hover:text-primary text-sm font-medium transition-colors"
-        >
-          {backLabel}
-        </Link>
-        <ThemeToggle />
+    <header className="animate-card-in flex flex-wrap items-center justify-between gap-4">
+      <div className="min-w-0">
+        <h1 className="font-display truncate text-3xl font-extrabold tracking-tight">{title}</h1>
+        {subtitle && <p className="text-muted-fg mt-1.5 text-[15px]">{subtitle}</p>}
       </div>
+      {action && <div className="shrink-0">{action}</div>}
     </header>
   );
 }

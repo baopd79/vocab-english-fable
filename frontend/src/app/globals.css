@@ -1,72 +1,128 @@
 @import "tailwindcss";
 
-/* Design system: "Vibrant & Block-based" (gamified) — SPEC UI refactor.
+/* Design system v2: "Duolingo-green glassmorphism" (Vocab English v2.dc.html).
  * Semantic tokens flip between light and dark; components reference the
  * `--color-*` names below, never raw hex. Theme is chosen by a `data-theme`
  * attribute on <html>, set before paint by the inline script in layout.tsx
- * (stored preference, else system) and flipped by the ThemeToggle. */
+ * (stored preference, else system) and flipped by the ThemeToggle.
+ * The dark palette is our own extension — the design file is light-only. */
 
 :root {
-  /* Surfaces & text */
-  --bg: #eef2ff;
-  --surface: #ffffff;
-  --surface-2: #f4f6ff;
-  --fg: #312e81;
-  --muted-fg: #5b5891;
-  --border: #c7d2fe;
+  /* Text */
+  --fg: #3c4a3c;
+  --muted-fg: #63705c;
+  --subtle-fg: #8fa085;
 
-  /* Brand */
-  --primary: #4f46e5;
+  /* Page background (behind the glass) */
+  --bg: #f0fae6;
+  --bg-image:
+    radial-gradient(900px 600px at 85% -10%, rgba(88, 204, 2, 0.22), transparent 60%),
+    radial-gradient(700px 520px at -10% 35%, rgba(28, 176, 246, 0.13), transparent 60%),
+    radial-gradient(820px 620px at 62% 112%, rgba(255, 200, 0, 0.16), transparent 60%),
+    linear-gradient(180deg, #f0fae6, #e3f4d3);
+
+  /* Flat surfaces (inputs, chips) + borders */
+  --surface: rgba(255, 255, 255, 0.8);
+  --surface-2: rgba(255, 255, 255, 0.6);
+  --border: rgba(141, 175, 110, 0.4);
+  --chip-border: rgba(160, 175, 150, 0.45);
+
+  /* Glass card recipe (gradient fill + gradient border + blur) */
+  --glass-from: rgba(255, 255, 255, 0.8);
+  --glass-to: rgba(255, 255, 255, 0.5);
+  --glass-border-a: rgba(255, 255, 255, 0.95);
+  --glass-border-b: rgba(88, 204, 2, 0.4);
+  --glass-border-c: rgba(255, 255, 255, 0.55);
+  --glass-shadow: 0 8px 28px rgba(60, 90, 30, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  /* Header */
+  --header-bg: rgba(240, 250, 230, 0.65);
+  --header-border: rgba(255, 255, 255, 0.7);
+
+  /* Brand — Duolingo-style 3D buttons: fill + darker "edge" shadow color */
+  --primary: #58cc02;
+  --primary-hover: #61d80a;
+  --primary-shadow: #46a302;
   --primary-fg: #ffffff;
-  --primary-hover: #4338ca;
-  --secondary: #818cf8;
-  --accent: #16a34a;
-  --accent-fg: #ffffff;
-  --ring: #4f46e5;
-  --streak: #f59e0b;
+  --primary-text: #58a700;
+  --ring: #58cc02;
 
-  /* SRS grade buttons — functional colors, kept consistent across themes so
-   * white label text always clears 4.5:1 (Again/Hard/Good/Easy). */
-  --grade-again: #dc2626;
-  --grade-hard: #b45309;
-  --grade-good: #15803d;
-  --grade-easy: #2563eb;
+  --info: #1cb0f6;
+  --info-text: #1899d6;
+  --streak: #ff9600;
+  --streak-text: #cb7a00;
+  --danger: #ff4b4b;
+  --danger-shadow: #e03434;
+  --danger-text: #d6482f;
+
+  /* SRS grade buttons (Again/Hard/Good/Easy) — same hues in both themes */
+  --grade-again: #ff4b4b;
+  --grade-again-shadow: #e03434;
+  --grade-hard: #ff9600;
+  --grade-hard-shadow: #e08600;
+  --grade-good: #58cc02;
+  --grade-good-shadow: #46a302;
+  --grade-easy: #1cb0f6;
+  --grade-easy-shadow: #1899d6;
 }
 
 :root[data-theme="dark"] {
-  --bg: #131024;
-  --surface: #1e1b36;
-  --surface-2: #262247;
-  --fg: #e7e5f5;
-  --muted-fg: #a5a0c4;
-  --border: #322e52;
+  --fg: #e7f2dc;
+  --muted-fg: #a9bb9d;
+  --subtle-fg: #7e9072;
 
-  --primary: #818cf8;
-  --primary-fg: #131024;
-  --primary-hover: #9aa2fa;
-  --secondary: #a5b4fc;
-  --accent: #22c55e;
-  --accent-fg: #06210f;
-  --ring: #818cf8;
-  --streak: #fbbf24;
+  --bg: #121d0e;
+  --bg-image:
+    radial-gradient(900px 600px at 85% -10%, rgba(88, 204, 2, 0.14), transparent 60%),
+    radial-gradient(700px 520px at -10% 35%, rgba(28, 176, 246, 0.1), transparent 60%),
+    radial-gradient(820px 620px at 62% 112%, rgba(255, 200, 0, 0.08), transparent 60%),
+    linear-gradient(180deg, #16230f, #0e170d);
+
+  --surface: rgba(16, 26, 12, 0.65);
+  --surface-2: rgba(255, 255, 255, 0.07);
+  --border: rgba(150, 190, 110, 0.3);
+  --chip-border: rgba(255, 255, 255, 0.14);
+
+  --glass-from: rgba(32, 46, 26, 0.75);
+  --glass-to: rgba(23, 35, 21, 0.55);
+  --glass-border-a: rgba(255, 255, 255, 0.16);
+  --glass-border-b: rgba(88, 204, 2, 0.35);
+  --glass-border-c: rgba(255, 255, 255, 0.06);
+  --glass-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  --header-bg: rgba(14, 22, 12, 0.6);
+  --header-border: rgba(255, 255, 255, 0.08);
+
+  --primary-shadow: #2f6b02;
+  --primary-text: #8be94c;
+
+  --info-text: #53c6ff;
+  --streak-text: #ffb020;
+  --danger-text: #ff8a7a;
 }
 
 @theme inline {
   --color-bg: var(--bg);
-  --color-surface: var(--surface);
-  --color-surface-2: var(--surface-2);
   --color-fg: var(--fg);
   --color-muted-fg: var(--muted-fg);
+  --color-subtle-fg: var(--subtle-fg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-border: var(--border);
+  --color-chip-border: var(--chip-border);
 
   --color-primary: var(--primary);
-  --color-primary-fg: var(--primary-fg);
   --color-primary-hover: var(--primary-hover);
-  --color-secondary: var(--secondary);
-  --color-accent: var(--accent);
-  --color-accent-fg: var(--accent-fg);
+  --color-primary-fg: var(--primary-fg);
+  --color-primary-text: var(--primary-text);
   --color-ring: var(--ring);
+
+  --color-info: var(--info);
+  --color-info-text: var(--info-text);
   --color-streak: var(--streak);
+  --color-streak-text: var(--streak-text);
+  --color-danger: var(--danger);
+  --color-danger-text: var(--danger-text);
 
   --color-grade-again: var(--grade-again);
   --color-grade-hard: var(--grade-hard);
@@ -74,13 +130,79 @@
   --color-grade-easy: var(--grade-easy);
 
   --font-sans: var(--font-be-vietnam);
-  --font-display: var(--font-baloo);
+  --font-display: var(--font-bricolage);
+
+  --animate-card-in: card-in 0.35s ease;
+  --animate-pop-in: pop-in 0.45s ease;
+  --animate-flip-in: flip-in 0.55s cubic-bezier(0.35, 0.1, 0.2, 1);
+  --animate-soft-pulse: soft-pulse 1.4s ease infinite;
 }
 
 body {
-  background: var(--color-bg);
+  background-color: var(--bg);
+  background-image: var(--bg-image);
+  background-attachment: fixed;
   color: var(--color-fg);
   font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Glass card: translucent gradient fill in padding-box, gradient border in
+ * border-box, blur behind. One recipe for every elevated surface. */
+.glass {
+  background:
+    linear-gradient(135deg, var(--glass-from), var(--glass-to)) padding-box,
+    linear-gradient(135deg, var(--glass-border-a), var(--glass-border-b) 50%, var(--glass-border-c))
+      border-box;
+  border: 1.5px solid transparent;
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: var(--glass-shadow);
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes flip-in {
+  from {
+    transform: perspective(1400px) rotateY(-75deg);
+    opacity: 0.3;
+  }
+  to {
+    transform: perspective(1400px) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -15,7 +15,16 @@ function jsonResponse(status: number, body: unknown): Response {
 }
 
 function deck(id: number, name: string, description = ""): Deck {
-  return { id, name, description, visibility: "private", created_at: "", updated_at: "" };
+  return {
+    id,
+    name,
+    description,
+    visibility: "private",
+    word_count: 0,
+    mastered_count: 0,
+    created_at: "",
+    updated_at: "",
+  };
 }
 
 /** Minimal in-memory deck backend so mutations + refetch behave end-to-end. */
