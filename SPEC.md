@@ -242,7 +242,7 @@ Các dạng khác (flip VI→EN, trắc nghiệm, cloze, nghe-gõ) → roadmap.
 | POST | `/auth/logout` | blacklist refresh token + xóa cookie |
 | GET | `/me` | profile: email, display_name, avatar_url |
 | GET/PATCH | `/me/settings` | giới hạn học, timezone |
-| GET/POST | `/decks` · GET/PATCH/DELETE `/decks/{id}` | CRUD deck |
+| GET/POST | `/decks` · GET/PATCH/DELETE `/decks/{id}` | CRUD deck; response kèm `word_count` + `mastered_count` (interval ≥ 21d, mục 5) cho deck card |
 | GET/POST | `/decks/{id}/words` | list + thêm từ (trigger enrichment) |
 | GET/PATCH/DELETE | `/words/{id}` | xem/sửa/xóa từ (đổi `word_text` → re-enrich, mục 9) |
 | POST | `/words/{id}/retry-enrichment` | retry khi failed |

@@ -80,6 +80,19 @@ class TestListDecks:
         names = {row["name"] for row in response.data["results"]}
         assert names == {"Mine A", "Mine B"}
 
+    def test_word_and_mastered_counts(self, client, user):
+        deck = DeckFactory(owner=user, name="Counted")
+        UserWordFactory(user=user, deck=deck, interval_days=0)
+        UserWordFactory(user=user, deck=deck, interval_days=20)
+        UserWordFactory(user=user, deck=deck, interval_days=21)  # mastered (SPEC §5)
+        UserWordFactory(user=user)  # other deck — must not leak in
+
+        response = client.get("/api/v1/decks")
+
+        row = next(r for r in response.data["results"] if r["name"] == "Counted")
+        assert row["word_count"] == 3
+        assert row["mastered_count"] == 1
+
     def test_pagination_caps_at_50_per_page(self, client, user):
         DeckFactory.create_batch(51, owner=user)
 
@@ -96,10 +109,15 @@ class TestRetrieveDeck:
     def test_retrieve_own_deck(self, client, user):
         deck = DeckFactory(owner=user, name="Mine")
 
+        UserWordFactory(user=user, deck=deck)
+
         response = client.get(f"/api/v1/decks/{deck.pk}")
 
         assert response.status_code == 200
         assert response.data["name"] == "Mine"
+        # No annotation on this path — the serializer falls back to counting.
+        assert response.data["word_count"] == 1
+        assert response.data["mastered_count"] == 0
 
     def test_other_users_deck_returns_404(self, client):
         other = DeckFactory()  # different owner

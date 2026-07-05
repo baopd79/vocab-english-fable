@@ -8,14 +8,29 @@ from apps.enrichment.providers.schema import (
     MAX_MEANING_VI,
     MAX_PART_OF_SPEECH,
 )
+from apps.stats.selectors import MASTERED_INTERVAL_DAYS
 
 from .models import Deck, UserWord
 
 
 class DeckSerializer(serializers.ModelSerializer):
+    # Read from the list_decks() annotations when present; the fallbacks cover
+    # single-object paths (create, retrieve, patch) at 2 extra queries each.
+    word_count = serializers.SerializerMethodField()
+    mastered_count = serializers.SerializerMethodField()
+
     class Meta:
         model = Deck
-        fields = ["id", "name", "description", "visibility", "created_at", "updated_at"]
+        fields = [
+            "id",
+            "name",
+            "description",
+            "visibility",
+            "word_count",
+            "mastered_count",
+            "created_at",
+            "updated_at",
+        ]
         # visibility stays private until the sharing feature ships; SRS/audit
         # fields are never client-writable.
         read_only_fields = ["id", "visibility", "created_at", "updated_at"]
@@ -25,6 +40,16 @@ class DeckSerializer(serializers.ModelSerializer):
         if not name:
             raise serializers.ValidationError("Name must not be empty.")
         return name
+
+    def get_word_count(self, deck: Deck) -> int:
+        annotated: int | None = getattr(deck, "word_count", None)
+        return annotated if annotated is not None else deck.words.count()
+
+    def get_mastered_count(self, deck: Deck) -> int:
+        annotated: int | None = getattr(deck, "mastered_count", None)
+        if annotated is not None:
+            return annotated
+        return deck.words.filter(interval_days__gte=MASTERED_INTERVAL_DAYS).count()
 
 
 class UserWordSerializer(serializers.ModelSerializer):
