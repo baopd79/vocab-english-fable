@@ -38,7 +38,7 @@
 
 ## Phase 5 — Production & launch
 - [x] Task 20: Docker prod + Nginx 1 domain (M) — verify local: full flow qua nginx :80 (2026-07-09)
-- [ ] Task 21: Deploy workflow + backup pg_dump (M) — cần VPS/domain
+- [x] Task 21: Deploy workflow + backup pg_dump (M) — vocabun.com sống: push main → auto deploy, HTTPS certbot, cron pg_dump 7 bản (2026-07-09)
 - [ ] Task 22: Launch checklist — 11/11 criteria + restore test (S)
 - [ ] ✅ Checkpoint 5: success criteria #10, 11 → MVP hoàn thành
 
@@ -46,4 +46,4 @@
 - [x] Tạo GitHub repo (trước task 3) — github.com/baopd79/vocab-english-fable (private)
 - [x] Google OAuth Client ID (trước task 5) — đã lưu trong .env (gitignored)
 - [x] Gemini API key (trước checkpoint 2) — đã lưu trong .env (gitignored)
-- [ ] Domain + VPS (trước task 21)
+- [x] Domain + VPS (trước task 21) — vocabun.com + DigitalOcean Singapore 1GB (2026-07-09)
