@@ -408,7 +408,7 @@ Coverage backend tối thiểu **70%**, test chạy trong CI mọi PR. Gọi AI 
 ## 16. Open Questions
 
 1. Gemini tier nào (free hay paid)? → quyết định số `rate_limit` thực tế
-2. Domain name + VPS specs đã có chưa?
-3. Tên sản phẩm chính thức (đang dùng working title "Vocab English")
-4. **Google OAuth verification:** consent screen chưa verify bị giới hạn ~100 user và cần Privacy Policy URL khi publish — cần trang privacy policy + submit verify trước/ngay sau launch công khai
-5. Đích backup offsite: Backblaze B2, S3, hay dịch vụ khác? (cần chốt trước launch — xem mục 13)
+2. ~~Domain name + VPS specs?~~ **Đã chốt (2026-07-09):** `vocabun.com` (Cloudflare DNS, proxy tắt — DNS only) + DigitalOcean Singapore 1GB RAM/25GB ($6, thêm 1GB swap, gunicorn 2 workers)
+3. Tên sản phẩm chính thức (đang dùng working title "Vocab English"; domain đã là vocabun.com)
+4. ~~Google OAuth verification~~ **Đã chốt (2026-07-09):** giữ chế độ **Testing** cho MVP — chỉ email trong danh sách Test users (≤100) login được, không cần verify. Publish + privacy policy + verification chỉ làm khi mở public thật sự (ngoài scope MVP)
+5. ~~Đích backup offsite?~~ **Đã chốt (2026-07-09):** Backblaze B2 (bucket `vocabun-backups`, rclone sync trong `/usr/local/bin/vocab-backup`, lifecycle "keep only last version"); restore đã test — xem `docs/restore-runbook.md`

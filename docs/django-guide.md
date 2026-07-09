@@ -361,3 +361,13 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
   - **`origin_mismatch` khi login Google:** origin = scheme+host+port chính xác từng ký tự (`https://vocabun.com` ≠ `http://localhost:3000`, thừa dấu `/` cũng khác). Đổi origin trên Google Console có độ trễ ~5 phút và browser cache kết quả theo session → test bằng cửa sổ ẩn danh.
   - **Backup tự động:** cron `0 19 * * *` UTC (2h sáng VN) chạy `pg_dump` qua `docker compose exec -T db` → gzip, `find -mtime +7 -delete` giữ 7 bản. Offsite (Backblaze B2) + test restore thuộc Task 22. Bug đáng nhớ: `set -e` + `grep` trả 1 trên crontab rỗng đã nuốt lệnh cài cron — luôn verify bằng `crontab -l` sau khi cài.
 - Đọc: `.github/workflows/deploy.yml`, `docker-compose.tls.yml`, `nginx/tls.conf`; trên VPS: `~/vocab-english-fable/.env.prod`, `/usr/local/bin/vocab-backup`, `crontab -l`; nền tảng: `docs/deploy-guide.md` mục 1.3, 1.8, 1.9.
+
+### Task 22 — Launch checklist (MVP hoàn thành 🏁)
+- Chạy đủ 11/11 success criteria trên `https://vocabun.com`; nối offsite backup vào Backblaze B2; **test restore thật** (tiêu chí #11); cắm UptimeRobot vào `/api/v1/health`; chốt 3 Open Questions trong SPEC §16.
+- Khái niệm/bài học mới:
+  - **"Backup chưa test restore = chưa có backup":** cách test không đụng prod — dựng container Postgres tạm (`docker run postgres:16-alpine`), đổ dump vào, so **số dòng từng bảng** với DB thật bằng một câu SQL đếm mọi bảng (`query_to_xml` + `pg_class`), rồi hủy container. Kết quả ghi vào `docs/restore-runbook.md` cùng lệnh restore cho 2 kịch bản (DB hỏng / mất trắng VPS).
+  - **Race condition của image postgres:** lần boot đầu entrypoint khởi động server *tạm* để chạy init rồi restart — `pg_isready` bắt nhầm server tạm sẽ dính "database system is shutting down". Chờ chuẩn: đợi log "ready to accept connections" xuất hiện lần thứ **2**.
+  - **rclone sync có tính chất mirror:** local giữ 7 bản (find -mtime +7) thì B2 cũng tự giữ đúng 7 bản theo. B2 mặc định giữ mọi version file bị ghi đè — phải set lifecycle "keep only the last version" không thì dung lượng phình vô hạn.
+  - **Google OAuth Testing mode:** đủ cho MVP cá nhân — chỉ Test users (≤100, thêm tay trong Console) login được, khỏi cần verification/privacy policy. GIS chỉ dùng ID token nên không dính giới hạn "refresh token 7 ngày" của Testing mode.
+  - Bug shell đáng nhớ: comment trong script chứa chữ "rclone" làm `grep -q rclone` báo "đã có" và bỏ qua việc nối lệnh sync — điều kiện idempotent phải grep chuỗi đặc thù (`"rclone sync"`), và luôn verify kết quả cuối (`rclone ls`) chứ đừng tin lệnh cài.
+- Đọc: `docs/restore-runbook.md`, `/usr/local/bin/vocab-backup` (trên VPS), SPEC §16 (3 câu đã chốt), `tasks/todo.md` (Checkpoint 5).
