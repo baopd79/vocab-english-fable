@@ -38,6 +38,7 @@ pnpm build
 
 # Prod stack (Task 20) — verify bản build production, KHÔNG dùng để dev (code bake vào image, không hot reload).
 # Mọi lệnh cần đủ 2 cờ; project name riêng (vocab-english-prod) nên chạy song song stack dev được, chỉ nginx mở port 80.
+# Trên VPS (vocabun.com): chèn thêm `-f docker-compose.tls.yml` sau file prod (overlay HTTPS) — deploy.yml tự làm, push main là deploy.
 docker compose -f docker-compose.prod.yml --env-file .env.prod build     # rebuild sau khi sửa code/Dockerfile/nginx
 docker compose -f docker-compose.prod.yml --env-file .env.prod run --rm backend python manage.py migrate   # one-shot, chạy TRƯỚC `up` khi có migration mới
 docker compose -f docker-compose.prod.yml --env-file .env.prod up -d     # → http://localhost

@@ -1,0 +1,16 @@
+# TLS overlay — VPS only. Local prod smoke tests keep using the base file
+# alone (http://localhost, no certs needed); the VPS stacks both files:
+#
+#   docker compose -f docker-compose.prod.yml -f docker-compose.tls.yml --env-file .env.prod <cmd>
+#
+# Merge rules: the 443 port is appended to the base list; the two volume
+# entries below win over the base by mount target (tls.conf replaces
+# default.conf inside the container).
+
+services:
+  nginx:
+    ports:
+      - "443:443"
+    volumes:
+      - ./nginx/tls.conf:/etc/nginx/conf.d/default.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro

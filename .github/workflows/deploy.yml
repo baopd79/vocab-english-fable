@@ -1,0 +1,72 @@
+# Deploy to the VPS (SPEC §13, Task 21): runs only after the CI workflow
+# succeeds on main — never ships code whose tests are red. Build happens
+# here (GHCR); the VPS only pulls images, it never builds.
+
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  build-push:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build & push backend
+        uses: docker/build-push-action@v6
+        with:
+          context: backend
+          push: true
+          tags: ghcr.io/baopd79/vocab-english-backend:latest
+          cache-from: type=gha,scope=backend
+          cache-to: type=gha,scope=backend,mode=max
+      - name: Build & push frontend
+        uses: docker/build-push-action@v6
+        with:
+          context: frontend
+          push: true
+          # NEXT_PUBLIC_* is inlined at build time; the client id is public
+          # by nature, so it lives in a repo variable, not a secret.
+          build-args: |
+            NEXT_PUBLIC_GOOGLE_CLIENT_ID=${{ vars.NEXT_PUBLIC_GOOGLE_CLIENT_ID }}
+          tags: ghcr.io/baopd79/vocab-english-frontend:latest
+          cache-from: type=gha,scope=frontend
+          cache-to: type=gha,scope=frontend,mode=max
+
+  deploy:
+    needs: build-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull & restart on VPS
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+            cd ~/vocab-english-fable
+            git pull --ff-only
+            docker compose -f docker-compose.prod.yml -f docker-compose.tls.yml --env-file .env.prod pull --quiet
+            docker compose -f docker-compose.prod.yml -f docker-compose.tls.yml --env-file .env.prod run --rm backend python manage.py migrate --no-input
+            docker compose -f docker-compose.prod.yml -f docker-compose.tls.yml --env-file .env.prod up -d
+            sleep 5
+            curl -fsS https://vocabun.com/api/v1/health
+            docker image prune -f
