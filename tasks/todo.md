@@ -37,7 +37,7 @@
 - [x] ✅ Checkpoint 4: success criterion #7 — stats hiển thị đúng (3 trạng thái + streak + daily chart)
 
 ## Phase 5 — Production & launch
-- [ ] Task 20: Docker prod + Nginx 1 domain (M)
+- [x] Task 20: Docker prod + Nginx 1 domain (M) — verify local: full flow qua nginx :80 (2026-07-09)
 - [ ] Task 21: Deploy workflow + backup pg_dump (M) — cần VPS/domain
 - [ ] Task 22: Launch checklist — 11/11 criteria + restore test (S)
 - [ ] ✅ Checkpoint 5: success criteria #10, 11 → MVP hoàn thành

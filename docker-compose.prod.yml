@@ -1,0 +1,132 @@
+# Production stack (SPEC §13, Task 20). Every command takes both flags:
+#
+#   docker compose -f docker-compose.prod.yml --env-file .env.prod <cmd>
+#
+# First boot and after every backend image update, run migrations as a
+# one-shot step BEFORE (re)starting gunicorn on the new code:
+#
+#   docker compose -f docker-compose.prod.yml --env-file .env.prod up -d db redis
+#   docker compose -f docker-compose.prod.yml --env-file .env.prod run --rm backend python manage.py migrate
+#   docker compose -f docker-compose.prod.yml --env-file .env.prod up -d
+#
+# Only nginx publishes a host port. db/redis stay on the internal network —
+# never expose 5432/6379 on a public VPS.
+#
+# Explicit project name: without it compose derives the name from the
+# directory, colliding with docker-compose.dev.yml (same dir) and replacing
+# the dev db/redis containers when both stacks run on one machine.
+name: vocab-english-prod
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  nginx:
+    image: nginx:1.27-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      backend:
+        condition: service_healthy
+      frontend:
+        condition: service_healthy
+    restart: unless-stopped
+    logging: *logging
+
+  frontend:
+    image: ghcr.io/baopd79/vocab-english-frontend:latest
+    build:
+      context: ./frontend
+      args:
+        # Build-time: NEXT_PUBLIC_* is inlined into the client bundle.
+        NEXT_PUBLIC_GOOGLE_CLIENT_ID: ${NEXT_PUBLIC_GOOGLE_CLIENT_ID}
+    environment:
+      # Safety net for the dev-only /api rewrite; nginx routes /api first.
+      API_PROXY_TARGET: http://backend:8000
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3000').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+    logging: *logging
+
+  backend:
+    image: ghcr.io/baopd79/vocab-english-backend:latest
+    build: ./backend
+    env_file: .env.prod
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      # 127.0.0.1 must be in ALLOWED_HOSTS for this in-container check.
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health')",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    restart: unless-stopped
+    logging: *logging
+
+  worker:
+    # Same image as backend; DJANGO_SETTINGS_MODULE=config.settings.prod
+    # comes from the image ENV (celery.py's setdefault never wins over it).
+    image: ghcr.io/baopd79/vocab-english-backend:latest
+    command: celery -A config worker -l info --concurrency=2
+    env_file: .env.prod
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    logging: *logging
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - vocab_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+    logging: *logging
+
+  redis:
+    image: redis:7-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+    logging: *logging
+
+volumes:
+  vocab_pgdata:

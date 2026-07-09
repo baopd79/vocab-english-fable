@@ -11,8 +11,10 @@ dependencies = [
     "drf-spectacular>=0.29.0",
     "google-auth[requests]>=2.55.1",
     "google-genai>=2.10.0",
+    "gunicorn>=23",
     "psycopg[binary]>=3.2",
     "pydantic>=2.13.4",
+    "whitenoise>=6.8",
 ]
 
 [dependency-groups]

@@ -35,6 +35,13 @@ pnpm test                                        # vitest run
 pnpm vitest run src/components/health-check.test.tsx   # single file
 pnpm lint && pnpm format:check
 pnpm build
+
+# Prod stack (Task 20) — verify bản build production, KHÔNG dùng để dev (code bake vào image, không hot reload).
+# Mọi lệnh cần đủ 2 cờ; project name riêng (vocab-english-prod) nên chạy song song stack dev được, chỉ nginx mở port 80.
+docker compose -f docker-compose.prod.yml --env-file .env.prod build     # rebuild sau khi sửa code/Dockerfile/nginx
+docker compose -f docker-compose.prod.yml --env-file .env.prod run --rm backend python manage.py migrate   # one-shot, chạy TRƯỚC `up` khi có migration mới
+docker compose -f docker-compose.prod.yml --env-file .env.prod up -d     # → http://localhost
+docker compose -f docker-compose.prod.yml --env-file .env.prod down     # tắt; data Postgres còn trong volume vocab_pgdata
 ```
 
 Ruff is the only Python checker (no mypy), but full type hints are still required. Migrations are excluded from ruff.
@@ -81,7 +88,7 @@ Google Identity Services popup on the frontend → ID token → `POST /api/v1/au
 
 ### Config & env
 
-Settings: `config/settings/{base,dev,test,prod}.py`; pytest runs with `test` (LocMemCache, throttling off — throttle tests re-enable via `override_settings` + cleared cache; no Redis in CI). Celery broker + DRF throttle cache use `REDIS_URL`; enqueue always via `transaction.on_commit` so the worker never races an uncommitted row. Env vars load from `backend/.env` via the minimal loader `config/env.py` (no python-dotenv dep); frontend uses `frontend/.env.local` (Next.js convention). Both are gitignored and hold real secrets — never commit them; `.env.example` files carry placeholders. `.vscode/settings.json` (local-only) pins the interpreter to `backend/.venv`.
+Settings: `config/settings/{base,dev,test,prod}.py`; pytest runs with `test` (LocMemCache, throttling off — throttle tests re-enable via `override_settings` + cleared cache; no Redis in CI). Celery broker + DRF throttle cache use `REDIS_URL`; enqueue always via `transaction.on_commit` so the worker never races an uncommitted row. Env vars load from `backend/.env` via the minimal loader `config/env.py` (no python-dotenv dep); frontend uses `frontend/.env.local` (Next.js convention). The prod compose stack reads root `.env.prod` instead (copy from `.env.prod.example`; service hostnames are `db`/`redis`, not `localhost`). All three are gitignored and hold real secrets — never commit them; `.env.example` files carry placeholders. `.vscode/settings.json` (local-only) pins the interpreter to `backend/.venv`.
 
 ### Testing
 

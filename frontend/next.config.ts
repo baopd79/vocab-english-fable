@@ -3,6 +3,10 @@ import type { NextConfig } from "next";
 const API_PROXY_TARGET = process.env.API_PROXY_TARGET ?? "http://localhost:8000";
 
 const nextConfig: NextConfig = {
+  // Self-contained server bundle for the prod Docker image (Task 20):
+  // `pnpm build` emits .next/standalone with node_modules pruned to what the
+  // server actually imports. Harmless in dev.
+  output: "standalone",
   images: {
     // Google profile avatars (lh3.googleusercontent.com, ...)
     remotePatterns: [{ protocol: "https", hostname: "*.googleusercontent.com" }],
