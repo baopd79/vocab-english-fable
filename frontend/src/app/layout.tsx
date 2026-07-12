@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Be_Vietnam_Pro, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import { AppHeader } from "@/components/app-header";
+import { SiteFooter } from "@/components/site-footer";
 import { Providers } from "./providers";
 
 // Display face: chunky grotesque — headings and brand (gamified feel).
@@ -44,6 +45,7 @@ export default function RootLayout({
         <Providers>
           <AppHeader />
           {children}
+          <SiteFooter />
         </Providers>
       </body>
     </html>

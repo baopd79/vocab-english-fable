@@ -395,3 +395,11 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
   - **Rate `None` = tắt scope đó** — vì thế `test.py` chỉ cần thêm `"auth": None`; còn thiếu key thì DRF ném `ImproperlyConfigured` ngay khi view chạy.
   - Ngoài Django — **nginx `auth_basic`:** file htpasswd là secret nên không nằm trong image/repo, chỉ nằm trên VPS và bind-mount qua overlay. Bẫy Docker: bind-mount file **chưa tồn tại** → Docker tạo *thư mục* rỗng thế chỗ → nginx đọc fail. Phải tạo file trước khi `up`.
 - Đọc: `apps/accounts/views.py` (3 view auth), `config/settings/base.py` (THROTTLE_RATES + NUM_PROXIES), `apps/accounts/tests/test_auth_api.py` (TestAuthThrottle — pattern patch class thay vì settings), `nginx/tls.conf` + `docker-compose.tls.yml`.
+
+### v1.1 Task 4 — Trang Privacy Policy + Terms
+- 2 route công khai `/privacy`, `/terms` (tiếng Việt, có ngày hiệu lực) + footer toàn cục link tới cả hai + dòng "đăng nhập nghĩa là đồng ý" ở trang login. Điều kiện bắt buộc để nộp Google OAuth verification (Task 5).
+- Task frontend thuần, nhưng có khái niệm Next.js đáng nhớ vì **lần đầu app có trang server component thật sự**:
+  - Mọi trang trước đây đều `"use client"` (cần hook + TanStack). `/privacy`/`/terms` không có dòng `"use client"` nào → Next tự **prerender tĩnh lúc build** (ký hiệu `○ Static` trong output `pnpm build`) — serve như file HTML, không chạy JS phía client, khách ẩn danh + bot Google đọc được ngay.
+  - **`export const metadata` per-route** đè `<title>`/description của layout gốc — chỉ hoạt động trong server component (trang client phải nhờ layout cha).
+  - Footer đặt trong `layout.tsx` sau `{children}`: body là `flex flex-col min-h-full` + main `flex-1` nên footer tự dính đáy mà không cần position fixed.
+- Đọc: `frontend/src/app/privacy/page.tsx`, `frontend/src/components/legal-page.tsx` (shell dùng chung), `frontend/src/components/site-footer.tsx`, output `pnpm build` (bảng Static/Dynamic).

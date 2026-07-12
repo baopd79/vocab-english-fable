@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -54,6 +55,17 @@ export default function LoginPage() {
         {error && <p className="text-danger-text mt-4 text-sm font-medium">{error}</p>}
         <p className="text-subtle-fg mt-4 text-[13px]">
           Miễn phí, chỉ cần tài khoản Google của bạn.
+        </p>
+        <p className="text-subtle-fg mt-2 text-[13px]">
+          Đăng nhập nghĩa là bạn đồng ý với{" "}
+          <Link href="/terms" className="hover:text-fg underline">
+            Điều khoản
+          </Link>{" "}
+          và{" "}
+          <Link href="/privacy" className="hover:text-fg underline">
+            Chính sách quyền riêng tư
+          </Link>
+          .
         </p>
       </div>
     </main>
