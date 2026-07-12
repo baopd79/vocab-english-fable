@@ -59,7 +59,7 @@
 - [ ] ✅ Checkpoint 6a: bug user báo đã hết trên prod, cửa hậu khoá
 
 ## Giai đoạn 2 — Cổng public (nộp Google sớm)
-- [ ] Task 4: Trang Privacy Policy + Terms (M)
+- [x] Task 4: Trang Privacy Policy + Terms (M) — 2026-07-12: /privacy + /terms 200 ẩn danh trên prod, footer toàn cục + dòng đồng ý ở login
 - [ ] Task 5: Nộp Google OAuth verification (M + chờ nhiều tuần, không chặn task khác)
 - [ ] Task 6: Gemini tier + trần chi phí toàn hệ thống (S–M) — chốt Q6 trước
 - [ ] ✅ Checkpoint 6: verification đã nộp, chi phí AI có trần
