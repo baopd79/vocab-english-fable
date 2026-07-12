@@ -157,6 +157,58 @@ def test_queue_only_includes_the_requested_user():
     assert [c.id for c in queue.due] == [mine.id]
 
 
+def test_deck_breakdown_counts_per_deck_biggest_first_ties_by_name():
+    user = make_user(new_per_day=10, max_reviews=10)
+    business = DeckFactory(owner=user, name="Business")
+    animals = DeckFactory(owner=user, name="Animals")
+    for _ in range(3):
+        due_card(user, business)
+    due_card(user, animals)
+    UserWordFactory(user=user, deck=animals, first_reviewed_at=None)
+
+    queue = build_review_queue(user=user, now=NOW)
+
+    assert [(d.deck_name, d.due_count, d.new_count) for d in queue.decks] == [
+        ("Business", 3, 0),  # total 3
+        ("Animals", 1, 1),  # total 2
+    ]
+
+
+def test_deck_breakdown_tie_broken_by_name():
+    user = make_user(new_per_day=10, max_reviews=10)
+    zebra = DeckFactory(owner=user, name="Zebra")
+    apple = DeckFactory(owner=user, name="apple")  # lowercase: sort is case-insensitive
+    due_card(user, zebra)
+    due_card(user, apple)
+
+    queue = build_review_queue(user=user, now=NOW)
+
+    assert [d.deck_name for d in queue.decks] == ["apple", "Zebra"]
+
+
+def test_deck_breakdown_reflects_capped_queue_not_raw_counts():
+    user = make_user(new_per_day=1, max_reviews=1)
+    deck = DeckFactory(owner=user)
+    due_card(user, deck)
+    due_card(user, deck)
+    UserWordFactory(user=user, deck=deck, first_reviewed_at=None)
+    UserWordFactory(user=user, deck=deck, first_reviewed_at=None)
+
+    queue = build_review_queue(user=user, now=NOW)
+
+    # 2 due + 2 new exist, but quota caps the queue at 1 + 1 — the breakdown
+    # must match the session the user will actually get.
+    assert [(d.due_count, d.new_count) for d in queue.decks] == [(1, 1)]
+
+
+def test_deck_breakdown_empty_queue_has_no_decks():
+    user = make_user(new_per_day=10, max_reviews=10)
+
+    queue = build_review_queue(user=user, now=NOW)
+
+    assert queue.decks == []
+
+
 def test_build_queue_defaults_now_to_current_time():
     user = make_user(new_per_day=10, max_reviews=10)
     deck = DeckFactory(owner=user)

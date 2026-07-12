@@ -7,9 +7,18 @@ import type { UserWord } from "./words";
 
 export type Rating = "again" | "hard" | "good" | "easy";
 
+/** One deck's share of today's queue (pre-review overview, SPEC §17.1-B3). */
+export type DeckQueueCount = {
+  deck_id: number;
+  deck_name: string;
+  due_count: number;
+  new_count: number;
+};
+
 export type ReviewQueue = {
   due: UserWord[];
   new: UserWord[];
+  decks: DeckQueueCount[];
 };
 
 /** Fetch the day's queue once. The session is managed locally afterwards

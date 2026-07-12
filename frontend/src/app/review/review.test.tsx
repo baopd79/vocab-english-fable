@@ -41,13 +41,34 @@ function card(
   };
 }
 
+/** Per-deck counts the way the backend selector builds them (deck names are
+ * synthesized as "Deck <id>" for assertions). */
+function breakdown(queue: { due: UserWord[]; new: UserWord[] }) {
+  const counts = new Map<number, { due_count: number; new_count: number }>();
+  for (const c of queue.due) {
+    const entry = counts.get(c.deck) ?? { due_count: 0, new_count: 0 };
+    entry.due_count += 1;
+    counts.set(c.deck, entry);
+  }
+  for (const c of queue.new) {
+    const entry = counts.get(c.deck) ?? { due_count: 0, new_count: 0 };
+    entry.new_count += 1;
+    counts.set(c.deck, entry);
+  }
+  return [...counts.entries()].map(([deck_id, c]) => ({
+    deck_id,
+    deck_name: `Deck ${deck_id}`,
+    ...c,
+  }));
+}
+
 function stubReviewServer(queue: { due: UserWord[]; new: UserWord[] }) {
   const answers: { user_word_id: number; rating: string }[] = [];
   const fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
     const url = String(input);
     const method = init?.method ?? "GET";
     if (url === "/api/v1/review/queue" && method === "GET") {
-      return jsonResponse(200, queue);
+      return jsonResponse(200, { ...queue, decks: breakdown(queue) });
     }
     if (url === "/api/v1/review/answer" && method === "POST") {
       answers.push(JSON.parse(init!.body as string));
@@ -79,12 +100,36 @@ test("empty queue shows the done state", async () => {
   expect(await screen.findByText(/không có thẻ nào cần ôn/i)).toBeInTheDocument();
 });
 
+test("overview shows per-deck counts and only starts the session on click", async () => {
+  stubReviewServer({
+    due: [card(1, "resilience", false)],
+    new: [card(2, "serendipity", true, { deck: 2 })],
+  });
+  renderReview();
+
+  // SPEC §17.2-7 — /review no longer jumps straight into the first card.
+  expect(await screen.findByText("Ôn tập hôm nay")).toBeInTheDocument();
+  expect(screen.queryByLabelText("Đáp án")).not.toBeInTheDocument();
+
+  // Per-deck breakdown from the API is rendered.
+  expect(screen.getByText("Deck 1")).toBeInTheDocument();
+  expect(screen.getByText("Deck 2")).toBeInTheDocument();
+  expect(screen.getByText("1 đến hạn")).toBeInTheDocument();
+  expect(screen.getByText("1 mới")).toBeInTheDocument();
+
+  fireEvent.click(screen.getByRole("button", { name: /Bắt đầu ôn 2 thẻ/ }));
+  expect(await screen.findByLabelText("Đáp án")).toBeInTheDocument();
+});
+
 test("full session: due card typed, new card flipped, Again re-queues, then summary", async () => {
   const server = stubReviewServer({
     due: [card(1, "resilience", false)],
     new: [card(2, "serendipity", true)],
   });
   renderReview();
+
+  // 0) Pass the overview screen (SPEC §17.1-B3).
+  fireEvent.click(await screen.findByRole("button", { name: /Bắt đầu ôn/ }));
 
   // 1) Due card first → typing step.
   await screen.findByLabelText("Đáp án");

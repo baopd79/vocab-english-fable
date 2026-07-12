@@ -65,8 +65,8 @@
 - [ ] ✅ Checkpoint 6: verification đã nộp, chi phí AI có trần
 
 ## Giai đoạn 3 — UX polish
-- [ ] Task 7: Card deck click toàn bộ + voice mọi nơi — B1, B2, F7 (S–M)
-- [ ] Task 8: Màn hình tổng quan trước phiên ôn — B3 (S–M)
+- [x] Task 7: Card deck click toàn bộ + voice mọi nơi — B1, B2, F7 (S–M) — 2026-07-12, user smoke localhost OK (voice + card click + nút không bubble)
+- [x] Task 8: Màn hình tổng quan trước phiên ôn — B3 (S–M) — 2026-07-12, queue API thêm `decks` breakdown (đếm theo quota), /review có màn "Bắt đầu ôn"
 - [ ] Task 9: Sound + hiệu ứng feedback — B4 (M) — chốt Q5 trước
 - [ ] ✅ Checkpoint 7: 3 điểm đau UX user nêu đã hết trên prod
 

@@ -4,11 +4,19 @@ import Link from "next/link";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
+import { DeckIcon } from "@/components/deck-icon";
 import { ReviewCard } from "@/components/review-card";
 import { RequireAuth } from "@/components/require-auth";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { isNewCard, useReviewQueue, useSubmitAnswer, type Rating } from "@/lib/review";
+import { PageHeading } from "@/components/ui/page-header";
+import {
+  isNewCard,
+  useReviewQueue,
+  useSubmitAnswer,
+  type Rating,
+  type ReviewQueue,
+} from "@/lib/review";
 import type { UserWord } from "@/lib/words";
 
 export default function ReviewPage() {
@@ -23,6 +31,8 @@ export function ReviewContent() {
   const queue = useReviewQueue();
   // Bumped by "Ôn thêm lượt nữa": remounts the runner over a refetched queue.
   const [round, setRound] = useState(0);
+  // SPEC §17.1-B3 — /review lands on an overview; the session starts on click.
+  const [started, setStarted] = useState(false);
 
   if (queue.isPending) {
     return <Centered>Đang tải…</Centered>;
@@ -40,6 +50,9 @@ export function ReviewContent() {
       </Centered>
     );
   }
+  if (!started) {
+    return <QueueOverview queue={queue.data} onStart={() => setStarted(true)} />;
+  }
   return (
     <ReviewRunner
       key={round}
@@ -49,6 +62,52 @@ export function ReviewContent() {
         setRound((r) => r + 1);
       }}
     />
+  );
+}
+
+function QueueOverview({ queue, onStart }: { queue: ReviewQueue; onStart: () => void }) {
+  const dueCount = queue.due.length;
+  const newCount = queue.new.length;
+  return (
+    <main className="mx-auto flex w-full max-w-[640px] flex-1 flex-col gap-6 px-4 py-10 sm:px-8">
+      <PageHeading
+        title="Ôn tập hôm nay"
+        subtitle="Xem qua khối lượng rồi bắt đầu khi bạn sẵn sàng."
+      />
+
+      <div className="animate-card-in grid grid-cols-2 gap-3">
+        <div className="glass rounded-[18px] p-4 text-center">
+          <p className="text-streak-text font-display text-3xl font-extrabold">{dueCount}</p>
+          <p className="text-muted-fg text-sm font-semibold">thẻ đến hạn</p>
+        </div>
+        <div className="glass rounded-[18px] p-4 text-center">
+          <p className="text-info-text font-display text-3xl font-extrabold">{newCount}</p>
+          <p className="text-muted-fg text-sm font-semibold">thẻ mới</p>
+        </div>
+      </div>
+
+      <ul className="animate-card-in flex flex-col gap-2.5">
+        {queue.decks.map((deck) => (
+          <li
+            key={deck.deck_id}
+            className="glass flex items-center justify-between gap-3 rounded-[18px] px-5 py-3.5"
+          >
+            <span className="flex min-w-0 items-center gap-3">
+              <DeckIcon deckId={deck.deck_id} className="h-9 w-9 rounded-[10px]" />
+              <span className="truncate text-[15px] font-bold">{deck.deck_name}</span>
+            </span>
+            <span className="flex shrink-0 gap-2">
+              {deck.due_count > 0 && <Badge variant="streak">{deck.due_count} đến hạn</Badge>}
+              {deck.new_count > 0 && <Badge variant="info">{deck.new_count} mới</Badge>}
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      <Button size="lg" onClick={onStart} className="w-full">
+        Bắt đầu ôn {dueCount + newCount} thẻ
+      </Button>
+    </main>
   );
 }
 

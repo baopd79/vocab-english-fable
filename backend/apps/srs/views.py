@@ -17,7 +17,9 @@ class ReviewQueueView(APIView):
     @extend_schema(responses=ReviewQueueSerializer)
     def get(self, request: Request) -> Response:
         queue = selectors.build_review_queue(user=request.user)
-        return Response(ReviewQueueSerializer({"due": queue.due, "new": queue.new}).data)
+        return Response(
+            ReviewQueueSerializer({"due": queue.due, "new": queue.new, "decks": queue.decks}).data
+        )
 
 
 class ReviewAnswerView(APIView):

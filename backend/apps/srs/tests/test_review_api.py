@@ -45,11 +45,17 @@ def test_queue_returns_due_and_new_groups(client, user):
 
     assert response.status_code == 200
     body = response.json()
-    assert set(body) == {"due", "new"}
+    assert set(body) == {"due", "new", "decks"}
     assert [c["id"] for c in body["due"]] == [due.id]
     assert [c["id"] for c in body["new"]] == [fresh.id]
     # New cards expose first_reviewed_at=null so the UI knows to flip, not type.
     assert body["new"][0]["first_reviewed_at"] is None
+    # Per-deck breakdown for the pre-review overview (SPEC §17.1-B3).
+    assert {(d["deck_id"], d["due_count"], d["new_count"]) for d in body["decks"]} == {
+        (due.deck_id, 1, 0),
+        (fresh.deck_id, 0, 1),
+    }
+    assert all(d["deck_name"] for d in body["decks"])
 
 
 # --- POST /review/answer -----------------------------------------------------

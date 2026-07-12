@@ -411,3 +411,12 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
   - **Nút con trong vùng click cha:** `SpeakerButton` luôn `type="button"` + `preventDefault()` + `stopPropagation()` — thiếu một trong ba là hoặc submit form, hoặc navigate theo link cha. Có test khẳng định click loa không bubble, không submit.
   - TTS (`speechSynthesis`) không tồn tại trong jsdom — `lib/tts.ts` no-op an toàn, nên test chỉ mock `speak` và assert được gọi; nghe thật phải smoke trên browser.
 - Đọc: `frontend/src/components/ui/speaker-button.tsx`, `frontend/src/app/decks/page.tsx` (DeckRow — overlay pattern), `frontend/src/components/ui/speaker-button.test.tsx`.
+
+### v1.1 Task 8 — Màn hình tổng quan trước phiên ôn (B3)
+- `/review` giờ dừng ở màn overview (tổng đến hạn/mới + phân theo deck + nút "Bắt đầu ôn") thay vì nhảy thẳng vào thẻ đầu tiên. Queue API trả thêm mảng `decks`.
+- Khái niệm Django/DRF ôn lại qua ví dụ thật:
+  - **Selector giàu thêm, view vẫn gầy:** breakdown tính trong `selectors.py` từ chính list due/new *đã cắt theo quota* — nên số trên overview luôn khớp phiên thật (tính từ DB thô sẽ lệch khi chạm trần ngày). Dataclass `DeckQueueCount` là kiểu trả về thuần Python, view chỉ đổ vào serializer.
+  - **`select_related("deck")`:** thêm 1 JOIN để lấy `card.deck.name` — không có nó, vòng lặp breakdown sẽ bắn 1 query/thẻ (bẫy N+1 kinh điển của Django ORM).
+  - **`serializers.Serializer` đọc attribute:** `DeckQueueCountSerializer` map thẳng field ↔ attribute của dataclass, không cần ModelSerializer vì không có model.
+  - Bài học test: test API cũ assert `set(body) == {"due", "new"}` — mở rộng response là test đỏ ngay. Assert "đúng bộ key" đắt hơn assert "có key X" nhưng bắt được thay đổi contract ngoài ý muốn; giữ nguyên triết lý đó, chỉ cập nhật bộ key.
+- Đọc: `apps/srs/selectors.py` (`_deck_breakdown`), `apps/srs/tests/test_queue_selector.py` (4 test breakdown mới), `frontend/src/app/review/page.tsx` (QueueOverview).
