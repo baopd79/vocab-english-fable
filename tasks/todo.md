@@ -1,6 +1,6 @@
-# Todo — Vocab English MVP
+# Todo — Vocabun
 
-> Chi tiết từng task (AC, verify, deps): `tasks/plan.md`
+> MVP: chi tiết task trong `tasks/plan.md` · v1.1: chi tiết trong `tasks/plan-v1.1.md`
 
 ## Phase 0 — Nền móng
 - [x] Task 1: Khởi tạo repo + Django skeleton (M)
@@ -47,3 +47,50 @@
 - [x] Google OAuth Client ID (trước task 5) — đã lưu trong .env (gitignored)
 - [x] Gemini API key (trước checkpoint 2) — đã lưu trong .env (gitignored)
 - [x] Domain + VPS (trước task 21) — vocabun.com + DigitalOcean Singapore 1GB (2026-07-09)
+
+---
+
+# v1.1 — "Mở cửa đón khách" (scope khóa 2026-07-11, SPEC §17)
+
+## Giai đoạn 1 — Tên mới + vá móng
+- [ ] Task 1: Rebrand "Vocabun" (S)
+- [ ] Task 2: Fix A1 — xoá query cache khi logout/login (S)
+- [ ] Task 3: Hardening — throttle auth + bảo vệ /admin (S) — chốt Q7 trước
+- [ ] ✅ Checkpoint 6a: bug user báo đã hết trên prod, cửa hậu khoá
+
+## Giai đoạn 2 — Cổng public (nộp Google sớm)
+- [ ] Task 4: Trang Privacy Policy + Terms (M)
+- [ ] Task 5: Nộp Google OAuth verification (M + chờ nhiều tuần, không chặn task khác)
+- [ ] Task 6: Gemini tier + trần chi phí toàn hệ thống (S–M) — chốt Q6 trước
+- [ ] ✅ Checkpoint 6: verification đã nộp, chi phí AI có trần
+
+## Giai đoạn 3 — UX polish
+- [ ] Task 7: Card deck click toàn bộ + voice mọi nơi — B1, B2, F7 (S–M)
+- [ ] Task 8: Màn hình tổng quan trước phiên ôn — B3 (S–M)
+- [ ] Task 9: Sound + hiệu ứng feedback — B4 (M) — chốt Q5 trước
+- [ ] ✅ Checkpoint 7: 3 điểm đau UX user nêu đã hết trên prod
+
+## Giai đoạn 4 — Feature học tập
+- [ ] Task 10: Quick-add từ ở header (M) — chốt Q2 trước
+- [ ] Task 11: Heatmap ôn tập — F8 (S)
+- [ ] Task 12: Cram mode — F4 (S–M)
+- [ ] Task 13: Dạng ôn mới — thiết kế + backend (M) — chốt Q1 trước (quyết định lớn nhất)
+- [ ] Task 14: Dạng ôn mới — frontend (M–L)
+- [ ] ✅ Checkpoint 8: toàn bộ feature học tập chạy trên prod
+
+## Giai đoạn 5 — Nội dung & chia sẻ
+- [ ] Task 15: Starter decks — F1 (M) — chốt Q3 trước
+- [ ] Task 16: Deck công khai / chia sẻ — F2 (M) — chốt Q4 trước
+
+## Giai đoạn 6 — Đón khách & công bố
+- [ ] Task 17: Landing page — P4 (M)
+- [ ] Task 18: Onboarding + empty states — P5 (S–M)
+- [ ] Task 19: Sentry — P6 (S)
+- [ ] Task 20: Launch checklist v1.1 — 27 tiêu chí (M, công bố cần Task 5 approved)
+- [ ] ✅ Checkpoint 9: v1.1 công bố — Vocabun mở cửa cho mọi người 🎉
+
+## Prerequisites v1.1 (ngoài code)
+- [ ] Đổi tên app trong Google Console consent screen (trước task 1-verify)
+- [ ] Quyết định Gemini tier từ usage thật (trước task 6)
+- [ ] Tài khoản Sentry free + 2 DSN (trước task 19)
+- [ ] Chốt nguồn từ vựng starter decks (trước task 15)

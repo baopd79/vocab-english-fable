@@ -7,10 +7,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Vocab English — AI-integrated English vocabulary learning web app for Vietnamese users (Google login, decks, AI word enrichment via Gemini, SM-2 spaced repetition, stats). Solo-dev project, self-hosted on a VPS.
 
 - **SPEC.md is the authoritative spec** (Vietnamese). Section numbers referenced in code comments (e.g. "SPEC §6.6") point there. Update SPEC.md when a design decision changes.
-- Work proceeds task-by-task per `tasks/plan.md` (22 tasks, 6 phases) with the checklist in `tasks/todo.md`. Finish and verify one task before starting the next; the user gives explicit go-aheads and prefers discussing decisions (via questions) before code is written.
+- **MVP complete (2026-07-09), live at https://vocabun.com.** Current work: **v1.1 "Mở cửa đón khách"** (SPEC §17, tasks in `tasks/plan-v1.1.md`) — official product name is now **Vocabun**. Same rhythm as the MVP: finish and verify one task before the next; the user gives explicit go-aheads and prefers discussing decisions (via questions) before code is written; each task's open questions (SPEC §17.3) get settled right before coding that task.
 - The user is learning Django (FastAPI background). After each task, append to the "Nhật ký theo task" section of `docs/django-guide.md`: what the task did, which Django concepts appeared for the first time, and which files to read — in Vietnamese, referencing real files.
 - Convention: code + docstrings in English; project docs and user communication in Vietnamese.
-- Commits: no `Co-Authored-By` trailer. Push to `main` triggers CI (`.github/workflows/ci.yml`, backend + frontend jobs).
+- Commits: no `Co-Authored-By` trailer. **Push to `main` deploys to production**: CI (`.github/workflows/ci.yml`) runs first; on green, `deploy.yml` builds images to GHCR and SSH-deploys to the VPS. Red CI blocks the deploy, but never push to `main` anything not meant to go live.
 
 ## Commands
 
@@ -94,3 +94,12 @@ Settings: `config/settings/{base,dev,test,prod}.py`; pytest runs with `test` (Lo
 ### Testing
 
 Backend: pytest + pytest-django + factory-boy (factories live in each app's `factories.py`). External boundaries are mocked at the service edge (e.g. `apps.accounts.services.id_token.verify_oauth2_token`); the AI provider has a `FakeProvider` for dev/tests. Frontend: Vitest + React Testing Library + jest-dom (`vitest.config.ts`, jsdom).
+
+## Production & ops
+
+Live stack: DigitalOcean VPS 1GB (`deploy@146.190.88.71`), 6 containers (nginx/frontend/backend/worker/db/redis), HTTPS via certbot auto-renew, nightly `pg_dump` kept 7 days + synced to Backblaze B2, UptimeRobot on `/api/v1/health`. RAM headroom is thin (~700MB/1GB in use) — weigh that before adding heavy dependencies or services.
+
+- `docs/ops-map.md` — actor map, dashboards, Linux commands by situation (diagnose vs intervene); incident-response order.
+- `docs/deploy-guide.md` — how the pipeline works + Level-2 upgrade roadmap (only when real pain).
+- `docs/restore-runbook.md` — tested DB restore procedure; don't improvise a restore from memory.
+- Google OAuth is in **Testing mode**: only emails added as Test users in Google Console can log in.

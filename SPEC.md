@@ -400,15 +400,66 @@ Coverage backend tối thiểu **70%**, test chạy trong CI mọi PR. Gọi AI 
 ## 15. Roadmap sau MVP (không build bây giờ, chỉ để schema/kiến trúc chừa chỗ)
 
 - Batch import: dán text / upload file / URL → extract từ → fan-out enrich tasks
-- Deck công khai / chia sẻ (đã chừa field `visibility`)
+- Deck công khai / chia sẻ (đã chừa field `visibility`) → **đưa vào v1.1 (mục 17)**
 - Đa nghĩa cho 1 từ (đã giữ `raw_response` JSONB)
-- Dạng ôn mới: flip VI→EN, trắc nghiệm, cloze (điền từ vào câu ví dụ), nghe-gõ; nếu cần lịch SRS riêng cho từng dạng → migration tách bảng `srs.Card` (UserWord = note, mỗi dạng 1 card)
+- Dạng ôn mới: flip VI→EN, trắc nghiệm, cloze (điền từ vào câu ví dụ), nghe-gõ; nếu cần lịch SRS riêng cho từng dạng → migration tách bảng `srs.Card` (UserWord = note, mỗi dạng 1 card) → **đưa vào v1.1 (mục 17, chọn 2 dạng đầu)**
 - Email/password auth, gamification, mobile, notification, monetization
 
 ## 16. Open Questions
 
-1. Gemini tier nào (free hay paid)? → quyết định số `rate_limit` thực tế
+1. Gemini tier nào (free hay paid)? → quyết định số `rate_limit` thực tế. **Chuyển vào v1.1 (mục 17, việc P3)** — chốt bằng số liệu usage thật khi làm task tương ứng
 2. ~~Domain name + VPS specs?~~ **Đã chốt (2026-07-09):** `vocabun.com` (Cloudflare DNS, proxy tắt — DNS only) + DigitalOcean Singapore 1GB RAM/25GB ($6, thêm 1GB swap, gunicorn 2 workers)
-3. Tên sản phẩm chính thức (đang dùng working title "Vocab English"; domain đã là vocabun.com)
+3. ~~Tên sản phẩm chính thức?~~ **Đã chốt (2026-07-11): "Vocabun"** (khớp domain vocabun.com). Đổi brand ở UI + Google consent screen trong v1.1 (mục 17, việc P2)
 4. ~~Google OAuth verification~~ **Đã chốt (2026-07-09):** giữ chế độ **Testing** cho MVP — chỉ email trong danh sách Test users (≤100) login được, không cần verify. Publish + privacy policy + verification chỉ làm khi mở public thật sự (ngoài scope MVP)
 5. ~~Đích backup offsite?~~ **Đã chốt (2026-07-09):** Backblaze B2 (bucket `vocabun-backups`, rclone sync trong `/usr/local/bin/vocab-backup`, lifecycle "keep only last version"); restore đã test — xem `docs/restore-runbook.md`
+
+## 17. v1.1 — "Mở cửa đón khách" (chốt scope 2026-07-11)
+
+> Kế hoạch task chi tiết: `tasks/plan-v1.1.md` · Checklist: `tasks/todo.md` (mục v1.1).
+> Danh sách dưới đây đã **khóa** (brainstorm 2026-07-10/11); thêm ý tưởng mới = để dành v1.2.
+
+**Mục tiêu:** đưa **Vocabun** (tên chính thức, thay working title "Vocab English") từ MVP chạy cho tác giả + test users sang **public thật**: người lạ vào vocabun.com hiểu app là gì, đăng nhập được (OAuth verified), có deck mẫu để học ngay, trải nghiệm ôn tập nâng cấp, chi phí AI có trần và lỗi được giám sát. **Một bản release duy nhất** — không chia nhỏ.
+
+### 17.1 Phạm vi (danh sách khóa)
+
+| Nhóm | Việc |
+|---|---|
+| **A — Bug & hardening** | A1 đổi tài khoản vẫn thấy data người cũ (root cause: logout không clear TanStack Query cache) · A2 siết throttle anon cho `/api/v1/auth/*` · A3 bảo vệ `/admin` (IP allowlist hoặc basic-auth ở nginx) |
+| **B — UI/UX** | B1 click toàn bộ card deck để vào deck · B2 nút voice ở form thêm từ + danh sách từ trong deck · B3 màn hình tổng quan trước phiên ôn (số thẻ mới/đến hạn, theo deck) · B4 sound effect + hiệu ứng feedback (đúng/sai, hoàn thành phiên; tắt được) |
+| **F — Feature** | Quick-add từ ở header · 2 dạng ôn mới (chọn trong 17.3) · F1 starter decks · F2 deck công khai/chia sẻ (xem + clone) · F4 cram mode (ôn tự do không đụng SRS) · F7 audio câu ví dụ · F8 heatmap ôn tập kiểu GitHub |
+| **P — Public-readiness** | P1 Privacy Policy + Terms + Google OAuth verification · P2 rebrand "Vocabun" · P3 chốt Gemini tier + trần chi phí toàn hệ thống/ngày · P4 landing page cho khách · P5 onboarding/empty states · P6 Sentry (BE + FE) |
+
+### 17.2 Tiêu chí nghiệm thu v1.1
+
+1. Tài khoản Google **bất kỳ** (ngoài Test users) đăng nhập được; consent screen hiện "Vocabun", không cảnh báo unverified. *(phụ thuộc Google review — các tiêu chí khác không bị chặn bởi mốc này)*
+2. Khách chưa đăng nhập vào `vocabun.com` thấy landing page giới thiệu (không bị đá thẳng về form login).
+3. User mới đăng nhập lần đầu: có hướng dẫn bắt đầu + thêm được starter deck → có từ để ôn trong ≤2 phút, không phải nhập tay.
+4. Đổi tài khoản trong cùng browser → không thấy bất kỳ data nào của tài khoản trước, **không cần reload**.
+5. Click bất kỳ đâu trên card deck → vào trang deck.
+6. Nghe phát âm được ở: form thêm từ, danh sách từ trong deck, thẻ ôn tập (cả từ lẫn câu ví dụ).
+7. Vào Ôn tập thấy màn hình tổng quan (số thẻ mới/đến hạn, thuộc deck nào) trước khi bắt đầu phiên.
+8. Trả lời đúng/sai và kết thúc phiên có âm thanh + hiệu ứng; toggle tắt sound hoạt động và được nhớ.
+9. Quick-add: từ bất kỳ trang nào, thêm 1 từ trong ≤2 click; nhớ deck dùng gần nhất.
+10. 2 dạng ôn mới chạy đúng trên lịch SM-2 hiện có; engine `srs/engine.py` giữ nguyên 100% coverage.
+11. Cram mode: sau phiên cram, mọi trường SRS và queue trong ngày **không đổi**.
+12. Heatmap hiển thị đúng số lượt ôn 365 ngày theo timezone user.
+13. Deck công khai: có link chia sẻ, người khác xem + clone về tài khoản mình (không copy tiến độ SRS); deck private vẫn 404 với người lạ (giữ quy tắc mục 9).
+14. Chi phí Gemini có trần toàn hệ thống/ngày; chạm trần → enrich fail-as-miss với code lỗi rõ ràng, user thấy thông báo thân thiện; quota per-user 50/ngày giữ nguyên.
+15. Sentry nhận được lỗi thật từ cả backend lẫn frontend (test bằng lỗi cố ý) trước khi công bố.
+16. `/admin` không truy cập được từ IP lạ (hoặc có lớp xác thực thứ hai trước Django admin).
+
+### 17.3 Open questions v1.1 (chốt khi bắt đầu task tương ứng, theo nhịp hỏi-trước-code)
+
+1. **Dạng ôn mới:** chọn 2 dạng nào trong {flip VI→EN, trắc nghiệm, cloze, nghe-gõ}? Dùng chung lịch SM-2 của note hay tách bảng `srs.Card`?
+2. **Quick-add:** vị trí nút (header vs nav), chọn deck bằng chips hay dropdown, localStorage nhớ deck gần nhất.
+3. **Starter decks:** nguồn nội dung (Oxford 3000 theo chủ đề?), số deck/số từ, seed bằng management command hay fixture, enrich seed tính vào quota ai.
+4. **Deck công khai:** trang share có cần login để xem không; clone giới hạn số lần?
+5. **B4 sound:** file audio tĩnh hay WebAudio synth; trạng thái mute lưu ở `UserSettings` hay localStorage.
+6. **P3:** Gemini free tier có chịu nổi seed starter decks + user lạ không → nhìn số liệu usage thật rồi quyết.
+7. **A3:** bảo vệ `/admin` bằng IP allowlist nginx hay basic-auth.
+
+### 17.4 Ràng buộc mới (cộng vào mục 9/12, không thay thế)
+
+- **RAM VPS 1GB (~300MB trống):** không thêm service thường trực nào; Sentry dùng SaaS SDK; **chưa thêm Celery Beat** trong v1.1 (⇒ không có email reminder — để roadmap).
+- Mọi convention MVP giữ nguyên (mục 3, 9, 10, 12); endpoint mới tuân thủ layering services/selectors; SRS fields vẫn read-only qua API — cram mode và dạng ôn mới không được mở đường ghi mới nào vượt service.
+- Nội dung starter deck là **của hệ thống**: user clone ra bản riêng, không sửa bản gốc (tương tự nguyên tắc không sửa WordCache khi user edit).
