@@ -43,7 +43,7 @@ function HeaderBar({
             V
           </span>
           <span className="font-display hidden text-[19px] font-extrabold tracking-tight lg:inline">
-            Vocab<span className="text-primary-text">English</span>
+            Vocab<span className="text-primary-text">un</span>
           </span>
         </Link>
 

@@ -39,7 +39,7 @@ export default function LoginPage() {
           V
         </div>
         <h1 className="font-display mt-5 text-4xl font-extrabold tracking-tight">
-          Vocab<span className="text-primary-text">English</span>
+          Vocab<span className="text-primary-text">un</span>
         </h1>
         <p className="text-muted-fg mt-2.5 text-base">
           Học từ vựng tiếng Anh cùng AI — mỗi ngày một chút, nhớ mãi không quên.

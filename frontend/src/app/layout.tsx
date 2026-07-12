@@ -18,7 +18,7 @@ const beVietnam = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "Vocab English",
+  title: "Vocabun",
   description: "Học từ vựng tiếng Anh với AI",
 };
 

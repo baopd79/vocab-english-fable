@@ -371,3 +371,10 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
   - **Google OAuth Testing mode:** đủ cho MVP cá nhân — chỉ Test users (≤100, thêm tay trong Console) login được, khỏi cần verification/privacy policy. GIS chỉ dùng ID token nên không dính giới hạn "refresh token 7 ngày" của Testing mode.
   - Bug shell đáng nhớ: comment trong script chứa chữ "rclone" làm `grep -q rclone` báo "đã có" và bỏ qua việc nối lệnh sync — điều kiện idempotent phải grep chuỗi đặc thù (`"rclone sync"`), và luôn verify kết quả cuối (`rclone ls`) chứ đừng tin lệnh cài.
 - Đọc: `docs/restore-runbook.md`, `/usr/local/bin/vocab-backup` (trên VPS), SPEC §16 (3 câu đã chốt), `tasks/todo.md` (Checkpoint 5).
+
+### v1.1 Task 1 — Rebrand "Vocabun"
+- Đổi working title "Vocab English" → tên chính thức "Vocabun" ở mọi chỗ user thấy: `<title>` (metadata), wordmark header + trang login (giữ pattern 2 màu: Vocab + **un** xanh), title Swagger, description pyproject. Không có logic mới.
+- Khái niệm Django xuất hiện lần đầu: không có. Điểm nhỏ đáng nhớ:
+  - **`SPECTACULAR_SETTINGS["TITLE"]`** chỉ đổi tên hiển thị của schema/Swagger — không ảnh hưởng API path hay client nào.
+  - Phía Next.js, brand nằm ở đúng 3 file: `export const metadata` trong `layout.tsx` (App Router tự render `<title>`), wordmark trong `app-header.tsx` và `login/page.tsx`. Tên popup Google login là chuyện của Console (consent screen), không nằm trong code.
+- Đọc: `frontend/src/app/layout.tsx` (metadata API), `backend/config/settings/base.py` (SPECTACULAR_SETTINGS).

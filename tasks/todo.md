@@ -53,7 +53,7 @@
 # v1.1 — "Mở cửa đón khách" (scope khóa 2026-07-11, SPEC §17)
 
 ## Giai đoạn 1 — Tên mới + vá móng
-- [ ] Task 1: Rebrand "Vocabun" (S)
+- [x] Task 1: Rebrand "Vocabun" (S) — code xong 2026-07-12; popup Google chờ user đổi tên trên Console
 - [ ] Task 2: Fix A1 — xoá query cache khi logout/login (S)
 - [ ] Task 3: Hardening — throttle auth + bảo vệ /admin (S) — chốt Q7 trước
 - [ ] ✅ Checkpoint 6a: bug user báo đã hết trên prod, cửa hậu khoá

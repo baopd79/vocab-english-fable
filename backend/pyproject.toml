@@ -1,7 +1,7 @@
 [project]
 name = "vocab-backend"
 version = "0.1.0"
-description = "Vocab English backend — Django + DRF"
+description = "Vocabun backend — Django + DRF"
 requires-python = ">=3.12"
 dependencies = [
     "celery[redis]>=5.6.3",
