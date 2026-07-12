@@ -7,6 +7,7 @@ from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
 from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.serializers import TokenRefreshSerializer
@@ -41,6 +42,10 @@ def _set_refresh_cookie(response: Response, token: str) -> None:
 class GoogleLoginView(APIView):
     authentication_classes: list = []
     permission_classes: list = []
+    # SPEC §17.1-A2: anonymous endpoints, so throttled per client IP under a
+    # budget far below the authenticated 1000/hour default.
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "auth"
 
     @extend_schema(request=GoogleAuthSerializer, responses=AccessTokenSerializer, auth=[])
     def post(self, request: Request) -> Response:
@@ -56,6 +61,8 @@ class GoogleLoginView(APIView):
 class RefreshView(APIView):
     authentication_classes: list = []
     permission_classes: list = []
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "auth"
 
     @extend_schema(request=None, responses=AccessTokenSerializer, auth=[])
     def post(self, request: Request) -> Response:
@@ -75,6 +82,8 @@ class RefreshView(APIView):
 class LogoutView(APIView):
     authentication_classes: list = []
     permission_classes: list = []
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "auth"
 
     @extend_schema(request=None, responses={204: None}, auth=[])
     def post(self, request: Request) -> Response:

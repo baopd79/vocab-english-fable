@@ -167,3 +167,38 @@ class TestMe:
 
         assert response.status_code == 401
         assert response.data["code"] == "token_not_valid"
+
+
+class TestAuthThrottle:
+    """SPEC §17.1-A2 — anonymous auth endpoints share a tight per-IP budget."""
+
+    @pytest.fixture
+    def auth_throttle_3_per_hour(self):
+        """DRF reads THROTTLE_RATES from the class at import time, so patch the
+        class, not settings (same pattern as the enrichment throttle tests)."""
+        from django.core.cache import cache
+        from rest_framework.throttling import SimpleRateThrottle
+
+        original = SimpleRateThrottle.THROTTLE_RATES
+        SimpleRateThrottle.THROTTLE_RATES = {"user": None, "enrichment": None, "auth": "3/hour"}
+        cache.clear()
+        yield
+        SimpleRateThrottle.THROTTLE_RATES = original
+        cache.clear()
+
+    def test_auth_endpoints_throttle_by_ip(self, client, auth_throttle_3_per_hour):
+        # Cookie-less refresh is a cheap 401, but it still burns the budget.
+        for _ in range(3):
+            assert client.post("/api/v1/auth/refresh").status_code == 401
+
+        response = client.post("/api/v1/auth/refresh")
+        assert response.status_code == 429
+        assert response.data["code"] == "throttled"
+
+        # One shared scope: login from the same IP is blocked too.
+        assert login(client).status_code == 429
+
+    def test_auth_rate_is_far_below_user_rate_in_real_settings(self):
+        from config.settings.base import REST_FRAMEWORK as base_rf
+
+        assert base_rf["DEFAULT_THROTTLE_RATES"]["auth"] == "60/hour"

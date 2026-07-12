@@ -55,7 +55,7 @@
 ## Giai đoạn 1 — Tên mới + vá móng
 - [x] Task 1: Rebrand "Vocabun" (S) — code xong 2026-07-12; popup Google chờ user đổi tên trên Console
 - [x] Task 2: Fix A1 — xoá query cache khi logout/login (S) — 2026-07-12, `queryClient.clear()` ở cả logout lẫn login + 2 vitest
-- [ ] Task 3: Hardening — throttle auth + bảo vệ /admin (S) — chốt Q7 trước
+- [ ] Task 3: Hardening — throttle auth + bảo vệ /admin (S) — Q7 chốt basic-auth; code + test xong 2026-07-12, **chờ tạo htpasswd trên VPS rồi mới push**
 - [ ] ✅ Checkpoint 6a: bug user báo đã hết trên prod, cửa hậu khoá
 
 ## Giai đoạn 2 — Cổng public (nộp Google sớm)

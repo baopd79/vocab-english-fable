@@ -456,7 +456,7 @@ Coverage backend tối thiểu **70%**, test chạy trong CI mọi PR. Gọi AI 
 4. **Deck công khai:** trang share có cần login để xem không; clone giới hạn số lần?
 5. **B4 sound:** file audio tĩnh hay WebAudio synth; trạng thái mute lưu ở `UserSettings` hay localStorage.
 6. **P3:** Gemini free tier có chịu nổi seed starter decks + user lạ không → nhìn số liệu usage thật rồi quyết.
-7. **A3:** bảo vệ `/admin` bằng IP allowlist nginx hay basic-auth.
+7. **A3:** bảo vệ `/admin` bằng IP allowlist nginx hay basic-auth. → **Đã chốt (2026-07-12): basic-auth ở nginx** — IP nhà/4G đổi liên tục nên allowlist sẽ tự khoá mình; htpasswd chỉ nằm trên VPS (gitignored), mount qua `docker-compose.tls.yml`.
 
 ### 17.4 Ràng buộc mới (cộng vào mục 9/12, không thay thế)
 

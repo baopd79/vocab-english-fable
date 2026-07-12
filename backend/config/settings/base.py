@@ -92,9 +92,14 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "apps.common.pagination.DefaultPagination",
     "PAGE_SIZE": 50,
     # SPEC §8 — `enrichment` (50/day) guards POST words, retry-enrichment and
-    # word_text changes; everything else falls under the per-user rate.
+    # word_text changes; `auth` (SPEC §17.1-A2) keys the anonymous auth
+    # endpoints per client IP; everything else falls under the per-user rate.
     "DEFAULT_THROTTLE_CLASSES": ["rest_framework.throttling.UserRateThrottle"],
-    "DEFAULT_THROTTLE_RATES": {"user": "1000/hour", "enrichment": "50/day"},
+    "DEFAULT_THROTTLE_RATES": {"user": "1000/hour", "enrichment": "50/day", "auth": "60/hour"},
+    # Exactly one trusted proxy (nginx) fronts the app, so anonymous throttling
+    # keys on the client IP nginx appends to X-Forwarded-For — never on the
+    # spoofable header as a whole.
+    "NUM_PROXIES": 1,
 }
 
 SPECTACULAR_SETTINGS = {

@@ -386,3 +386,12 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
   - Thứ tự trong `logout`: `clear()` gọi cùng batch với `setStatus("unauthenticated")` — React 18 gộp vào một lần render, `RequireAuth` unmount consumer ngay nên query bị xoá không bị refetch lại bằng token rỗng.
   - Test pattern: bọc wrapper bằng `QueryClientProvider` như providers.tsx thật, seed cache bằng `queryClient.setQueryData(["decks"], ...)`, sau logout assert `getQueryCache().getAll()` rỗng.
 - Đọc: `frontend/src/lib/auth-context.tsx`, `frontend/src/app/providers.tsx`, `frontend/src/lib/auth-context.test.tsx` (2 test cuối).
+
+### v1.1 Task 3 — Hardening: throttle auth per-IP + basic-auth /admin
+- A2: 3 view auth ẩn danh (`google/refresh/logout`) chuyển sang `ScopedRateThrottle` scope `auth` 60/giờ theo IP — thay vì lọt vào rate mặc định 1000/giờ. A3 (Q7 chốt basic-auth): nginx hỏi thêm user/mật khẩu trước `/admin` trên VPS.
+- Khái niệm Django/DRF mới:
+  - **`ScopedRateThrottle` + `throttle_scope`:** đặt `throttle_classes` trên view sẽ **thay thế** `DEFAULT_THROTTLE_CLASSES` (không cộng dồn). Request ẩn danh được key theo IP (`get_ident`), request đã đăng nhập key theo user PK.
+  - **`NUM_PROXIES` — cái bẫy throttle sau reverse proxy:** DRF mặc định (None) dùng **nguyên chuỗi** `X-Forwarded-For` làm key → attacker tự bịa XFF là mỗi request một key, vượt rate limit. Đặt `NUM_PROXIES: 1` (đúng số proxy tin cậy = nginx) thì DRF lấy IP do *nginx* nối vào cuối chuỗi — client không giả được.
+  - **Rate `None` = tắt scope đó** — vì thế `test.py` chỉ cần thêm `"auth": None`; còn thiếu key thì DRF ném `ImproperlyConfigured` ngay khi view chạy.
+  - Ngoài Django — **nginx `auth_basic`:** file htpasswd là secret nên không nằm trong image/repo, chỉ nằm trên VPS và bind-mount qua overlay. Bẫy Docker: bind-mount file **chưa tồn tại** → Docker tạo *thư mục* rỗng thế chỗ → nginx đọc fail. Phải tạo file trước khi `up`.
+- Đọc: `apps/accounts/views.py` (3 view auth), `config/settings/base.py` (THROTTLE_RATES + NUM_PROXIES), `apps/accounts/tests/test_auth_api.py` (TestAuthThrottle — pattern patch class thay vì settings), `nginx/tls.conf` + `docker-compose.tls.yml`.

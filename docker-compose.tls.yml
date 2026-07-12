@@ -14,3 +14,6 @@ services:
     volumes:
       - ./nginx/tls.conf:/etc/nginx/conf.d/default.conf:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
+      # A3: basic-auth credentials for /admin. Must exist on the VPS before
+      # `up` — a missing file would be bind-mounted as an empty directory.
+      - ./nginx/htpasswd:/etc/nginx/htpasswd:ro

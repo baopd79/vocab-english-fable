@@ -13,5 +13,5 @@ CACHES = {"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"
 REST_FRAMEWORK = {
     **REST_FRAMEWORK,  # noqa: F405
     "DEFAULT_THROTTLE_CLASSES": [],
-    "DEFAULT_THROTTLE_RATES": {"user": None, "enrichment": None},
+    "DEFAULT_THROTTLE_RATES": {"user": None, "enrichment": None, "auth": None},
 }
