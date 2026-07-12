@@ -403,3 +403,11 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
   - **`export const metadata` per-route** đè `<title>`/description của layout gốc — chỉ hoạt động trong server component (trang client phải nhờ layout cha).
   - Footer đặt trong `layout.tsx` sau `{children}`: body là `flex flex-col min-h-full` + main `flex-1` nên footer tự dính đáy mà không cần position fixed.
 - Đọc: `frontend/src/app/privacy/page.tsx`, `frontend/src/components/legal-page.tsx` (shell dùng chung), `frontend/src/components/site-footer.tsx`, output `pnpm build` (bảng Static/Dynamic).
+
+### v1.1 Task 7 — Card deck click toàn bộ + voice mọi nơi (B1, B2, F7)
+- B1: cả card deck thành vùng click. B2: nút loa ở form thêm từ (nghe trước khi lưu) + cạnh mỗi từ trong deck. F7: loa cho câu ví dụ ở cả deck detail lẫn thẻ ôn. Thẻ ôn refactor dùng chung `SpeakerButton`.
+- Task frontend thuần; 2 pattern UI đáng nhớ:
+  - **Stretched link:** không được lồng `<button>` trong `<a>` (HTML sai). Cách chuẩn: container `relative`, `<Link className="absolute inset-0">` phủ toàn card làm vùng click, các nút hành động đặt `relative` để nổi lên trên overlay. Text tĩnh nằm dưới overlay (không cần click).
+  - **Nút con trong vùng click cha:** `SpeakerButton` luôn `type="button"` + `preventDefault()` + `stopPropagation()` — thiếu một trong ba là hoặc submit form, hoặc navigate theo link cha. Có test khẳng định click loa không bubble, không submit.
+  - TTS (`speechSynthesis`) không tồn tại trong jsdom — `lib/tts.ts` no-op an toàn, nên test chỉ mock `speak` và assert được gọi; nghe thật phải smoke trên browser.
+- Đọc: `frontend/src/components/ui/speaker-button.tsx`, `frontend/src/app/decks/page.tsx` (DeckRow — overlay pattern), `frontend/src/components/ui/speaker-button.test.tsx`.

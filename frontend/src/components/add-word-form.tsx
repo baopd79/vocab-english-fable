@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { SpeakerButton } from "@/components/ui/speaker-button";
 
 export function AddWordForm({
   onSubmit,
@@ -37,6 +38,12 @@ export function AddWordForm({
           placeholder="Nhập từ tiếng Anh, ví dụ: humble…"
           maxLength={64}
           className="h-12 rounded-[14px]"
+        />
+        <SpeakerButton
+          text={word.trim()}
+          label="Nghe phát âm từ vừa nhập"
+          disabled={word.trim().length === 0}
+          className="h-12 w-12 self-center rounded-[14px]"
         />
         <Button
           type="submit"

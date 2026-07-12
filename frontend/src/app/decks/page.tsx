@@ -89,7 +89,10 @@ export function DecksContent() {
       ) : (
         <ul className="animate-card-in grid gap-4 sm:grid-cols-2">
           {decksQuery.data.results.map((deck) => (
-            <li key={deck.id} className="glass flex flex-col gap-3 rounded-[20px] p-5 sm:p-6">
+            <li
+              key={deck.id}
+              className="glass group relative flex flex-col gap-3 rounded-[20px] p-5 sm:p-6"
+            >
               {editingId === deck.id ? (
                 <DeckForm
                   initial={{ name: deck.name, description: deck.description }}
@@ -139,15 +142,23 @@ function DeckRow({
 }) {
   return (
     <>
+      {/* SPEC §17.1-B1 — the whole card navigates: a stretched link overlays
+          the (relative) <li>; the action buttons sit above it via `relative`,
+          so <button> never nests inside <a>. */}
+      <Link
+        href={`/decks/${deck.id}`}
+        aria-label={`Mở deck ${deck.name}`}
+        className="focus-visible:ring-ring absolute inset-0 rounded-[20px] focus-visible:ring-2 focus-visible:outline-none"
+      />
       <div className="flex items-start justify-between gap-3">
-        <Link href={`/decks/${deck.id}`} className="group flex min-w-0 flex-col gap-2">
+        <div className="flex min-w-0 flex-col gap-2">
           <DeckIcon deckId={deck.id} className="h-10 w-10 rounded-xl" />
           <span className="group-hover:text-primary-text text-[17px] font-bold transition-colors">
             {deck.name}
           </span>
           {deck.description && <span className="text-muted-fg text-sm">{deck.description}</span>}
-        </Link>
-        <div className="flex shrink-0 gap-3 text-sm font-semibold">
+        </div>
+        <div className="relative flex shrink-0 gap-3 text-sm font-semibold">
           <button
             type="button"
             onClick={onEdit}

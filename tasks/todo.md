@@ -60,7 +60,7 @@
 
 ## Giai đoạn 2 — Cổng public (nộp Google sớm)
 - [x] Task 4: Trang Privacy Policy + Terms (M) — 2026-07-12: /privacy + /terms 200 ẩn danh trên prod, footer toàn cục + dòng đồng ý ở login
-- [ ] Task 5: Nộp Google OAuth verification (M + chờ nhiều tuần, không chặn task khác)
+- [ ] Task 5: Nộp Google OAuth verification (M) — 2026-07-12 user đã điền consent screen + publish; còn chờ: login thử bằng tài khoản ngoài Test users để tick
 - [ ] Task 6: Gemini tier + trần chi phí toàn hệ thống (S–M) — chốt Q6 trước
 - [ ] ✅ Checkpoint 6: verification đã nộp, chi phí AI có trần
 
@@ -90,7 +90,7 @@
 - [ ] ✅ Checkpoint 9: v1.1 công bố — Vocabun mở cửa cho mọi người 🎉
 
 ## Prerequisites v1.1 (ngoài code)
-- [ ] Đổi tên app trong Google Console consent screen (trước task 1-verify)
+- [x] Đổi tên app trong Google Console consent screen (trước task 1-verify) — 2026-07-12, cùng lượt điền consent screen Task 5
 - [ ] Quyết định Gemini tier từ usage thật (trước task 6)
 - [ ] Tài khoản Sentry free + 2 DSN (trước task 19)
 - [ ] Chốt nguồn từ vựng starter decks (trước task 15)

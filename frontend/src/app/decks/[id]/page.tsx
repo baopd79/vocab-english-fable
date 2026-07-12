@@ -10,6 +10,7 @@ import { RequireAuth } from "@/components/require-auth";
 import { Badge, type BadgeVariant } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Field, Input } from "@/components/ui/input";
+import { SpeakerButton } from "@/components/ui/speaker-button";
 import { useDeck } from "@/lib/decks";
 import {
   useAddWord,
@@ -149,8 +150,13 @@ function WordRow({ word, deckId }: { word: UserWord; deckId: number }) {
   return (
     <div className="flex items-start justify-between gap-4">
       <div className="flex min-w-0 flex-col gap-1">
-        <p className="flex flex-wrap items-baseline gap-2.5">
+        <p className="flex flex-wrap items-center gap-2.5">
           <span className="text-lg font-bold">{displayed.word_text}</span>
+          <SpeakerButton
+            text={displayed.word_text}
+            size="sm"
+            label={`Phát âm ${displayed.word_text}`}
+          />
           {displayed.ipa && <span className="text-subtle-fg text-sm">{displayed.ipa}</span>}
           {displayed.part_of_speech && <Badge variant="primary">{displayed.part_of_speech}</Badge>}
         </p>
@@ -224,12 +230,20 @@ function WordDetails({
     <div className="mt-0.5 text-sm">
       <p className="text-fg text-[15px]">{word.meaning_vi}</p>
       {word.example_en && (
-        <p className="text-muted-fg mt-1 italic">
-          “{word.example_en}”
-          {word.example_vi && (
-            <span className="text-subtle-fg block not-italic">{word.example_vi}</span>
-          )}
-        </p>
+        <div className="mt-1 flex items-start gap-2">
+          <SpeakerButton
+            text={word.example_en}
+            size="sm"
+            label="Phát âm câu ví dụ"
+            className="mt-0.5"
+          />
+          <p className="text-muted-fg min-w-0 italic">
+            “{word.example_en}”
+            {word.example_vi && (
+              <span className="text-subtle-fg block not-italic">{word.example_vi}</span>
+            )}
+          </p>
+        </div>
       )}
     </div>
   );

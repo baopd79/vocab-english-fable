@@ -97,6 +97,20 @@ test("creates a deck and shows it after refetch", async () => {
   expect(server.current().map((d) => d.name)).toContain("IELTS");
 });
 
+test("the whole deck card links to the deck page, buttons stay usable", async () => {
+  stubDeckServer([deck(1, "IELTS", "band 7")]);
+  renderDecks();
+  await screen.findByText("IELTS");
+
+  // SPEC §17.1-B1 — a stretched link covers the card, so any spot outside the
+  // name (description, empty space) navigates.
+  expect(screen.getByRole("link", { name: "Mở deck IELTS" })).toHaveAttribute("href", "/decks/1");
+
+  // The action buttons sit above the overlay and keep working.
+  fireEvent.click(screen.getByRole("button", { name: "Sửa" }));
+  expect(await screen.findByLabelText("Tên deck")).toBeInTheDocument();
+});
+
 test("deletes a deck after confirmation", async () => {
   const server = stubDeckServer([deck(1, "IELTS")]);
   renderDecks();

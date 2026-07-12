@@ -6,9 +6,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { GradeButton } from "@/components/ui/grade-button";
 import { Card } from "@/components/ui/card";
+import { SpeakerButton } from "@/components/ui/speaker-button";
 import { isTypingCorrect } from "@/lib/normalize";
 import { isNewCard, type Rating } from "@/lib/review";
-import { speak } from "@/lib/tts";
 import type { UserWord } from "@/lib/words";
 
 const GRADES: { rating: Rating; label: string; key: string }[] = [
@@ -118,14 +118,7 @@ export function ReviewCard({
           {card.word_text}
         </span>
         {card.ipa && <span className="text-subtle-fg text-[17px]">{card.ipa}</span>}
-        <button
-          type="button"
-          aria-label="Phát âm"
-          onClick={() => speak(card.word_text)}
-          className="border-chip-border bg-surface-2 text-primary-text hover:bg-primary/15 hover:border-primary/40 focus-visible:ring-ring inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border transition-colors focus-visible:ring-2 focus-visible:outline-none active:translate-y-px"
-        >
-          <SpeakerIcon />
-        </button>
+        <SpeakerButton text={card.word_text} label="Phát âm" />
         {card.part_of_speech && <Badge variant="primary">{card.part_of_speech}</Badge>}
       </div>
 
@@ -133,7 +126,15 @@ export function ReviewCard({
         <p className="text-lg font-semibold">{card.meaning_vi}</p>
         {card.example_en && (
           <>
-            <p className="text-muted-fg text-[15px] italic">“{card.example_en}”</p>
+            <div className="flex items-start gap-2">
+              <SpeakerButton
+                text={card.example_en}
+                size="sm"
+                label="Phát âm câu ví dụ"
+                className="mt-0.5"
+              />
+              <p className="text-muted-fg min-w-0 text-[15px] italic">“{card.example_en}”</p>
+            </div>
             {card.example_vi && <p className="text-subtle-fg text-sm">{card.example_vi}</p>}
           </>
         )}
@@ -158,26 +159,6 @@ export function ReviewCard({
         ))}
       </div>
     </Card>
-  );
-}
-
-function SpeakerIcon() {
-  return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M11 5 6 9H2v6h4l5 4V5Z" fill="currentColor" stroke="none" />
-      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-    </svg>
   );
 }
 
