@@ -136,6 +136,7 @@
   --animate-pop-in: pop-in 0.45s ease;
   --animate-flip-in: flip-in 0.55s cubic-bezier(0.35, 0.1, 0.2, 1);
   --animate-soft-pulse: soft-pulse 1.4s ease infinite;
+  --animate-confetti-fall: confetti-fall 2s linear forwards;
 }
 
 body {
@@ -202,6 +203,21 @@ body {
   }
   50% {
     opacity: 0.45;
+  }
+}
+
+/* Session-done confetti (SPEC §17.1-B4): pieces spawn above the viewport and
+ * tumble past the bottom; per-piece duration/delay come from inline styles. */
+@keyframes confetti-fall {
+  0% {
+    translate: 0 0;
+    rotate: 0deg;
+    opacity: 1;
+  }
+  100% {
+    translate: 0 108vh;
+    rotate: 540deg;
+    opacity: 0.5;
   }
 }
 

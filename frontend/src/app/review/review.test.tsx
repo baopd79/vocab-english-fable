@@ -2,9 +2,19 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, expect, test, vi } from "vitest";
 
+import { isMuted, playCorrect, playFanfare, playWrong, setMuted } from "@/lib/sfx";
 import type { UserWord } from "@/lib/words";
 
 import { ReviewContent } from "./page";
+
+// Sounds are exercised in sfx.test.ts; here we only assert the wiring.
+vi.mock("@/lib/sfx", () => ({
+  isMuted: vi.fn(() => false),
+  setMuted: vi.fn(),
+  playCorrect: vi.fn(),
+  playWrong: vi.fn(),
+  playFanfare: vi.fn(),
+}));
 
 function jsonResponse(status: number, body: unknown): Response {
   return new Response(JSON.stringify(body), {
@@ -92,6 +102,8 @@ function renderReview() {
 afterEach(() => {
   vi.unstubAllGlobals();
   vi.restoreAllMocks();
+  vi.clearAllMocks();
+  vi.mocked(isMuted).mockReturnValue(false);
 });
 
 test("empty queue shows the done state", async () => {
@@ -156,4 +168,21 @@ test("full session: due card typed, new card flipped, Again re-queues, then summ
     { user_word_id: 2, rating: "again" },
     { user_word_id: 2, rating: "good" },
   ]);
+
+  // SPEC §17.2-8 — chimes per grade, fanfare once at the end.
+  expect(playCorrect).toHaveBeenCalledTimes(2);
+  expect(playWrong).toHaveBeenCalledTimes(1);
+  expect(playFanfare).toHaveBeenCalledTimes(1);
+});
+
+test("mute toggle flips label and persists via setMuted", async () => {
+  stubReviewServer({ due: [card(1, "resilience", false)], new: [] });
+  renderReview();
+  fireEvent.click(await screen.findByRole("button", { name: /Bắt đầu ôn/ }));
+
+  const toggle = await screen.findByRole("button", { name: "Tắt âm thanh" });
+  fireEvent.click(toggle);
+
+  expect(setMuted).toHaveBeenCalledWith(true);
+  expect(screen.getByRole("button", { name: "Bật âm thanh" })).toBeInTheDocument();
 });

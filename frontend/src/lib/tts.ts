@@ -13,3 +13,9 @@ export function speak(text: string, lang = "en-US"): void {
 export function canSpeak(): boolean {
   return typeof window !== "undefined" && "speechSynthesis" in window;
 }
+
+/** Cut off any in-flight speech, e.g. before a feedback chime (SPEC §17.2-8). */
+export function stopSpeaking(): void {
+  if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+  window.speechSynthesis.cancel();
+}

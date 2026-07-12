@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
+import { Confetti } from "@/components/confetti";
 import { DeckIcon } from "@/components/deck-icon";
 import { ReviewCard } from "@/components/review-card";
 import { RequireAuth } from "@/components/require-auth";
@@ -17,6 +18,8 @@ import {
   type Rating,
   type ReviewQueue,
 } from "@/lib/review";
+import { isMuted, playCorrect, playFanfare, playWrong, setMuted } from "@/lib/sfx";
+import { stopSpeaking } from "@/lib/tts";
 import type { UserWord } from "@/lib/words";
 
 export default function ReviewPage() {
@@ -131,6 +134,7 @@ function ReviewRunner({
   const done = step >= session.length;
   useEffect(() => {
     if (!done) return;
+    playFanfare();
     queryClient.invalidateQueries({ queryKey: ["review-queue"], refetchType: "none" });
     queryClient.invalidateQueries({ queryKey: ["stats-overview"] });
   }, [done, queryClient]);
@@ -138,6 +142,7 @@ function ReviewRunner({
   if (done) {
     return (
       <Centered>
+        <Confetti />
         <span className="bg-primary/15 border-primary/40 animate-pop-in grid h-22 w-22 place-items-center rounded-full border-[1.5px] backdrop-blur-md">
           <TrophyIcon />
         </span>
@@ -165,6 +170,14 @@ function ReviewRunner({
       await submit.mutateAsync({ userWordId: card.id, rating });
     } catch {
       return; // stay on the card so the user can retry; error shown below
+    }
+    // SPEC §17.2-8 — feedback chime per grade; cut any TTS still speaking so
+    // the two never overlap.
+    stopSpeaking();
+    if (rating === "good" || rating === "easy") {
+      playCorrect();
+    } else {
+      playWrong();
     }
     if (rating === "again") {
       setSession((current) => [...current, card]);
@@ -199,6 +212,7 @@ function ReviewRunner({
         <span className="text-muted-fg shrink-0 text-[13px] font-semibold">
           Còn {remaining} thẻ
         </span>
+        <MuteToggle />
       </header>
       <ReviewCard
         key={step}
@@ -208,6 +222,67 @@ function ReviewRunner({
         onGrade={handleGrade}
       />
     </main>
+  );
+}
+
+/** Speaker on/off for the feedback chimes — persisted per device (§17.3-Q5). */
+function MuteToggle() {
+  const [muted, setMutedState] = useState(isMuted);
+
+  function toggle() {
+    const next = !muted;
+    setMuted(next);
+    setMutedState(next);
+  }
+
+  return (
+    <button
+      type="button"
+      aria-label={muted ? "Bật âm thanh" : "Tắt âm thanh"}
+      aria-pressed={!muted}
+      onClick={toggle}
+      className="border-chip-border bg-surface-2 text-muted-fg hover:text-fg hover:bg-surface focus-visible:ring-ring inline-flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full border transition-colors focus-visible:ring-2 focus-visible:outline-none"
+    >
+      {muted ? <MutedIcon /> : <SoundIcon />}
+    </button>
+  );
+}
+
+function SoundIcon() {
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M11 5 6 9H2v6h4l5 4V5Z" fill="currentColor" stroke="none" />
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+    </svg>
+  );
+}
+
+function MutedIcon() {
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M11 5 6 9H2v6h4l5 4V5Z" fill="currentColor" stroke="none" />
+      <path d="m16 9 6 6M22 9l-6 6" />
+    </svg>
   );
 }
 

@@ -420,3 +420,12 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
   - **`serializers.Serializer` đọc attribute:** `DeckQueueCountSerializer` map thẳng field ↔ attribute của dataclass, không cần ModelSerializer vì không có model.
   - Bài học test: test API cũ assert `set(body) == {"due", "new"}` — mở rộng response là test đỏ ngay. Assert "đúng bộ key" đắt hơn assert "có key X" nhưng bắt được thay đổi contract ngoài ý muốn; giữ nguyên triết lý đó, chỉ cập nhật bộ key.
 - Đọc: `apps/srs/selectors.py` (`_deck_breakdown`), `apps/srs/tests/test_queue_selector.py` (4 test breakdown mới), `frontend/src/app/review/page.tsx` (QueueOverview).
+
+### v1.1 Task 9 — Sound + hiệu ứng feedback (B4, Q5: WebAudio + localStorage)
+- Chime khi chấm (Good/Easy = ding lên, Again/Hard = buzz trầm), fanfare + confetti khi xong phiên, nút mute trong header phiên ôn (nhớ qua reload). Task frontend thuần.
+- Khái niệm mới:
+  - **WebAudio synth thay file asset:** mỗi "nốt" = 1 oscillator + 1 gain envelope (attack nhanh, decay mũ) rồi `connect` vào `destination`. Không asset, không bản quyền, chỉnh pitch tự do. AudioContext phải tạo/resume trong user gesture (click chấm điểm) — browser chặn autoplay.
+  - **Chống chồng âm với TTS:** `stopSpeaking()` (`speechSynthesis.cancel()`) gọi ngay trước chime trong `handleGrade` — AC §17.2-8.
+  - **Lint `react-hooks/purity` chặn `Math.random()` trong render** (kể cả trong `useMemo`): confetti chuyển sang pseudo-random tất định `fract(sin(i·k)·43758.5453)` — render idempotent, mắt thường vẫn thấy ngẫu nhiên. Trick shader kinh điển.
+  - Mute lưu localStorage theo convention theme; module `sfx.ts` đọc tươi mỗi lần phát nên mọi nơi đồng bộ không cần context.
+- Đọc: `frontend/src/lib/sfx.ts`, `frontend/src/components/confetti.tsx` (+ keyframes trong `globals.css`), `frontend/src/app/review/page.tsx` (MuteToggle, handleGrade), `frontend/src/lib/sfx.test.ts` (FakeAudioContext pattern).
