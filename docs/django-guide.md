@@ -378,3 +378,11 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
   - **`SPECTACULAR_SETTINGS["TITLE"]`** chỉ đổi tên hiển thị của schema/Swagger — không ảnh hưởng API path hay client nào.
   - Phía Next.js, brand nằm ở đúng 3 file: `export const metadata` trong `layout.tsx` (App Router tự render `<title>`), wordmark trong `app-header.tsx` và `login/page.tsx`. Tên popup Google login là chuyện của Console (consent screen), không nằm trong code.
 - Đọc: `frontend/src/app/layout.tsx` (metadata API), `backend/config/settings/base.py` (SPECTACULAR_SETTINGS).
+
+### v1.1 Task 2 — Fix A1: xoá query cache khi đổi phiên
+- Bug user báo: đổi tài khoản vẫn thấy deck của tài khoản cũ, phải reload. Nguyên nhân: `QueryClient` (TanStack) tạo một lần trong `providers.tsx` và sống lâu hơn phiên đăng nhập — `logout()` chỉ xoá token + user chứ không đụng cache. Fix: `queryClient.clear()` ở **cả hai** biên phiên trong `auth-context.tsx`: lúc `logout` (đổi tài khoản chủ động) và lúc `loginWithGoogle` (đường phiên chết vì 401 → về /login → đăng nhập tài khoản khác mà không hề qua `logout`).
+- Task frontend thuần, không có khái niệm Django mới. Bài học đáng nhớ:
+  - **Cache tồn tại ngoài vòng đời auth là nguồn rò dữ liệu giữa user** — mọi state manager có cache (TanStack, SWR, Redux persist) đều cần một điểm "wipe" gắn với biên phiên, không chỉ gắn với component.
+  - Thứ tự trong `logout`: `clear()` gọi cùng batch với `setStatus("unauthenticated")` — React 18 gộp vào một lần render, `RequireAuth` unmount consumer ngay nên query bị xoá không bị refetch lại bằng token rỗng.
+  - Test pattern: bọc wrapper bằng `QueryClientProvider` như providers.tsx thật, seed cache bằng `queryClient.setQueryData(["decks"], ...)`, sau logout assert `getQueryCache().getAll()` rỗng.
+- Đọc: `frontend/src/lib/auth-context.tsx`, `frontend/src/app/providers.tsx`, `frontend/src/lib/auth-context.test.tsx` (2 test cuối).

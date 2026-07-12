@@ -1,5 +1,6 @@
 "use client";
 
+import { useQueryClient } from "@tanstack/react-query";
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 
 import { api, refreshSession, setAccessToken } from "@/lib/api";
@@ -25,6 +26,9 @@ const AuthContext = createContext<AuthContextValue | null>(null);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [status, setStatus] = useState<AuthStatus>("loading");
   const [user, setUser] = useState<AuthUser | null>(null);
+  // The QueryClient (providers.tsx) outlives the session, so cached data would
+  // leak across accounts (SPEC §17.1-A1) — clear it on every session boundary.
+  const queryClient = useQueryClient();
 
   // Session restore on mount: the refresh cookie is the only persistent state.
   useEffect(() => {
@@ -50,16 +54,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  const loginWithGoogle = useCallback(async (credential: string) => {
-    const { access } = await api<{ access: string }>("/api/v1/auth/google", {
-      method: "POST",
-      body: JSON.stringify({ credential }),
-    });
-    setAccessToken(access);
-    const me = await api<AuthUser>("/api/v1/me");
-    setUser(me);
-    setStatus("authenticated");
-  }, []);
+  const loginWithGoogle = useCallback(
+    async (credential: string) => {
+      const { access } = await api<{ access: string }>("/api/v1/auth/google", {
+        method: "POST",
+        body: JSON.stringify({ credential }),
+      });
+      // Also needed here: a session that died via 401 lands on /login without
+      // ever calling logout(), leaving the previous account's cache behind.
+      queryClient.clear();
+      setAccessToken(access);
+      const me = await api<AuthUser>("/api/v1/me");
+      setUser(me);
+      setStatus("authenticated");
+    },
+    [queryClient],
+  );
 
   const logout = useCallback(async () => {
     try {
@@ -70,7 +80,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setAccessToken(null);
     setUser(null);
     setStatus("unauthenticated");
-  }, []);
+    // Batched with the state updates above: RequireAuth unmounts consumers in
+    // the same render pass, so the cleared queries are not refetched.
+    queryClient.clear();
+  }, [queryClient]);
 
   const value = useMemo(
     () => ({ status, user, loginWithGoogle, logout }),

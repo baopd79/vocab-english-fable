@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { act, renderHook, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, expect, test, vi } from "vitest";
 
@@ -28,12 +29,18 @@ function stubFetchRoutes(routes: Record<string, () => Response>) {
   return fetchMock;
 }
 
+// Fresh QueryClient per test, like providers.tsx wires it above AuthProvider.
+let queryClient: QueryClient;
+
 const wrapper = ({ children }: { children: React.ReactNode }) => (
-  <AuthProvider>{children}</AuthProvider>
+  <QueryClientProvider client={queryClient}>
+    <AuthProvider>{children}</AuthProvider>
+  </QueryClientProvider>
 );
 
 beforeEach(() => {
   setAccessToken(null);
+  queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } });
 });
 
 afterEach(() => {
@@ -103,4 +110,41 @@ test("logout clears the session even if the API call fails", async () => {
 
   expect(result.current.status).toBe("unauthenticated");
   expect(result.current.user).toBeNull();
+});
+
+test("logout clears the query cache so the next account starts clean", async () => {
+  stubFetchRoutes({
+    "/api/v1/auth/refresh": () => jsonResponse(200, { access: "token-restored" }),
+    "/api/v1/me": () => jsonResponse(200, USER),
+    "/api/v1/auth/logout": () => new Response(null, { status: 204 }),
+  });
+
+  const { result } = renderHook(() => useAuth(), { wrapper });
+  await waitFor(() => expect(result.current.status).toBe("authenticated"));
+  queryClient.setQueryData(["decks"], [{ id: 1, name: "Bộ từ của tài khoản A" }]);
+
+  await act(() => result.current.logout());
+
+  expect(queryClient.getQueryData(["decks"])).toBeUndefined();
+  expect(queryClient.getQueryCache().getAll()).toHaveLength(0);
+});
+
+test("loginWithGoogle clears cache left over from a dead session", async () => {
+  // The 401 path: the old session expires (no logout() call), the user lands on
+  // /login and signs in as a different account — the old cache must not survive.
+  stubFetchRoutes({
+    "/api/v1/auth/refresh": () =>
+      jsonResponse(401, { detail: "missing", code: "refresh_cookie_missing" }),
+    "/api/v1/auth/google": () => jsonResponse(200, { access: "token-login" }),
+    "/api/v1/me": () => jsonResponse(200, USER),
+  });
+
+  const { result } = renderHook(() => useAuth(), { wrapper });
+  await waitFor(() => expect(result.current.status).toBe("unauthenticated"));
+  queryClient.setQueryData(["decks"], [{ id: 1, name: "Bộ từ của tài khoản A" }]);
+
+  await act(() => result.current.loginWithGoogle("google-credential"));
+
+  expect(result.current.status).toBe("authenticated");
+  expect(queryClient.getQueryData(["decks"])).toBeUndefined();
 });
