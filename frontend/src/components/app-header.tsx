@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { QuickAdd } from "@/components/quick-add";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { useAuth, type AuthUser } from "@/lib/auth-context";
 import { useStatsOverview } from "@/lib/stats";
@@ -37,7 +38,7 @@ function HeaderBar({
 }) {
   return (
     <header className="bg-(--header-bg) border-(--header-border) sticky top-0 z-10 border-b-[1.5px] backdrop-blur-xl backdrop-saturate-150">
-      <div className="mx-auto flex w-full max-w-[1080px] items-center justify-between gap-3 px-4 py-3 sm:gap-6 sm:px-8">
+      <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between gap-3 px-4 py-3 sm:gap-6 sm:px-8">
         <Link href="/" className="flex shrink-0 items-center gap-2.5">
           <span className="bg-primary font-display shadow-[0_2.5px_0_var(--primary-shadow)] grid h-8 w-8 place-items-center rounded-[9px] text-[17px] font-extrabold text-white">
             V
@@ -67,6 +68,7 @@ function HeaderBar({
         </nav>
 
         <div className="flex shrink-0 items-center gap-2.5 sm:gap-3">
+          <QuickAdd />
           <StreakBadge />
           <ThemeToggle />
           <Avatar user={user} />

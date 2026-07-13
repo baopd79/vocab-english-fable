@@ -19,7 +19,7 @@ export function StatsContent() {
   const daily = useDailyReviews(DAILY_WINDOW);
 
   return (
-    <main className="mx-auto flex w-full max-w-[840px] flex-1 flex-col gap-7 px-4 py-10 sm:px-8">
+    <main className="mx-auto flex w-full max-w-[1280px] flex-1 flex-col gap-7 px-4 py-10 sm:px-8">
       <header className="animate-card-in">
         <h1 className="font-display text-3xl font-extrabold tracking-tight">Thống kê</h1>
         {overview.data && (

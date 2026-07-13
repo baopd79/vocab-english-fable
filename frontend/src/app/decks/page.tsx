@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import { DeckForm, type DeckFormValues } from "@/components/deck-form";
 import { DeckIcon } from "@/components/deck-icon";
+import { QuickAddModal } from "@/components/quick-add";
 import { RequireAuth } from "@/components/require-auth";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -35,6 +36,7 @@ export function DecksContent() {
   const [creating, setCreating] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [confirmingId, setConfirmingId] = useState<number | null>(null);
+  const [addingToDeckId, setAddingToDeckId] = useState<number | null>(null);
 
   function handleCreate(values: DeckFormValues) {
     createDeck.mutate(values, { onSuccess: () => setCreating(false) });
@@ -49,7 +51,7 @@ export function DecksContent() {
   }
 
   return (
-    <main className="mx-auto flex w-full max-w-[1080px] flex-1 flex-col gap-6 px-4 py-10 sm:px-8">
+    <main className="mx-auto flex w-full max-w-[1280px] flex-1 flex-col gap-6 px-4 py-10 sm:px-8">
       <PageHeading
         title="Bộ từ vựng"
         subtitle="Gom từ theo chủ đề để học có hệ thống hơn."
@@ -87,7 +89,7 @@ export function DecksContent() {
       ) : decksQuery.data.results.length === 0 ? (
         <p className="text-muted-fg text-sm">Bạn chưa có deck nào. Tạo deck đầu tiên để bắt đầu.</p>
       ) : (
-        <ul className="animate-card-in grid gap-4 sm:grid-cols-2">
+        <ul className="animate-card-in grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {decksQuery.data.results.map((deck) => (
             <li
               key={deck.id}
@@ -121,11 +123,16 @@ export function DecksContent() {
                     setEditingId(deck.id);
                   }}
                   onDelete={() => setConfirmingId(deck.id)}
+                  onAddWord={() => setAddingToDeckId(deck.id)}
                 />
               )}
             </li>
           ))}
         </ul>
+      )}
+
+      {addingToDeckId !== null && (
+        <QuickAddModal initialDeckId={addingToDeckId} onClose={() => setAddingToDeckId(null)} />
       )}
     </main>
   );
@@ -135,10 +142,12 @@ function DeckRow({
   deck,
   onEdit,
   onDelete,
+  onAddWord,
 }: {
   deck: Deck;
   onEdit: () => void;
   onDelete: () => void;
+  onAddWord: () => void;
 }) {
   return (
     <>
@@ -175,9 +184,17 @@ function DeckRow({
           </button>
         </div>
       </div>
-      <div className="mt-auto flex gap-2">
+      <div className="mt-auto flex items-center gap-2">
         <Badge variant="neutral">{deck.word_count} từ</Badge>
         <Badge variant="primary">{deck.mastered_count} thành thạo</Badge>
+        <button
+          type="button"
+          onClick={onAddWord}
+          aria-label={`Thêm từ vào deck ${deck.name}`}
+          className="border-primary/35 bg-primary/10 text-primary-text hover:bg-primary/20 relative ml-auto inline-flex cursor-pointer items-center rounded-full border px-2.5 py-0.5 text-xs font-bold backdrop-blur-sm transition-colors"
+        >
+          + Từ
+        </button>
       </div>
     </>
   );

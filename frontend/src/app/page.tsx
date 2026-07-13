@@ -33,7 +33,7 @@ function HomeContent() {
   const streak = overview.data?.streak;
 
   return (
-    <main className="mx-auto flex w-full max-w-[1080px] flex-1 flex-col gap-9 px-4 py-10 sm:px-8">
+    <main className="mx-auto flex w-full max-w-[1280px] flex-1 flex-col gap-9 px-4 py-10 sm:px-8">
       <div className="animate-card-in">
         <h1 className="font-display text-4xl font-extrabold tracking-tight">
           {greeting()}, {name}

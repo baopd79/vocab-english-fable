@@ -1,4 +1,4 @@
-import type { InputHTMLAttributes, SelectHTMLAttributes, TextareaHTMLAttributes } from "react";
+import type { ComponentProps, SelectHTMLAttributes, TextareaHTMLAttributes } from "react";
 import type { ReactNode } from "react";
 
 import { cn } from "@/lib/cn";
@@ -7,7 +7,8 @@ import { cn } from "@/lib/cn";
 export const fieldBase =
   "border-border bg-surface text-fg placeholder:text-subtle-fg focus-visible:border-primary focus-visible:ring-primary/20 w-full rounded-xl border-[1.5px] transition-colors focus-visible:ring-[3px] focus-visible:outline-none";
 
-export function Input({ className, ...props }: InputHTMLAttributes<HTMLInputElement>) {
+// ComponentProps (not InputHTMLAttributes) so `ref` passes through (React 19).
+export function Input({ className, ...props }: ComponentProps<"input">) {
   return <input className={cn(fieldBase, "h-11 px-4", className)} {...props} />;
 }
 

@@ -451,7 +451,7 @@ Coverage backend tối thiểu **70%**, test chạy trong CI mọi PR. Gọi AI 
 ### 17.3 Open questions v1.1 (chốt khi bắt đầu task tương ứng, theo nhịp hỏi-trước-code)
 
 1. **Dạng ôn mới:** chọn 2 dạng nào trong {flip VI→EN, trắc nghiệm, cloze, nghe-gõ}? Dùng chung lịch SM-2 của note hay tách bảng `srs.Card`?
-2. **Quick-add:** vị trí nút (header vs nav), chọn deck bằng chips hay dropdown, localStorage nhớ deck gần nhất.
+2. **Quick-add:** vị trí nút (header vs nav), chọn deck bằng chips hay dropdown, localStorage nhớ deck gần nhất. → **Đã chốt (2026-07-13): nút "+" tròn trong header** (cạnh streak, ngoài nav nên mobile vẫn thấy) **+ modal giữa màn hình + chips chọn deck** — deck dùng gần nhất được chọn sẵn, lưu localStorage per-device (cùng convention theme/sfx-mute); lỗi (trùng từ, từ không hợp lệ) hiện ngay trong modal. Modal **giữ mở sau mỗi lần thêm** (input tự clear + focus lại), danh sách "Vừa thêm" hiện kết quả AI live ngay trong modal — không dùng toast. Card deck ở `/decks` có nút "+ Từ" mở cùng modal với deck đó chọn sẵn. (Cùng đợt: khung layout nới 1080→1280px cho header/trang chủ/decks/deck detail/stats; deck grid lên 3 cột desktop.)
 3. **Starter decks:** nguồn nội dung (Oxford 3000 theo chủ đề?), số deck/số từ, seed bằng management command hay fixture, enrich seed tính vào quota ai.
 4. **Deck công khai:** trang share có cần login để xem không; clone giới hạn số lần?
 5. **B4 sound:** file audio tĩnh hay WebAudio synth; trạng thái mute lưu ở `UserSettings` hay localStorage. → **Đã chốt (2026-07-12): WebAudio synth** (không asset, không bản quyền, chỉnh tùy ý) **+ mute lưu localStorage** (per-device, cùng convention với theme).
