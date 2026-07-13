@@ -100,7 +100,7 @@ Card deck: `<Link>` bọc cả card, nút phụ `stopPropagation`. Nút loa (dù
 
 **Task 10: Quick-add từ ở header** (M, deps: none — chốt §17.3-Q2 trước)
 Nút/lệnh thêm từ nhanh từ mọi trang; chọn deck (nhớ deck gần nhất theo Q2); submit → enrichment như flow thường; modal giữ mở để thêm liên tục, list "Vừa thêm" hiện kết quả AI live; card deck ở /decks có nút "+ Từ" mở cùng modal.
-- [ ] AC: §17.2-9; validate + lỗi trùng từ hiện ngay trong popup
+- [x] AC: §17.2-9; validate + lỗi trùng từ hiện ngay trong popup
 - Verify: `pnpm test` + manual từ 3 trang khác nhau.
 
 **Task 11: Heatmap ôn tập (F8)** (S, deps: none)
