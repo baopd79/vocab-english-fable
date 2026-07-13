@@ -56,11 +56,11 @@
 - [x] Task 1: Rebrand "Vocabun" (S) — code xong 2026-07-12; popup Google chờ user đổi tên trên Console
 - [x] Task 2: Fix A1 — xoá query cache khi logout/login (S) — 2026-07-12, `queryClient.clear()` ở cả logout lẫn login + 2 vitest
 - [x] Task 3: Hardening — throttle auth + bảo vệ /admin (S) — Q7 chốt basic-auth; verify prod 2026-07-12: /admin 401, request thứ 61 vào /auth/refresh dính 429
-- [ ] ✅ Checkpoint 6a: bug user báo đã hết trên prod, cửa hậu khoá
+- [x] ✅ Checkpoint 6a: bug user báo đã hết trên prod, cửa hậu khoá (2026-07-13: user verify đổi tài khoản sạch cache; /admin 401; auth 429)
 
 ## Giai đoạn 2 — Cổng public (nộp Google sớm)
 - [x] Task 4: Trang Privacy Policy + Terms (M) — 2026-07-12: /privacy + /terms 200 ẩn danh trên prod, footer toàn cục + dòng đồng ý ở login
-- [ ] Task 5: Nộp Google OAuth verification (M) — 2026-07-12 user đã điền consent screen + publish; còn chờ: login thử bằng tài khoản ngoài Test users để tick
+- [x] Task 5: Nộp Google OAuth verification (M) — consent screen + publish 2026-07-12; 2026-07-13 tài khoản ngoài Test users login OK → app "In production" (§17.2-1 đạt)
 - [ ] Task 6: Gemini tier + trần chi phí toàn hệ thống (S–M) — chốt Q6 trước
 - [ ] ✅ Checkpoint 6: verification đã nộp, chi phí AI có trần
 
@@ -68,7 +68,7 @@
 - [x] Task 7: Card deck click toàn bộ + voice mọi nơi — B1, B2, F7 (S–M) — 2026-07-12, user smoke localhost OK (voice + card click + nút không bubble)
 - [x] Task 8: Màn hình tổng quan trước phiên ôn — B3 (S–M) — 2026-07-12, queue API thêm `decks` breakdown (đếm theo quota), /review có màn "Bắt đầu ôn"
 - [x] Task 9: Sound + hiệu ứng feedback — B4 (M) — Q5 chốt WebAudio + localStorage; 2026-07-12: chime chấm điểm, fanfare + confetti, mute toggle
-- [ ] ✅ Checkpoint 7: 3 điểm đau UX user nêu đã hết trên prod
+- [x] ✅ Checkpoint 7: 3 điểm đau UX user nêu đã hết trên prod (2026-07-13: user smoke T7/T8/T9 OK — voice, overview, sound/confetti/mute)
 
 ## Giai đoạn 4 — Feature học tập
 - [ ] Task 10: Quick-add từ ở header (M) — chốt Q2 trước
