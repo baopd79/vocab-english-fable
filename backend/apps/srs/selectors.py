@@ -4,6 +4,7 @@
 UTC, so a review just before local midnight counts toward the right day.
 """
 
+import random
 from collections import Counter
 from dataclasses import dataclass
 from datetime import datetime
@@ -14,6 +15,17 @@ from django.utils import timezone
 from apps.accounts.models import User
 from apps.srs.models import ReviewLog
 from apps.vocab.models import UserWord
+
+# Review modes (SPEC §17.2-10, §17.3-Q1) share the word's SM-2 schedule — the
+# mode only decides how this review asks the word. Young cards (reps < 2)
+# always drill the classic form; from rep 2 the mode cycles deterministically.
+MIN_REPS_FOR_NEW_MODES = 2
+MODE_CYCLE = {
+    0: ReviewLog.Mode.MCQ,
+    1: ReviewLog.Mode.LISTENING,
+    2: ReviewLog.Mode.CLASSIC,
+}
+MCQ_DISTRACTORS = 3
 
 
 @dataclass(frozen=True)
@@ -71,7 +83,58 @@ def build_review_queue(*, user: User, now: datetime | None = None) -> ReviewQueu
         .select_related("deck")
         .order_by("created_at", "id")[:new_limit]
     )
+    _assign_modes(user=user, cards=[*due, *new])
     return ReviewQueue(due=due, new=new, decks=_deck_breakdown(due, new))
+
+
+def review_mode(card: UserWord) -> str:
+    """Which form this review of the card takes (deterministic, SPEC §17.3-Q1):
+    new + young cards stay classic; from rep 2 cycle by repetitions % 3
+    (rep 2 → classic, 3 → MCQ, 4 → listening, 5 → classic, …)."""
+    if card.first_reviewed_at is None or card.repetitions < MIN_REPS_FOR_NEW_MODES:
+        return ReviewLog.Mode.CLASSIC
+    return MODE_CYCLE[card.repetitions % 3]
+
+
+def _assign_modes(*, user: User, cards: list[UserWord]) -> None:
+    """Annotate each queue card in place with `review_mode` and `mcq_choices`
+    (4 shuffled VI meanings for MCQ, None otherwise). An MCQ card without
+    enough distractors falls back to classic so the client never renders a
+    half-empty question."""
+    meaning_pool: list[str] | None = None  # lazy: only queried when MCQ shows up
+    for card in cards:
+        mode = review_mode(card)
+        choices = None
+        if mode == ReviewLog.Mode.MCQ:
+            if meaning_pool is None:
+                meaning_pool = _mcq_meaning_pool(user=user)
+            choices = _mcq_choices(card, meaning_pool)
+            if choices is None:
+                mode = ReviewLog.Mode.CLASSIC
+        card.review_mode = mode
+        card.mcq_choices = choices
+
+
+def _mcq_meaning_pool(*, user: User) -> list[str]:
+    """Distinct VI meanings across the user's enriched words — the distractor
+    candidates for every MCQ card in this queue (one query, reused)."""
+    return list(
+        UserWord.objects.filter(user=user, enrichment_status="completed")
+        .exclude(meaning_vi="")
+        .values_list("meaning_vi", flat=True)
+        .distinct()
+    )
+
+
+def _mcq_choices(card: UserWord, meaning_pool: list[str]) -> list[str] | None:
+    """4 shuffled options: the card's meaning + 3 random distractors, or None
+    when the pool can't supply 3 (the caller falls back to classic)."""
+    candidates = [meaning for meaning in meaning_pool if meaning != card.meaning_vi]
+    if len(candidates) < MCQ_DISTRACTORS or not card.meaning_vi:
+        return None
+    choices = [card.meaning_vi, *random.sample(candidates, MCQ_DISTRACTORS)]
+    random.shuffle(choices)
+    return choices
 
 
 def _deck_breakdown(due: list[UserWord], new: list[UserWord]) -> list[DeckQueueCount]:

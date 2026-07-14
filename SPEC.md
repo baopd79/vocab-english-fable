@@ -231,7 +231,7 @@ MVP có 2 dạng ôn + phát âm; **mỗi lượt ôn 1 từ đi qua tuần tự
 
 **Phát âm:** Web Speech API (`SpeechSynthesis`, voice `en-US`) ngay trên browser — miễn phí, không cần backend/lưu audio.
 
-Các dạng khác (flip VI→EN, trắc nghiệm, cloze, nghe-gõ) → roadmap.
+**v1.1 (§17.2-10, §17.3-Q1):** thêm 2 dạng **trắc nghiệm** (hiện từ EN → chọn nghĩa VI đúng trong 4 đáp án) và **nghe-gõ** (TTS phát từ, không hiện chữ → gõ từ → lật thẻ đầy đủ). Cả 2 dùng chung lịch SM-2 của từ, chấm Again/Hard/Good/Easy như dạng chuẩn; quy tắc gán dạng xem §17.3-Q1. Các dạng khác (flip VI→EN, cloze) → roadmap.
 
 ## 7. API Endpoints (`/api/v1/`)
 
@@ -450,7 +450,7 @@ Coverage backend tối thiểu **70%**, test chạy trong CI mọi PR. Gọi AI 
 
 ### 17.3 Open questions v1.1 (chốt khi bắt đầu task tương ứng, theo nhịp hỏi-trước-code)
 
-1. **Dạng ôn mới:** chọn 2 dạng nào trong {flip VI→EN, trắc nghiệm, cloze, nghe-gõ}? Dùng chung lịch SM-2 của note hay tách bảng `srs.Card`?
+1. **Dạng ôn mới:** chọn 2 dạng nào trong {flip VI→EN, trắc nghiệm, cloze, nghe-gõ}? Dùng chung lịch SM-2 của note hay tách bảng `srs.Card`? → **Đã chốt (2026-07-14): trắc nghiệm (MCQ) + nghe-gõ; dùng chung lịch SM-2 của từ** (không tách `srs.Card` — khối lượng ôn/ngày không đổi, không migration backfill). "Dạng" chỉ là cách hỏi của lượt ôn: thẻ new + thẻ non (repetitions < 2) luôn dạng chuẩn; từ repetitions ≥ 2 xoay vòng deterministic theo `repetitions % 3` (0→MCQ, 1→nghe-gõ, 2→chuẩn). Backend gán `review_mode` cho từng thẻ trong queue; MCQ kèm `mcq_choices` = 4 nghĩa VI đã xáo (3 nhiễu lấy từ kho từ đã enrich của chính user, không đủ 3 nhiễu → fallback dạng chuẩn). `/review/answer` nhận thêm `mode`, ghi vào `ReviewLog.mode` (migration 1 cột, default `classic`) để stats sau này; engine SM-2 không đổi.
 2. **Quick-add:** vị trí nút (header vs nav), chọn deck bằng chips hay dropdown, localStorage nhớ deck gần nhất. → **Đã chốt (2026-07-13): nút "+" tròn trong header** (cạnh streak, ngoài nav nên mobile vẫn thấy) **+ modal giữa màn hình + chips chọn deck** — deck dùng gần nhất được chọn sẵn, lưu localStorage per-device (cùng convention theme/sfx-mute); lỗi (trùng từ, từ không hợp lệ) hiện ngay trong modal. Modal **giữ mở sau mỗi lần thêm** (input tự clear + focus lại), danh sách "Vừa thêm" hiện kết quả AI live ngay trong modal — không dùng toast. Card deck ở `/decks` có nút "+ Từ" mở cùng modal với deck đó chọn sẵn. (Cùng đợt: khung layout nới 1080→1280px cho header/trang chủ/decks/deck detail/stats; deck grid lên 3 cột desktop.)
 3. **Starter decks:** nguồn nội dung (Oxford 3000 theo chủ đề?), số deck/số từ, seed bằng management command hay fixture, enrich seed tính vào quota ai.
 4. **Deck công khai:** trang share có cần login để xem không; clone giới hạn số lần?

@@ -36,5 +36,6 @@ class ReviewAnswerView(APIView):
             user=request.user,
             user_word=user_word,
             rating=Rating(serializer.validated_data["rating"]),
+            mode=serializer.validated_data["mode"],
         )
         return Response(UserWordSerializer(updated).data)

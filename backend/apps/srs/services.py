@@ -13,7 +13,12 @@ from apps.vocab.models import UserWord
 
 @transaction.atomic
 def apply_review_answer(
-    *, user: User, user_word: UserWord, rating: Rating, now: datetime | None = None
+    *,
+    user: User,
+    user_word: UserWord,
+    rating: Rating,
+    mode: str = ReviewLog.Mode.CLASSIC,
+    now: datetime | None = None,
 ) -> UserWord:
     """Run the SM-2 engine, persist the new card state, and append a log.
 
@@ -53,6 +58,7 @@ def apply_review_answer(
         user=user,
         user_word=user_word,
         rating=rating.value,
+        mode=mode,
         interval_after=result.interval_days,
         ease_after=result.ease_factor,
         reviewed_at=now,

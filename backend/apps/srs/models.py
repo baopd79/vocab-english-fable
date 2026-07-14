@@ -20,6 +20,14 @@ class ReviewLog(TimeStampedModel):
         GOOD = "good", "Good"
         EASY = "easy", "Easy"
 
+    class Mode(models.TextChoices):
+        """How the review asked the word (SPEC §17.2-10, §17.3-Q1). Modes share
+        the word's SM-2 schedule — this is presentation metadata for stats."""
+
+        CLASSIC = "classic", "Classic (typing + flip)"
+        MCQ = "mcq", "Multiple choice"
+        LISTENING = "listening", "Listening (type what you hear)"
+
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="review_logs"
     )
@@ -31,6 +39,7 @@ class ReviewLog(TimeStampedModel):
         related_name="review_logs",
     )
     rating = models.CharField(max_length=10, choices=Rating.choices)
+    mode = models.CharField(max_length=10, choices=Mode.choices, default=Mode.CLASSIC)
     # SRS state snapshot after applying this review.
     interval_after = models.IntegerField()
     ease_after = models.FloatField()

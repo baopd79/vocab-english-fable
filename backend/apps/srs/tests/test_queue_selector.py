@@ -209,6 +209,78 @@ def test_deck_breakdown_empty_queue_has_no_decks():
     assert queue.decks == []
 
 
+# --- review modes (SPEC §17.2-10, §17.3-Q1) -----------------------------------
+
+
+def enriched_card(user, deck, meaning, **kwargs):
+    """A due card whose enrichment finished — eligible as an MCQ distractor."""
+    return due_card(user, deck, meaning_vi=meaning, enrichment_status="completed", **kwargs)
+
+
+def test_new_and_young_cards_always_classic():
+    user = make_user(new_per_day=10, max_reviews=10)
+    deck = DeckFactory(owner=user)
+    UserWordFactory(user=user, deck=deck, first_reviewed_at=None)  # new
+    enriched_card(user, deck, "nghĩa 0", repetitions=0)  # lapsed (Again)
+    enriched_card(user, deck, "nghĩa 1", repetitions=1)
+    enriched_card(user, deck, "nghĩa 2", repetitions=2)  # 2 % 3 = 2 → classic
+
+    queue = build_review_queue(user=user, now=NOW)
+
+    for card in [*queue.due, *queue.new]:
+        assert card.review_mode == "classic"
+        assert card.mcq_choices is None
+
+
+def test_mode_cycles_by_repetitions_from_rep_3():
+    user = make_user(new_per_day=0, max_reviews=10)
+    deck = DeckFactory(owner=user)
+    # Enough distinct meanings that the MCQ card can build its distractors.
+    for i in range(4):
+        enriched_card(user, deck, f"nhiễu {i}", repetitions=1)
+    mcq = enriched_card(user, deck, "nghĩa mcq", repetitions=3)
+    listening = enriched_card(user, deck, "nghĩa nghe", repetitions=4)
+    classic = enriched_card(user, deck, "nghĩa chuẩn", repetitions=5)
+
+    queue = build_review_queue(user=user, now=NOW)
+
+    modes = {card.id: card.review_mode for card in queue.due}
+    assert modes[mcq.id] == "mcq"
+    assert modes[listening.id] == "listening"
+    assert modes[classic.id] == "classic"
+
+
+def test_mcq_choices_are_answer_plus_3_distinct_distractors():
+    user = make_user(new_per_day=0, max_reviews=10)
+    deck = DeckFactory(owner=user)
+    for i in range(5):
+        enriched_card(user, deck, f"nhiễu {i}", repetitions=1)
+    card = enriched_card(user, deck, "nghĩa đúng", repetitions=3)
+
+    queue = build_review_queue(user=user, now=NOW)
+
+    choices = next(c for c in queue.due if c.id == card.id).mcq_choices
+    assert len(choices) == 4
+    assert len(set(choices)) == 4
+    assert "nghĩa đúng" in choices
+    assert all(choice.startswith("nhiễu") for choice in choices if choice != "nghĩa đúng")
+
+
+def test_mcq_without_enough_distractors_falls_back_to_classic():
+    user = make_user(new_per_day=0, max_reviews=10)
+    deck = DeckFactory(owner=user)
+    # Only 2 other meanings exist — not enough for 3 distractors.
+    enriched_card(user, deck, "nhiễu 0", repetitions=1)
+    enriched_card(user, deck, "nhiễu 1", repetitions=1)
+    card = enriched_card(user, deck, "nghĩa đúng", repetitions=3)
+
+    queue = build_review_queue(user=user, now=NOW)
+
+    picked = next(c for c in queue.due if c.id == card.id)
+    assert picked.review_mode == "classic"
+    assert picked.mcq_choices is None
+
+
 def test_build_queue_defaults_now_to_current_time():
     user = make_user(new_per_day=10, max_reviews=10)
     deck = DeckFactory(owner=user)

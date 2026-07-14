@@ -56,6 +56,10 @@ def test_queue_returns_due_and_new_groups(client, user):
         (fresh.deck_id, 0, 1),
     }
     assert all(d["deck_name"] for d in body["decks"])
+    # Every queue item says how it wants to be asked (SPEC §17.2-10).
+    for item in [*body["due"], *body["new"]]:
+        assert item["review_mode"] == "classic"  # young cards stay classic
+        assert item["mcq_choices"] is None
 
 
 # --- POST /review/answer -----------------------------------------------------
@@ -113,6 +117,37 @@ def test_answer_other_users_card_is_404(client):
     other = UserWordFactory()
     response = client.post(ANSWER, {"user_word_id": other.id, "rating": "good"}, format="json")
     assert response.status_code == 404
+
+
+def test_answer_records_mode_on_the_log(client, user):
+    card = UserWordFactory(user=user)
+
+    response = client.post(
+        ANSWER,
+        {"user_word_id": card.id, "rating": "good", "mode": "listening"},
+        format="json",
+    )
+
+    assert response.status_code == 200
+    assert ReviewLog.objects.get(user_word=card).mode == "listening"
+
+
+def test_answer_mode_defaults_to_classic(client, user):
+    card = UserWordFactory(user=user)
+
+    response = client.post(ANSWER, {"user_word_id": card.id, "rating": "good"}, format="json")
+
+    assert response.status_code == 200
+    assert ReviewLog.objects.get(user_word=card).mode == "classic"
+
+
+def test_answer_invalid_mode_is_400(client, user):
+    card = UserWordFactory(user=user)
+    response = client.post(
+        ANSWER, {"user_word_id": card.id, "rating": "good", "mode": "cloze"}, format="json"
+    )
+    assert response.status_code == 400
+    assert response.json()["code"] == "validation_error"
 
 
 def test_answer_invalid_rating_is_400(client, user):
