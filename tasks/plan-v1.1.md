@@ -110,21 +110,21 @@ Selector đếm review theo ngày 365 ngày (timezone user, pattern như stats h
 
 **Task 12: Cram mode (F4)** (S–M, deps: 8)
 Từ trang deck (hoặc pre-review screen): "Ôn tự do deck này" → phiên flip tự chấm, **không gọi answer API SM-2**, không ghi ReviewLog, không đụng SRS fields.
-- [ ] AC: §17.2-11 — test khẳng định DB không đổi sau phiên cram
+- [x] AC: §17.2-11 — test khẳng định DB không đổi sau phiên cram
 - Verify: `uv run pytest` + manual so sánh queue trước/sau cram.
 
 **Task 13: Dạng ôn mới — thiết kế + backend** (M, deps: none — chốt §17.3-Q1 trước, quyết định lớn nhất v1.1)
 Chốt 2 dạng + mô hình dữ liệu (dùng chung lịch note hay tách `srs.Card` — nếu tách: migration + backfill). API queue/answer mở rộng field `mode`; engine SM-2 không đổi.
-- [ ] AC: §17.2-10 phần backend; `apps/srs/engine.py` giữ 100% coverage
-- [ ] AC: migration chạy sạch trên bản sao data prod (dùng backup, theo restore-runbook)
+- [x] AC: §17.2-10 phần backend; `apps/srs/engine.py` giữ 100% coverage
+- [x] AC: migration chạy sạch trên bản sao data prod (dùng backup, theo restore-runbook)
 - Verify: `uv run pytest apps/srs` + migrate thử trên dump prod local.
 
 **Task 14: Dạng ôn mới — frontend** (M–L, deps: 13)
 UI 2 dạng trong runner (sau màn overview T8, hiệu ứng T9 áp dụng chung).
-- [ ] AC: §17.2-10 trọn vẹn trên prod
+- [x] AC: §17.2-10 trọn vẹn trên prod
 - Verify: `pnpm test` + smoke live đủ 2 dạng.
 
-- [ ] ✅ **Checkpoint 8:** toàn bộ feature học tập chạy trên prod (tương đương "criterion #5 mở rộng").
+- [x] ✅ **Checkpoint 8:** toàn bộ feature học tập chạy trên prod (tương đương "criterion #5 mở rộng").
 
 ### Giai đoạn 5 — Nội dung & chia sẻ
 
