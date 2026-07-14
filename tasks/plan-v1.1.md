@@ -105,7 +105,7 @@ Nút/lệnh thêm từ nhanh từ mọi trang; chọn deck (nhớ deck gần nh�
 
 **Task 11: Heatmap ôn tập (F8)** (S, deps: none)
 Selector đếm review theo ngày 365 ngày (timezone user, pattern như stats hiện có); SVG grid thuần trong trang stats.
-- [ ] AC: §17.2-12; ngày không ôn = ô trống, hover thấy số
+- [x] AC: §17.2-12; ngày không ôn = ô trống, hover thấy số
 - Verify: `uv run pytest apps/stats` + manual.
 
 **Task 12: Cram mode (F4)** (S–M, deps: 8)
