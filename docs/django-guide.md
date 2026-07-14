@@ -441,3 +441,12 @@ Backend này **sync 100%** (WSGI + gunicorn, view sync, ORM sync) — có chủ 
   - **Tái dùng mutation có tham số:** `useAddWord(selectedId)` — cùng hook trang deck đang dùng; `invalidateQueries(["words", deckId])` trong `onSuccess` làm trang deck (nếu đang mở) tự refetch, quick-add không phải biết gì về trang khác.
   - Test stub `fetch` theo URL (GET decks / POST words) thay vì mock từng hook — chạm đủ api.ts + React Query + component thật; assert chip bằng `aria-pressed`.
 - Đọc: `frontend/src/components/quick-add.tsx`, `frontend/src/lib/quick-add.ts`, `frontend/src/app/decks/page.tsx` (nút "+ Từ" trên card), `frontend/src/components/quick-add.test.tsx`.
+
+### v1.1 Task 11 — Heatmap ôn tập kiểu GitHub (F8)
+- Endpoint mới `GET /stats/heatmap`: 365 ngày số lượt ôn theo timezone user, zero-filled; trang stats thêm section SVG grid thuần (tuần = cột, Thứ 2 hàng đầu, hover thấy số qua `<title>` SVG, legend Ít→Nhiều).
+- Khái niệm ôn lại + điểm mới:
+  - **Ngữ nghĩa "số lượt ôn" ≠ "số thẻ đã ôn":** `daily_reviews` (bar chart) đếm *distinct cards*/ngày, còn `review_heatmap` đếm *mọi* ReviewLog row (bấm Again 3 lần = 3 lượt) và tính cả log của từ đã xóa (`user_word=None` — không filter `isnull=False` như daily). Hai selector giống nhau 80% nhưng tách riêng vì ngữ nghĩa khác nhau — đặt tên + docstring nói rõ, test khẳng định từng khác biệt.
+  - **Tái dùng serializer output:** heatmap trả cùng shape `{results: [{date, count}]}` nên dùng lại `StatsDailySerializer`, không cần serializer mới; view mới chỉ 5 dòng (pattern view gầy §10).
+  - **Cửa sổ thời gian chặn từ DB:** filter `reviewed_at__gte=local_midnight_utc(start_day)` để ngày thứ 366 bị loại ngay trong query chứ không phải lọc bằng Python — cùng trick `_local_midnight_utc` sẵn có.
+  - Frontend: toán grid heatmap = `slot = index + startPad` (pad để ngày đầu rơi đúng hàng thứ trong tuần), cột = `slot/7`, hàng = `slot%7`; parse "YYYY-MM-DD" bằng `T00:00:00Z` + `getUTCDay()` để khỏi dính lệch timezone của `new Date()`. Mức đậm tương đối theo ngày bận nhất của chính user (4 mức), ô trống = level 0.
+- Đọc: `apps/stats/selectors.py` (`review_heatmap`), `apps/stats/tests/test_stats_selectors.py` (block heatmap), `frontend/src/components/review-heatmap.tsx` (+ test), `frontend/src/app/stats/page.tsx`.

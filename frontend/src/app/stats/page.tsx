@@ -2,7 +2,13 @@
 
 import { DailyBarChart } from "@/components/daily-bar-chart";
 import { RequireAuth } from "@/components/require-auth";
-import { useDailyReviews, useStatsOverview, type StatsOverview } from "@/lib/stats";
+import { ReviewHeatmap } from "@/components/review-heatmap";
+import {
+  useDailyReviews,
+  useReviewHeatmap,
+  useStatsOverview,
+  type StatsOverview,
+} from "@/lib/stats";
 
 const DAILY_WINDOW = 30;
 
@@ -17,6 +23,7 @@ export default function StatsPage() {
 export function StatsContent() {
   const overview = useStatsOverview();
   const daily = useDailyReviews(DAILY_WINDOW);
+  const heatmap = useReviewHeatmap();
 
   return (
     <main className="mx-auto flex w-full max-w-[1280px] flex-1 flex-col gap-7 px-4 py-10 sm:px-8">
@@ -49,6 +56,19 @@ export function StatsContent() {
           <p className="text-danger-text text-sm">Không tải được biểu đồ.</p>
         ) : (
           <DailyBarChart points={daily.data.results} />
+        )}
+      </section>
+
+      <section className="glass animate-card-in flex flex-col gap-4 rounded-[22px] p-6 sm:p-7">
+        <h2 className="font-display text-lg font-bold tracking-tight">Lịch sử ôn tập (365 ngày)</h2>
+        {heatmap.isPending ? (
+          <p className="text-muted-fg text-sm">Đang tải…</p>
+        ) : heatmap.isError ? (
+          <p className="text-danger-text text-sm">Không tải được heatmap.</p>
+        ) : (
+          <div className="overflow-x-auto pb-1">
+            <ReviewHeatmap points={heatmap.data.results} />
+          </div>
         )}
       </section>
     </main>

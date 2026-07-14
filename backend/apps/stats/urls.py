@@ -1,8 +1,9 @@
 from django.urls import path
 
-from .views import StatsDailyView, StatsOverviewView
+from .views import StatsDailyView, StatsHeatmapView, StatsOverviewView
 
 urlpatterns = [
     path("stats/overview", StatsOverviewView.as_view(), name="stats-overview"),
     path("stats/daily", StatsDailyView.as_view(), name="stats-daily"),
+    path("stats/heatmap", StatsHeatmapView.as_view(), name="stats-heatmap"),
 ]

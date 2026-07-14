@@ -156,3 +156,50 @@ def test_daily_reviews_excludes_older_than_window(user):
 
     assert len(points) == 3
     assert all(p.count == 0 for p in points)
+
+
+# --- review_heatmap -----------------------------------------------------------
+
+
+def heatmap_counts(user):
+    """{iso date: count} for the non-zero heatmap days."""
+    points = selectors.review_heatmap(user=user, now=NOW)
+    return {p.date.isoformat(): p.count for p in points if p.count}
+
+
+def test_heatmap_counts_every_review_not_distinct_cards(user):
+    card = UserWordFactory(user=user)
+    for hour in (8, 9, 10):  # Again pressed 3× on the same card
+        ReviewLogFactory(user=user, user_word=card, reviewed_at=local(2026, 7, 10, hour))
+
+    assert heatmap_counts(user) == {"2026-07-10": 3}
+
+
+def test_heatmap_spans_365_zero_filled_days_ending_today(user):
+    points = selectors.review_heatmap(user=user, now=NOW)
+
+    assert len(points) == 365
+    assert points[-1].date.isoformat() == "2026-07-10"
+    assert points[0].date.isoformat() == "2025-07-11"
+    assert all(p.count == 0 for p in points)
+
+
+def test_heatmap_uses_local_day_boundary(user):
+    # 16:00 UTC = 23:00 local July 9; 17:30 UTC = 00:30 local July 10.
+    ReviewLogFactory(user=user, reviewed_at=datetime(2026, 7, 9, 16, 0, tzinfo=UTC))
+    ReviewLogFactory(user=user, reviewed_at=datetime(2026, 7, 9, 17, 30, tzinfo=UTC))
+
+    assert heatmap_counts(user) == {"2026-07-09": 1, "2026-07-10": 1}
+
+
+def test_heatmap_counts_reviews_of_deleted_words(user):
+    ReviewLogFactory(user=user, user_word=None, reviewed_at=local(2026, 7, 10))
+
+    assert heatmap_counts(user) == {"2026-07-10": 1}
+
+
+def test_heatmap_excludes_older_than_a_year_and_other_users(user):
+    ReviewLogFactory(user=user, reviewed_at=local(2025, 7, 10))  # 366 days before NOW
+    ReviewLogFactory(reviewed_at=local(2026, 7, 10))  # someone else's review
+
+    assert heatmap_counts(user) == {}

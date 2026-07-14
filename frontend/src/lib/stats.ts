@@ -1,4 +1,4 @@
-/** Stats data hooks (TanStack Query) over /stats/overview and /stats/daily. */
+/** Stats data hooks (TanStack Query) over the /stats endpoints. */
 
 import { useQuery } from "@tanstack/react-query";
 
@@ -25,5 +25,13 @@ export function useDailyReviews(days = 30) {
   return useQuery({
     queryKey: ["stats-daily", days],
     queryFn: () => api<{ results: DailyPoint[] }>(`/api/v1/stats/daily?days=${days}`),
+  });
+}
+
+/** 365 days of total review counts ("số lượt ôn"), oldest first, zero-filled. */
+export function useReviewHeatmap() {
+  return useQuery({
+    queryKey: ["stats-heatmap"],
+    queryFn: () => api<{ results: DailyPoint[] }>("/api/v1/stats/heatmap"),
   });
 }

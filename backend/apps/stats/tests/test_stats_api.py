@@ -12,6 +12,7 @@ pytestmark = pytest.mark.django_db
 
 OVERVIEW = "/api/v1/stats/overview"
 DAILY = "/api/v1/stats/daily"
+HEATMAP = "/api/v1/stats/heatmap"
 
 
 @pytest.fixture
@@ -71,6 +72,24 @@ def test_daily_rejects_invalid_days(client, days):
     assert "days" in body["errors"]
 
 
+def test_heatmap_returns_a_year_of_days(client, user):
+    card = UserWordFactory(user=user)
+    ReviewLogFactory(user=user, user_word=card, reviewed_at=timezone.now())
+    ReviewLogFactory(user=user, user_word=card, reviewed_at=timezone.now())
+
+    response = client.get(HEATMAP)
+
+    assert response.status_code == 200
+    results = response.json()["results"]
+    assert len(results) == 365
+    assert set(results[0]) == {"date", "count"}
+    dates = [r["date"] for r in results]
+    assert dates == sorted(dates)
+    # Both reviews of the same card count ("số lượt ôn", not distinct cards).
+    assert results[-1]["count"] == 2
+
+
 def test_stats_require_authentication():
     assert APIClient().get(OVERVIEW).status_code == 401
     assert APIClient().get(DAILY).status_code == 401
+    assert APIClient().get(HEATMAP).status_code == 401

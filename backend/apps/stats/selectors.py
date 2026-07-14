@@ -17,6 +17,7 @@ from apps.srs.models import ReviewLog
 from apps.vocab.models import UserWord
 
 MASTERED_INTERVAL_DAYS = 21  # SPEC §5: interval ≥ 21 days = "mastered"
+HEATMAP_DAYS = 365  # SPEC §17.2-12: the review heatmap always covers one year
 
 
 @dataclass(frozen=True)
@@ -126,3 +127,27 @@ def daily_reviews(*, user: User, days: int, now: datetime | None = None) -> list
         day = start_day + timedelta(days=offset)
         points.append(DailyPoint(date=day, count=len(cards_by_day.get(day, ()))))
     return points
+
+
+def review_heatmap(*, user: User, now: datetime | None = None) -> list[DailyPoint]:
+    """Total reviews per local day over the last 365 days, oldest first,
+    zero-filled (SPEC §17.2-12).
+
+    Unlike daily_reviews this counts every ReviewLog row ("số lượt ôn"), not
+    distinct cards — pressing Again three times is three reviews. Logs whose
+    word was since deleted still count: they were real reviews.
+    """
+    now = now or timezone.now()
+    tz = ZoneInfo(user.settings.timezone)
+    today = now.astimezone(tz).date()
+    start_day = today - timedelta(days=HEATMAP_DAYS - 1)
+    start_utc = _local_midnight_utc(start_day, tz)
+
+    counts: dict[date, int] = defaultdict(int)
+    for reviewed_at in ReviewLog.objects.filter(user=user, reviewed_at__gte=start_utc).values_list(
+        "reviewed_at", flat=True
+    ):
+        counts[_local_date(reviewed_at, tz)] += 1
+
+    days = (start_day + timedelta(days=offset) for offset in range(HEATMAP_DAYS))
+    return [DailyPoint(date=day, count=counts.get(day, 0)) for day in days]

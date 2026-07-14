@@ -20,6 +20,13 @@ class StatsOverviewView(APIView):
         return Response(StatsOverviewSerializer(data).data)
 
 
+class StatsHeatmapView(APIView):
+    @extend_schema(responses=StatsDailySerializer)
+    def get(self, request: Request) -> Response:
+        points = selectors.review_heatmap(user=request.user)
+        return Response(StatsDailySerializer({"results": points}).data)
+
+
 class StatsDailyView(APIView):
     @extend_schema(
         parameters=[OpenApiParameter("days", int, description="1–365, default 30")],
