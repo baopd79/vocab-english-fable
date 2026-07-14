@@ -4,54 +4,79 @@ import { useEffect, useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { GradeButton } from "@/components/ui/grade-button";
+import { GradeButton, type Grade } from "@/components/ui/grade-button";
 import { Card } from "@/components/ui/card";
 import { SpeakerButton } from "@/components/ui/speaker-button";
 import { isTypingCorrect } from "@/lib/normalize";
 import { isNewCard, type Rating } from "@/lib/review";
 import type { UserWord } from "@/lib/words";
 
-const GRADES: { rating: Rating; label: string; key: string }[] = [
-  { rating: "again", label: "Again", key: "1" },
-  { rating: "hard", label: "Hard", key: "2" },
-  { rating: "good", label: "Good", key: "3" },
-  { rating: "easy", label: "Easy", key: "4" },
+/** Cram-mode self-grade (SPEC §17.2-11): local only, never sent to the API. */
+export type CramRating = "forgot" | "got";
+
+type GradeAction = { value: string; label: string; key: string; grade: Grade };
+
+const REVIEW_GRADES: GradeAction[] = [
+  { value: "again", label: "Again", key: "1", grade: "again" },
+  { value: "hard", label: "Hard", key: "2", grade: "hard" },
+  { value: "good", label: "Good", key: "3", grade: "good" },
+  { value: "easy", label: "Easy", key: "4", grade: "easy" },
+];
+
+const CRAM_GRADES: GradeAction[] = [
+  { value: "forgot", label: "Chưa nhớ", key: "1", grade: "again" },
+  { value: "got", label: "Đã nhớ", key: "2", grade: "good" },
 ];
 
 type Phase = "typing" | "flipped";
+
+type ReviewCardProps = {
+  card: UserWord;
+  submitting?: boolean;
+  errorMessage?: string | null;
+} & (
+  | { mode?: "review"; onGrade: (rating: Rating) => void }
+  | { mode: "cram"; onGrade: (rating: CramRating) => void }
+);
 
 /**
  * One review: recall by typing (old cards) → flip to the full card → self-grade.
  * New cards skip typing and start flipped (SPEC §6.7). The two faces render
  * exclusively (never both in the DOM) so the answer cannot leak; the flip is
  * suggested by a rotateY entrance animation on the answer face.
+ *
+ * mode="cram" (SPEC §17.2-11): every card gets the typing step and the SM-2
+ * row becomes two local buttons (Chưa nhớ / Đã nhớ) — nothing touches the API.
  */
-export function ReviewCard({
-  card,
-  onGrade,
-  submitting = false,
-  errorMessage,
-}: {
-  card: UserWord;
-  onGrade: (rating: Rating) => void;
-  submitting?: boolean;
-  errorMessage?: string | null;
-}) {
-  const isNew = isNewCard(card);
-  const [phase, setPhase] = useState<Phase>(isNew ? "flipped" : "typing");
+export function ReviewCard(props: ReviewCardProps) {
+  const { card, submitting = false, errorMessage } = props;
+  const cram = props.mode === "cram";
+  // Review lets brand-new cards skip typing; cram drills every card the same way.
+  const startFlipped = !cram && isNewCard(card);
+  const [phase, setPhase] = useState<Phase>(startFlipped ? "flipped" : "typing");
   const [typed, setTyped] = useState("");
   const [correct, setCorrect] = useState<boolean | null>(null);
 
-  // Keyboard shortcuts 1–4 grade the card once it is flipped (Anki-style).
+  const grades = cram ? CRAM_GRADES : REVIEW_GRADES;
+  const retryLabel = cram ? "Chưa nhớ" : "Again";
+  // Both union branches accept their own subset of `value`; the actions table
+  // above is the single source of truth, so the widening cast is safe.
+  const fire = props.onGrade as (value: string) => void;
+
+  // Keyboard shortcuts grade the card once it is flipped (Anki-style).
   useEffect(() => {
     if (phase !== "flipped" || submitting) return;
     function onKey(event: KeyboardEvent) {
-      const grade = GRADES.find((g) => g.key === event.key);
-      if (grade) onGrade(grade.rating);
+      const grade = grades.find((g) => g.key === event.key);
+      if (!grade) return;
+      // Consume the key: without this the digit's default action lands in the
+      // next card's autofocused typing input (grading remounts it mid-event).
+      event.preventDefault();
+      fire(grade.value);
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [phase, submitting, onGrade]);
+  }, [phase, submitting, grades, fire]);
 
   function reveal() {
     setCorrect(isTypingCorrect(typed, card.word_text));
@@ -92,7 +117,8 @@ export function ReviewCard({
           </Button>
         </form>
         <p className="text-subtle-fg text-[13px]">
-          Không nhớ? Cứ lật thẻ — chọn <strong>Again</strong> để gặp lại từ này ngay trong phiên.
+          Không nhớ? Cứ lật thẻ — chọn <strong>{retryLabel}</strong> để gặp lại từ này ngay trong
+          phiên.
         </p>
       </Card>
     );
@@ -100,7 +126,7 @@ export function ReviewCard({
 
   return (
     <Card
-      className={`${isNew ? "animate-card-in" : "animate-flip-in"} flex min-h-80 flex-col gap-4.5 p-7 sm:p-9`}
+      className={`${startFlipped ? "animate-card-in" : "animate-flip-in"} flex min-h-80 flex-col gap-4.5 p-7 sm:p-9`}
     >
       {correct === true && (
         <p className="text-primary-text bg-primary/15 border-primary/35 animate-pop-in flex items-center gap-2 rounded-xl border px-3.5 py-2.5 text-sm font-bold">
@@ -109,7 +135,7 @@ export function ReviewCard({
       )}
       {correct === false && (
         <p className="text-danger-text bg-danger/12 border-danger/35 rounded-xl border px-3.5 py-2.5 text-sm font-semibold">
-          Bạn gõ “{typed || "(trống)"}” — chưa đúng. Gợi ý: chọn <strong>Again</strong>.
+          Bạn gõ “{typed || "(trống)"}” — chưa đúng. Gợi ý: chọn <strong>{retryLabel}</strong>.
         </p>
       )}
 
@@ -146,15 +172,15 @@ export function ReviewCard({
         </p>
       )}
 
-      <div className="mt-auto grid grid-cols-4 gap-2.5">
-        {GRADES.map((grade) => (
+      <div className={`mt-auto grid gap-2.5 ${cram ? "grid-cols-2" : "grid-cols-4"}`}>
+        {grades.map((grade) => (
           <GradeButton
-            key={grade.rating}
-            grade={grade.rating}
+            key={grade.value}
+            grade={grade.grade}
             label={grade.label}
             hotkey={grade.key}
             disabled={submitting}
-            onClick={() => onGrade(grade.rating)}
+            onClick={() => fire(grade.value)}
           />
         ))}
       </div>

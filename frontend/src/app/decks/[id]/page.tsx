@@ -56,11 +56,18 @@ export function DeckWordsContent({ deckId }: { deckId: number }) {
         >
           ← Danh sách deck
         </Link>
-        <div className="mt-3 flex items-center gap-3.5">
+        <div className="mt-3 flex flex-wrap items-center gap-3.5">
           <DeckIcon deckId={deckId} className="h-12 w-12 rounded-[14px]" />
-          <h1 className="font-display text-3xl font-extrabold tracking-tight">
+          <h1 className="font-display min-w-0 text-3xl font-extrabold tracking-tight">
             {deckQuery.data?.name ?? "…"}
           </h1>
+          <Link
+            href={`/decks/${deckId}/cram`}
+            className="border-chip-border bg-surface-2 text-muted-fg hover:text-primary-text hover:bg-surface ml-auto inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full border-[1.5px] px-4 text-sm font-bold backdrop-blur-md transition-colors"
+          >
+            <LightningIcon />
+            Ôn tự do
+          </Link>
         </div>
         {deckQuery.data?.description && (
           <p className="text-muted-fg mt-2 text-[15px]">{deckQuery.data.description}</p>
@@ -326,6 +333,14 @@ function SparkleIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path d="M12 2.5l2 5.2 5.2 2-5.2 2-2 5.2-2-5.2-5.2-2 5.2-2 2-5.2z" />
+    </svg>
+  );
+}
+
+function LightningIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M13 2 4.5 13.5H11L9.5 22 19 10h-6.5L13 2z" />
     </svg>
   );
 }
