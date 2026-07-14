@@ -71,12 +71,12 @@
 - [x] ✅ Checkpoint 7: 3 điểm đau UX user nêu đã hết trên prod (2026-07-13: user smoke T7/T8/T9 OK — voice, overview, sound/confetti/mute)
 
 ## Giai đoạn 4 — Feature học tập
-- [ ] Task 10: Quick-add từ ở header (M) — chốt Q2 trước
-- [ ] Task 11: Heatmap ôn tập — F8 (S)
-- [ ] Task 12: Cram mode — F4 (S–M)
-- [ ] Task 13: Dạng ôn mới — thiết kế + backend (M) — chốt Q1 trước (quyết định lớn nhất)
-- [ ] Task 14: Dạng ôn mới — frontend (M–L)
-- [ ] ✅ Checkpoint 8: toàn bộ feature học tập chạy trên prod
+- [x] Task 10: Quick-add từ ở header (M) — Q2 chốt: nút "+" header + modal giữ mở, list "Vừa thêm" live, card deck có "+ Từ", khung 1280px; verify prod 2026-07-13
+- [x] Task 11: Heatmap ôn tập — F8 (S) — GET /stats/heatmap 365 ngày (đếm mọi lượt ôn) + SVG grid kiểu GitHub; verify prod 2026-07-14
+- [x] Task 12: Cram mode — F4 (S–M) — /decks/[id]/cram: cả deck xáo trộn, gõ + tự chấm local; test khẳng định phiên chỉ GET (DB không đổi); verify prod 2026-07-14
+- [x] Task 13: Dạng ôn mới — thiết kế + backend (M) — Q1 chốt: MCQ + nghe-gõ dùng chung lịch SM-2, xoay `repetitions % 3` từ rep 2; ReviewLog.mode + queue trả `review_mode`/`mcq_choices`; migration verify trên bản sao data prod (2026-07-14)
+- [x] Task 14: Dạng ôn mới — frontend (M–L) — 2026-07-14 smoke prod đủ 2 dạng (TTS câm hóa ra do engine Chrome kẹt, quit mở lại là chạy; speak() thêm resume() chống kẹt)
+- [x] ✅ Checkpoint 8: toàn bộ feature học tập chạy trên prod (2026-07-14)
 
 ## Giai đoạn 5 — Nội dung & chia sẻ
 - [ ] Task 15: Starter decks — F1 (M) — chốt Q3 trước
