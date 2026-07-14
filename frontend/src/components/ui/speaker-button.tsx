@@ -4,6 +4,7 @@ import { cn } from "@/lib/cn";
 import { speak } from "@/lib/tts";
 
 const SIZES = {
+  lg: { button: "h-14 w-14", icon: 24 },
   md: { button: "h-10 w-10", icon: 18 },
   sm: { button: "h-7 w-7", icon: 14 },
 } as const;

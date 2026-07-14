@@ -162,17 +162,47 @@ test("full session: due card typed, new card flipped, Again re-queues, then summ
   expect(await screen.findByText(/Xong phiên ôn/i)).toBeInTheDocument();
   expect(screen.getByText(/Đã ôn 2 thẻ/)).toBeInTheDocument();
 
-  // API received each grade with the right payload.
+  // API received each grade with the right payload (classic = default mode).
   expect(server.answers).toEqual([
-    { user_word_id: 1, rating: "good" },
-    { user_word_id: 2, rating: "again" },
-    { user_word_id: 2, rating: "good" },
+    { user_word_id: 1, rating: "good", mode: "classic" },
+    { user_word_id: 2, rating: "again", mode: "classic" },
+    { user_word_id: 2, rating: "good", mode: "classic" },
   ]);
 
   // SPEC §17.2-8 — chimes per grade, fanfare once at the end.
   expect(playCorrect).toHaveBeenCalledTimes(2);
   expect(playWrong).toHaveBeenCalledTimes(1);
   expect(playFanfare).toHaveBeenCalledTimes(1);
+});
+
+test("mcq and listening cards ask their own way and send their mode", async () => {
+  const server = stubReviewServer({
+    due: [
+      card(1, "resilience", false, {
+        review_mode: "mcq",
+        mcq_choices: ["nghĩa của resilience", "nhiễu 1", "nhiễu 2", "nhiễu 3"],
+      }),
+      card(2, "serendipity", false, { review_mode: "listening" }),
+    ],
+    new: [],
+  });
+  renderReview();
+  fireEvent.click(await screen.findByRole("button", { name: /Bắt đầu ôn/ }));
+
+  // 1) MCQ card: the word is shown, pick the right meaning, grade.
+  fireEvent.click(await screen.findByRole("button", { name: /nghĩa của resilience/ }));
+  fireEvent.click(screen.getByRole("button", { name: /Good/ }));
+
+  // 2) Listening card: type what was heard, flip, grade.
+  fireEvent.change(await screen.findByLabelText("Đáp án"), { target: { value: "serendipity" } });
+  fireEvent.click(screen.getByRole("button", { name: "Lật thẻ" }));
+  fireEvent.click(screen.getByRole("button", { name: /Easy/ }));
+
+  expect(await screen.findByText(/Xong phiên ôn/i)).toBeInTheDocument();
+  expect(server.answers).toEqual([
+    { user_word_id: 1, rating: "good", mode: "mcq" },
+    { user_word_id: 2, rating: "easy", mode: "listening" },
+  ]);
 });
 
 test("mute toggle flips label and persists via setMuted", async () => {

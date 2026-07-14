@@ -7,6 +7,9 @@ export function speak(text: string, lang = "en-US"): void {
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = lang;
   window.speechSynthesis.cancel(); // drop anything mid-speech before the new word
+  // Chrome gotcha: cancel() can leave the engine paused, and a paused engine
+  // swallows every later utterance silently — resume() unjams it (no-op otherwise).
+  window.speechSynthesis.resume();
   window.speechSynthesis.speak(utterance);
 }
 

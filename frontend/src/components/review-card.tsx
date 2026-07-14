@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -9,7 +9,8 @@ import { Card } from "@/components/ui/card";
 import { SpeakerButton } from "@/components/ui/speaker-button";
 import { isTypingCorrect } from "@/lib/normalize";
 import { isNewCard, type Rating } from "@/lib/review";
-import type { UserWord } from "@/lib/words";
+import { speak } from "@/lib/tts";
+import type { ReviewMode, UserWord } from "@/lib/words";
 
 /** Cram-mode self-grade (SPEC §17.2-11): local only, never sent to the API. */
 export type CramRating = "forgot" | "got";
@@ -28,7 +29,13 @@ const CRAM_GRADES: GradeAction[] = [
   { value: "got", label: "Đã nhớ", key: "2", grade: "good" },
 ];
 
-type Phase = "typing" | "flipped";
+const FRONT_LABELS: Record<ReviewMode, string> = {
+  classic: "Nhớ lại và gõ từ tiếng Anh",
+  mcq: "Chọn nghĩa tiếng Việt đúng",
+  listening: "Nghe và gõ lại từ",
+};
+
+type Phase = "front" | "flipped";
 
 type ReviewCardProps = {
   card: UserWord;
@@ -40,21 +47,31 @@ type ReviewCardProps = {
 );
 
 /**
- * One review: recall by typing (old cards) → flip to the full card → self-grade.
- * New cards skip typing and start flipped (SPEC §6.7). The two faces render
+ * One review: an asking front → flip to the full card → self-grade. The front
+ * follows the card's `review_mode` (SPEC §17.2-10): classic recalls by typing
+ * from the VI meaning, MCQ shows the word and 4 meanings to pick from,
+ * listening plays the word (auto + replay button) and asks to type it. New
+ * cards skip the front and start flipped (SPEC §6.7). The two faces render
  * exclusively (never both in the DOM) so the answer cannot leak; the flip is
  * suggested by a rotateY entrance animation on the answer face.
  *
- * mode="cram" (SPEC §17.2-11): every card gets the typing step and the SM-2
- * row becomes two local buttons (Chưa nhớ / Đã nhớ) — nothing touches the API.
+ * mode="cram" (SPEC §17.2-11): every card gets the classic typing front and
+ * the SM-2 row becomes two local buttons (Chưa nhớ / Đã nhớ) — nothing
+ * touches the API.
  */
 export function ReviewCard(props: ReviewCardProps) {
   const { card, submitting = false, errorMessage } = props;
   const cram = props.mode === "cram";
-  // Review lets brand-new cards skip typing; cram drills every card the same way.
+  // Cram always drills typing; an MCQ card without choices (defensive — the
+  // backend already falls back) is asked classic so the front is never empty.
+  const requested: ReviewMode = cram ? "classic" : (card.review_mode ?? "classic");
+  const variant: ReviewMode =
+    requested === "mcq" && !card.mcq_choices?.length ? "classic" : requested;
+  // Review lets brand-new cards skip the front; cram drills every card the same way.
   const startFlipped = !cram && isNewCard(card);
-  const [phase, setPhase] = useState<Phase>(startFlipped ? "flipped" : "typing");
+  const [phase, setPhase] = useState<Phase>(startFlipped ? "flipped" : "front");
   const [typed, setTyped] = useState("");
+  const [picked, setPicked] = useState<string | null>(null);
   const [correct, setCorrect] = useState<boolean | null>(null);
 
   const grades = cram ? CRAM_GRADES : REVIEW_GRADES;
@@ -62,6 +79,40 @@ export function ReviewCard(props: ReviewCardProps) {
   // Both union branches accept their own subset of `value`; the actions table
   // above is the single source of truth, so the widening cast is safe.
   const fire = props.onGrade as (value: string) => void;
+
+  const pick = useCallback(
+    (choice: string) => {
+      setPicked(choice);
+      setCorrect(choice === card.meaning_vi);
+      setPhase("flipped");
+    },
+    [card.meaning_vi],
+  );
+
+  // Listening cards announce themselves shortly after mount (§17.3-Q1:
+  // auto-play); the speaker button replays. The delay + cleanup matter: two
+  // speaks in quick succession (React StrictMode double-mounts in dev) make
+  // the second cancel() interrupt an utterance still spinning up, which jams
+  // Chrome's speech engine until the page reloads.
+  useEffect(() => {
+    if (variant !== "listening") return;
+    const id = window.setTimeout(() => speak(card.word_text), 200);
+    return () => window.clearTimeout(id);
+  }, [variant, card.word_text]);
+
+  // Keys 1–4 pick an MCQ answer while the question is up.
+  useEffect(() => {
+    if (phase !== "front" || variant !== "mcq" || submitting) return;
+    const choices = card.mcq_choices ?? [];
+    function onKey(event: KeyboardEvent) {
+      const index = Number.parseInt(event.key, 10) - 1;
+      if (Number.isNaN(index) || index < 0 || index >= choices.length) return;
+      event.preventDefault();
+      pick(choices[index]);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [phase, variant, submitting, card.mcq_choices, pick]);
 
   // Keyboard shortcuts grade the card once it is flipped (Anki-style).
   useEffect(() => {
@@ -83,43 +134,90 @@ export function ReviewCard(props: ReviewCardProps) {
     setPhase("flipped");
   }
 
-  if (phase === "typing") {
+  if (phase === "front") {
     return (
       <Card className="animate-card-in flex min-h-80 flex-col justify-center gap-5 p-7 sm:p-9">
         <p className="text-subtle-fg text-[13px] font-bold tracking-[.12em] uppercase">
-          Nhớ lại và gõ từ tiếng Anh
+          {FRONT_LABELS[variant]}
         </p>
-        <p className="font-display text-[26px] leading-snug font-bold tracking-tight">
-          {card.meaning_vi || <span className="text-muted-fg">(chưa có nghĩa)</span>}
-          {card.part_of_speech && (
-            <span className="text-subtle-fg font-sans ml-2 align-middle text-[15px] font-normal italic">
-              {card.part_of_speech}
+
+        {variant === "classic" && (
+          <p className="font-display text-[26px] leading-snug font-bold tracking-tight">
+            {card.meaning_vi || <span className="text-muted-fg">(chưa có nghĩa)</span>}
+            {card.part_of_speech && (
+              <span className="text-subtle-fg font-sans ml-2 align-middle text-[15px] font-normal italic">
+                {card.part_of_speech}
+              </span>
+            )}
+          </p>
+        )}
+
+        {variant === "mcq" && (
+          <div className="flex flex-wrap items-center gap-3.5">
+            <span className="font-display text-[34px] leading-none font-extrabold tracking-tight">
+              {card.word_text}
             </span>
-          )}
-        </p>
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-            reveal();
-          }}
-          className="flex gap-2.5"
-        >
-          <input
-            aria-label="Đáp án"
-            autoFocus
-            value={typed}
-            onChange={(event) => setTyped(event.target.value)}
-            placeholder="Gõ từ…"
-            className="border-border bg-surface text-fg placeholder:text-subtle-fg focus-visible:border-primary focus-visible:ring-primary/20 h-13 flex-1 rounded-[14px] border-[1.5px] px-4 text-[17px] focus-visible:ring-[3px] focus-visible:outline-none"
-          />
-          <Button type="submit" size="lg" className="rounded-[14px] text-[15px]">
-            Lật thẻ
-          </Button>
-        </form>
-        <p className="text-subtle-fg text-[13px]">
-          Không nhớ? Cứ lật thẻ — chọn <strong>{retryLabel}</strong> để gặp lại từ này ngay trong
-          phiên.
-        </p>
+            {card.ipa && <span className="text-subtle-fg text-[15px]">{card.ipa}</span>}
+            <SpeakerButton text={card.word_text} label="Phát âm" />
+          </div>
+        )}
+
+        {variant === "listening" && (
+          <div className="flex items-center gap-4">
+            <SpeakerButton text={card.word_text} label="Nghe lại" size="lg" />
+            <p className="text-muted-fg text-[15px] font-medium">Bấm nút loa để nghe lại từ.</p>
+          </div>
+        )}
+
+        {variant === "mcq" ? (
+          <>
+            <div className="flex flex-col gap-2.5">
+              {(card.mcq_choices ?? []).map((choice, index) => (
+                <button
+                  key={choice}
+                  type="button"
+                  onClick={() => pick(choice)}
+                  className="border-border bg-surface hover:border-primary/50 hover:bg-primary/10 focus-visible:ring-ring flex cursor-pointer items-center gap-3 rounded-[14px] border-[1.5px] px-4 py-3 text-left text-[15px] font-semibold transition-colors focus-visible:ring-2 focus-visible:outline-none active:translate-y-px"
+                >
+                  <span className="border-chip-border bg-surface-2 text-subtle-fg grid h-6 w-6 shrink-0 place-items-center rounded-md border text-[12px] font-bold">
+                    {index + 1}
+                  </span>
+                  {choice}
+                </button>
+              ))}
+            </div>
+            <p className="text-subtle-fg text-[13px]">
+              Chọn nhanh bằng phím 1–4. Lỡ sai? Chọn <strong>{retryLabel}</strong> để gặp lại từ này
+              ngay trong phiên.
+            </p>
+          </>
+        ) : (
+          <>
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                reveal();
+              }}
+              className="flex gap-2.5"
+            >
+              <input
+                aria-label="Đáp án"
+                autoFocus
+                value={typed}
+                onChange={(event) => setTyped(event.target.value)}
+                placeholder={variant === "listening" ? "Gõ từ bạn nghe được…" : "Gõ từ…"}
+                className="border-border bg-surface text-fg placeholder:text-subtle-fg focus-visible:border-primary focus-visible:ring-primary/20 h-13 flex-1 rounded-[14px] border-[1.5px] px-4 text-[17px] focus-visible:ring-[3px] focus-visible:outline-none"
+              />
+              <Button type="submit" size="lg" className="rounded-[14px] text-[15px]">
+                Lật thẻ
+              </Button>
+            </form>
+            <p className="text-subtle-fg text-[13px]">
+              Không nhớ? Cứ lật thẻ — chọn <strong>{retryLabel}</strong> để gặp lại từ này ngay
+              trong phiên.
+            </p>
+          </>
+        )}
       </Card>
     );
   }
@@ -135,7 +233,8 @@ export function ReviewCard(props: ReviewCardProps) {
       )}
       {correct === false && (
         <p className="text-danger-text bg-danger/12 border-danger/35 rounded-xl border px-3.5 py-2.5 text-sm font-semibold">
-          Bạn gõ “{typed || "(trống)"}” — chưa đúng. Gợi ý: chọn <strong>{retryLabel}</strong>.
+          {variant === "mcq" ? <>Bạn chọn “{picked}”</> : <>Bạn gõ “{typed || "(trống)"}”</>} — chưa
+          đúng. Gợi ý: chọn <strong>{retryLabel}</strong>.
         </p>
       )}
 

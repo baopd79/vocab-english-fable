@@ -3,7 +3,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 import { api } from "./api";
-import type { UserWord } from "./words";
+import type { ReviewMode, UserWord } from "./words";
 
 export type Rating = "again" | "hard" | "good" | "easy";
 
@@ -34,10 +34,18 @@ export function useReviewQueue() {
 
 export function useSubmitAnswer() {
   return useMutation({
-    mutationFn: ({ userWordId, rating }: { userWordId: number; rating: Rating }) =>
+    mutationFn: ({
+      userWordId,
+      rating,
+      mode = "classic",
+    }: {
+      userWordId: number;
+      rating: Rating;
+      mode?: ReviewMode;
+    }) =>
       api<UserWord>("/api/v1/review/answer", {
         method: "POST",
-        body: JSON.stringify({ user_word_id: userWordId, rating }),
+        body: JSON.stringify({ user_word_id: userWordId, rating, mode }),
       }),
   });
 }

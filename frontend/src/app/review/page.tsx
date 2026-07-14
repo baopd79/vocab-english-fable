@@ -168,7 +168,8 @@ function ReviewRunner({
 
   async function handleGrade(rating: Rating) {
     try {
-      await submit.mutateAsync({ userWordId: card.id, rating });
+      // The mode travels with the answer so the log records how it was asked.
+      await submit.mutateAsync({ userWordId: card.id, rating, mode: card.review_mode });
     } catch {
       return; // stay on the card so the user can retry; error shown below
     }

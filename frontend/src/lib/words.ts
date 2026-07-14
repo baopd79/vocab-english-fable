@@ -7,6 +7,9 @@ import type { Paginated } from "./decks";
 
 export type EnrichmentStatus = "pending" | "completed" | "failed";
 
+/** How a review asks a card (SPEC §17.2-10) — decided by the backend queue. */
+export type ReviewMode = "classic" | "mcq" | "listening";
+
 export type UserWord = {
   id: number;
   deck: number;
@@ -25,6 +28,10 @@ export type UserWord = {
   last_reviewed_at: string | null;
   created_at: string;
   updated_at: string;
+  /** Present on /review/queue items only (SPEC §17.2-10): how to ask this
+   * review, plus the 4 shuffled VI meanings when the mode is MCQ. */
+  review_mode?: ReviewMode;
+  mcq_choices?: string[] | null;
 };
 
 export type WordStatus = "new" | "learning" | "mastered";
