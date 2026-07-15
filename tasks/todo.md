@@ -61,8 +61,8 @@
 ## Giai đoạn 2 — Cổng public (nộp Google sớm)
 - [x] Task 4: Trang Privacy Policy + Terms (M) — 2026-07-12: /privacy + /terms 200 ẩn danh trên prod, footer toàn cục + dòng đồng ý ở login
 - [x] Task 5: Nộp Google OAuth verification (M) — consent screen + publish 2026-07-12; 2026-07-13 tài khoản ngoài Test users login OK → app "In production" (§17.2-1 đạt)
-- [ ] Task 6: Gemini tier + trần chi phí toàn hệ thống (S–M) — chốt Q6 trước
-- [ ] ✅ Checkpoint 6: verification đã nộp, chi phí AI có trần
+- [x] Task 6: Gemini tier + trần chi phí toàn hệ thống (S–M) — Q6 chốt 2026-07-14: free tier (RPM 5/RPD 20), trần env GEMINI_DAILY_BUDGET=18 theo ngày Pacific + 429 ai_budget_exceeded + rate_limit 4/m; verify dev (trần=1) 2026-07-15
+- [x] ✅ Checkpoint 6: verification đã nộp, chi phí AI có trần (2026-07-15 — Giai đoạn 2 xong)
 
 ## Giai đoạn 3 — UX polish
 - [x] Task 7: Card deck click toàn bộ + voice mọi nơi — B1, B2, F7 (S–M) — 2026-07-12, user smoke localhost OK (voice + card click + nút không bubble)
@@ -91,6 +91,6 @@
 
 ## Prerequisites v1.1 (ngoài code)
 - [x] Đổi tên app trong Google Console consent screen (trước task 1-verify) — 2026-07-12, cùng lượt điền consent screen Task 5
-- [ ] Quyết định Gemini tier từ usage thật (trước task 6)
+- [x] Quyết định Gemini tier từ usage thật (trước task 6) — 2026-07-14: ở lại free tier tới khi có user thật
 - [ ] Tài khoản Sentry free + 2 DSN (trước task 19)
 - [ ] Chốt nguồn từ vựng starter decks (trước task 15)
