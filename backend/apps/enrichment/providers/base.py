@@ -26,5 +26,6 @@ class EnrichmentError(Exception):
 class AIProvider(Protocol):
     name: str  # audit trail on WordCache (SPEC §5: provider, model)
     model: str
+    is_metered: bool  # real API calls spend the daily budget (SPEC §17.2-14)
 
     def enrich_word(self, word: str) -> WordEnrichment: ...

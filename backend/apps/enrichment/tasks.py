@@ -7,6 +7,7 @@ short fixed countdown while the other worker finishes.
 
 from celery import shared_task
 from celery.exceptions import MaxRetriesExceededError
+from django.conf import settings
 
 from apps.enrichment import services
 from apps.enrichment.providers import EnrichmentError
@@ -17,7 +18,7 @@ WAIT_COUNTDOWN_SECONDS = 10  # claim contention: the other call is seconds away
 FAILED = "failed"
 
 
-@shared_task(bind=True, max_retries=3, rate_limit="30/m")
+@shared_task(bind=True, max_retries=3, rate_limit=settings.ENRICHMENT_RATE_LIMIT)
 def enrich_user_word_task(self, user_word_id: int) -> str:
     try:
         outcome = services.enrich_user_word(user_word_id=user_word_id)
@@ -26,6 +27,12 @@ def enrich_user_word_task(self, user_word_id: int) -> str:
             services.mark_enrichment_failed(user_word_id=user_word_id)
             return FAILED
         raise self.retry(exc=exc, countdown=BACKOFF_BASE_SECONDS * 2**self.request.retries) from exc
+
+    if outcome == services.BUDGET_EXCEEDED:
+        # No retry: the budget resets at Pacific midnight, hours away. The
+        # word lands on `failed` and the existing retry button covers tomorrow.
+        services.mark_enrichment_failed(user_word_id=user_word_id)
+        return services.BUDGET_EXCEEDED
 
     if outcome == services.WAITING:
         try:

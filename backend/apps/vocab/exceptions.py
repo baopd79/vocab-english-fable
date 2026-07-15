@@ -26,3 +26,9 @@ class EnrichmentNotFailed(APIException):
     status_code = status.HTTP_409_CONFLICT
     default_detail = "Enrichment can only be retried for failed words."
     default_code = "enrichment_not_failed"
+
+
+class AIBudgetExhausted(APIException):
+    status_code = status.HTTP_429_TOO_MANY_REQUESTS
+    default_detail = "The system-wide AI budget for today is exhausted."
+    default_code = "ai_budget_exceeded"

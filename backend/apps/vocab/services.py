@@ -4,12 +4,30 @@ from django.db import IntegrityError, transaction
 from django.utils import timezone
 
 from apps.accounts.models import User
+from apps.enrichment.budget import has_ai_budget
+from apps.enrichment.providers import provider_is_metered
 from apps.enrichment.services import CONTENT_FIELDS
 from apps.enrichment.tasks import enrich_user_word_task
 
-from .exceptions import DeckNameConflict, EnrichmentNotFailed, InvalidWord, WordConflict
+from .exceptions import (
+    AIBudgetExhausted,
+    DeckNameConflict,
+    EnrichmentNotFailed,
+    InvalidWord,
+    WordConflict,
+)
 from .models import Deck, UserWord, WordCache
 from .normalization import InvalidWordError, normalize_word
+
+
+def _require_ai_budget(*, word: str) -> None:
+    """Reject early (429, SPEC §17.2-14) when enriching `word` would need a
+    real AI call but the system-wide daily budget is gone. A word the cache
+    already answers costs nothing, so it always passes."""
+    if WordCache.objects.filter(word=word, status=WordCache.Status.COMPLETED).exists():
+        return
+    if provider_is_metered() and not has_ai_budget():
+        raise AIBudgetExhausted
 
 
 def create_deck(*, owner: User, name: str, description: str = "") -> Deck:
@@ -55,6 +73,7 @@ def create_user_word(*, deck: Deck, word: str) -> UserWord:
         normalized = normalize_word(word)
     except InvalidWordError as exc:
         raise InvalidWord from exc
+    _require_ai_budget(word=normalized)
     try:
         with transaction.atomic():
             user_word = UserWord.objects.create(user=deck.owner, deck=deck, word_text=normalized)
@@ -81,6 +100,7 @@ def update_user_word(*, user_word: UserWord, data: dict) -> UserWord:
 
 def _change_word_text(*, user_word: UserWord, new_word: str) -> UserWord:
     """Keep SRS state, reset enrichment to pending, re-enqueue (SPEC §9)."""
+    _require_ai_budget(word=new_word)
     user_word.word_text = new_word
     user_word.enrichment_status = UserWord.EnrichmentStatus.PENDING
     user_word.word_cache = None
@@ -116,6 +136,7 @@ def retry_enrichment(*, user_word: UserWord) -> UserWord:
     and the shared cache row (failed → pending) before re-enqueueing."""
     if user_word.enrichment_status != UserWord.EnrichmentStatus.FAILED:
         raise EnrichmentNotFailed
+    _require_ai_budget(word=user_word.word_text)
     with transaction.atomic():
         user_word.enrichment_status = UserWord.EnrichmentStatus.PENDING
         user_word.save(update_fields=["enrichment_status", "updated_at"])

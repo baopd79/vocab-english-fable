@@ -4,6 +4,8 @@ tasks run eagerly via .apply(), so no broker or worker is involved."""
 from unittest import mock
 
 import pytest
+from django.core.cache import cache
+from django.test import override_settings
 
 from apps.enrichment import services
 from apps.enrichment.providers import EnrichmentError, WordEnrichment
@@ -12,6 +14,14 @@ from apps.vocab.factories import UserWordFactory, WordCacheFactory
 from apps.vocab.models import UserWord, WordCache
 
 pytestmark = pytest.mark.django_db
+
+
+@pytest.fixture(autouse=True)
+def fresh_budget_counter():
+    # LocMemCache outlives the per-test DB rollback; a stale budget counter
+    # would leak spending across tests.
+    cache.clear()
+
 
 ENRICHMENT = WordEnrichment(
     part_of_speech="noun",
@@ -22,10 +32,13 @@ ENRICHMENT = WordEnrichment(
 )
 
 
-def make_provider(side_effect=None):
+def make_provider(side_effect=None, *, is_metered=False):
     provider = mock.Mock()
     provider.name = "fake"
     provider.model = "fake"
+    # Explicit: a bare Mock attribute is truthy and would silently opt every
+    # test into the budget path.
+    provider.is_metered = is_metered
     provider.enrich_word.return_value = ENRICHMENT
     if side_effect is not None:
         provider.enrich_word.side_effect = side_effect
@@ -179,3 +192,70 @@ def test_task_recovers_when_a_retry_succeeds():
     assert provider.enrich_word.call_count == 2
     user_word.refresh_from_db()
     assert user_word.enrichment_status == UserWord.EnrichmentStatus.COMPLETED
+
+
+# --- daily AI budget (SPEC §17.2-14) ------------------------------------------
+
+
+@override_settings(GEMINI_DAILY_BUDGET=0)
+def test_metered_provider_without_budget_fails_as_miss():
+    user_word = UserWordFactory(word_text="hello")
+    provider = make_provider(is_metered=True)
+
+    with patch_provider(provider):
+        outcome = services.enrich_user_word(user_word_id=user_word.pk)
+
+    assert outcome == services.BUDGET_EXCEEDED
+    provider.enrich_word.assert_not_called()
+    # Claim released as failed → re-claimable after the budget resets.
+    assert WordCache.objects.get(word="hello").status == WordCache.Status.FAILED
+
+
+@override_settings(GEMINI_DAILY_BUDGET=0)
+def test_unmetered_provider_ignores_the_budget():
+    user_word = UserWordFactory(word_text="hello")
+    provider = make_provider(is_metered=False)
+
+    with patch_provider(provider):
+        outcome = services.enrich_user_word(user_word_id=user_word.pk)
+
+    assert outcome == services.COMPLETED
+    provider.enrich_word.assert_called_once()
+
+
+@override_settings(GEMINI_DAILY_BUDGET=0)
+def test_cache_hit_needs_no_budget():
+    WordCacheFactory(word="hello", status=WordCache.Status.COMPLETED, meaning_vi="lời chào")
+    user_word = UserWordFactory(word_text="hello")
+
+    with patch_provider(make_provider(is_metered=True)):
+        outcome = services.enrich_user_word(user_word_id=user_word.pk)
+
+    assert outcome == services.COMPLETED
+
+
+@override_settings(GEMINI_DAILY_BUDGET=1)
+def test_each_real_call_spends_one_slot():
+    first = UserWordFactory(word_text="hello")
+    second = UserWordFactory(word_text="world")
+    provider = make_provider(is_metered=True)
+
+    with patch_provider(provider):
+        assert services.enrich_user_word(user_word_id=first.pk) == services.COMPLETED
+        assert services.enrich_user_word(user_word_id=second.pk) == services.BUDGET_EXCEEDED
+
+    provider.enrich_word.assert_called_once_with("hello")
+
+
+@override_settings(GEMINI_DAILY_BUDGET=0)
+def test_task_budget_exceeded_marks_failed_without_retrying():
+    user_word = UserWordFactory(word_text="hello")
+    provider = make_provider(is_metered=True)
+
+    with patch_provider(provider):
+        result = enrich_user_word_task.apply(args=[user_word.pk])
+
+    assert result.get() == services.BUDGET_EXCEEDED
+    provider.enrich_word.assert_not_called()  # no retry burned budget checks
+    user_word.refresh_from_db()
+    assert user_word.enrichment_status == UserWord.EnrichmentStatus.FAILED

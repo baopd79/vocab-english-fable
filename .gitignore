@@ -28,3 +28,6 @@ nginx/htpasswd
 
 # Task scratch
 tasks/*.tmp
+
+# Raw content sources for starter decks (large binaries, third-party material)
+content/

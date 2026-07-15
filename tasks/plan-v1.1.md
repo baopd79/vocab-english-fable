@@ -68,7 +68,7 @@ Consent screen production: tên Vocabun, domain vocabun.com đã verify, link pr
 - **Ghi chú:** task này "treo" trong nhiều tuần — không chặn task nào khác; chỉ chặn *công bố* ở T20.
 
 **Task 6: Gemini tier + trần chi phí toàn hệ thống** (S–M, deps: none — chốt §17.3-Q6 trước)
-Chốt free/paid từ usage thật. Thêm global daily cap (counter Redis, reset theo ngày UTC) kiểm tra trong service enrich **trước khi claim** WordCache; chạm trần → fail-as-miss, code `enrichment_budget_exceeded`, FE hiện thông báo thân thiện.
+Chốt free/paid từ usage thật (2026-07-14: ở lại free tier, RPM 5/RPD 20). Global daily cap = counter Django cache (Redis) theo **ngày Pacific** (giờ reset của Google), env `GEMINI_DAILY_BUDGET` default 18; worker giữ chỗ **sau khi claim, trước khi gọi** (chỉ người thắng claim tiêu slot); chạm trần → fail-as-miss, không retry trong ngày. Request-time (thêm/đổi/retry từ chưa có cache) chặn sớm 429 `ai_budget_exceeded`, FE hiện thông báo thân thiện. Kèm Celery `rate_limit` env `ENRICHMENT_RATE_LIMIT` default 4/m.
 - [ ] AC: §17.2-14; per-user 50/ngày giữ nguyên; unit test cap bằng override counter
 - Verify: `uv run pytest apps/enrichment` + hạ trần xuống 1 trên dev rồi thêm 2 từ.
 

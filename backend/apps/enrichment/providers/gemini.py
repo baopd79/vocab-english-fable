@@ -36,6 +36,7 @@ Plain text only in every field — no markdown, no HTML."""
 
 class GeminiProvider:
     name = "gemini"
+    is_metered = True  # every call spends the shared daily budget
 
     def __init__(self, *, api_key: str | None = None, model: str | None = None) -> None:
         self._api_key = api_key if api_key is not None else settings.GEMINI_API_KEY

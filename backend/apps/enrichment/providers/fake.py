@@ -6,6 +6,7 @@ from apps.enrichment.providers.base import WordEnrichment
 class FakeProvider:
     name = "fake"
     model = "fake"
+    is_metered = False  # free and local — never touches the daily budget
 
     def enrich_word(self, word: str) -> WordEnrichment:
         return WordEnrichment(

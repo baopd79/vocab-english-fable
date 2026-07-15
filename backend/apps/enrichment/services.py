@@ -10,6 +10,7 @@ from dataclasses import asdict
 from django.db import transaction
 from django.utils import timezone
 
+from apps.enrichment.budget import spend_ai_budget
 from apps.enrichment.providers import AIProvider, WordEnrichment, get_provider
 from apps.vocab.models import UserWord, WordCache
 
@@ -19,6 +20,7 @@ CONTENT_FIELDS = ("part_of_speech", "ipa", "meaning_vi", "example_en", "example_
 COMPLETED = "completed"
 WAITING = "waiting"  # another task holds the claim — check back later
 SKIPPED = "skipped"  # the UserWord vanished while the task sat in the queue
+BUDGET_EXCEEDED = "budget_exceeded"  # daily AI budget gone — terminal for today
 
 
 def enrich_user_word(*, user_word_id: int) -> str:
@@ -43,6 +45,12 @@ def enrich_user_word(*, user_word_id: int) -> str:
         return WAITING
 
     provider = get_provider()
+    # The slot is reserved *before* the call so racing workers can never
+    # overspend; fail-as-miss keeps the word retryable after the Pacific-
+    # midnight reset (SPEC §17.2-14).
+    if provider.is_metered and not spend_ai_budget():
+        release_claim_as_failed(cache=cache)
+        return BUDGET_EXCEEDED
     try:
         enrichment = provider.enrich_word(user_word.word_text)
     except Exception:

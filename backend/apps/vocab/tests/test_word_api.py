@@ -315,3 +315,54 @@ def test_throttle_disabled_in_test_settings_does_not_block(client, deck, task_de
             client.post(f"/api/v1/decks/{deck.pk}/words", {"word": f"word{'x' * i}"}).status_code
             == 201
         )
+
+
+# --- system-wide AI budget (SPEC §17.2-14) ------------------------------------
+
+
+@override_settings(AI_PROVIDER="gemini", GEMINI_DAILY_BUDGET=0)
+def test_add_word_rejected_when_system_budget_gone(client, deck, task_delay):
+    response = client.post(f"/api/v1/decks/{deck.pk}/words", {"word": "hello"})
+
+    assert response.status_code == 429
+    assert response.json()["code"] == "ai_budget_exceeded"
+    assert not UserWord.objects.filter(word_text="hello").exists()
+    task_delay.assert_not_called()
+
+
+@override_settings(AI_PROVIDER="gemini", GEMINI_DAILY_BUDGET=0)
+def test_add_cached_word_passes_despite_exhausted_budget(client, deck, task_delay):
+    # A completed cache row answers for free — no AI call, no budget needed.
+    WordCacheFactory(word="hello", status=WordCache.Status.COMPLETED)
+
+    response = client.post(f"/api/v1/decks/{deck.pk}/words", {"word": "hello"})
+
+    assert response.status_code == 201
+
+
+@override_settings(AI_PROVIDER="gemini", GEMINI_DAILY_BUDGET=0)
+def test_retry_enrichment_rejected_when_system_budget_gone(client, user, task_delay):
+    failed = UserWordFactory(user=user, enrichment_status=UserWord.EnrichmentStatus.FAILED)
+
+    response = client.post(f"/api/v1/words/{failed.pk}/retry-enrichment")
+
+    assert response.status_code == 429
+    assert response.json()["code"] == "ai_budget_exceeded"
+
+
+@override_settings(AI_PROVIDER="gemini", GEMINI_DAILY_BUDGET=0)
+def test_rename_word_rejected_when_system_budget_gone(client, user, task_delay):
+    word = UserWordFactory(user=user, word_text="hello")
+
+    response = client.patch(f"/api/v1/words/{word.pk}", {"word_text": "world"}, format="json")
+
+    assert response.status_code == 429
+    assert response.json()["code"] == "ai_budget_exceeded"
+    word.refresh_from_db()
+    assert word.word_text == "hello"  # nothing changed
+
+
+@override_settings(AI_PROVIDER="fake", GEMINI_DAILY_BUDGET=0)
+def test_fake_provider_never_hits_the_budget(client, deck, task_delay):
+    response = client.post(f"/api/v1/decks/{deck.pk}/words", {"word": "hello"})
+    assert response.status_code == 201

@@ -131,6 +131,8 @@ export function wordErrorMessage(error: unknown): string {
     if (error.code === "word_conflict") return "Từ này đã có trong deck.";
     if (error.code === "throttled")
       return "Bạn đã hết lượt tra cứu AI hôm nay. Thử lại vào ngày mai.";
+    if (error.code === "ai_budget_exceeded")
+      return "Hệ thống đã dùng hết lượt AI hôm nay — thử lại vào ngày mai nhé.";
     if (error.code === "enrichment_not_failed") return "Từ này không ở trạng thái lỗi.";
     if (error.code === "validation_error") return "Dữ liệu không hợp lệ.";
   }

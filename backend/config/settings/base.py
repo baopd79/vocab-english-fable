@@ -123,6 +123,12 @@ GOOGLE_OAUTH_CLIENT_ID = os.getenv("GOOGLE_OAUTH_CLIENT_ID", "")
 AI_PROVIDER = os.getenv("AI_PROVIDER", "gemini")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+# System-wide daily cap on real AI calls (SPEC §17.2-14, §17.3-Q6). The free
+# tier allows 20 requests/day for the whole system; 18 leaves headroom for the
+# mismatch between our counter and Google's. Raise via env once billing is on.
+GEMINI_DAILY_BUDGET = int(os.getenv("GEMINI_DAILY_BUDGET", "18"))
+# Celery rate limit for enrichment tasks — free tier allows 5 requests/minute.
+ENRICHMENT_RATE_LIMIT = os.getenv("ENRICHMENT_RATE_LIMIT", "4/m")
 
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
 
