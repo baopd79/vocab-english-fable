@@ -79,7 +79,7 @@
 - [x] ✅ Checkpoint 8: toàn bộ feature học tập chạy trên prod (2026-07-14)
 
 ## Giai đoạn 5 — Nội dung & chia sẻ
-- [ ] Task 15: Starter decks — F1 (M) — chốt Q3 trước
+- [x] Task 15: Starter decks — F1 (M) — Q3 chốt 2026-07-15; 2026-07-16: deploy + seed prod (600 từ, WordCache provider=seed), user verify clone + ôn ngay được
 - [ ] Task 16: Deck công khai / chia sẻ — F2 (M) — chốt Q4 trước
 
 ## Giai đoạn 6 — Đón khách & công bố

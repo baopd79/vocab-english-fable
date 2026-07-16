@@ -130,7 +130,7 @@ UI 2 dạng trong runner (sau màn overview T8, hiệu ứng T9 áp dụng chung
 
 **Task 15: Starter decks (F1)** (M, deps: 6 — chốt §17.3-Q3 trước)
 Deck hệ thống đã enrich sẵn (management command seed, chạy trên VPS 1 lần); user "thêm về tài khoản" = clone (không copy SRS, không sửa bản gốc — SPEC §17.4).
-- [ ] AC: §17.2-3 phần deck mẫu; clone không tính vào quota enrich của user
+- [x] AC: §17.2-3 phần deck mẫu; clone không tính vào quota enrich của user — 2026-07-16: seed 600 từ + WordCache trên prod, user clone + ôn OK
 - Verify: `uv run pytest apps/vocab` + tài khoản mới clone + ôn được ngay.
 
 **Task 16: Deck công khai / chia sẻ (F2)** (M, deps: 15 — chốt §17.3-Q4 trước)
