@@ -145,3 +145,121 @@ def retry_enrichment(*, user_word: UserWord) -> UserWord:
         )
         transaction.on_commit(lambda: enrich_user_word_task.delay(user_word.pk))
     return user_word
+
+
+# --- starter decks & cloning (SPEC §17.2-3, §17.4) -----------------------------
+
+SYSTEM_USERNAME = "vocabun-system"
+
+
+def get_or_create_system_user() -> User:
+    """The account that owns system content (starter decks). It can never log
+    in: is_active=False and no google_sub, so Google auth will not match it."""
+    user, _ = User.objects.get_or_create(
+        username=SYSTEM_USERNAME,
+        defaults={
+            "email": "system@vocabun.com",
+            "is_active": False,
+            "display_name": "Vocabun",
+        },
+    )
+    return user
+
+
+def clone_deck(*, owner: User, source: Deck) -> Deck:
+    """Copy a starter deck into the user's account.
+
+    Content fields (and completed enrichment status) travel with the copy, so
+    a clone never enqueues enrichment, never calls the AI provider and never
+    spends any quota or budget. SRS state starts fresh — progress is never
+    copied (SPEC §17.2-13); every cloned word enters the queue as new.
+    """
+    try:
+        with transaction.atomic():
+            clone = Deck.objects.create(
+                owner=owner,
+                name=source.name,
+                description=source.description,
+                source_deck=source,
+            )
+            UserWord.objects.bulk_create(
+                UserWord(
+                    user=owner,
+                    deck=clone,
+                    word_cache_id=word.word_cache_id,
+                    word_text=word.word_text,
+                    part_of_speech=word.part_of_speech,
+                    ipa=word.ipa,
+                    meaning_vi=word.meaning_vi,
+                    example_en=word.example_en,
+                    example_vi=word.example_vi,
+                    enrichment_status=word.enrichment_status,
+                )
+                for word in source.words.all()
+            )
+            return clone
+    except IntegrityError as exc:
+        raise DeckNameConflict from exc
+
+
+@transaction.atomic
+def seed_starter_deck(*, payload: dict) -> dict:
+    """Create/refresh one system starter deck from a content JSON (Q3).
+
+    Idempotent by word: existing deck words and existing WordCache rows are
+    left untouched; only missing ones are created. Seeded cache rows carry
+    provider="seed" so the 600 most common words answer any user's manual add
+    for free — the AI provider is never called here.
+    """
+    owner = get_or_create_system_user()
+    deck, _ = Deck.objects.get_or_create(
+        owner=owner,
+        name=payload["deck"]["name"],
+        defaults={"description": payload["deck"].get("description", ""), "is_starter": True},
+    )
+
+    words = payload["words"]
+    cached = set(
+        WordCache.objects.filter(word__in=[w["word"] for w in words]).values_list("word", flat=True)
+    )
+    created_cache = WordCache.objects.bulk_create(
+        WordCache(
+            word=w["word"],
+            status=WordCache.Status.COMPLETED,
+            part_of_speech=w["part_of_speech"],
+            ipa=w["ipa"],
+            meaning_vi=w["meaning_vi"],
+            example_en=w["example_en"],
+            example_vi=w["example_vi"],
+            provider="seed",
+            model=payload["deck"]["name"],
+        )
+        for w in words
+        if w["word"] not in cached
+    )
+
+    cache_ids = dict(
+        WordCache.objects.filter(word__in=[w["word"] for w in words]).values_list("word", "id")
+    )
+    existing_words = set(deck.words.values_list("word_text", flat=True))
+    created_words = UserWord.objects.bulk_create(
+        UserWord(
+            user=owner,
+            deck=deck,
+            word_cache_id=cache_ids[w["word"]],
+            word_text=w["word"],
+            part_of_speech=w["part_of_speech"],
+            ipa=w["ipa"],
+            meaning_vi=w["meaning_vi"],
+            example_en=w["example_en"],
+            example_vi=w["example_vi"],
+            enrichment_status=UserWord.EnrichmentStatus.COMPLETED,
+        )
+        for w in words
+        if w["word"] not in existing_words
+    )
+    return {
+        "deck": deck.name,
+        "words_created": len(created_words),
+        "cache_created": len(created_cache),
+    }

@@ -26,14 +26,24 @@ class DeckSerializer(serializers.ModelSerializer):
             "name",
             "description",
             "visibility",
+            "is_starter",
+            "source_deck",
             "word_count",
             "mastered_count",
             "created_at",
             "updated_at",
         ]
-        # visibility stays private until the sharing feature ships; SRS/audit
+        # visibility stays private until the sharing feature ships; starter
+        # flag and clone lineage are set only by seed/clone services; SRS/audit
         # fields are never client-writable.
-        read_only_fields = ["id", "visibility", "created_at", "updated_at"]
+        read_only_fields = [
+            "id",
+            "visibility",
+            "is_starter",
+            "source_deck",
+            "created_at",
+            "updated_at",
+        ]
 
     def validate_name(self, value: str) -> str:
         name = value.strip()

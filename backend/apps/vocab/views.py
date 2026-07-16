@@ -36,6 +36,26 @@ class DeckListView(APIView):
         return Response(DeckSerializer(deck).data, status=status.HTTP_201_CREATED)
 
 
+class StarterDeckListView(APIView):
+    @extend_schema(responses=DeckSerializer(many=True))
+    def get(self, request: Request) -> Response:
+        decks = selectors.list_starter_decks()
+        paginator = DefaultPagination()
+        page = paginator.paginate_queryset(decks, request, view=self)
+        return paginator.get_paginated_response(DeckSerializer(page, many=True).data)
+
+
+class DeckCloneView(APIView):
+    @extend_schema(request=None, responses=DeckSerializer)
+    def post(self, request: Request, pk: int) -> Response:
+        # Only starter decks are cloneable in v1.1 (Task 16 will extend this
+        # to public decks); anything else — including other users' private
+        # decks — stays an indistinguishable 404 (SPEC §9).
+        source = get_object_or_404(Deck, pk=pk, is_starter=True)
+        deck = services.clone_deck(owner=request.user, source=source)
+        return Response(DeckSerializer(deck).data, status=status.HTTP_201_CREATED)
+
+
 class DeckDetailView(APIView):
     def get_object(self, request: Request, pk: int) -> Deck:
         # Filtered by owner: another user's id is indistinguishable from a

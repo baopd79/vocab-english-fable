@@ -12,9 +12,11 @@ import { Button } from "@/components/ui/button";
 import { PageHeading } from "@/components/ui/page-header";
 import {
   deckErrorMessage,
+  useCloneDeck,
   useCreateDeck,
   useDecks,
   useDeleteDeck,
+  useStarterDecks,
   useUpdateDeck,
   type Deck,
 } from "@/lib/decks";
@@ -131,10 +133,72 @@ export function DecksContent() {
         </ul>
       )}
 
+      {decksQuery.data && (
+        <StarterDecksSection
+          clonedSourceIds={
+            new Set(
+              decksQuery.data.results
+                .map((deck) => deck.source_deck)
+                .filter((id): id is number => id !== null),
+            )
+          }
+        />
+      )}
+
       {addingToDeckId !== null && (
         <QuickAddModal initialDeckId={addingToDeckId} onClose={() => setAddingToDeckId(null)} />
       )}
     </main>
+  );
+}
+
+/** System starter decks not yet cloned by this user (SPEC §17.2-3). Cloning
+ * hides the card: the refreshed deck list carries its id in `source_deck`. */
+function StarterDecksSection({ clonedSourceIds }: { clonedSourceIds: Set<number> }) {
+  const starters = useStarterDecks();
+  const clone = useCloneDeck();
+
+  const available = (starters.data?.results ?? []).filter((deck) => !clonedSourceIds.has(deck.id));
+  if (available.length === 0) return null;
+
+  return (
+    <section className="animate-card-in mt-4 flex flex-col gap-3">
+      <div>
+        <h2 className="font-display text-xl font-bold tracking-tight">Deck mẫu</h2>
+        <p className="text-muted-fg text-sm">
+          Bộ từ Vocabun soạn sẵn — thêm về tài khoản là ôn được ngay, không tốn lượt AI.
+        </p>
+      </div>
+      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {available.map((deck) => (
+          <li key={deck.id} className="glass flex flex-col gap-3 rounded-[20px] p-5 sm:p-6">
+            <div className="flex min-w-0 flex-col gap-2">
+              <DeckIcon deckId={deck.id} className="h-10 w-10 rounded-xl" />
+              <span className="text-[17px] font-bold">{deck.name}</span>
+              {deck.description && (
+                <span className="text-muted-fg text-sm">{deck.description}</span>
+              )}
+            </div>
+            <div className="mt-auto flex items-center gap-2">
+              <Badge variant="neutral">{deck.word_count} từ</Badge>
+              <Button
+                size="sm"
+                className="ml-auto"
+                disabled={clone.isPending}
+                onClick={() => clone.mutate(deck.id)}
+              >
+                + Thêm về tài khoản
+              </Button>
+            </div>
+          </li>
+        ))}
+      </ul>
+      {clone.isError && (
+        <p role="alert" className="text-danger-text text-sm font-medium">
+          {deckErrorMessage(clone.error)}
+        </p>
+      )}
+    </section>
   );
 }
 

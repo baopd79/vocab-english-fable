@@ -93,4 +93,4 @@
 - [x] Đổi tên app trong Google Console consent screen (trước task 1-verify) — 2026-07-12, cùng lượt điền consent screen Task 5
 - [x] Quyết định Gemini tier từ usage thật (trước task 6) — 2026-07-14: ở lại free tier tới khi có user thật
 - [ ] Tài khoản Sentry free + 2 DSN (trước task 19)
-- [ ] Chốt nguồn từ vựng starter decks (trước task 15)
+- [x] Chốt nguồn từ vựng starter decks (trước task 15) — 2026-07-15: bộ Anki 4000 Essential Words Book 1 của user, convert offline, ví dụ tự soạn

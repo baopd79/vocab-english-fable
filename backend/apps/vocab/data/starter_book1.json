@@ -1,0 +1,4808 @@
+{
+  "deck": {
+    "name": "4000 Essential Words — Book 1",
+    "description": "600 từ vựng nền tảng (Book 1), sắp xếp từ dễ đến khó."
+  },
+  "words": [
+    {
+      "word": "afraid",
+      "part_of_speech": "adjective",
+      "ipa": "/əˈfreɪd/",
+      "meaning_vi": "Sợ hãi",
+      "example_en": "My little brother is afraid of the dark.",
+      "example_vi": "Em trai tôi sợ bóng tối."
+    },
+    {
+      "word": "agree",
+      "part_of_speech": "verb",
+      "ipa": "/əˈgriː/",
+      "meaning_vi": "Đồng ý",
+      "example_en": "I agree with your idea.",
+      "example_vi": "Tôi đồng ý với ý kiến của bạn."
+    },
+    {
+      "word": "angry",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈæŋgrɪ/",
+      "meaning_vi": "Tức giận",
+      "example_en": "She was angry because I was late.",
+      "example_vi": "Cô ấy tức giận vì tôi đến muộn."
+    },
+    {
+      "word": "arrive",
+      "part_of_speech": "verb",
+      "ipa": "/əˈraɪv/",
+      "meaning_vi": "Đến, tới nơi",
+      "example_en": "The train will arrive at nine o'clock.",
+      "example_vi": "Chuyến tàu sẽ đến lúc chín giờ."
+    },
+    {
+      "word": "attack",
+      "part_of_speech": "noun",
+      "ipa": "/əˈtæk/",
+      "meaning_vi": "Tấn công",
+      "example_en": "The army began its attack at night.",
+      "example_vi": "Quân đội bắt đầu cuộc tấn công vào ban đêm."
+    },
+    {
+      "word": "bottom",
+      "part_of_speech": "noun",
+      "ipa": "/ˈbɔtəm/",
+      "meaning_vi": "phần dưới cùng; đáy",
+      "example_en": "The keys were at the bottom of my bag.",
+      "example_vi": "Chìa khóa nằm ở đáy túi của tôi."
+    },
+    {
+      "word": "clever",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈklevə/",
+      "meaning_vi": "Thông minh",
+      "example_en": "The clever student solved the problem quickly.",
+      "example_vi": "Cậu học sinh thông minh giải bài toán rất nhanh."
+    },
+    {
+      "word": "cruel",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈkruːəl], [kruəl/",
+      "meaning_vi": "Độc ác",
+      "example_en": "The cruel king made everyone work all day.",
+      "example_vi": "Vị vua độc ác bắt mọi người làm việc cả ngày."
+    },
+    {
+      "word": "finally",
+      "part_of_speech": "adverb",
+      "ipa": "/ˈfaɪn(ə)lɪ/",
+      "meaning_vi": "Sau cùng",
+      "example_en": "After a long trip, we finally got home.",
+      "example_vi": "Sau chuyến đi dài, cuối cùng chúng tôi cũng về đến nhà."
+    },
+    {
+      "word": "hide",
+      "part_of_speech": "verb",
+      "ipa": "/haɪd/",
+      "meaning_vi": "Trốn, ẩn nấp",
+      "example_en": "The cat likes to hide under the bed.",
+      "example_vi": "Con mèo thích trốn dưới gầm giường."
+    },
+    {
+      "word": "hunt",
+      "part_of_speech": "noun",
+      "ipa": "/hʌnt/",
+      "meaning_vi": "Săn bắn",
+      "example_en": "Lions hunt at night to find food.",
+      "example_vi": "Sư tử săn mồi vào ban đêm để kiếm thức ăn."
+    },
+    {
+      "word": "lot",
+      "part_of_speech": "noun",
+      "ipa": "/lɔt/",
+      "meaning_vi": "Mớ, lô, nhiều",
+      "example_en": "She has a lot of books at home.",
+      "example_vi": "Cô ấy có rất nhiều sách ở nhà."
+    },
+    {
+      "word": "middle",
+      "part_of_speech": "noun",
+      "ipa": "/ˈmɪdl/",
+      "meaning_vi": "giữa, ở giữa",
+      "example_en": "There is a lake in the middle of the park.",
+      "example_vi": "Có một cái hồ ở giữa công viên."
+    },
+    {
+      "word": "moment",
+      "part_of_speech": "noun",
+      "ipa": "/ˈməumənt/",
+      "meaning_vi": "Khoảnh khắc, chốc lát",
+      "example_en": "Please wait a moment, I'm almost ready.",
+      "example_vi": "Vui lòng chờ một lát, tôi sắp xong rồi."
+    },
+    {
+      "word": "pleased",
+      "part_of_speech": "adjective",
+      "ipa": "/pliːzd/",
+      "meaning_vi": "Hài lòng",
+      "example_en": "The teacher was pleased with my homework.",
+      "example_vi": "Cô giáo hài lòng với bài tập về nhà của tôi."
+    },
+    {
+      "word": "promise",
+      "part_of_speech": "noun",
+      "ipa": "/ˈprɔmɪs/",
+      "meaning_vi": "Hứa hẹn, lời hứa",
+      "example_en": "He made a promise to call me every day.",
+      "example_vi": "Anh ấy hứa sẽ gọi cho tôi mỗi ngày."
+    },
+    {
+      "word": "reply",
+      "part_of_speech": "noun",
+      "ipa": "/rɪˈplaɪ/",
+      "meaning_vi": "đáp lại, t rả lời",
+      "example_en": "I sent her a message, but she didn't reply.",
+      "example_vi": "Tôi nhắn tin cho cô ấy nhưng cô ấy không trả lời."
+    },
+    {
+      "word": "safe",
+      "part_of_speech": "noun",
+      "ipa": "/seɪf/",
+      "meaning_vi": "An toàn",
+      "example_en": "Children feel safe when their parents are near.",
+      "example_vi": "Trẻ em cảm thấy an toàn khi có bố mẹ ở gần."
+    },
+    {
+      "word": "trick",
+      "part_of_speech": "noun",
+      "ipa": "/trɪk/",
+      "meaning_vi": "Mẹo, thủ thuật",
+      "example_en": "He used a simple trick to win the game.",
+      "example_vi": "Anh ấy dùng một mẹo đơn giản để thắng trò chơi."
+    },
+    {
+      "word": "well",
+      "part_of_speech": "verb",
+      "ipa": "/wel/",
+      "meaning_vi": "Tốt, được",
+      "example_en": "She sings very well.",
+      "example_vi": "Cô ấy hát rất hay."
+    },
+    {
+      "word": "adventure",
+      "part_of_speech": "verb",
+      "ipa": "/ədˈvenʧə/",
+      "meaning_vi": "phiêu lưu, mạo hiểm",
+      "example_en": "Our trip to the mountains was a great adventure.",
+      "example_vi": "Chuyến đi lên núi của chúng tôi là một cuộc phiêu lưu tuyệt vời."
+    },
+    {
+      "word": "approach",
+      "part_of_speech": "noun",
+      "ipa": "/əˈprəuʧ/",
+      "meaning_vi": "đến gần, tới gần",
+      "example_en": "Walk slowly when you approach the horse.",
+      "example_vi": "Hãy đi chậm khi bạn đến gần con ngựa."
+    },
+    {
+      "word": "carefully",
+      "part_of_speech": "adverb",
+      "ipa": "/ˈkeəf(ə)lɪ], [-fulɪ/",
+      "meaning_vi": "cẩn thận",
+      "example_en": "Please read the question carefully before answering.",
+      "example_vi": "Hãy đọc câu hỏi cẩn thận trước khi trả lời."
+    },
+    {
+      "word": "chemical",
+      "part_of_speech": "noun",
+      "ipa": "/ˈkemɪk(ə)l/",
+      "meaning_vi": "hoá chất",
+      "example_en": "Do not touch that chemical without gloves.",
+      "example_vi": "Đừng chạm vào hóa chất đó khi không đeo găng tay."
+    },
+    {
+      "word": "create",
+      "part_of_speech": "verb",
+      "ipa": "/krɪˈeɪt/",
+      "meaning_vi": "tạo nên, tạo ra",
+      "example_en": "Artists create beautiful things every day.",
+      "example_vi": "Các nghệ sĩ tạo ra những thứ đẹp đẽ mỗi ngày."
+    },
+    {
+      "word": "evil",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈiːv(ə)l], [-vɪl/",
+      "meaning_vi": "xấu, ác",
+      "example_en": "The story is about an evil witch.",
+      "example_vi": "Câu chuyện kể về một mụ phù thủy độc ác."
+    },
+    {
+      "word": "experiment",
+      "part_of_speech": "verb",
+      "ipa": "/ɪkˈsperɪmənt], [ek-/",
+      "meaning_vi": "thí nghiệm",
+      "example_en": "We did an experiment in science class today.",
+      "example_vi": "Hôm nay chúng tôi làm thí nghiệm trong giờ khoa học."
+    },
+    {
+      "word": "kill",
+      "part_of_speech": "verb",
+      "ipa": "/kɪl/",
+      "meaning_vi": "giết, làm chết",
+      "example_en": "Too much salt can kill small plants.",
+      "example_vi": "Quá nhiều muối có thể làm chết cây non."
+    },
+    {
+      "word": "laboratory",
+      "part_of_speech": "noun",
+      "ipa": "/ləˈbɔrət(ə)rɪ/",
+      "meaning_vi": "phòng thí nghiệm",
+      "example_en": "The scientists work in a big laboratory.",
+      "example_vi": "Các nhà khoa học làm việc trong một phòng thí nghiệm lớn."
+    },
+    {
+      "word": "laugh",
+      "part_of_speech": "noun",
+      "ipa": "/lɑːf/",
+      "meaning_vi": "tiếng cười (lớn)",
+      "example_en": "Her joke made everyone laugh.",
+      "example_vi": "Câu chuyện cười của cô ấy làm mọi người bật cười."
+    },
+    {
+      "word": "loud",
+      "part_of_speech": "adjective",
+      "ipa": "/laud/",
+      "meaning_vi": "to, ầm ĩ",
+      "example_en": "The music is too loud, please turn it down.",
+      "example_vi": "Nhạc to quá, làm ơn vặn nhỏ lại."
+    },
+    {
+      "word": "nervous",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈnɜːvəs/",
+      "meaning_vi": "căng thẳng",
+      "example_en": "I always feel nervous before an exam.",
+      "example_vi": "Tôi luôn thấy căng thẳng trước kỳ thi."
+    },
+    {
+      "word": "noise",
+      "part_of_speech": "noun",
+      "ipa": "/nɔɪz/",
+      "meaning_vi": "tiếng ồn",
+      "example_en": "The noise from the street kept me awake.",
+      "example_vi": "Tiếng ồn ngoài đường làm tôi không ngủ được."
+    },
+    {
+      "word": "project",
+      "part_of_speech": "noun",
+      "ipa": "/ˈprɔʤekt/",
+      "meaning_vi": "dự án, công trình",
+      "example_en": "Our class is working on a science project.",
+      "example_vi": "Lớp chúng tôi đang làm một dự án khoa học."
+    },
+    {
+      "word": "scare",
+      "part_of_speech": "noun",
+      "ipa": "/skeə/",
+      "meaning_vi": "Dọa, làm sợ hãi",
+      "example_en": "Loud sounds scare my dog.",
+      "example_vi": "Tiếng động lớn làm con chó của tôi sợ."
+    },
+    {
+      "word": "secret",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈsiːkrət/",
+      "meaning_vi": "bí mật",
+      "example_en": "They kept their plan secret for months.",
+      "example_vi": "Họ giữ bí mật kế hoạch trong nhiều tháng."
+    },
+    {
+      "word": "shout",
+      "part_of_speech": "noun",
+      "ipa": "/ʃaut/",
+      "meaning_vi": "quát tháo, la hét",
+      "example_en": "Don't shout, I can hear you clearly.",
+      "example_vi": "Đừng la hét, tôi nghe bạn rõ mà."
+    },
+    {
+      "word": "smell",
+      "part_of_speech": "noun",
+      "ipa": "/smel/",
+      "meaning_vi": "ngửi, đánh hơi",
+      "example_en": "I can smell fresh bread from the kitchen.",
+      "example_vi": "Tôi ngửi thấy mùi bánh mì mới từ trong bếp."
+    },
+    {
+      "word": "terrible",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈterəbl/",
+      "meaning_vi": "tồi tệ, ghê gớm, khủng khiếp",
+      "example_en": "The weather was terrible all week.",
+      "example_vi": "Thời tiết tồi tệ suốt cả tuần."
+    },
+    {
+      "word": "worse",
+      "part_of_speech": "adjective",
+      "ipa": "/wɜːs/",
+      "meaning_vi": "xấu hơn, tồi hơn",
+      "example_en": "My cold got worse after the rain.",
+      "example_vi": "Cơn cảm của tôi nặng hơn sau trận mưa."
+    },
+    {
+      "word": "alien",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈeɪlɪən/",
+      "meaning_vi": "Người ngoài hành tinh",
+      "example_en": "The movie is about an alien from Mars.",
+      "example_vi": "Bộ phim kể về một người ngoài hành tinh đến từ sao Hỏa."
+    },
+    {
+      "word": "among",
+      "part_of_speech": "preposition",
+      "ipa": "/əˈmʌŋ/",
+      "meaning_vi": "giữa, ở giữa",
+      "example_en": "She found her photo among the old papers.",
+      "example_vi": "Cô ấy tìm thấy tấm ảnh của mình giữa đống giấy tờ cũ."
+    },
+    {
+      "word": "chart",
+      "part_of_speech": "noun",
+      "ipa": "/ʧɑːt/",
+      "meaning_vi": "biểu đồ, đồ thị",
+      "example_en": "The chart shows our sales this year.",
+      "example_vi": "Biểu đồ cho thấy doanh số của chúng tôi năm nay."
+    },
+    {
+      "word": "cloud",
+      "part_of_speech": "noun",
+      "ipa": "/klaud/",
+      "meaning_vi": "mây, đám mây",
+      "example_en": "There is not a single cloud in the sky.",
+      "example_vi": "Trên trời không có một đám mây nào."
+    },
+    {
+      "word": "comprehend",
+      "part_of_speech": "verb",
+      "ipa": "/ˌkɔmprɪˈhend/",
+      "meaning_vi": "hiểu, bao gồm",
+      "example_en": "It took me a while to comprehend the lesson.",
+      "example_vi": "Tôi mất một lúc mới hiểu được bài học."
+    },
+    {
+      "word": "describe",
+      "part_of_speech": "verb",
+      "ipa": "/dɪˈskraɪb/",
+      "meaning_vi": "miêu tả, mô tả",
+      "example_en": "Can you describe the man you saw?",
+      "example_vi": "Bạn có thể mô tả người đàn ông bạn đã thấy không?"
+    },
+    {
+      "word": "ever",
+      "part_of_speech": "adverb",
+      "ipa": "/ˈevə/",
+      "meaning_vi": "Trước đến giờ, có bao giờ",
+      "example_en": "Have you ever been to Da Nang?",
+      "example_vi": "Bạn đã bao giờ đến Đà Nẵng chưa?"
+    },
+    {
+      "word": "fail",
+      "part_of_speech": "noun",
+      "ipa": "/feɪl/",
+      "meaning_vi": "thất bại",
+      "example_en": "If you never try, you will never fail.",
+      "example_vi": "Nếu không bao giờ thử, bạn sẽ không bao giờ thất bại."
+    },
+    {
+      "word": "friendly",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈfrendlɪ/",
+      "meaning_vi": "thân thiện",
+      "example_en": "Our new neighbor is very friendly.",
+      "example_vi": "Người hàng xóm mới của chúng tôi rất thân thiện."
+    },
+    {
+      "word": "grade",
+      "part_of_speech": "noun",
+      "ipa": "/greɪd/",
+      "meaning_vi": "mức độ, cấp độ",
+      "example_en": "She got a good grade on the test.",
+      "example_vi": "Cô ấy đạt điểm cao trong bài kiểm tra."
+    },
+    {
+      "word": "instead",
+      "part_of_speech": "adverb",
+      "ipa": "/ɪnˈsted/",
+      "meaning_vi": "Thay cho, thay vì",
+      "example_en": "I stayed home instead of going out.",
+      "example_vi": "Tôi ở nhà thay vì ra ngoài."
+    },
+    {
+      "word": "library",
+      "part_of_speech": "noun",
+      "ipa": "/ˈlaɪbr(ə)rɪ/",
+      "meaning_vi": "thư viện",
+      "example_en": "I borrow books from the library every week.",
+      "example_vi": "Tôi mượn sách từ thư viện mỗi tuần."
+    },
+    {
+      "word": "planet",
+      "part_of_speech": "noun",
+      "ipa": "/ˈplænɪt/",
+      "meaning_vi": "hành tinh",
+      "example_en": "Earth is the third planet from the Sun.",
+      "example_vi": "Trái Đất là hành tinh thứ ba tính từ Mặt Trời."
+    },
+    {
+      "word": "report",
+      "part_of_speech": "noun",
+      "ipa": "/rɪˈpɔːt/",
+      "meaning_vi": "bản báo cáo, biên bản",
+      "example_en": "The report must be finished by Friday.",
+      "example_vi": "Bản báo cáo phải hoàn thành trước thứ Sáu."
+    },
+    {
+      "word": "several",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈsev(ə)r(ə)l/",
+      "meaning_vi": "vài, riêng",
+      "example_en": "I called him several times, but he didn't answer.",
+      "example_vi": "Tôi gọi anh ấy vài lần nhưng anh ấy không nghe máy."
+    },
+    {
+      "word": "solve",
+      "part_of_speech": "verb",
+      "ipa": "/sɔlv/",
+      "meaning_vi": "giải quyết",
+      "example_en": "Let's solve this problem together.",
+      "example_vi": "Chúng ta hãy cùng nhau giải quyết vấn đề này."
+    },
+    {
+      "word": "suddenly",
+      "part_of_speech": "adverb",
+      "ipa": "/ˈsʌd(ə)nlɪ/",
+      "meaning_vi": "thình lình, đột ngột",
+      "example_en": "Suddenly, the lights went out.",
+      "example_vi": "Đột nhiên, đèn tắt hết."
+    },
+    {
+      "word": "suppose",
+      "part_of_speech": "verb",
+      "ipa": "/səˈpəuz/",
+      "meaning_vi": "cho rằng, nghĩ rằng",
+      "example_en": "I suppose he is still at work.",
+      "example_vi": "Tôi cho rằng anh ấy vẫn đang ở chỗ làm."
+    },
+    {
+      "word": "universe",
+      "part_of_speech": "noun",
+      "ipa": "/ˈjuːnɪvɜːs/",
+      "meaning_vi": "vũ trụ, thiên hà",
+      "example_en": "There are billions of stars in the universe.",
+      "example_vi": "Có hàng tỷ ngôi sao trong vũ trụ."
+    },
+    {
+      "word": "view",
+      "part_of_speech": "noun",
+      "ipa": "/vjuː/",
+      "meaning_vi": "thấy, nhìn",
+      "example_en": "The view from the hotel room was amazing.",
+      "example_vi": "Quang cảnh nhìn từ phòng khách sạn thật tuyệt vời."
+    },
+    {
+      "word": "appropriate",
+      "part_of_speech": "adjective",
+      "ipa": "/əˈprəuprɪət/",
+      "meaning_vi": "thích hợp, thích đáng",
+      "example_en": "Jeans are not appropriate for this meeting.",
+      "example_vi": "Quần jean không thích hợp cho cuộc họp này."
+    },
+    {
+      "word": "avoid",
+      "part_of_speech": "verb",
+      "ipa": "/əˈvɔɪd/",
+      "meaning_vi": "tránh, tránh xa",
+      "example_en": "I leave early to avoid the traffic.",
+      "example_vi": "Tôi đi sớm để tránh tắc đường."
+    },
+    {
+      "word": "behave",
+      "part_of_speech": "verb",
+      "ipa": "/bɪˈheɪv/",
+      "meaning_vi": "đối xử, cư xử",
+      "example_en": "The children behave well at school.",
+      "example_vi": "Bọn trẻ cư xử ngoan ở trường."
+    },
+    {
+      "word": "calm",
+      "part_of_speech": "adjective",
+      "ipa": "/kɑːm/",
+      "meaning_vi": "bình tĩnh, êm đềm",
+      "example_en": "Stay calm and think before you act.",
+      "example_vi": "Hãy bình tĩnh và suy nghĩ trước khi hành động."
+    },
+    {
+      "word": "concern",
+      "part_of_speech": "noun",
+      "ipa": "/kənˈsɜːn/",
+      "meaning_vi": "lo lắng, liên quan",
+      "example_en": "Her health is my biggest concern.",
+      "example_vi": "Sức khỏe của cô ấy là mối lo lớn nhất của tôi."
+    },
+    {
+      "word": "content",
+      "part_of_speech": "noun",
+      "ipa": "/kənˈtent/",
+      "meaning_vi": "nội dung (n), hài lòng (adj), mãn nguyện (adj)",
+      "example_en": "The content of the book is easy to understand.",
+      "example_vi": "Nội dung cuốn sách dễ hiểu."
+    },
+    {
+      "word": "expect",
+      "part_of_speech": "verb",
+      "ipa": "/ɪkˈspekt/",
+      "meaning_vi": "trông mong, ngóng chờ",
+      "example_en": "We expect the bus to come soon.",
+      "example_vi": "Chúng tôi mong xe buýt sẽ đến sớm."
+    },
+    {
+      "word": "frequently",
+      "part_of_speech": "adverb",
+      "ipa": "/ˈfriːkwəntlɪ/",
+      "meaning_vi": "thường xuyên",
+      "example_en": "He frequently forgets his keys.",
+      "example_vi": "Anh ấy thường xuyên quên chìa khóa."
+    },
+    {
+      "word": "habit",
+      "part_of_speech": "noun",
+      "ipa": "/ˈhæbɪt/",
+      "meaning_vi": "thói quen, tập quán",
+      "example_en": "Reading before bed is a good habit.",
+      "example_vi": "Đọc sách trước khi ngủ là một thói quen tốt."
+    },
+    {
+      "word": "instruct",
+      "part_of_speech": "verb",
+      "ipa": "/ɪnˈstrʌkt/",
+      "meaning_vi": "hướng dẫn, đào tạo",
+      "example_en": "The coach will instruct the new players.",
+      "example_vi": "Huấn luyện viên sẽ hướng dẫn các cầu thủ mới."
+    },
+    {
+      "word": "issue",
+      "part_of_speech": "noun",
+      "ipa": "/ˈɪʃuː], [ˈɪsjuː/",
+      "meaning_vi": "vấn đề, phát hành",
+      "example_en": "We discussed the issue at the meeting.",
+      "example_vi": "Chúng tôi đã bàn về vấn đề đó trong cuộc họp."
+    },
+    {
+      "word": "none",
+      "part_of_speech": "noun",
+      "ipa": "/nʌn/",
+      "meaning_vi": "không ai, không chút nào",
+      "example_en": "None of the answers were correct.",
+      "example_vi": "Không có câu trả lời nào đúng cả."
+    },
+    {
+      "word": "patient",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈpeɪʃ(ə)nt/",
+      "meaning_vi": "kiên nhẫn, nhẫn nại, bệnh nhân",
+      "example_en": "Be patient, the results will come soon.",
+      "example_vi": "Hãy kiên nhẫn, kết quả sẽ sớm có thôi."
+    },
+    {
+      "word": "positive",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈpɔzətɪv/",
+      "meaning_vi": "tích cực, rõ ràng",
+      "example_en": "A positive attitude helps you learn faster.",
+      "example_vi": "Thái độ tích cực giúp bạn học nhanh hơn."
+    },
+    {
+      "word": "punish",
+      "part_of_speech": "verb",
+      "ipa": "/ˈpʌnɪʃ/",
+      "meaning_vi": "phạt, trừng phạt",
+      "example_en": "The teacher didn't punish anyone today.",
+      "example_vi": "Hôm nay cô giáo không phạt ai cả."
+    },
+    {
+      "word": "represent",
+      "part_of_speech": "verb",
+      "ipa": "/ˌreprɪˈzent/",
+      "meaning_vi": "thay mặt, đại diện",
+      "example_en": "She will represent our school at the contest.",
+      "example_vi": "Cô ấy sẽ đại diện trường chúng tôi tại cuộc thi."
+    },
+    {
+      "word": "shake",
+      "part_of_speech": "noun",
+      "ipa": "/ʃeɪk/",
+      "meaning_vi": "rung, lắc to shake hands: bắt tay",
+      "example_en": "Shake the bottle before you open it.",
+      "example_vi": "Hãy lắc chai trước khi mở."
+    },
+    {
+      "word": "spread",
+      "part_of_speech": "noun",
+      "ipa": "/spred/",
+      "meaning_vi": "phết, trải ra",
+      "example_en": "The news spread quickly around town.",
+      "example_vi": "Tin tức lan nhanh khắp thị trấn."
+    },
+    {
+      "word": "stroll",
+      "part_of_speech": "noun",
+      "ipa": "/strəul/",
+      "meaning_vi": "đi dạo",
+      "example_en": "We took a stroll along the river.",
+      "example_vi": "Chúng tôi đi dạo dọc bờ sông."
+    },
+    {
+      "word": "village",
+      "part_of_speech": "noun",
+      "ipa": "/ˈvɪlɪʤ/",
+      "meaning_vi": "làng, xã",
+      "example_en": "My grandparents live in a small village.",
+      "example_vi": "Ông bà tôi sống ở một ngôi làng nhỏ."
+    },
+    {
+      "word": "aware",
+      "part_of_speech": "adjective",
+      "ipa": "/əˈweə/",
+      "meaning_vi": "nhận thấy, nhận thức",
+      "example_en": "I was not aware of the new rule.",
+      "example_vi": "Tôi không hề biết về quy định mới."
+    },
+    {
+      "word": "badly",
+      "part_of_speech": "adverb",
+      "ipa": "/ˈbædlɪ/",
+      "meaning_vi": "xấu, tồi, trầm trọng, khủng khiếp",
+      "example_en": "He sings badly, but he loves singing.",
+      "example_vi": "Anh ấy hát dở nhưng rất thích hát."
+    },
+    {
+      "word": "belong",
+      "part_of_speech": "verb",
+      "ipa": "/bɪˈlɔŋ/",
+      "meaning_vi": "thuộc về",
+      "example_en": "This umbrella doesn't belong to me.",
+      "example_vi": "Cây dù này không thuộc về tôi."
+    },
+    {
+      "word": "continue",
+      "part_of_speech": "verb",
+      "ipa": "/kənˈtɪnjuː/",
+      "meaning_vi": "tiếp tục, vẫn cứ",
+      "example_en": "Let's continue the lesson after lunch.",
+      "example_vi": "Chúng ta tiếp tục bài học sau bữa trưa nhé."
+    },
+    {
+      "word": "error",
+      "part_of_speech": "noun",
+      "ipa": "/ˈerə/",
+      "meaning_vi": "sự sai sót, lỗi",
+      "example_en": "There is an error in this sentence.",
+      "example_vi": "Có một lỗi trong câu này."
+    },
+    {
+      "word": "experience",
+      "part_of_speech": "noun",
+      "ipa": "/ɪkˈspɪərɪən(t)s/",
+      "meaning_vi": "kinh nghiệm",
+      "example_en": "She has five years of experience in teaching.",
+      "example_vi": "Cô ấy có năm năm kinh nghiệm giảng dạy."
+    },
+    {
+      "word": "field",
+      "part_of_speech": "noun",
+      "ipa": "/fiːld/",
+      "meaning_vi": "cánh đồng, khu khai thác",
+      "example_en": "The cows are eating grass in the field.",
+      "example_vi": "Đàn bò đang ăn cỏ ngoài đồng."
+    },
+    {
+      "word": "hurt",
+      "part_of_speech": "noun",
+      "ipa": "/hɜːt/",
+      "meaning_vi": "bị thương, bị đau",
+      "example_en": "My legs hurt after the long walk.",
+      "example_vi": "Chân tôi đau sau chuyến đi bộ dài."
+    },
+    {
+      "word": "judgment",
+      "part_of_speech": "noun",
+      "ipa": "/ˈʤʌʤmənt/",
+      "meaning_vi": "sự xét xử, quyết định của tòa án, ý kiến",
+      "example_en": "Trust your own judgment when choosing.",
+      "example_vi": "Hãy tin vào phán đoán của chính mình khi lựa chọn."
+    },
+    {
+      "word": "likely",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈlaɪklɪ/",
+      "meaning_vi": "rất có thể, dường như, có lẽ đúng, thích hợp",
+      "example_en": "It is likely to rain this afternoon.",
+      "example_vi": "Chiều nay rất có thể trời sẽ mưa."
+    },
+    {
+      "word": "normal",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈnɔːm(ə)l/",
+      "meaning_vi": "bình thường, thông thường",
+      "example_en": "It's normal to feel tired after work.",
+      "example_vi": "Cảm thấy mệt sau giờ làm là chuyện bình thường."
+    },
+    {
+      "word": "rare",
+      "part_of_speech": "adjective",
+      "ipa": "/reə/",
+      "meaning_vi": "hiếm, ít có",
+      "example_en": "Snow is very rare in this city.",
+      "example_vi": "Tuyết rất hiếm ở thành phố này."
+    },
+    {
+      "word": "relax",
+      "part_of_speech": "verb",
+      "ipa": "/rɪˈlæks/",
+      "meaning_vi": "thư giãn, nghỉ ngơi",
+      "example_en": "I listen to music to relax at night.",
+      "example_vi": "Tôi nghe nhạc để thư giãn vào buổi tối."
+    },
+    {
+      "word": "request",
+      "part_of_speech": "noun",
+      "ipa": "/rɪˈkwest/",
+      "meaning_vi": "đề nghị, thỉnh cầu",
+      "example_en": "The hotel accepted my request for a quiet room.",
+      "example_vi": "Khách sạn chấp nhận yêu cầu phòng yên tĩnh của tôi."
+    },
+    {
+      "word": "reside",
+      "part_of_speech": "verb",
+      "ipa": "/rɪˈzaɪd/",
+      "meaning_vi": "ở tại, trú ngụ",
+      "example_en": "Many students reside near the university.",
+      "example_vi": "Nhiều sinh viên cư trú gần trường đại học."
+    },
+    {
+      "word": "result",
+      "part_of_speech": "noun",
+      "ipa": "/rɪˈzʌlt/",
+      "meaning_vi": "kết quả",
+      "example_en": "The result of the match surprised everyone.",
+      "example_vi": "Kết quả trận đấu làm mọi người bất ngờ."
+    },
+    {
+      "word": "roll",
+      "part_of_speech": "noun",
+      "ipa": "/rəul/",
+      "meaning_vi": "lăn, cuốn",
+      "example_en": "The ball started to roll down the hill.",
+      "example_vi": "Quả bóng bắt đầu lăn xuống đồi."
+    },
+    {
+      "word": "since",
+      "part_of_speech": "adverb",
+      "ipa": "/sɪn(t)s/",
+      "meaning_vi": "từ khi, từ lúc",
+      "example_en": "I have lived here since 2020.",
+      "example_vi": "Tôi sống ở đây từ năm 2020."
+    },
+    {
+      "word": "visible",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈvɪzəbl/",
+      "meaning_vi": "(có thể) thấy được",
+      "example_en": "The mountain is visible from my window.",
+      "example_vi": "Ngọn núi có thể nhìn thấy từ cửa sổ nhà tôi."
+    },
+    {
+      "word": "wild",
+      "part_of_speech": "adjective",
+      "ipa": "/waɪld/",
+      "meaning_vi": "hoang dã, chưa thuần",
+      "example_en": "Wild animals live freely in the forest.",
+      "example_vi": "Động vật hoang dã sống tự do trong rừng."
+    },
+    {
+      "word": "advantage",
+      "part_of_speech": "noun",
+      "ipa": "/ədˈvɑːntɪʤ/",
+      "meaning_vi": "lợi thế, ưu điểm",
+      "example_en": "Speaking English is a big advantage at work.",
+      "example_vi": "Biết nói tiếng Anh là một lợi thế lớn trong công việc."
+    },
+    {
+      "word": "cause",
+      "part_of_speech": "noun",
+      "ipa": "/kɔːz/",
+      "meaning_vi": "gây ra, gây nên",
+      "example_en": "Heavy rain can cause floods.",
+      "example_vi": "Mưa lớn có thể gây ra lũ lụt."
+    },
+    {
+      "word": "choice",
+      "part_of_speech": "noun",
+      "ipa": "/ʧɔɪs/",
+      "meaning_vi": "sự lựa chọn",
+      "example_en": "You have two choices: stay or go.",
+      "example_vi": "Bạn có hai lựa chọn: ở lại hoặc đi."
+    },
+    {
+      "word": "community",
+      "part_of_speech": "noun",
+      "ipa": "/kəˈmjuːnətɪ/",
+      "meaning_vi": "cộng đồng",
+      "example_en": "Everyone in the community helped clean the beach.",
+      "example_vi": "Mọi người trong cộng đồng cùng dọn sạch bãi biển."
+    },
+    {
+      "word": "dead",
+      "part_of_speech": "adjective",
+      "ipa": "/ded/",
+      "meaning_vi": "chết",
+      "example_en": "The plant is dead because nobody watered it.",
+      "example_vi": "Cái cây chết rồi vì không ai tưới nước."
+    },
+    {
+      "word": "distance",
+      "part_of_speech": "noun",
+      "ipa": "/ˈdɪst(ə)n(t)s/",
+      "meaning_vi": "khoảng cách, quãng đường",
+      "example_en": "The distance from here to school is two kilometers.",
+      "example_vi": "Khoảng cách từ đây đến trường là hai ki-lô-mét."
+    },
+    {
+      "word": "escape",
+      "part_of_speech": "noun",
+      "ipa": "/ɪsˈkeɪp/",
+      "meaning_vi": "trốn thoát, thoát ra",
+      "example_en": "The bird escaped from its cage.",
+      "example_vi": "Con chim đã trốn thoát khỏi lồng."
+    },
+    {
+      "word": "face",
+      "part_of_speech": "noun",
+      "ipa": "/feɪs/",
+      "meaning_vi": "đương đầu, đối mặt",
+      "example_en": "You have to face your problems, not run away.",
+      "example_vi": "Bạn phải đối mặt với vấn đề, đừng chạy trốn."
+    },
+    {
+      "word": "follow",
+      "part_of_speech": "noun",
+      "ipa": "/ˈfɔləu/",
+      "meaning_vi": "đi theo, theo đuổi",
+      "example_en": "Please follow me, the room is this way.",
+      "example_vi": "Xin đi theo tôi, căn phòng ở hướng này."
+    },
+    {
+      "word": "fright",
+      "part_of_speech": "noun",
+      "ipa": "/fraɪt/",
+      "meaning_vi": "sự hoảng sợ",
+      "example_en": "The loud thunder gave me a fright.",
+      "example_vi": "Tiếng sấm lớn làm tôi hoảng sợ."
+    },
+    {
+      "word": "ghost",
+      "part_of_speech": "noun",
+      "ipa": "/gəust/",
+      "meaning_vi": "con ma",
+      "example_en": "Do you believe in ghosts?",
+      "example_vi": "Bạn có tin vào ma không?"
+    },
+    {
+      "word": "individual",
+      "part_of_speech": "adjective",
+      "ipa": "/ˌɪndɪˈvɪʤuəl/",
+      "meaning_vi": "riêng lẻ, riêng biệt",
+      "example_en": "Each individual student gets their own book.",
+      "example_vi": "Mỗi học sinh riêng lẻ đều có sách của mình."
+    },
+    {
+      "word": "pet",
+      "part_of_speech": "noun",
+      "ipa": "/pet/",
+      "meaning_vi": "vật nuôi, thú cưng",
+      "example_en": "My favorite pet is a small white cat.",
+      "example_vi": "Thú cưng tôi thích nhất là một chú mèo trắng nhỏ."
+    },
+    {
+      "word": "reach",
+      "part_of_speech": "noun",
+      "ipa": "/riːʧ/",
+      "meaning_vi": "đạt tới, chạm tới, đến, tới",
+      "example_en": "I can't reach the top shelf.",
+      "example_vi": "Tôi không với tới được ngăn trên cùng."
+    },
+    {
+      "word": "return",
+      "part_of_speech": "noun",
+      "ipa": "/rɪˈtɜːn/",
+      "meaning_vi": "trở lại, trở về",
+      "example_en": "She will return from her trip on Sunday.",
+      "example_vi": "Cô ấy sẽ trở về từ chuyến đi vào Chủ nhật."
+    },
+    {
+      "word": "survive",
+      "part_of_speech": "verb",
+      "ipa": "/səˈvaɪv/",
+      "meaning_vi": "sống sót, tồn tại",
+      "example_en": "Camels can survive many days without water.",
+      "example_vi": "Lạc đà có thể sống sót nhiều ngày không cần nước."
+    },
+    {
+      "word": "upset",
+      "part_of_speech": "verb",
+      "ipa": "/ʌpˈset/",
+      "meaning_vi": "thất vọng, buồn",
+      "example_en": "He was upset about losing his phone.",
+      "example_vi": "Anh ấy buồn vì làm mất điện thoại."
+    },
+    {
+      "word": "voice",
+      "part_of_speech": "noun",
+      "ipa": "/vɔɪs/",
+      "meaning_vi": "giọng nói",
+      "example_en": "The singer has a beautiful voice.",
+      "example_vi": "Ca sĩ ấy có giọng hát rất đẹp."
+    },
+    {
+      "word": "weather",
+      "part_of_speech": "noun",
+      "ipa": "/ˈweðə/",
+      "meaning_vi": "thời tiết",
+      "example_en": "The weather is perfect for a picnic today.",
+      "example_vi": "Hôm nay thời tiết rất đẹp để đi dã ngoại."
+    },
+    {
+      "word": "wise",
+      "part_of_speech": "adjective",
+      "ipa": "/waɪz/",
+      "meaning_vi": "khôn ngoan, uyên bác",
+      "example_en": "My grandfather gives very wise advice.",
+      "example_vi": "Ông tôi cho những lời khuyên rất khôn ngoan."
+    },
+    {
+      "word": "allow",
+      "part_of_speech": "verb",
+      "ipa": "/əˈlau/",
+      "meaning_vi": "cho phép",
+      "example_en": "My parents allow me to play games on weekends.",
+      "example_vi": "Bố mẹ cho phép tôi chơi game vào cuối tuần."
+    },
+    {
+      "word": "announce",
+      "part_of_speech": "verb",
+      "ipa": "/əˈnaun(t)s/",
+      "meaning_vi": "công bố, thông báo",
+      "example_en": "The school will announce the winners tomorrow.",
+      "example_vi": "Nhà trường sẽ công bố người thắng cuộc vào ngày mai."
+    },
+    {
+      "word": "beside",
+      "part_of_speech": "preposition",
+      "ipa": "/bɪˈsaɪd/",
+      "meaning_vi": "bên cạnh",
+      "example_en": "The lamp is beside the bed.",
+      "example_vi": "Cây đèn ở bên cạnh giường."
+    },
+    {
+      "word": "challenge",
+      "part_of_speech": "noun",
+      "ipa": "/ˈʧælɪnʤ/",
+      "meaning_vi": "thử thách, thách thức",
+      "example_en": "Learning a new language is a big challenge.",
+      "example_vi": "Học một ngôn ngữ mới là một thử thách lớn."
+    },
+    {
+      "word": "claim",
+      "part_of_speech": "noun",
+      "ipa": "/kleɪm/",
+      "meaning_vi": "xác nhận, đòi hỏi",
+      "example_en": "He claims that he saw a shark near the beach.",
+      "example_vi": "Anh ấy khẳng định đã thấy cá mập gần bãi biển."
+    },
+    {
+      "word": "condition",
+      "part_of_speech": "noun",
+      "ipa": "/kənˈdɪʃ(ə)n/",
+      "meaning_vi": "điều kiện, hoàn cảnh",
+      "example_en": "The old bike is still in good condition.",
+      "example_vi": "Chiếc xe đạp cũ vẫn còn ở tình trạng tốt."
+    },
+    {
+      "word": "contribute",
+      "part_of_speech": "verb",
+      "ipa": "/ˈkɔntrɪbjuːt/",
+      "meaning_vi": "đóng góp, góp phần",
+      "example_en": "Everyone contributed money to help the family.",
+      "example_vi": "Mọi người đóng góp tiền để giúp gia đình đó."
+    },
+    {
+      "word": "difference",
+      "part_of_speech": "noun",
+      "ipa": "/ˈdɪf(ə)r(ə)n(t)s/",
+      "meaning_vi": "sự khác nhau, sự chênh lệch",
+      "example_en": "What is the difference between these two words?",
+      "example_vi": "Sự khác nhau giữa hai từ này là gì?"
+    },
+    {
+      "word": "divide",
+      "part_of_speech": "verb",
+      "ipa": "/dɪˈvaɪd/",
+      "meaning_vi": "chia, chia ra",
+      "example_en": "Divide the cake into eight pieces.",
+      "example_vi": "Hãy chia cái bánh thành tám phần."
+    },
+    {
+      "word": "expert",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈekspɜːt/",
+      "meaning_vi": "chuyên gia",
+      "example_en": "She is an expert in children's health.",
+      "example_vi": "Cô ấy là chuyên gia về sức khỏe trẻ em."
+    },
+    {
+      "word": "famous",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈfeɪməs/",
+      "meaning_vi": "nổi tiếng",
+      "example_en": "Ha Long Bay is famous around the world.",
+      "example_vi": "Vịnh Hạ Long nổi tiếng khắp thế giới."
+    },
+    {
+      "word": "force",
+      "part_of_speech": "noun",
+      "ipa": "/fɔːs/",
+      "meaning_vi": "lực, sức mạnh",
+      "example_en": "The force of the wind broke the old tree.",
+      "example_vi": "Sức mạnh của cơn gió đã quật gãy cái cây già."
+    },
+    {
+      "word": "harm",
+      "part_of_speech": "noun",
+      "ipa": "/hɑːm/",
+      "meaning_vi": "hại, tổn hại",
+      "example_en": "Smoking does great harm to your health.",
+      "example_vi": "Hút thuốc gây hại lớn cho sức khỏe của bạn."
+    },
+    {
+      "word": "lay",
+      "part_of_speech": "noun",
+      "ipa": "/leɪ/",
+      "meaning_vi": "bày, nằm",
+      "example_en": "She lay the baby gently on the bed.",
+      "example_vi": "Cô ấy nhẹ nhàng đặt em bé lên giường."
+    },
+    {
+      "word": "peace",
+      "part_of_speech": "noun",
+      "ipa": "/piːs/",
+      "meaning_vi": "hoà bình",
+      "example_en": "Everyone wants to live in peace.",
+      "example_vi": "Ai cũng muốn sống trong hòa bình."
+    },
+    {
+      "word": "prince",
+      "part_of_speech": "noun",
+      "ipa": "/prɪn(t)s/",
+      "meaning_vi": "hoàng tử",
+      "example_en": "The prince became king after his father.",
+      "example_vi": "Hoàng tử trở thành vua sau cha mình."
+    },
+    {
+      "word": "protect",
+      "part_of_speech": "verb",
+      "ipa": "/prəˈtekt/",
+      "meaning_vi": "bảo vệ",
+      "example_en": "Helmets protect your head when you ride.",
+      "example_vi": "Mũ bảo hiểm bảo vệ đầu bạn khi đi xe."
+    },
+    {
+      "word": "sense",
+      "part_of_speech": "noun",
+      "ipa": "/sen(t)s/",
+      "meaning_vi": "cảm nhận, cảm thấy",
+      "example_en": "I had a sense that someone was watching.",
+      "example_vi": "Tôi cảm thấy như có ai đó đang nhìn."
+    },
+    {
+      "word": "sudden",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈsʌd(ə)n/",
+      "meaning_vi": "thình lình, đột ngột",
+      "example_en": "A sudden storm stopped the football match.",
+      "example_vi": "Một cơn bão bất ngờ làm trận bóng phải dừng."
+    },
+    {
+      "word": "therefore",
+      "part_of_speech": "adverb",
+      "ipa": "/ˈðeəfɔː/",
+      "meaning_vi": "vì thế",
+      "example_en": "He was sick, therefore he stayed home.",
+      "example_vi": "Anh ấy bị ốm, vì thế anh ấy ở nhà."
+    },
+    {
+      "word": "accept",
+      "part_of_speech": "verb",
+      "ipa": "/əkˈsept/",
+      "meaning_vi": "chấp nhận, chấp thuận",
+      "example_en": "She accepted the job offer happily.",
+      "example_vi": "Cô ấy vui vẻ chấp nhận lời mời làm việc."
+    },
+    {
+      "word": "arrange",
+      "part_of_speech": "verb",
+      "ipa": "/əˈreɪnʤ/",
+      "meaning_vi": "sắp xếp, sắp đặt",
+      "example_en": "Let me arrange the chairs before the guests come.",
+      "example_vi": "Để tôi sắp xếp ghế trước khi khách đến."
+    },
+    {
+      "word": "attend",
+      "part_of_speech": "verb",
+      "ipa": "/əˈtend/",
+      "meaning_vi": "tham dự, có mặt",
+      "example_en": "All students must attend the morning class.",
+      "example_vi": "Tất cả học sinh phải tham dự lớp buổi sáng."
+    },
+    {
+      "word": "balance",
+      "part_of_speech": "noun",
+      "ipa": "/ˈbæləns/",
+      "meaning_vi": "cân bằng",
+      "example_en": "It's hard to keep your balance on ice.",
+      "example_vi": "Rất khó giữ thăng bằng trên băng."
+    },
+    {
+      "word": "contrast",
+      "part_of_speech": "noun",
+      "ipa": "/ˈkɔntrɑːst/",
+      "meaning_vi": "sự tương phản, sự trái ngược",
+      "example_en": "The contrast between day and night here is huge.",
+      "example_vi": "Sự tương phản giữa ngày và đêm ở đây rất lớn."
+    },
+    {
+      "word": "encourage",
+      "part_of_speech": "verb",
+      "ipa": "/ɪnˈkʌrɪʤ/",
+      "meaning_vi": "khuyến khích, động viên",
+      "example_en": "Good teachers encourage students to ask questions.",
+      "example_vi": "Giáo viên giỏi khuyến khích học sinh đặt câu hỏi."
+    },
+    {
+      "word": "familiar",
+      "part_of_speech": "adjective",
+      "ipa": "/fəˈmɪlɪə/",
+      "meaning_vi": "thân thuộc, quen thuộc",
+      "example_en": "This song sounds familiar to me.",
+      "example_vi": "Bài hát này nghe quen thuộc với tôi."
+    },
+    {
+      "word": "grab",
+      "part_of_speech": "noun",
+      "ipa": "/græb/",
+      "meaning_vi": "chộp, tóm, hái",
+      "example_en": "He grabbed his bag and ran to the bus.",
+      "example_vi": "Anh ấy chộp lấy cái túi và chạy ra xe buýt."
+    },
+    {
+      "word": "hang",
+      "part_of_speech": "noun",
+      "ipa": "/hæŋ/",
+      "meaning_vi": "treo, mắc",
+      "example_en": "You can hang your coat behind the door.",
+      "example_vi": "Bạn có thể treo áo khoác sau cánh cửa."
+    },
+    {
+      "word": "huge",
+      "part_of_speech": "adjective",
+      "ipa": "/hjuːʤ/",
+      "meaning_vi": "đồ sộ, khổng lồ",
+      "example_en": "They live in a huge house near the lake.",
+      "example_vi": "Họ sống trong một ngôi nhà khổng lồ gần hồ."
+    },
+    {
+      "word": "necessary",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈnesəs(ə)rɪ/",
+      "meaning_vi": "cần thiết, thiết yếu",
+      "example_en": "Sleep is necessary for good health.",
+      "example_vi": "Giấc ngủ là cần thiết cho sức khỏe tốt."
+    },
+    {
+      "word": "pattern",
+      "part_of_speech": "noun",
+      "ipa": "/ˈpæt(ə)n/",
+      "meaning_vi": "mẫu, kiểu",
+      "example_en": "Her dress has a beautiful flower pattern.",
+      "example_vi": "Váy của cô ấy có họa tiết hoa rất đẹp."
+    },
+    {
+      "word": "propose",
+      "part_of_speech": "verb",
+      "ipa": "/prəˈpəuz/",
+      "meaning_vi": "đề xuất, đưa ra",
+      "example_en": "I propose that we start the meeting now.",
+      "example_vi": "Tôi đề xuất chúng ta bắt đầu cuộc họp ngay bây giờ."
+    },
+    {
+      "word": "purpose",
+      "part_of_speech": "noun",
+      "ipa": "/ˈpɜːpəs/",
+      "meaning_vi": "mục đích, ý định",
+      "example_en": "The purpose of this app is to help you learn.",
+      "example_vi": "Mục đích của ứng dụng này là giúp bạn học."
+    },
+    {
+      "word": "release",
+      "part_of_speech": "noun",
+      "ipa": "/rɪˈliːs/",
+      "meaning_vi": "giải thoát, phóng thích",
+      "example_en": "They will release the bird back into the forest.",
+      "example_vi": "Họ sẽ thả con chim về lại khu rừng."
+    },
+    {
+      "word": "require",
+      "part_of_speech": "verb",
+      "ipa": "/rɪˈkwaɪə/",
+      "meaning_vi": "đòi hỏi, yêu cầu",
+      "example_en": "This job requires good English skills.",
+      "example_vi": "Công việc này đòi hỏi kỹ năng tiếng Anh tốt."
+    },
+    {
+      "word": "single",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈsɪŋgl/",
+      "meaning_vi": "đơn, đơn lẻ, duy nhất; độc thân",
+      "example_en": "There was a single apple left on the table.",
+      "example_vi": "Chỉ còn lại một quả táo duy nhất trên bàn."
+    },
+    {
+      "word": "success",
+      "part_of_speech": "noun",
+      "ipa": "/səkˈses/",
+      "meaning_vi": "sự thành công, sự thắng lợi",
+      "example_en": "Hard work is the key to success.",
+      "example_vi": "Chăm chỉ là chìa khóa của thành công."
+    },
+    {
+      "word": "tear",
+      "part_of_speech": "noun",
+      "ipa": "/teə/",
+      "meaning_vi": "xé, làm rách, nước mắt",
+      "example_en": "Be careful not to tear the paper.",
+      "example_vi": "Cẩn thận đừng làm rách tờ giấy."
+    },
+    {
+      "word": "theory",
+      "part_of_speech": "noun",
+      "ipa": "/ˈθɪərɪ/",
+      "meaning_vi": "lý thuyết, học thuyết",
+      "example_en": "The teacher explained the theory with examples.",
+      "example_vi": "Thầy giáo giải thích lý thuyết bằng các ví dụ."
+    },
+    {
+      "word": "against",
+      "part_of_speech": "preposition",
+      "ipa": "/əˈgen(t)st/",
+      "meaning_vi": "chống lại, dựa vào",
+      "example_en": "Our team will play against the champions.",
+      "example_vi": "Đội chúng tôi sẽ đấu với đội vô địch."
+    },
+    {
+      "word": "beach",
+      "part_of_speech": "noun",
+      "ipa": "/biːʧ/",
+      "meaning_vi": "bãi biển",
+      "example_en": "We built sandcastles on the beach.",
+      "example_vi": "Chúng tôi xây lâu đài cát trên bãi biển."
+    },
+    {
+      "word": "damage",
+      "part_of_speech": "noun",
+      "ipa": "/ˈdæmɪʤ/",
+      "meaning_vi": "phá hủy, làm hư hại",
+      "example_en": "The storm damaged many houses.",
+      "example_vi": "Cơn bão làm hư hại nhiều ngôi nhà."
+    },
+    {
+      "word": "discover",
+      "part_of_speech": "verb",
+      "ipa": "/dɪˈskʌvə/",
+      "meaning_vi": "khám phá, tìm ra",
+      "example_en": "Scientists discovered a new kind of fish.",
+      "example_vi": "Các nhà khoa học phát hiện một loài cá mới."
+    },
+    {
+      "word": "emotion",
+      "part_of_speech": "noun",
+      "ipa": "/ɪˈməuʃ(ə)n/",
+      "meaning_vi": "cảm xúc",
+      "example_en": "Music can express strong emotions.",
+      "example_vi": "Âm nhạc có thể diễn tả những cảm xúc mạnh mẽ."
+    },
+    {
+      "word": "fix",
+      "part_of_speech": "verb",
+      "ipa": "/fɪks/",
+      "meaning_vi": "đóng, gắn, sửa chữa",
+      "example_en": "My father fixed the broken chair.",
+      "example_vi": "Bố tôi đã sửa cái ghế hỏng."
+    },
+    {
+      "word": "frank",
+      "part_of_speech": "verb",
+      "ipa": "/fræŋk/",
+      "meaning_vi": "thẳng thắn, bộc trực",
+      "example_en": "To be frank, I don't like this color.",
+      "example_vi": "Nói thẳng thì tôi không thích màu này."
+    },
+    {
+      "word": "identify",
+      "part_of_speech": "verb",
+      "ipa": "/aɪˈdentɪfaɪ/",
+      "meaning_vi": "nhận biết,nhận ra",
+      "example_en": "Can you identify your bag among these?",
+      "example_vi": "Bạn có thể nhận ra túi của mình trong số này không?"
+    },
+    {
+      "word": "island",
+      "part_of_speech": "noun",
+      "ipa": "/ˈaɪlənd/",
+      "meaning_vi": "hòn đảo",
+      "example_en": "Phu Quoc is a beautiful island in Vietnam.",
+      "example_vi": "Phú Quốc là một hòn đảo đẹp của Việt Nam."
+    },
+    {
+      "word": "ocean",
+      "part_of_speech": "noun",
+      "ipa": "/ˈəuʃ(ə)n/",
+      "meaning_vi": "đại dương",
+      "example_en": "The Pacific is the largest ocean on Earth.",
+      "example_vi": "Thái Bình Dương là đại dương lớn nhất Trái Đất."
+    },
+    {
+      "word": "perhaps",
+      "part_of_speech": "adverb",
+      "ipa": "/pəˈhæps/",
+      "meaning_vi": "có lẽ",
+      "example_en": "Perhaps we should wait for the rain to stop.",
+      "example_vi": "Có lẽ chúng ta nên đợi mưa tạnh."
+    },
+    {
+      "word": "pleasant",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈplez(ə)nt/",
+      "meaning_vi": "vui vẻ, dễ thương",
+      "example_en": "We had a pleasant evening by the river.",
+      "example_vi": "Chúng tôi có một buổi tối dễ chịu bên bờ sông."
+    },
+    {
+      "word": "prevent",
+      "part_of_speech": "verb",
+      "ipa": "/prɪˈvent/",
+      "meaning_vi": "ngăn chặn",
+      "example_en": "Washing hands helps prevent sickness.",
+      "example_vi": "Rửa tay giúp ngăn ngừa bệnh tật."
+    },
+    {
+      "word": "rock",
+      "part_of_speech": "noun",
+      "ipa": "/rɔk/",
+      "meaning_vi": "hòn đá",
+      "example_en": "The children climbed on the big rocks.",
+      "example_vi": "Bọn trẻ trèo lên những tảng đá lớn."
+    },
+    {
+      "word": "save",
+      "part_of_speech": "noun",
+      "ipa": "/seɪv/",
+      "meaning_vi": "cứu, giúp",
+      "example_en": "The doctor saved the boy's life.",
+      "example_vi": "Bác sĩ đã cứu sống cậu bé."
+    },
+    {
+      "word": "step",
+      "part_of_speech": "noun",
+      "ipa": "/step/",
+      "meaning_vi": "bước chân",
+      "example_en": "Take one step forward, please.",
+      "example_vi": "Xin hãy bước lên một bước."
+    },
+    {
+      "word": "still",
+      "part_of_speech": "adjective",
+      "ipa": "/stɪl/",
+      "meaning_vi": "vẫn cứ, vẫn còn",
+      "example_en": "My grandmother is seventy, but she still works.",
+      "example_vi": "Bà tôi bảy mươi tuổi nhưng vẫn còn làm việc."
+    },
+    {
+      "word": "taste",
+      "part_of_speech": "noun",
+      "ipa": "/teɪst/",
+      "meaning_vi": "vị, nếm",
+      "example_en": "This soup tastes really good.",
+      "example_vi": "Món súp này có vị rất ngon."
+    },
+    {
+      "word": "throw",
+      "part_of_speech": "noun",
+      "ipa": "/θrəu/",
+      "meaning_vi": "ném, vứt, quăng",
+      "example_en": "Don't throw trash on the street.",
+      "example_vi": "Đừng vứt rác ra đường."
+    },
+    {
+      "word": "wave",
+      "part_of_speech": "noun",
+      "ipa": "/weɪv/",
+      "meaning_vi": "sóng, làn sóng",
+      "example_en": "The waves were high because of the wind.",
+      "example_vi": "Sóng biển dâng cao vì gió lớn."
+    },
+    {
+      "word": "benefit",
+      "part_of_speech": "noun",
+      "ipa": "/ˈbenɪfɪt/",
+      "meaning_vi": "lợi ích",
+      "example_en": "Exercise brings many benefits to your body.",
+      "example_vi": "Tập thể dục mang lại nhiều lợi ích cho cơ thể."
+    },
+    {
+      "word": "certain",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈsɜːt(ə)n/",
+      "meaning_vi": "chắc chắn, tin cậy",
+      "example_en": "I am certain that I locked the door.",
+      "example_vi": "Tôi chắc chắn là mình đã khóa cửa."
+    },
+    {
+      "word": "chance",
+      "part_of_speech": "noun",
+      "ipa": "/ʧɑːn(t)s/",
+      "meaning_vi": "cơ hội, số phận",
+      "example_en": "This is your chance to try something new.",
+      "example_vi": "Đây là cơ hội để bạn thử điều mới."
+    },
+    {
+      "word": "effect",
+      "part_of_speech": "noun",
+      "ipa": "/ɪˈfekt/",
+      "meaning_vi": "hiệu quả, tác dụng",
+      "example_en": "The medicine had a quick effect.",
+      "example_vi": "Thuốc có tác dụng nhanh."
+    },
+    {
+      "word": "essential",
+      "part_of_speech": "adjective",
+      "ipa": "/ɪˈsen(t)ʃ(ə)l/",
+      "meaning_vi": "thiết yếu, chủ yếu",
+      "example_en": "Water is essential for all living things.",
+      "example_vi": "Nước là thứ thiết yếu cho mọi sinh vật."
+    },
+    {
+      "word": "far",
+      "part_of_speech": "adjective",
+      "ipa": "/fɑː/",
+      "meaning_vi": "xa, xa xôi",
+      "example_en": "The market is not far from my house.",
+      "example_vi": "Chợ không xa nhà tôi lắm."
+    },
+    {
+      "word": "focus",
+      "part_of_speech": "noun",
+      "ipa": "/ˈfəukəs/",
+      "meaning_vi": "tập trung",
+      "example_en": "Turn off your phone and focus on studying.",
+      "example_vi": "Hãy tắt điện thoại và tập trung học."
+    },
+    {
+      "word": "function",
+      "part_of_speech": "noun",
+      "ipa": "/ˈfʌŋkʃ(ə)n/",
+      "meaning_vi": "hàm số; chức năng",
+      "example_en": "The main function of the heart is to pump blood.",
+      "example_vi": "Chức năng chính của tim là bơm máu."
+    },
+    {
+      "word": "grass",
+      "part_of_speech": "noun",
+      "ipa": "/grɑːs/",
+      "meaning_vi": "cỏ, bâi cỏ",
+      "example_en": "The kids are playing on the green grass.",
+      "example_vi": "Bọn trẻ đang chơi trên bãi cỏ xanh."
+    },
+    {
+      "word": "guard",
+      "part_of_speech": "noun",
+      "ipa": "/gɑːd/",
+      "meaning_vi": "bảo vệ, canh gác",
+      "example_en": "A guard stands at the gate all night.",
+      "example_vi": "Một bảo vệ đứng ở cổng suốt đêm."
+    },
+    {
+      "word": "image",
+      "part_of_speech": "noun",
+      "ipa": "/ˈɪmɪʤ/",
+      "meaning_vi": "hình ảnh",
+      "example_en": "The book has many colorful images.",
+      "example_vi": "Cuốn sách có nhiều hình ảnh đầy màu sắc."
+    },
+    {
+      "word": "immediate",
+      "part_of_speech": "adjective",
+      "ipa": "/ɪˈmiːdɪət/",
+      "meaning_vi": "lập tức, tức thì",
+      "example_en": "The medicine gave immediate relief.",
+      "example_vi": "Thuốc giúp giảm đau ngay lập tức."
+    },
+    {
+      "word": "primary",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈpraɪm(ə)rɪ/",
+      "meaning_vi": "gốc, căn bản",
+      "example_en": "My primary goal this year is to learn English.",
+      "example_vi": "Mục tiêu chính của tôi năm nay là học tiếng Anh."
+    },
+    {
+      "word": "proud",
+      "part_of_speech": "adjective",
+      "ipa": "/praud/",
+      "meaning_vi": "tự hào; hãnh diện",
+      "example_en": "Her parents are proud of her results.",
+      "example_vi": "Bố mẹ cô ấy tự hào về kết quả của cô."
+    },
+    {
+      "word": "remain",
+      "part_of_speech": "noun",
+      "ipa": "/rɪˈmeɪn/",
+      "meaning_vi": "vẫn, còn lại",
+      "example_en": "Only two cookies remain in the box.",
+      "example_vi": "Chỉ còn lại hai cái bánh quy trong hộp."
+    },
+    {
+      "word": "rest",
+      "part_of_speech": "noun",
+      "ipa": "/rest/",
+      "meaning_vi": "(n): sự nghỉ ngơi; (v): nghỉ ngơi",
+      "example_en": "You should rest after the long flight.",
+      "example_vi": "Bạn nên nghỉ ngơi sau chuyến bay dài."
+    },
+    {
+      "word": "separate",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈsep(ə)rət/",
+      "meaning_vi": "riêng rẽ, riêng biệt",
+      "example_en": "Keep the fruit in a separate bag.",
+      "example_vi": "Hãy để trái cây vào một túi riêng."
+    },
+    {
+      "word": "site",
+      "part_of_speech": "noun",
+      "ipa": "/saɪt/",
+      "meaning_vi": "nơi, chỗ, vị trí",
+      "example_en": "This is the site of the new school.",
+      "example_vi": "Đây là vị trí của ngôi trường mới."
+    },
+    {
+      "word": "tail",
+      "part_of_speech": "noun",
+      "ipa": "/teɪl/",
+      "meaning_vi": "đuôi, đoạn cuối",
+      "example_en": "The dog wags its tail when it's happy.",
+      "example_vi": "Con chó vẫy đuôi khi nó vui."
+    },
+    {
+      "word": "trouble",
+      "part_of_speech": "noun",
+      "ipa": "/ˈtrʌbl/",
+      "meaning_vi": "sự trục trặc, sự rắc rối",
+      "example_en": "I have trouble remembering new words.",
+      "example_vi": "Tôi gặp khó khăn khi nhớ từ mới."
+    },
+    {
+      "word": "anymore",
+      "part_of_speech": "adverb",
+      "ipa": "/ˌenɪˈmɔː/",
+      "meaning_vi": "nữa",
+      "example_en": "We don't live in that city anymore.",
+      "example_vi": "Chúng tôi không còn sống ở thành phố đó nữa."
+    },
+    {
+      "word": "asleep",
+      "part_of_speech": "adverb",
+      "ipa": "/əˈsliːp/",
+      "meaning_vi": "ngủ, đang ngủ",
+      "example_en": "The baby fell asleep in the car.",
+      "example_vi": "Em bé đã ngủ thiếp đi trên xe."
+    },
+    {
+      "word": "berry",
+      "part_of_speech": "noun",
+      "ipa": "/ˈberɪ/",
+      "meaning_vi": "quả dâu tây",
+      "example_en": "These red berries are sweet and juicy.",
+      "example_vi": "Những quả mọng đỏ này ngọt và mọng nước."
+    },
+    {
+      "word": "collect",
+      "part_of_speech": "verb",
+      "ipa": "/kəˈlekt/",
+      "meaning_vi": "thu thập, sưu tầm",
+      "example_en": "My sister collects old coins.",
+      "example_vi": "Chị tôi sưu tầm tiền xu cổ."
+    },
+    {
+      "word": "compete",
+      "part_of_speech": "verb",
+      "ipa": "/kəmˈpiːt/",
+      "meaning_vi": "ganh đua, cạnh tranh",
+      "example_en": "Ten schools will compete in the contest.",
+      "example_vi": "Mười trường sẽ tranh tài trong cuộc thi."
+    },
+    {
+      "word": "conversation",
+      "part_of_speech": "noun",
+      "ipa": "/ˌkɔnvəˈseɪʃ(ə)n/",
+      "meaning_vi": "cuộc chuyện trò, đàm luận, đàm thoại",
+      "example_en": "We had a long conversation about our future.",
+      "example_vi": "Chúng tôi có một cuộc trò chuyện dài về tương lai."
+    },
+    {
+      "word": "creature",
+      "part_of_speech": "noun",
+      "ipa": "/ˈkriːʧə/",
+      "meaning_vi": "sinh vật, loài vật",
+      "example_en": "The deep sea is full of strange creatures.",
+      "example_vi": "Biển sâu đầy những sinh vật kỳ lạ."
+    },
+    {
+      "word": "decision",
+      "part_of_speech": "noun",
+      "ipa": "/dɪˈsɪʒn/",
+      "meaning_vi": "sự quyết định",
+      "example_en": "Choosing a university is a big decision.",
+      "example_vi": "Chọn trường đại học là một quyết định lớn."
+    },
+    {
+      "word": "either",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈaɪðə/",
+      "meaning_vi": "một (trong hai)",
+      "example_en": "You can take either road; both go to town.",
+      "example_vi": "Bạn có thể đi đường nào cũng được; cả hai đều tới thị trấn."
+    },
+    {
+      "word": "forest",
+      "part_of_speech": "noun",
+      "ipa": "/ˈfɔrɪst/",
+      "meaning_vi": "rừng",
+      "example_en": "Many wild animals live in the forest.",
+      "example_vi": "Nhiều động vật hoang dã sống trong rừng."
+    },
+    {
+      "word": "ground",
+      "part_of_speech": "adjective",
+      "ipa": "/graund/",
+      "meaning_vi": "mặt đất, đất",
+      "example_en": "The leaves fell to the ground.",
+      "example_vi": "Lá cây rơi xuống mặt đất."
+    },
+    {
+      "word": "introduce",
+      "part_of_speech": "verb",
+      "ipa": "/ˌɪntrəˈdjuːs/",
+      "meaning_vi": "giới thiệu",
+      "example_en": "Let me introduce you to my friend Lan.",
+      "example_vi": "Để tôi giới thiệu bạn với Lan, bạn của tôi."
+    },
+    {
+      "word": "marry",
+      "part_of_speech": "verb",
+      "ipa": "/ˈmærɪ/",
+      "meaning_vi": "cưới (vợ), lấy (chồng)",
+      "example_en": "They will marry next spring.",
+      "example_vi": "Họ sẽ kết hôn vào mùa xuân tới."
+    },
+    {
+      "word": "prepare",
+      "part_of_speech": "verb",
+      "ipa": "/prɪˈpeə/",
+      "meaning_vi": "chuẩn bị, sửa soạn",
+      "example_en": "Mom is preparing dinner in the kitchen.",
+      "example_vi": "Mẹ đang chuẩn bị bữa tối trong bếp."
+    },
+    {
+      "word": "sail",
+      "part_of_speech": "noun",
+      "ipa": "/seɪl/",
+      "meaning_vi": "điều khiển, lái (thuyền buồm)",
+      "example_en": "We sailed along the coast for two days.",
+      "example_vi": "Chúng tôi giong buồm dọc bờ biển trong hai ngày."
+    },
+    {
+      "word": "serious",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈsɪərɪəs/",
+      "meaning_vi": "nghiêm trọng",
+      "example_en": "It's just a small cut, nothing serious.",
+      "example_vi": "Chỉ là vết cắt nhỏ, không có gì nghiêm trọng."
+    },
+    {
+      "word": "spend",
+      "part_of_speech": "verb",
+      "ipa": "/spend/",
+      "meaning_vi": "tiêu (tiền), dùng (thì giờ)",
+      "example_en": "I spend an hour learning English every day.",
+      "example_vi": "Tôi dành một giờ học tiếng Anh mỗi ngày."
+    },
+    {
+      "word": "strange",
+      "part_of_speech": "adjective",
+      "ipa": "/streɪnʤ/",
+      "meaning_vi": "xa lạ",
+      "example_en": "I heard a strange sound last night.",
+      "example_vi": "Tối qua tôi nghe thấy một âm thanh kỳ lạ."
+    },
+    {
+      "word": "truth",
+      "part_of_speech": "noun",
+      "ipa": "/truːθ/",
+      "meaning_vi": "sự thật, lẽ phải",
+      "example_en": "Please tell me the truth.",
+      "example_vi": "Xin hãy nói cho tôi sự thật."
+    },
+    {
+      "word": "wake",
+      "part_of_speech": "noun",
+      "ipa": "/weɪk/",
+      "meaning_vi": "thức giấc, đánh thức",
+      "example_en": "I wake up at six every morning.",
+      "example_vi": "Tôi thức dậy lúc sáu giờ mỗi sáng."
+    },
+    {
+      "word": "alone",
+      "part_of_speech": "adverb",
+      "ipa": "/əˈləun/",
+      "meaning_vi": "một mình, trơ trọi",
+      "example_en": "She likes traveling alone.",
+      "example_vi": "Cô ấy thích đi du lịch một mình."
+    },
+    {
+      "word": "apartment",
+      "part_of_speech": "noun",
+      "ipa": "/əˈpɑːtmənt/",
+      "meaning_vi": "căn hộ",
+      "example_en": "They rent a small apartment downtown.",
+      "example_vi": "Họ thuê một căn hộ nhỏ ở trung tâm."
+    },
+    {
+      "word": "article",
+      "part_of_speech": "noun",
+      "ipa": "/ˈɑːtɪkl/",
+      "meaning_vi": "bài báo, điều khoản",
+      "example_en": "I read an interesting article about health.",
+      "example_vi": "Tôi đọc một bài báo thú vị về sức khỏe."
+    },
+    {
+      "word": "artist",
+      "part_of_speech": "noun",
+      "ipa": "/ˈɑːtɪst/",
+      "meaning_vi": "nghệ sĩ, họa sĩ",
+      "example_en": "The artist painted the old town beautifully.",
+      "example_vi": "Người nghệ sĩ vẽ khu phố cổ rất đẹp."
+    },
+    {
+      "word": "attitude",
+      "part_of_speech": "noun",
+      "ipa": "/ˈætɪt(j)uːd/",
+      "meaning_vi": "thái độ, quan điểm",
+      "example_en": "A good attitude makes work easier.",
+      "example_vi": "Thái độ tốt làm công việc dễ dàng hơn."
+    },
+    {
+      "word": "compare",
+      "part_of_speech": "verb",
+      "ipa": "/kəmˈpeə/",
+      "meaning_vi": "so sánh",
+      "example_en": "Compare the prices before you buy.",
+      "example_vi": "Hãy so sánh giá trước khi mua."
+    },
+    {
+      "word": "judge",
+      "part_of_speech": "noun",
+      "ipa": "/ˈʤʌʤ/",
+      "meaning_vi": "xét xử, phán đoán, đánh giá",
+      "example_en": "Don't judge people by their clothes.",
+      "example_vi": "Đừng đánh giá con người qua quần áo."
+    },
+    {
+      "word": "magazine",
+      "part_of_speech": "noun",
+      "ipa": "/ˌmægəˈziːn/",
+      "meaning_vi": "tạp chí",
+      "example_en": "She reads a fashion magazine every month.",
+      "example_vi": "Cô ấy đọc tạp chí thời trang mỗi tháng."
+    },
+    {
+      "word": "material",
+      "part_of_speech": "adjective",
+      "ipa": "/məˈtɪərɪəl/",
+      "meaning_vi": "vật chất, vật liệu",
+      "example_en": "This shirt is made of soft material.",
+      "example_vi": "Chiếc áo này được may từ chất liệu mềm."
+    },
+    {
+      "word": "meal",
+      "part_of_speech": "noun",
+      "ipa": "/miːl/",
+      "meaning_vi": "bữa ăn",
+      "example_en": "Breakfast is my favorite meal of the day.",
+      "example_vi": "Bữa sáng là bữa ăn tôi thích nhất trong ngày."
+    },
+    {
+      "word": "method",
+      "part_of_speech": "noun",
+      "ipa": "/ˈmeθəd/",
+      "meaning_vi": "phương pháp, cách thức",
+      "example_en": "This method of learning words really works.",
+      "example_vi": "Phương pháp học từ này thật sự hiệu quả."
+    },
+    {
+      "word": "neighbor",
+      "part_of_speech": "noun",
+      "ipa": "/ˈneɪbə/",
+      "meaning_vi": "người hàng xóm",
+      "example_en": "Our neighbor waters our plants when we travel.",
+      "example_vi": "Hàng xóm tưới cây giúp khi chúng tôi đi vắng."
+    },
+    {
+      "word": "professional",
+      "part_of_speech": "adjective",
+      "ipa": "/prəˈfeʃ(ə)n(ə)l/",
+      "meaning_vi": "chuyên nghiệp",
+      "example_en": "He is a professional football player.",
+      "example_vi": "Anh ấy là cầu thủ bóng đá chuyên nghiệp."
+    },
+    {
+      "word": "profit",
+      "part_of_speech": "noun",
+      "ipa": "/ˈprɔfɪt/",
+      "meaning_vi": "tiền lãi, lợi ích",
+      "example_en": "The shop made a good profit this month.",
+      "example_vi": "Cửa hàng thu được lợi nhuận tốt trong tháng này."
+    },
+    {
+      "word": "quality",
+      "part_of_speech": "noun",
+      "ipa": "/ˈkwɔlətɪ/",
+      "meaning_vi": "chất lượng, phẩm chất",
+      "example_en": "This phone is cheap but good quality.",
+      "example_vi": "Chiếc điện thoại này rẻ nhưng chất lượng tốt."
+    },
+    {
+      "word": "shape",
+      "part_of_speech": "noun",
+      "ipa": "/ʃeɪp/",
+      "meaning_vi": "hình dạng, hình thù",
+      "example_en": "The cake has the shape of a heart.",
+      "example_vi": "Chiếc bánh có hình trái tim."
+    },
+    {
+      "word": "space",
+      "part_of_speech": "noun",
+      "ipa": "/speɪs/",
+      "meaning_vi": "không gian",
+      "example_en": "Astronauts travel into space by rocket.",
+      "example_vi": "Các phi hành gia bay vào không gian bằng tên lửa."
+    },
+    {
+      "word": "stair",
+      "part_of_speech": "noun",
+      "ipa": "/steə/",
+      "meaning_vi": "bậc thang, cầu thang",
+      "example_en": "Be careful on the wet stairs.",
+      "example_vi": "Cẩn thận cầu thang trơn ướt."
+    },
+    {
+      "word": "symbol",
+      "part_of_speech": "noun",
+      "ipa": "/ˈsɪmb(ə)l/",
+      "meaning_vi": "ký hiệu, vật tượng trưng",
+      "example_en": "The dove is a symbol of peace.",
+      "example_vi": "Chim bồ câu là biểu tượng của hòa bình."
+    },
+    {
+      "word": "thin",
+      "part_of_speech": "adjective",
+      "ipa": "/θɪn/",
+      "meaning_vi": "gầy, mảnh khảnh",
+      "example_en": "The ice on the lake is too thin to walk on.",
+      "example_vi": "Lớp băng trên hồ quá mỏng để đi lên."
+    },
+    {
+      "word": "blood",
+      "part_of_speech": "noun",
+      "ipa": "/blʌd/",
+      "meaning_vi": "máu, nhựa cậy",
+      "example_en": "Donating blood can save lives.",
+      "example_vi": "Hiến máu có thể cứu sống nhiều người."
+    },
+    {
+      "word": "burn",
+      "part_of_speech": "noun",
+      "ipa": "/bɜːn/",
+      "meaning_vi": "đốt cháy, nung",
+      "example_en": "Dry wood burns very fast.",
+      "example_vi": "Gỗ khô cháy rất nhanh."
+    },
+    {
+      "word": "cell",
+      "part_of_speech": "noun",
+      "ipa": "/sel/",
+      "meaning_vi": "phòng nhỏ, xà lim, ngăn nhỏ",
+      "example_en": "The human body has billions of cells.",
+      "example_vi": "Cơ thể người có hàng tỷ tế bào."
+    },
+    {
+      "word": "contain",
+      "part_of_speech": "verb",
+      "ipa": "/kənˈteɪn/",
+      "meaning_vi": "chứa đựng, gồm có",
+      "example_en": "This bottle contains two liters of water.",
+      "example_vi": "Chai này chứa hai lít nước."
+    },
+    {
+      "word": "correct",
+      "part_of_speech": "adjective",
+      "ipa": "/kəˈrekt/",
+      "meaning_vi": "đúng, chính xác",
+      "example_en": "All of her answers were correct.",
+      "example_vi": "Tất cả câu trả lời của cô ấy đều đúng."
+    },
+    {
+      "word": "crop",
+      "part_of_speech": "noun",
+      "ipa": "/krɔp/",
+      "meaning_vi": "vụ mùa, cây lương thực",
+      "example_en": "Farmers harvested the rice crop in June.",
+      "example_vi": "Nông dân thu hoạch vụ lúa vào tháng Sáu."
+    },
+    {
+      "word": "demand",
+      "part_of_speech": "noun",
+      "ipa": "/dɪˈmɑːnd/",
+      "meaning_vi": "yêu cầu, nhu cầu",
+      "example_en": "The demand for clean water is growing.",
+      "example_vi": "Nhu cầu về nước sạch đang tăng lên."
+    },
+    {
+      "word": "equal",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈiːkwəl/",
+      "meaning_vi": "ngang, bằng",
+      "example_en": "Cut the pizza into six equal parts.",
+      "example_vi": "Hãy cắt bánh pizza thành sáu phần bằng nhau."
+    },
+    {
+      "word": "feed",
+      "part_of_speech": "noun",
+      "ipa": "/fiːd/",
+      "meaning_vi": "cho ăn, nuôi nấng",
+      "example_en": "I feed the fish twice a day.",
+      "example_vi": "Tôi cho cá ăn hai lần mỗi ngày."
+    },
+    {
+      "word": "hole",
+      "part_of_speech": "noun",
+      "ipa": "/həul/",
+      "meaning_vi": "hố, lỗ thủng",
+      "example_en": "There is a hole in my sock.",
+      "example_vi": "Tất của tôi bị thủng một lỗ."
+    },
+    {
+      "word": "increase",
+      "part_of_speech": "noun",
+      "ipa": "/ˈɪnkriːs/",
+      "meaning_vi": "tăng lên, tăng thêm",
+      "example_en": "Bus ticket prices will increase next month.",
+      "example_vi": "Giá vé xe buýt sẽ tăng vào tháng tới."
+    },
+    {
+      "word": "lord",
+      "part_of_speech": "noun",
+      "ipa": "/lɔːd/",
+      "meaning_vi": "chúa tể",
+      "example_en": "The lord owned all the land around the castle.",
+      "example_vi": "Vị lãnh chúa sở hữu toàn bộ đất quanh lâu đài."
+    },
+    {
+      "word": "owe",
+      "part_of_speech": "verb",
+      "ipa": "/əu/",
+      "meaning_vi": "nợ, hàm ơn",
+      "example_en": "I owe you ten thousand dong for the coffee.",
+      "example_vi": "Tôi nợ bạn mười nghìn đồng tiền cà phê."
+    },
+    {
+      "word": "position",
+      "part_of_speech": "noun",
+      "ipa": "/pəˈzɪʃ(ə)n/",
+      "meaning_vi": "vị trí, chỗ",
+      "example_en": "Move the table to a new position.",
+      "example_vi": "Hãy chuyển cái bàn sang vị trí mới."
+    },
+    {
+      "word": "raise",
+      "part_of_speech": "verb",
+      "ipa": "/reɪz/",
+      "meaning_vi": "nâng lên, đỡ dậy",
+      "example_en": "Raise your hand if you know the answer.",
+      "example_vi": "Hãy giơ tay nếu bạn biết câu trả lời."
+    },
+    {
+      "word": "responsible",
+      "part_of_speech": "adjective",
+      "ipa": "/rɪˈspɔn(t)səbl/",
+      "meaning_vi": "chịu trách nhiệm",
+      "example_en": "Parents are responsible for their children.",
+      "example_vi": "Cha mẹ chịu trách nhiệm về con cái mình."
+    },
+    {
+      "word": "sight",
+      "part_of_speech": "noun",
+      "ipa": "/saɪt/",
+      "meaning_vi": "cảnh đẹp",
+      "example_en": "The sunrise over the sea is a beautiful sight.",
+      "example_vi": "Cảnh mặt trời mọc trên biển thật đẹp."
+    },
+    {
+      "word": "spot",
+      "part_of_speech": "noun",
+      "ipa": "/spɔt/",
+      "meaning_vi": "nơi, chốn",
+      "example_en": "This is a good spot for our picnic.",
+      "example_vi": "Đây là một chỗ tốt để chúng ta dã ngoại."
+    },
+    {
+      "word": "structure",
+      "part_of_speech": "noun",
+      "ipa": "/ˈstrʌkʧə/",
+      "meaning_vi": "kết cấu, cấu trúc",
+      "example_en": "The bridge has a very strong structure.",
+      "example_vi": "Cây cầu có kết cấu rất vững chắc."
+    },
+    {
+      "word": "whole",
+      "part_of_speech": "adjective",
+      "ipa": "/həul/",
+      "meaning_vi": "toàn bộ",
+      "example_en": "He ate the whole cake by himself.",
+      "example_vi": "Anh ấy ăn hết cả cái bánh một mình."
+    },
+    {
+      "word": "coach",
+      "part_of_speech": "noun",
+      "ipa": "/kəuʧ/",
+      "meaning_vi": "huấn luyện viên",
+      "example_en": "Our coach makes us practice every morning.",
+      "example_vi": "Huấn luyện viên bắt chúng tôi tập mỗi sáng."
+    },
+    {
+      "word": "control",
+      "part_of_speech": "noun",
+      "ipa": "/kənˈtrəul/",
+      "meaning_vi": "điều khiển",
+      "example_en": "It's hard to control a class of forty kids.",
+      "example_vi": "Thật khó điều khiển một lớp bốn mươi đứa trẻ."
+    },
+    {
+      "word": "description",
+      "part_of_speech": "noun",
+      "ipa": "/dɪˈskrɪpʃ(ə)n/",
+      "meaning_vi": "sự diễn tả, sự mô tả",
+      "example_en": "Write a short description of your hometown.",
+      "example_vi": "Hãy viết một đoạn mô tả ngắn về quê bạn."
+    },
+    {
+      "word": "direct",
+      "part_of_speech": "verb",
+      "ipa": "/dɪˈrekt],[daɪ-/",
+      "meaning_vi": "thẳng, trực tiếp",
+      "example_en": "Which is the most direct way to the station?",
+      "example_vi": "Đường nào đến nhà ga trực tiếp nhất?"
+    },
+    {
+      "word": "exam",
+      "part_of_speech": "noun",
+      "ipa": "/ɪgˈzæm/",
+      "meaning_vi": "sự thi cử; kỳ thi",
+      "example_en": "The final exam is next Friday.",
+      "example_vi": "Kỳ thi cuối kỳ là thứ Sáu tới."
+    },
+    {
+      "word": "example",
+      "part_of_speech": "noun",
+      "ipa": "/ɪgˈzɑːmpl/",
+      "meaning_vi": "thí dụ, ví dụ",
+      "example_en": "Give me an example of this word.",
+      "example_vi": "Hãy cho tôi một ví dụ với từ này."
+    },
+    {
+      "word": "limit",
+      "part_of_speech": "noun",
+      "ipa": "/ˈlɪmɪt/",
+      "meaning_vi": "giới hạn, hạn chế",
+      "example_en": "There is a speed limit on this road.",
+      "example_vi": "Con đường này có giới hạn tốc độ."
+    },
+    {
+      "word": "local",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈləuk(ə)l/",
+      "meaning_vi": "địa phương",
+      "example_en": "We ate dinner at a local restaurant.",
+      "example_vi": "Chúng tôi ăn tối ở một nhà hàng địa phương."
+    },
+    {
+      "word": "magical",
+      "part_of_speech": "noun",
+      "ipa": "/ˈmæʤɪk(ə)l/",
+      "meaning_vi": "ma thuật, kỳ diệu",
+      "example_en": "The old forest feels magical at night.",
+      "example_vi": "Khu rừng già mang vẻ kỳ diệu về đêm."
+    },
+    {
+      "word": "mail",
+      "part_of_speech": "noun",
+      "ipa": "/meil/",
+      "meaning_vi": "thư từ, bưu phẩm",
+      "example_en": "The mail arrives at nine in the morning.",
+      "example_vi": "Thư từ được giao lúc chín giờ sáng."
+    },
+    {
+      "word": "novel",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈnɔv(ə)l/",
+      "meaning_vi": "tiểu thuyết",
+      "example_en": "She is reading a long novel about the war.",
+      "example_vi": "Cô ấy đang đọc một cuốn tiểu thuyết dài về chiến tranh."
+    },
+    {
+      "word": "outline",
+      "part_of_speech": "noun",
+      "ipa": "/ˈautlaɪn/",
+      "meaning_vi": "phác thảo",
+      "example_en": "Make an outline before you write the essay.",
+      "example_vi": "Hãy lập dàn ý trước khi viết bài luận."
+    },
+    {
+      "word": "poet",
+      "part_of_speech": "noun",
+      "ipa": "/ˈpəuɪt/",
+      "meaning_vi": "nhà thơ, thi sĩ",
+      "example_en": "The poet wrote about love and nature.",
+      "example_vi": "Nhà thơ viết về tình yêu và thiên nhiên."
+    },
+    {
+      "word": "print",
+      "part_of_speech": "noun",
+      "ipa": "/prɪnt/",
+      "meaning_vi": "in, viết",
+      "example_en": "Please print two copies of this file.",
+      "example_vi": "Vui lòng in hai bản của tệp này."
+    },
+    {
+      "word": "scene",
+      "part_of_speech": "noun",
+      "ipa": "/siːn/",
+      "meaning_vi": "phân cảnh",
+      "example_en": "The last scene of the movie made me cry.",
+      "example_vi": "Cảnh cuối của bộ phim làm tôi khóc."
+    },
+    {
+      "word": "sheet",
+      "part_of_speech": "noun",
+      "ipa": "/ʃiːt/",
+      "meaning_vi": "lá, tấm, phiến, tờ",
+      "example_en": "Take a clean sheet of paper.",
+      "example_vi": "Hãy lấy một tờ giấy trắng."
+    },
+    {
+      "word": "silly",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈsɪlɪ/",
+      "meaning_vi": "ngớ ngẩn, khờ dại",
+      "example_en": "It was a silly mistake, don't worry.",
+      "example_vi": "Đó là một lỗi ngớ ngẩn thôi, đừng lo."
+    },
+    {
+      "word": "store",
+      "part_of_speech": "noun",
+      "ipa": "/stɔː/",
+      "meaning_vi": "cửa hàng, tiệm tạp hóa",
+      "example_en": "The store closes at ten at night.",
+      "example_vi": "Cửa hàng đóng cửa lúc mười giờ tối."
+    },
+    {
+      "word": "suffer",
+      "part_of_speech": "verb",
+      "ipa": "/ˈsʌfə/",
+      "meaning_vi": "chịu đựng, lướt sóng",
+      "example_en": "Many people suffer from back pain.",
+      "example_vi": "Nhiều người chịu đựng chứng đau lưng."
+    },
+    {
+      "word": "technology",
+      "part_of_speech": "noun",
+      "ipa": "/tekˈnɔləʤɪ/",
+      "meaning_vi": "công nghệ",
+      "example_en": "Technology changes the way we learn.",
+      "example_vi": "Công nghệ thay đổi cách chúng ta học."
+    },
+    {
+      "word": "across",
+      "part_of_speech": "adverb",
+      "ipa": "/əˈkrɔs/",
+      "meaning_vi": "qua, ngang qua",
+      "example_en": "The bakery is across the street.",
+      "example_vi": "Tiệm bánh ở bên kia đường."
+    },
+    {
+      "word": "breathe",
+      "part_of_speech": "verb",
+      "ipa": "/briːð/",
+      "meaning_vi": "hít, thở",
+      "example_en": "Breathe deeply and count to ten.",
+      "example_vi": "Hãy hít thở sâu và đếm đến mười."
+    },
+    {
+      "word": "characteristic",
+      "part_of_speech": "adjective",
+      "ipa": "/ˌkærəktəˈrɪstɪk/",
+      "meaning_vi": "đặc tính, đặc điểm",
+      "example_en": "Patience is a characteristic of good teachers.",
+      "example_vi": "Kiên nhẫn là một đặc điểm của giáo viên giỏi."
+    },
+    {
+      "word": "consume",
+      "part_of_speech": "verb",
+      "ipa": "/kənˈsjuːm/",
+      "meaning_vi": "tiêu thụ",
+      "example_en": "This car consumes a lot of fuel.",
+      "example_vi": "Chiếc xe này tiêu thụ rất nhiều nhiên liệu."
+    },
+    {
+      "word": "excite",
+      "part_of_speech": "verb",
+      "ipa": "/ɪkˈsaɪt/",
+      "meaning_vi": "phấn khích",
+      "example_en": "The trip to the zoo excites the children.",
+      "example_vi": "Chuyến đi sở thú làm bọn trẻ phấn khích."
+    },
+    {
+      "word": "extreme",
+      "part_of_speech": "adjective",
+      "ipa": "/ɪksˈtriːm], [ek-/",
+      "meaning_vi": "vô cùng, khắc nghiệt",
+      "example_en": "The desert has extreme heat in summer.",
+      "example_vi": "Sa mạc nóng khắc nghiệt vào mùa hè."
+    },
+    {
+      "word": "fear",
+      "part_of_speech": "noun",
+      "ipa": "/fɪə/",
+      "meaning_vi": "sự sợ hãi",
+      "example_en": "Her biggest fear is speaking in public.",
+      "example_vi": "Nỗi sợ lớn nhất của cô ấy là nói trước đám đông."
+    },
+    {
+      "word": "fortunate",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈfɔːʧ(ə)nət/",
+      "meaning_vi": "may mắn",
+      "example_en": "We were fortunate to catch the last bus.",
+      "example_vi": "Chúng tôi may mắn bắt kịp chuyến xe buýt cuối."
+    },
+    {
+      "word": "happen",
+      "part_of_speech": "verb",
+      "ipa": "/ˈhæp(ə)n/",
+      "meaning_vi": "tình cờ, xảy ra",
+      "example_en": "What happened to your bike?",
+      "example_vi": "Chuyện gì đã xảy ra với xe đạp của bạn vậy?"
+    },
+    {
+      "word": "length",
+      "part_of_speech": "noun",
+      "ipa": "/leŋ(k)θ/",
+      "meaning_vi": "chiều dài, độ dài",
+      "example_en": "The length of the table is two meters.",
+      "example_vi": "Chiều dài cái bàn là hai mét."
+    },
+    {
+      "word": "mistake",
+      "part_of_speech": "noun",
+      "ipa": "/mɪˈsteɪk/",
+      "meaning_vi": "lỗi, sai lầm",
+      "example_en": "Making mistakes is part of learning.",
+      "example_vi": "Mắc lỗi là một phần của việc học."
+    },
+    {
+      "word": "observe",
+      "part_of_speech": "verb",
+      "ipa": "/əbˈzɜːv/",
+      "meaning_vi": "quan sát, nhận xét",
+      "example_en": "We observed the stars through a telescope.",
+      "example_vi": "Chúng tôi quan sát các vì sao qua kính thiên văn."
+    },
+    {
+      "word": "opportunity",
+      "part_of_speech": "noun",
+      "ipa": "/ˌɔpəˈtjuːnətɪ/",
+      "meaning_vi": "cơ hội, thời cơ",
+      "example_en": "This job is a great opportunity for you.",
+      "example_vi": "Công việc này là cơ hội tuyệt vời cho bạn."
+    },
+    {
+      "word": "prize",
+      "part_of_speech": "noun",
+      "ipa": "/praɪz/",
+      "meaning_vi": "giải thưởng, phần thưởng",
+      "example_en": "She won first prize in the singing contest.",
+      "example_vi": "Cô ấy giành giải nhất cuộc thi hát."
+    },
+    {
+      "word": "race",
+      "part_of_speech": "noun",
+      "ipa": "/reɪs/",
+      "meaning_vi": "cuộc đua",
+      "example_en": "He came second in the bicycle race.",
+      "example_vi": "Anh ấy về nhì trong cuộc đua xe đạp."
+    },
+    {
+      "word": "realize",
+      "part_of_speech": "verb",
+      "ipa": "/ˈrɪəlaɪz/",
+      "meaning_vi": "nhận ra, nhận thức",
+      "example_en": "I realized I had left my wallet at home.",
+      "example_vi": "Tôi nhận ra mình đã để quên ví ở nhà."
+    },
+    {
+      "word": "respond",
+      "part_of_speech": "verb",
+      "ipa": "/rɪˈspɔnd/",
+      "meaning_vi": "đáp lại, hưởng ứng",
+      "example_en": "She didn't respond to my email.",
+      "example_vi": "Cô ấy không phản hồi email của tôi."
+    },
+    {
+      "word": "risk",
+      "part_of_speech": "noun",
+      "ipa": "/rɪsk/",
+      "meaning_vi": "mạo hiểm, rủi ro",
+      "example_en": "Climbing without a rope is a big risk.",
+      "example_vi": "Leo núi không dây là một rủi ro lớn."
+    },
+    {
+      "word": "wonder",
+      "part_of_speech": "noun",
+      "ipa": "/ˈwʌndə/",
+      "meaning_vi": "muốn biết, tự hỏi",
+      "example_en": "I wonder why the sky is blue.",
+      "example_vi": "Tôi tự hỏi tại sao bầu trời màu xanh."
+    },
+    {
+      "word": "yet",
+      "part_of_speech": "adverb",
+      "ipa": "/jet/",
+      "meaning_vi": "chưa",
+      "example_en": "The bus hasn't arrived yet.",
+      "example_vi": "Xe buýt vẫn chưa đến."
+    },
+    {
+      "word": "academy",
+      "part_of_speech": "noun",
+      "ipa": "/əˈkædəmɪ/",
+      "meaning_vi": "học viện",
+      "example_en": "She studies music at a famous academy.",
+      "example_vi": "Cô ấy học nhạc tại một học viện nổi tiếng."
+    },
+    {
+      "word": "ancient",
+      "part_of_speech": "noun",
+      "ipa": "/ˈeɪn(t)ʃ(ə)nt/",
+      "meaning_vi": "cổ xưa",
+      "example_en": "We visited an ancient temple in Hue.",
+      "example_vi": "Chúng tôi thăm một ngôi đền cổ ở Huế."
+    },
+    {
+      "word": "board",
+      "part_of_speech": "noun",
+      "ipa": "/bɔːd/",
+      "meaning_vi": "bảng",
+      "example_en": "The teacher wrote the new words on the board.",
+      "example_vi": "Cô giáo viết từ mới lên bảng."
+    },
+    {
+      "word": "century",
+      "part_of_speech": "noun",
+      "ipa": "/ˈsenʧ(ə)rɪ/",
+      "meaning_vi": "thế kỷ",
+      "example_en": "This pagoda was built in the 11th century.",
+      "example_vi": "Ngôi chùa này được xây vào thế kỷ 11."
+    },
+    {
+      "word": "clue",
+      "part_of_speech": "noun",
+      "ipa": "/kluː/",
+      "meaning_vi": "manh mối, đầu mối",
+      "example_en": "The police found an important clue.",
+      "example_vi": "Cảnh sát tìm thấy một manh mối quan trọng."
+    },
+    {
+      "word": "concert",
+      "part_of_speech": "noun",
+      "ipa": "/ˈkɔnsət/",
+      "meaning_vi": "buổi hoà nhạc (n), phối hợp/sắp đặt (v)",
+      "example_en": "Thousands of fans came to the concert.",
+      "example_vi": "Hàng nghìn người hâm mộ đến buổi hòa nhạc."
+    },
+    {
+      "word": "county",
+      "part_of_speech": "noun",
+      "ipa": "/ˈkauntɪ/",
+      "meaning_vi": "hạt, tỉnh (đơn vị hành chính)",
+      "example_en": "He grew up in a quiet county in England.",
+      "example_vi": "Anh ấy lớn lên ở một hạt yên bình nước Anh."
+    },
+    {
+      "word": "dictionary",
+      "part_of_speech": "noun",
+      "ipa": "/ˈdɪkʃ(ə)n(ə)rɪ/",
+      "meaning_vi": "từ điển",
+      "example_en": "Look up new words in the dictionary.",
+      "example_vi": "Hãy tra từ mới trong từ điển."
+    },
+    {
+      "word": "exist",
+      "part_of_speech": "verb",
+      "ipa": "/ɪgˈzɪst/",
+      "meaning_vi": "tồn tại, sống",
+      "example_en": "Do you think life exists on other planets?",
+      "example_vi": "Bạn nghĩ sự sống có tồn tại trên hành tinh khác không?"
+    },
+    {
+      "word": "flat",
+      "part_of_speech": "noun",
+      "ipa": "/flæt/",
+      "meaning_vi": "phẳng, căn hộ",
+      "example_en": "The land near the river is very flat.",
+      "example_vi": "Vùng đất gần sông rất bằng phẳng."
+    },
+    {
+      "word": "gentleman",
+      "part_of_speech": "noun",
+      "ipa": "/ˈʤentlmən/",
+      "meaning_vi": "quý ông",
+      "example_en": "The old gentleman opened the door for us.",
+      "example_vi": "Quý ông lớn tuổi mở cửa giúp chúng tôi."
+    },
+    {
+      "word": "hidden",
+      "part_of_speech": "noun",
+      "ipa": "/ˈhɪd(ə)n/",
+      "meaning_vi": "ẩn, trốn, nấp, che giấu",
+      "example_en": "The key was hidden under a rock.",
+      "example_vi": "Chiếc chìa khóa được giấu dưới một tảng đá."
+    },
+    {
+      "word": "maybe",
+      "part_of_speech": "adverb",
+      "ipa": "/ˈmeɪbɪ/",
+      "meaning_vi": "có lẽ",
+      "example_en": "Maybe we can meet again next week.",
+      "example_vi": "Có lẽ chúng ta có thể gặp lại vào tuần sau."
+    },
+    {
+      "word": "officer",
+      "part_of_speech": "noun",
+      "ipa": "/ˈɔfɪsə/",
+      "meaning_vi": "sĩ quan",
+      "example_en": "A police officer helped the lost child.",
+      "example_vi": "Một cảnh sát đã giúp đứa trẻ đi lạc."
+    },
+    {
+      "word": "original",
+      "part_of_speech": "adjective",
+      "ipa": "/əˈrɪʤ(ə)n(ə)l/",
+      "meaning_vi": "nguyên bản, nguyên gốc",
+      "example_en": "The original painting hangs in a museum.",
+      "example_vi": "Bức tranh nguyên bản được treo trong bảo tàng."
+    },
+    {
+      "word": "pound",
+      "part_of_speech": "noun",
+      "ipa": "/paund/",
+      "meaning_vi": "đánh đập, đóng (đinh), Pao (khoảng 450 gam)",
+      "example_en": "The heavy rain pounded on the roof.",
+      "example_vi": "Mưa lớn đập ầm ầm trên mái nhà."
+    },
+    {
+      "word": "process",
+      "part_of_speech": "noun",
+      "ipa": "/ˈprəuses/",
+      "meaning_vi": "quá trình",
+      "example_en": "Learning a language is a long process.",
+      "example_vi": "Học một ngôn ngữ là một quá trình dài."
+    },
+    {
+      "word": "publish",
+      "part_of_speech": "verb",
+      "ipa": "/ˈpʌblɪʃ/",
+      "meaning_vi": "xuất bản, công bố, ban hành",
+      "example_en": "The writer will publish a new book soon.",
+      "example_vi": "Nhà văn sẽ sớm xuất bản cuốn sách mới."
+    },
+    {
+      "word": "theater",
+      "part_of_speech": "noun",
+      "ipa": "/ˈθɪətə/",
+      "meaning_vi": "nhà hát, rạp hát",
+      "example_en": "We watched a play at the city theater.",
+      "example_vi": "Chúng tôi xem một vở kịch ở nhà hát thành phố."
+    },
+    {
+      "word": "wealth",
+      "part_of_speech": "noun",
+      "ipa": "/welθ/",
+      "meaning_vi": "sự giàu có, sự giàu sang",
+      "example_en": "Health is more important than wealth.",
+      "example_vi": "Sức khỏe quan trọng hơn sự giàu có."
+    },
+    {
+      "word": "appreciate",
+      "part_of_speech": "verb",
+      "ipa": "/əˈpriːʃɪeɪt/",
+      "meaning_vi": "đánh giá, nâng giá, tăng giá",
+      "example_en": "I really appreciate your help.",
+      "example_vi": "Tôi thật sự cảm kích sự giúp đỡ của bạn."
+    },
+    {
+      "word": "available",
+      "part_of_speech": "adjective",
+      "ipa": "/əˈveɪləbl/",
+      "meaning_vi": "sẵn sàng để dùng, sẵn có",
+      "example_en": "Is this shirt available in size M?",
+      "example_vi": "Chiếc áo này có sẵn cỡ M không?"
+    },
+    {
+      "word": "beat",
+      "part_of_speech": "noun",
+      "ipa": "/biːt/",
+      "meaning_vi": "đánh bại",
+      "example_en": "Our team beat them two to one.",
+      "example_vi": "Đội chúng tôi thắng họ hai một."
+    },
+    {
+      "word": "bright",
+      "part_of_speech": "adjective",
+      "ipa": "/braɪt/",
+      "meaning_vi": "sáng chói",
+      "example_en": "The room is bright in the morning.",
+      "example_vi": "Căn phòng sáng sủa vào buổi sáng."
+    },
+    {
+      "word": "celebrate",
+      "part_of_speech": "verb",
+      "ipa": "/ˈseləbreɪt/",
+      "meaning_vi": "làm lễ kỷ niệm, tán dương, ca tụng",
+      "example_en": "We celebrate Tet with our family.",
+      "example_vi": "Chúng tôi đón Tết cùng gia đình."
+    },
+    {
+      "word": "determine",
+      "part_of_speech": "verb",
+      "ipa": "/dɪˈtɜːmɪn/",
+      "meaning_vi": "xác định, định rõ, quyết định",
+      "example_en": "Your effort will determine your result.",
+      "example_vi": "Nỗ lực của bạn sẽ quyết định kết quả."
+    },
+    {
+      "word": "disappear",
+      "part_of_speech": "verb",
+      "ipa": "/ˌdɪsəˈpɪə/",
+      "meaning_vi": "biến mất",
+      "example_en": "The sun disappeared behind the clouds.",
+      "example_vi": "Mặt trời biến mất sau những đám mây."
+    },
+    {
+      "word": "else",
+      "part_of_speech": "adverb",
+      "ipa": "/els/",
+      "meaning_vi": "khác",
+      "example_en": "Do you want anything else?",
+      "example_vi": "Bạn có muốn gì khác nữa không?"
+    },
+    {
+      "word": "fair",
+      "part_of_speech": "noun",
+      "ipa": "/feə/",
+      "meaning_vi": "công bằng, hợp lý",
+      "example_en": "The referee made a fair decision.",
+      "example_vi": "Trọng tài đưa ra một quyết định công bằng."
+    },
+    {
+      "word": "flow",
+      "part_of_speech": "verb",
+      "ipa": "/fləu/",
+      "meaning_vi": "chảy, dòng chảy, lưu lượng",
+      "example_en": "The river flows through the old town.",
+      "example_vi": "Dòng sông chảy qua khu phố cổ."
+    },
+    {
+      "word": "forward",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈfɔːwəd/",
+      "meaning_vi": "phía trước",
+      "example_en": "She leaned forward to hear better.",
+      "example_vi": "Cô ấy nghiêng người về phía trước để nghe rõ hơn."
+    },
+    {
+      "word": "hill",
+      "part_of_speech": "noun",
+      "ipa": "/hɪl/",
+      "meaning_vi": "ngọn đồi",
+      "example_en": "Our house is on a small hill.",
+      "example_vi": "Nhà chúng tôi nằm trên một ngọn đồi nhỏ."
+    },
+    {
+      "word": "level",
+      "part_of_speech": "noun",
+      "ipa": "/ˈlev(ə)l/",
+      "meaning_vi": "mức, mức độ (n); phẳng, bằng (adj); làm phẳng, san bằng (v)",
+      "example_en": "The water level rose after the rain.",
+      "example_vi": "Mực nước dâng lên sau cơn mưa."
+    },
+    {
+      "word": "lone",
+      "part_of_speech": "adjective",
+      "ipa": "/ləun/",
+      "meaning_vi": "cô độc, bơ vơ, hiu quạnh",
+      "example_en": "A lone tree stood in the field.",
+      "example_vi": "Một cái cây đơn độc đứng giữa cánh đồng."
+    },
+    {
+      "word": "puddle",
+      "part_of_speech": "noun",
+      "ipa": "/ˈpʌdl/",
+      "meaning_vi": "vũng nước",
+      "example_en": "The child jumped into the puddle.",
+      "example_vi": "Đứa trẻ nhảy vào vũng nước."
+    },
+    {
+      "word": "response",
+      "part_of_speech": "noun",
+      "ipa": "/rɪˈspɔn(t)s/",
+      "meaning_vi": "trả lời, đáp lại",
+      "example_en": "I'm still waiting for a response from them.",
+      "example_vi": "Tôi vẫn đang đợi phản hồi từ họ."
+    },
+    {
+      "word": "season",
+      "part_of_speech": "noun",
+      "ipa": "/ˈsiːz(ə)n/",
+      "meaning_vi": "mùa trong năm",
+      "example_en": "Autumn is my favorite season.",
+      "example_vi": "Mùa thu là mùa tôi thích nhất."
+    },
+    {
+      "word": "solution",
+      "part_of_speech": "noun",
+      "ipa": "/səˈluːʃ(ə)n/",
+      "meaning_vi": "giải pháp, cách giải quyết",
+      "example_en": "We finally found a solution to the problem.",
+      "example_vi": "Cuối cùng chúng tôi tìm ra giải pháp cho vấn đề."
+    },
+    {
+      "word": "waste",
+      "part_of_speech": "adjective",
+      "ipa": "/weɪst/",
+      "meaning_vi": "lãng phí",
+      "example_en": "Don't waste water during the dry season.",
+      "example_vi": "Đừng lãng phí nước trong mùa khô."
+    },
+    {
+      "word": "whether",
+      "part_of_speech": "conjunction",
+      "ipa": "/ˈ(h)weðə/",
+      "meaning_vi": "không biết có không, giữa (cái này cái kia)...",
+      "example_en": "I don't know whether he will come.",
+      "example_vi": "Tôi không biết liệu anh ấy có đến không."
+    },
+    {
+      "word": "argue",
+      "part_of_speech": "verb",
+      "ipa": "/ˈɑːgjuː/",
+      "meaning_vi": "tranh cãi",
+      "example_en": "The two brothers often argue about football.",
+      "example_vi": "Hai anh em thường tranh cãi về bóng đá."
+    },
+    {
+      "word": "communicate",
+      "part_of_speech": "verb",
+      "ipa": "/kəˈmjuːnɪkeɪt/",
+      "meaning_vi": "liên lạc, giao tiếp",
+      "example_en": "We communicate mostly by messages.",
+      "example_vi": "Chúng tôi chủ yếu liên lạc qua tin nhắn."
+    },
+    {
+      "word": "crowd",
+      "part_of_speech": "noun",
+      "ipa": "/kraud/",
+      "meaning_vi": "đám đông",
+      "example_en": "A big crowd waited outside the stadium.",
+      "example_vi": "Một đám đông lớn chờ bên ngoài sân vận động."
+    },
+    {
+      "word": "depend",
+      "part_of_speech": "verb",
+      "ipa": "/dɪˈpend/",
+      "meaning_vi": "phụ thuộc, tuỳ thuộc",
+      "example_en": "Our picnic depends on the weather.",
+      "example_vi": "Buổi dã ngoại của chúng tôi phụ thuộc vào thời tiết."
+    },
+    {
+      "word": "dish",
+      "part_of_speech": "noun",
+      "ipa": "/dɪʃ/",
+      "meaning_vi": "đĩa (đựng thức ăn)",
+      "example_en": "Pho is my favorite Vietnamese dish.",
+      "example_vi": "Phở là món ăn Việt Nam tôi thích nhất."
+    },
+    {
+      "word": "empty",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈemptɪ/",
+      "meaning_vi": "rỗng, trống không",
+      "example_en": "The bottle is empty; please refill it.",
+      "example_vi": "Cái chai rỗng rồi; làm ơn đổ đầy lại."
+    },
+    {
+      "word": "exact",
+      "part_of_speech": "adjective",
+      "ipa": "/ɪgˈzækt/",
+      "meaning_vi": "chính xác, đúng đắn",
+      "example_en": "Can you tell me the exact time?",
+      "example_vi": "Bạn có thể cho tôi biết giờ chính xác không?"
+    },
+    {
+      "word": "fresh",
+      "part_of_speech": "adjective",
+      "ipa": "/freʃ/",
+      "meaning_vi": "tươi (hoa, rau, cá, thịt...), trong lành (không khí)",
+      "example_en": "I bought fresh vegetables at the market.",
+      "example_vi": "Tôi mua rau tươi ở chợ."
+    },
+    {
+      "word": "gather",
+      "part_of_speech": "verb",
+      "ipa": "/ˈgæðə/",
+      "meaning_vi": "thu thập, tập hợp",
+      "example_en": "The family gathers for dinner every Sunday.",
+      "example_vi": "Cả gia đình tụ họp ăn tối mỗi Chủ nhật."
+    },
+    {
+      "word": "indicate",
+      "part_of_speech": "verb",
+      "ipa": "/ˈɪndɪkeɪt/",
+      "meaning_vi": "cho biết, ra dấu, tỏ ra, biểu lộ",
+      "example_en": "Dark clouds indicate that rain is coming.",
+      "example_vi": "Mây đen báo hiệu trời sắp mưa."
+    },
+    {
+      "word": "item",
+      "part_of_speech": "noun",
+      "ipa": "/ˈaɪtəm/",
+      "meaning_vi": "món (ghi trong đơn hàng...), khoản, tiết mục",
+      "example_en": "Check every item on the list.",
+      "example_vi": "Hãy kiểm tra từng món trong danh sách."
+    },
+    {
+      "word": "offer",
+      "part_of_speech": "noun",
+      "ipa": "/ˈɔfə/",
+      "meaning_vi": "đưa ra đề nghị, đưa ra, chìa ra, biếu tặng",
+      "example_en": "They offered me a cup of tea.",
+      "example_vi": "Họ mời tôi một tách trà."
+    },
+    {
+      "word": "price",
+      "part_of_speech": "noun",
+      "ipa": "/praɪs/",
+      "meaning_vi": "giá ((nghĩa đen) & (nghĩa bóng))",
+      "example_en": "The price of gas went up again.",
+      "example_vi": "Giá xăng lại tăng."
+    },
+    {
+      "word": "product",
+      "part_of_speech": "noun",
+      "ipa": "/ˈprɔdʌkt/",
+      "meaning_vi": "sản phẩm, vật phẩm",
+      "example_en": "This shop sells products made in Vietnam.",
+      "example_vi": "Cửa hàng này bán các sản phẩm sản xuất tại Việt Nam."
+    },
+    {
+      "word": "property",
+      "part_of_speech": "noun",
+      "ipa": "/ˈprɔpətɪ/",
+      "meaning_vi": "tài sản, của cải",
+      "example_en": "That land is private property.",
+      "example_vi": "Mảnh đất đó là tài sản riêng."
+    },
+    {
+      "word": "purchase",
+      "part_of_speech": "noun",
+      "ipa": "/ˈpɜːʧəs/",
+      "meaning_vi": "mua, tậu",
+      "example_en": "You can purchase tickets online.",
+      "example_vi": "Bạn có thể mua vé trực tuyến."
+    },
+    {
+      "word": "recommend",
+      "part_of_speech": "verb",
+      "ipa": "/ˌrekəˈmend/",
+      "meaning_vi": "giới thiệu, khuyên bảo, khuyên dùng",
+      "example_en": "Can you recommend a good book for beginners?",
+      "example_vi": "Bạn có thể giới thiệu một cuốn sách hay cho người mới không?"
+    },
+    {
+      "word": "select",
+      "part_of_speech": "adjective",
+      "ipa": "/sɪˈlekt/",
+      "meaning_vi": "lựa chọn, chọn lọc, tuyển lựa",
+      "example_en": "Select the correct answer from the four choices.",
+      "example_vi": "Hãy chọn đáp án đúng trong bốn lựa chọn."
+    },
+    {
+      "word": "tool",
+      "part_of_speech": "noun",
+      "ipa": "/tuːl/",
+      "meaning_vi": "dụng cụ, đồ nghề",
+      "example_en": "A hammer is a useful tool.",
+      "example_vi": "Búa là một dụng cụ hữu ích."
+    },
+    {
+      "word": "treat",
+      "part_of_speech": "noun",
+      "ipa": "/triːt/",
+      "meaning_vi": "đối xử, đối đãi, cư xử, ăn ở",
+      "example_en": "She treats everyone with kindness.",
+      "example_vi": "Cô ấy đối xử tử tế với mọi người."
+    },
+    {
+      "word": "alive",
+      "part_of_speech": "adjective",
+      "ipa": "/əˈlaɪv/",
+      "meaning_vi": "còn sống, đang sống, còn tồn tại",
+      "example_en": "The old tree is still alive after the storm.",
+      "example_vi": "Cái cây cổ thụ vẫn còn sống sau cơn bão."
+    },
+    {
+      "word": "bone",
+      "part_of_speech": "noun",
+      "ipa": "/bəun/",
+      "meaning_vi": "xương",
+      "example_en": "The dog buried a bone in the garden.",
+      "example_vi": "Con chó chôn một khúc xương trong vườn."
+    },
+    {
+      "word": "bother",
+      "part_of_speech": "noun",
+      "ipa": "/ˈbɔðə/",
+      "meaning_vi": "làm phiền",
+      "example_en": "Sorry to bother you, but I need help.",
+      "example_vi": "Xin lỗi đã làm phiền, nhưng tôi cần giúp đỡ."
+    },
+    {
+      "word": "captain",
+      "part_of_speech": "noun",
+      "ipa": "/ˈkæptɪn/",
+      "meaning_vi": "thuyền trưởng, cơ trưởng",
+      "example_en": "The captain welcomed us onto the ship.",
+      "example_vi": "Thuyền trưởng chào đón chúng tôi lên tàu."
+    },
+    {
+      "word": "conclusion",
+      "part_of_speech": "noun",
+      "ipa": "/kənˈkluːʒ(ə)n/",
+      "meaning_vi": "sự kết luận, sự kết thúc, phần cuối",
+      "example_en": "Write your conclusion in the last paragraph.",
+      "example_vi": "Hãy viết phần kết luận ở đoạn cuối."
+    },
+    {
+      "word": "doubt",
+      "part_of_speech": "noun",
+      "ipa": "/daut/",
+      "meaning_vi": "sự nghi ngờ, sự ngờ vực",
+      "example_en": "There is no doubt that she will pass.",
+      "example_vi": "Không còn nghi ngờ gì nữa, cô ấy sẽ đỗ."
+    },
+    {
+      "word": "explore",
+      "part_of_speech": "verb",
+      "ipa": "/ɪkˈsplɔː/",
+      "meaning_vi": "khám phá, thăm dò, thám hiểm",
+      "example_en": "We explored the cave with flashlights.",
+      "example_vi": "Chúng tôi khám phá hang động với đèn pin."
+    },
+    {
+      "word": "foreign",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈfɔrɪn/",
+      "meaning_vi": "(thuộc) nước ngoài",
+      "example_en": "She speaks two foreign languages.",
+      "example_vi": "Cô ấy nói được hai ngoại ngữ."
+    },
+    {
+      "word": "glad",
+      "part_of_speech": "adjective",
+      "ipa": "/glæd/",
+      "meaning_vi": "vui mừng, sung sướng",
+      "example_en": "I'm glad you came to the party.",
+      "example_vi": "Tôi rất vui vì bạn đã đến bữa tiệc."
+    },
+    {
+      "word": "however",
+      "part_of_speech": "adverb",
+      "ipa": "/hauˈevə/",
+      "meaning_vi": "tuy nhiên",
+      "example_en": "The test was hard; however, I passed.",
+      "example_vi": "Bài kiểm tra khó; tuy nhiên, tôi đã vượt qua."
+    },
+    {
+      "word": "injustice",
+      "part_of_speech": "noun",
+      "ipa": "/ɪnˈʤʌstɪs/",
+      "meaning_vi": "sự bất công",
+      "example_en": "People protested against the injustice.",
+      "example_vi": "Người dân phản đối sự bất công."
+    },
+    {
+      "word": "international",
+      "part_of_speech": "adjective",
+      "ipa": "/ˌɪntəˈnæʃ(ə)n(ə)l/",
+      "meaning_vi": "(thuộc) quốc tế",
+      "example_en": "Our city will host an international festival.",
+      "example_vi": "Thành phố chúng tôi sẽ tổ chức một lễ hội quốc tế."
+    },
+    {
+      "word": "lawyer",
+      "part_of_speech": "noun",
+      "ipa": "/ˈlɔɪə], [ˈlɔːjə/",
+      "meaning_vi": "luật sư",
+      "example_en": "The lawyer explained the contract to us.",
+      "example_vi": "Luật sư giải thích bản hợp đồng cho chúng tôi."
+    },
+    {
+      "word": "mention",
+      "part_of_speech": "noun",
+      "ipa": "/ˈmenʃ(ə)n/",
+      "meaning_vi": "đề cập, nói đến, kể ra",
+      "example_en": "He didn't mention the price at all.",
+      "example_vi": "Anh ấy hoàn toàn không đề cập đến giá cả."
+    },
+    {
+      "word": "policy",
+      "part_of_speech": "noun",
+      "ipa": "/ˈpɔləsɪ/",
+      "meaning_vi": "chính sách",
+      "example_en": "The store has a clear return policy.",
+      "example_vi": "Cửa hàng có chính sách đổi trả rõ ràng."
+    },
+    {
+      "word": "social",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈsəuʃ(ə)l/",
+      "meaning_vi": "có tính chất xã hội",
+      "example_en": "Teenagers spend hours on social apps.",
+      "example_vi": "Thanh thiếu niên dành hàng giờ trên các ứng dụng xã hội."
+    },
+    {
+      "word": "speech",
+      "part_of_speech": "noun",
+      "ipa": "/spiːʧ/",
+      "meaning_vi": "bài nói chuyện, bài diễn văn",
+      "example_en": "The president gave a short speech.",
+      "example_vi": "Tổng thống đọc một bài diễn văn ngắn."
+    },
+    {
+      "word": "staff",
+      "part_of_speech": "noun",
+      "ipa": "/stɑːf/",
+      "meaning_vi": "nhân viên, nhóm nhân viên",
+      "example_en": "The hotel staff were very helpful.",
+      "example_vi": "Nhân viên khách sạn rất nhiệt tình."
+    },
+    {
+      "word": "toward",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈtəuəd/",
+      "meaning_vi": "về phía, hướng về",
+      "example_en": "The boat moved slowly toward the island.",
+      "example_vi": "Con thuyền tiến chậm về phía hòn đảo."
+    },
+    {
+      "word": "wood",
+      "part_of_speech": "noun",
+      "ipa": "/wud/",
+      "meaning_vi": "gỗ",
+      "example_en": "This table is made of dark wood.",
+      "example_vi": "Cái bàn này làm bằng gỗ sẫm màu."
+    },
+    {
+      "word": "achieve",
+      "part_of_speech": "verb",
+      "ipa": "/əˈʧiːv/",
+      "meaning_vi": "đạt được, giành được",
+      "example_en": "She worked hard to achieve her dream.",
+      "example_vi": "Cô ấy làm việc chăm chỉ để đạt được ước mơ."
+    },
+    {
+      "word": "advise",
+      "part_of_speech": "verb",
+      "ipa": "/ədˈvaɪz/",
+      "meaning_vi": "khuyên, khuyên bảo",
+      "example_en": "The doctor advised him to rest more.",
+      "example_vi": "Bác sĩ khuyên anh ấy nghỉ ngơi nhiều hơn."
+    },
+    {
+      "word": "already",
+      "part_of_speech": "adverb",
+      "ipa": "/ɔːlˈredɪ/",
+      "meaning_vi": "rồi; đã... rồi",
+      "example_en": "I have already finished my homework.",
+      "example_vi": "Tôi đã làm xong bài tập rồi."
+    },
+    {
+      "word": "basic",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈbeɪsɪk/",
+      "meaning_vi": "cơ bản, cơ sở",
+      "example_en": "You only need basic English for this trip.",
+      "example_vi": "Bạn chỉ cần tiếng Anh cơ bản cho chuyến đi này."
+    },
+    {
+      "word": "bit",
+      "part_of_speech": "noun",
+      "ipa": "/bɪt/",
+      "meaning_vi": "mẩu, miếng",
+      "example_en": "Can I have a bit of your cake?",
+      "example_vi": "Cho tôi xin một miếng bánh của bạn nhé?"
+    },
+    {
+      "word": "consider",
+      "part_of_speech": "verb",
+      "ipa": "/kənˈsɪdə/",
+      "meaning_vi": "cân nhắc, xem xét, suy xét",
+      "example_en": "We are considering moving to Da Nang.",
+      "example_vi": "Chúng tôi đang cân nhắc chuyển đến Đà Nẵng."
+    },
+    {
+      "word": "destroy",
+      "part_of_speech": "verb",
+      "ipa": "/dɪˈstrɔɪ/",
+      "meaning_vi": "phá huỷ, tàn phá",
+      "example_en": "The fire destroyed the whole factory.",
+      "example_vi": "Vụ cháy đã phá hủy toàn bộ nhà máy."
+    },
+    {
+      "word": "entertain",
+      "part_of_speech": "verb",
+      "ipa": "/ˌentəˈteɪn/",
+      "meaning_vi": "giải trí, tiêu khiển",
+      "example_en": "The clown entertained the children for hours.",
+      "example_vi": "Chú hề mua vui cho bọn trẻ hàng giờ liền."
+    },
+    {
+      "word": "extra",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈekstrə/",
+      "meaning_vi": "thừa, thượng hạng, đặc biệt",
+      "example_en": "Bring an extra shirt in case it rains.",
+      "example_vi": "Mang thêm một chiếc áo phòng khi trời mưa."
+    },
+    {
+      "word": "goal",
+      "part_of_speech": "noun",
+      "ipa": "/gəul/",
+      "meaning_vi": "bàn thắng, mục đích, mục tiêu",
+      "example_en": "My goal is to learn 600 new words.",
+      "example_vi": "Mục tiêu của tôi là học 600 từ mới."
+    },
+    {
+      "word": "lie",
+      "part_of_speech": "noun",
+      "ipa": "/laɪ/",
+      "meaning_vi": "nói dối, lừa dối",
+      "example_en": "Don't lie to your parents.",
+      "example_vi": "Đừng nói dối bố mẹ."
+    },
+    {
+      "word": "meat",
+      "part_of_speech": "noun",
+      "ipa": "/miːt/",
+      "meaning_vi": "thịt",
+      "example_en": "She doesn't eat meat on Mondays.",
+      "example_vi": "Cô ấy không ăn thịt vào thứ Hai."
+    },
+    {
+      "word": "opinion",
+      "part_of_speech": "noun",
+      "ipa": "/əˈpɪnjən/",
+      "meaning_vi": "quan điểm, ý kiến, sự đánh giá",
+      "example_en": "In my opinion, this plan is too risky.",
+      "example_vi": "Theo ý kiến của tôi, kế hoạch này quá mạo hiểm."
+    },
+    {
+      "word": "real",
+      "part_of_speech": "adjective",
+      "ipa": "/rɪəl/",
+      "meaning_vi": "thực tế, có thực, thật (không phải giả)",
+      "example_en": "Is this flower real or plastic?",
+      "example_vi": "Bông hoa này là thật hay bằng nhựa vậy?"
+    },
+    {
+      "word": "reflect",
+      "part_of_speech": "verb",
+      "ipa": "/rɪˈflekt/",
+      "meaning_vi": "phản chiếu, phản xạ, phản ánh",
+      "example_en": "The lake reflects the mountains.",
+      "example_vi": "Mặt hồ phản chiếu những ngọn núi."
+    },
+    {
+      "word": "regard",
+      "part_of_speech": "noun",
+      "ipa": "/rɪˈgɑːd/",
+      "meaning_vi": "coi như, xem như",
+      "example_en": "I regard her as my best friend.",
+      "example_vi": "Tôi coi cô ấy như người bạn thân nhất."
+    },
+    {
+      "word": "serve",
+      "part_of_speech": "noun",
+      "ipa": "/sɜːv/",
+      "meaning_vi": "phục vụ, phụng sự",
+      "example_en": "This restaurant serves breakfast until ten.",
+      "example_vi": "Nhà hàng này phục vụ bữa sáng đến mười giờ."
+    },
+    {
+      "word": "vegetable",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈveʤ(ə)təbl/",
+      "meaning_vi": "rau cỏ (noun & adj)",
+      "example_en": "Eat more vegetables and less fast food.",
+      "example_vi": "Hãy ăn nhiều rau hơn và ít đồ ăn nhanh lại."
+    },
+    {
+      "word": "war",
+      "part_of_speech": "noun",
+      "ipa": "/wɔː/",
+      "meaning_vi": "chiến tranh",
+      "example_en": "The old man told us stories about the war.",
+      "example_vi": "Ông cụ kể cho chúng tôi nghe chuyện thời chiến tranh."
+    },
+    {
+      "word": "worth",
+      "part_of_speech": "adjective",
+      "ipa": "/wɜːθ/",
+      "meaning_vi": "đáng giá, giá trị",
+      "example_en": "This old watch is worth a lot of money.",
+      "example_vi": "Chiếc đồng hồ cũ này đáng giá rất nhiều tiền."
+    },
+    {
+      "word": "appear",
+      "part_of_speech": "verb",
+      "ipa": "/əˈpɪə/",
+      "meaning_vi": "biểu lộ, hình như, có vẻ",
+      "example_en": "Stars appear in the sky at night.",
+      "example_vi": "Các vì sao xuất hiện trên bầu trời vào ban đêm."
+    },
+    {
+      "word": "base",
+      "part_of_speech": "noun",
+      "ipa": "/beɪs/",
+      "meaning_vi": "nền tảng, chân đế",
+      "example_en": "The lamp has a heavy metal base.",
+      "example_vi": "Cây đèn có phần đế kim loại nặng."
+    },
+    {
+      "word": "brain",
+      "part_of_speech": "noun",
+      "ipa": "/breɪn/",
+      "meaning_vi": "não",
+      "example_en": "Reading is good exercise for the brain.",
+      "example_vi": "Đọc sách là bài tập tốt cho não bộ."
+    },
+    {
+      "word": "career",
+      "part_of_speech": "noun",
+      "ipa": "/kəˈrɪə/",
+      "meaning_vi": "sự nghiệp",
+      "example_en": "She wants a career in medicine.",
+      "example_vi": "Cô ấy muốn theo đuổi sự nghiệp y khoa."
+    },
+    {
+      "word": "clerk",
+      "part_of_speech": "noun",
+      "ipa": "/klɜ͟ːrk/",
+      "meaning_vi": "giao dịch viên, thư ký, nhân viên",
+      "example_en": "The clerk helped me open a bank account.",
+      "example_vi": "Nhân viên giao dịch giúp tôi mở tài khoản ngân hàng."
+    },
+    {
+      "word": "effort",
+      "part_of_speech": "noun",
+      "ipa": "/ˈefət/",
+      "meaning_vi": "nỗ lực",
+      "example_en": "With a little more effort, you will succeed.",
+      "example_vi": "Chỉ cần nỗ lực thêm chút nữa, bạn sẽ thành công."
+    },
+    {
+      "word": "enter",
+      "part_of_speech": "verb",
+      "ipa": "/ˈentə/",
+      "meaning_vi": "đi vào",
+      "example_en": "Please knock before you enter the room.",
+      "example_vi": "Vui lòng gõ cửa trước khi vào phòng."
+    },
+    {
+      "word": "excellent",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈeks(ə)l(ə)nt/",
+      "meaning_vi": "xuất sắc",
+      "example_en": "Her English pronunciation is excellent.",
+      "example_vi": "Phát âm tiếng Anh của cô ấy xuất sắc."
+    },
+    {
+      "word": "hero",
+      "part_of_speech": "noun",
+      "ipa": "/ˈhɪərəu/",
+      "meaning_vi": "anh hùng, người hùng",
+      "example_en": "The firefighter became a local hero.",
+      "example_vi": "Người lính cứu hỏa trở thành anh hùng của địa phương."
+    },
+    {
+      "word": "hurry",
+      "part_of_speech": "noun",
+      "ipa": "/ˈhʌrɪ/",
+      "meaning_vi": "vội vàng",
+      "example_en": "Hurry up, or we'll miss the train!",
+      "example_vi": "Nhanh lên, không thì chúng ta lỡ tàu mất!"
+    },
+    {
+      "word": "inform",
+      "part_of_speech": "verb",
+      "ipa": "/ɪnˈfɔːm/",
+      "meaning_vi": "thông báo, báo tin, cho biết",
+      "example_en": "Please inform me when the package arrives.",
+      "example_vi": "Vui lòng báo cho tôi khi gói hàng đến."
+    },
+    {
+      "word": "later",
+      "part_of_speech": "adverb",
+      "ipa": "/ˈleɪtə/",
+      "meaning_vi": "muộn hơn, sau này",
+      "example_en": "I'm busy now; can we talk later?",
+      "example_vi": "Giờ tôi đang bận; lát nữa nói chuyện nhé?"
+    },
+    {
+      "word": "leave",
+      "part_of_speech": "noun",
+      "ipa": "/liːv/",
+      "meaning_vi": "rời đi, bỏ đi",
+      "example_en": "We leave for the airport at six.",
+      "example_vi": "Chúng tôi rời nhà ra sân bay lúc sáu giờ."
+    },
+    {
+      "word": "locate",
+      "part_of_speech": "verb",
+      "ipa": "/lˈəukeɪt/",
+      "meaning_vi": "xác định vị trí",
+      "example_en": "Can you locate our hotel on the map?",
+      "example_vi": "Bạn có thể xác định vị trí khách sạn của chúng ta trên bản đồ không?"
+    },
+    {
+      "word": "nurse",
+      "part_of_speech": "noun",
+      "ipa": "/nɜːs/",
+      "meaning_vi": "y tá, nữ y tá",
+      "example_en": "The nurse checked my temperature.",
+      "example_vi": "Cô y tá đo nhiệt độ cho tôi."
+    },
+    {
+      "word": "operation",
+      "part_of_speech": "noun",
+      "ipa": "/ˌɔp(ə)ˈreɪʃ(ə)n/",
+      "meaning_vi": "sự phẩu thuật, ca mổ",
+      "example_en": "The operation lasted three hours.",
+      "example_vi": "Ca mổ kéo dài ba tiếng."
+    },
+    {
+      "word": "pain",
+      "part_of_speech": "noun",
+      "ipa": "/peɪn/",
+      "meaning_vi": "sự đau, làm đau đớn, đau nhức",
+      "example_en": "I felt a sharp pain in my back.",
+      "example_vi": "Tôi thấy đau nhói ở lưng."
+    },
+    {
+      "word": "refuse",
+      "part_of_speech": "verb",
+      "ipa": "/rɪˈfjuːz/",
+      "meaning_vi": "từ chối, khước từ, cự tuyệt",
+      "example_en": "He refused to eat his vegetables.",
+      "example_vi": "Cậu bé từ chối ăn rau."
+    },
+    {
+      "word": "though",
+      "part_of_speech": "conjunction",
+      "ipa": "/ðəu/",
+      "meaning_vi": "cho dù, mặc dù, dẫu cho",
+      "example_en": "Though it was raining, we still went out.",
+      "example_vi": "Dù trời mưa, chúng tôi vẫn ra ngoài."
+    },
+    {
+      "word": "various",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈveərɪəs/",
+      "meaning_vi": "khác nhau; nhiều thứ khác nhau",
+      "example_en": "The shop sells various kinds of tea.",
+      "example_vi": "Cửa hàng bán nhiều loại trà khác nhau."
+    },
+    {
+      "word": "actual",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈækʧuəl/",
+      "meaning_vi": "thực tế, có thật, hiện thời; hiện nay",
+      "example_en": "The actual price was higher than the ad said.",
+      "example_vi": "Giá thực tế cao hơn quảng cáo."
+    },
+    {
+      "word": "amaze",
+      "part_of_speech": "verb",
+      "ipa": "/əˈmeɪz/",
+      "meaning_vi": "làm kinh ngạc, làm sửng sốt",
+      "example_en": "The magician amazed the whole audience.",
+      "example_vi": "Nhà ảo thuật làm cả khán phòng kinh ngạc."
+    },
+    {
+      "word": "charge",
+      "part_of_speech": "noun",
+      "ipa": "/ʧɑːʤ/",
+      "meaning_vi": "tiền phải trả, giá tiền",
+      "example_en": "There is no charge for children under six.",
+      "example_vi": "Trẻ em dưới sáu tuổi không phải trả tiền."
+    },
+    {
+      "word": "comfort",
+      "part_of_speech": "noun",
+      "ipa": "/ˈkʌmfət/",
+      "meaning_vi": "an ủi, dỗ dành, làm khuây khoả",
+      "example_en": "She comforted the crying child.",
+      "example_vi": "Cô ấy dỗ dành đứa trẻ đang khóc."
+    },
+    {
+      "word": "contact",
+      "part_of_speech": "noun",
+      "ipa": "/ˈkɔntækt/",
+      "meaning_vi": "tiếp xúc, liên lạc",
+      "example_en": "You can contact me by email.",
+      "example_vi": "Bạn có thể liên lạc với tôi qua email."
+    },
+    {
+      "word": "customer",
+      "part_of_speech": "noun",
+      "ipa": "/ˈkʌstəmə/",
+      "meaning_vi": "khách hàng",
+      "example_en": "The customer asked for a smaller size.",
+      "example_vi": "Vị khách hỏi mua cỡ nhỏ hơn."
+    },
+    {
+      "word": "deliver",
+      "part_of_speech": "verb",
+      "ipa": "/dɪˈlɪvə/",
+      "meaning_vi": "giao (hàng), phân phát (thư)",
+      "example_en": "They deliver food within thirty minutes.",
+      "example_vi": "Họ giao đồ ăn trong vòng ba mươi phút."
+    },
+    {
+      "word": "earn",
+      "part_of_speech": "verb",
+      "ipa": "/ɜːn/",
+      "meaning_vi": "kiếm tiền",
+      "example_en": "He earns money by teaching online.",
+      "example_vi": "Anh ấy kiếm tiền bằng cách dạy học trực tuyến."
+    },
+    {
+      "word": "gate",
+      "part_of_speech": "noun",
+      "ipa": "/geɪt/",
+      "meaning_vi": "cổng, cửa ra vào",
+      "example_en": "Meet me at the school gate after class.",
+      "example_vi": "Gặp tôi ở cổng trường sau giờ học nhé."
+    },
+    {
+      "word": "include",
+      "part_of_speech": "verb",
+      "ipa": "/ɪnˈkluːd/",
+      "meaning_vi": "bao gồm, gồm có",
+      "example_en": "The price includes breakfast.",
+      "example_vi": "Giá đã bao gồm bữa sáng."
+    },
+    {
+      "word": "manage",
+      "part_of_speech": "verb",
+      "ipa": "/ˈmænɪʤ/",
+      "meaning_vi": "quản lý, trông nom, xoay xở",
+      "example_en": "She manages a small team of five people.",
+      "example_vi": "Cô ấy quản lý một nhóm nhỏ năm người."
+    },
+    {
+      "word": "mystery",
+      "part_of_speech": "noun",
+      "ipa": "/ˈmɪst(ə)rɪ/",
+      "meaning_vi": "điều huyền bí, điều bí ẩn",
+      "example_en": "What happened to the ship is still a mystery.",
+      "example_vi": "Chuyện gì xảy ra với con tàu vẫn là một bí ẩn."
+    },
+    {
+      "word": "occur",
+      "part_of_speech": "verb",
+      "ipa": "/əˈkɜː/",
+      "meaning_vi": "xảy ra, xảy đến",
+      "example_en": "The accident occurred early in the morning.",
+      "example_vi": "Vụ tai nạn xảy ra vào sáng sớm."
+    },
+    {
+      "word": "opposite",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈɔpəzɪt/",
+      "meaning_vi": "đối diện, đối nhau, ngược nhau",
+      "example_en": "The bank is on the opposite side of the road.",
+      "example_vi": "Ngân hàng nằm ở phía đối diện con đường."
+    },
+    {
+      "word": "plate",
+      "part_of_speech": "noun",
+      "ipa": "/pleɪt/",
+      "meaning_vi": "đĩa (để đựng thức ăn)",
+      "example_en": "Put the fruit on a clean plate.",
+      "example_vi": "Hãy để trái cây lên chiếc đĩa sạch."
+    },
+    {
+      "word": "receive",
+      "part_of_speech": "verb",
+      "ipa": "/rɪˈsiːv/",
+      "meaning_vi": "nhận, lĩnh, thu",
+      "example_en": "Did you receive my message yesterday?",
+      "example_vi": "Hôm qua bạn có nhận được tin nhắn của tôi không?"
+    },
+    {
+      "word": "reward",
+      "part_of_speech": "noun",
+      "ipa": "/rɪˈwɔːd/",
+      "meaning_vi": "sự thưởng",
+      "example_en": "The finder got a small reward.",
+      "example_vi": "Người nhặt được đã nhận một phần thưởng nhỏ."
+    },
+    {
+      "word": "set",
+      "part_of_speech": "noun",
+      "ipa": "/set/",
+      "meaning_vi": "thiết lập, để, đặt, bố trí",
+      "example_en": "She set the cup on the table.",
+      "example_vi": "Cô ấy đặt chiếc cốc lên bàn."
+    },
+    {
+      "word": "steal",
+      "part_of_speech": "verb",
+      "ipa": "/stiːl/",
+      "meaning_vi": "ăn cắp, ăn trộm",
+      "example_en": "Someone tried to steal his bicycle.",
+      "example_vi": "Có kẻ định ăn trộm xe đạp của anh ấy."
+    },
+    {
+      "word": "thief",
+      "part_of_speech": "noun",
+      "ipa": "/θiːf/",
+      "meaning_vi": "kẻ trộm, kẻ cắp",
+      "example_en": "The thief was caught by the police.",
+      "example_vi": "Tên trộm đã bị cảnh sát bắt."
+    },
+    {
+      "word": "advance",
+      "part_of_speech": "noun",
+      "ipa": "/ədˈvɑːn(t)s/",
+      "meaning_vi": "tiến lên, tiến tới, tiến bộ",
+      "example_en": "Technology advances faster every year.",
+      "example_vi": "Công nghệ tiến bộ nhanh hơn mỗi năm."
+    },
+    {
+      "word": "athlete",
+      "part_of_speech": "noun",
+      "ipa": "/ˈæθliːt/",
+      "meaning_vi": "vận động viên",
+      "example_en": "The athlete trains six days a week.",
+      "example_vi": "Vận động viên tập luyện sáu ngày một tuần."
+    },
+    {
+      "word": "average",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈæv(ə)rɪʤ/",
+      "meaning_vi": "trung bình",
+      "example_en": "The average temperature here is 25 degrees.",
+      "example_vi": "Nhiệt độ trung bình ở đây là 25 độ."
+    },
+    {
+      "word": "behavior",
+      "part_of_speech": "noun",
+      "ipa": "/bɪˈheɪvjər/",
+      "meaning_vi": "cách cư xử",
+      "example_en": "The teacher praised the students' good behavior.",
+      "example_vi": "Cô giáo khen cách cư xử ngoan của học sinh."
+    },
+    {
+      "word": "behind",
+      "part_of_speech": "adverb",
+      "ipa": "/bɪˈhaɪnd/",
+      "meaning_vi": "đằng sau",
+      "example_en": "The broom is behind the door.",
+      "example_vi": "Cây chổi ở đằng sau cánh cửa."
+    },
+    {
+      "word": "course",
+      "part_of_speech": "noun",
+      "ipa": "/kɔːs/",
+      "meaning_vi": "khoá học",
+      "example_en": "I signed up for an online English course.",
+      "example_vi": "Tôi đã đăng ký một khóa học tiếng Anh trực tuyến."
+    },
+    {
+      "word": "lower",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈləuə/",
+      "meaning_vi": "thấp hơn",
+      "example_en": "Prices are lower at the morning market.",
+      "example_vi": "Giá ở chợ sáng thấp hơn."
+    },
+    {
+      "word": "match",
+      "part_of_speech": "noun",
+      "ipa": "/mæʧ/",
+      "meaning_vi": "hợp, xứng, trận đấu",
+      "example_en": "We watched the football match together.",
+      "example_vi": "Chúng tôi cùng nhau xem trận bóng đá."
+    },
+    {
+      "word": "member",
+      "part_of_speech": "noun",
+      "ipa": "/ˈmembə/",
+      "meaning_vi": "thành viên, hội viên",
+      "example_en": "She is a member of the book club.",
+      "example_vi": "Cô ấy là thành viên câu lạc bộ sách."
+    },
+    {
+      "word": "mental",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈment(ə)l/",
+      "meaning_vi": "(thuộc) trí tuệ, tinh thần, tâm thần, thần kinh",
+      "example_en": "Rest is important for your mental health.",
+      "example_vi": "Nghỉ ngơi rất quan trọng cho sức khỏe tinh thần."
+    },
+    {
+      "word": "passenger",
+      "part_of_speech": "noun",
+      "ipa": "/ˈpæs(ə)nʤə/",
+      "meaning_vi": "hành khách (đi tàu xe...)",
+      "example_en": "The bus can carry fifty passengers.",
+      "example_vi": "Chiếc xe buýt chở được năm mươi hành khách."
+    },
+    {
+      "word": "personality",
+      "part_of_speech": "noun",
+      "ipa": "/ˌpɜːs(ə)ˈnælətɪ/",
+      "meaning_vi": "tính cách, nhân cách",
+      "example_en": "She has a warm and friendly personality.",
+      "example_vi": "Cô ấy có tính cách ấm áp và thân thiện."
+    },
+    {
+      "word": "poem",
+      "part_of_speech": "noun",
+      "ipa": "/ˈpəuɪm/",
+      "meaning_vi": "thơ, bài thơ",
+      "example_en": "He wrote a poem for his mother.",
+      "example_vi": "Anh ấy viết một bài thơ tặng mẹ."
+    },
+    {
+      "word": "pole",
+      "part_of_speech": "noun",
+      "ipa": "/pəul/",
+      "meaning_vi": "cực, cái sào, cột",
+      "example_en": "The flag hangs on a tall pole.",
+      "example_vi": "Lá cờ treo trên một cây cột cao."
+    },
+    {
+      "word": "remove",
+      "part_of_speech": "noun",
+      "ipa": "/rɪˈmuːv/",
+      "meaning_vi": "bỏ ra, tháo ra, lấy ra, dời đi",
+      "example_en": "Please remove your shoes before entering.",
+      "example_vi": "Vui lòng cởi giày trước khi vào nhà."
+    },
+    {
+      "word": "safety",
+      "part_of_speech": "noun",
+      "ipa": "/ˈseɪftɪ/",
+      "meaning_vi": "sự an toàn, sự chắc chắn",
+      "example_en": "Wear a helmet for your own safety.",
+      "example_vi": "Hãy đội mũ bảo hiểm vì sự an toàn của chính bạn."
+    },
+    {
+      "word": "shoot",
+      "part_of_speech": "noun",
+      "ipa": "/ʃuːt/",
+      "meaning_vi": "bắn",
+      "example_en": "Watch him shoot the ball into the goal.",
+      "example_vi": "Hãy xem anh ấy sút bóng vào khung thành."
+    },
+    {
+      "word": "sound",
+      "part_of_speech": "adjective",
+      "ipa": "/saund/",
+      "meaning_vi": "kêu, vang tiếng, nghe như, nghe có vẻ, âm thanh",
+      "example_en": "That idea sounds great to me.",
+      "example_vi": "Ý tưởng đó nghe thật tuyệt với tôi."
+    },
+    {
+      "word": "swim",
+      "part_of_speech": "noun",
+      "ipa": "/swɪm/",
+      "meaning_vi": "bơi",
+      "example_en": "We swim in the sea every summer.",
+      "example_vi": "Chúng tôi bơi ở biển mỗi mùa hè."
+    },
+    {
+      "word": "web",
+      "part_of_speech": "noun",
+      "ipa": "/web/",
+      "meaning_vi": "mạng (nhện), tơ (lông chim)",
+      "example_en": "The spider built a web in the corner.",
+      "example_vi": "Con nhện giăng mạng ở góc nhà."
+    },
+    {
+      "word": "block",
+      "part_of_speech": "noun",
+      "ipa": "/blɔk/",
+      "meaning_vi": "khối, tảng, súc (đá, gỗ...)",
+      "example_en": "A block of stone lay across the road.",
+      "example_vi": "Một tảng đá lớn nằm chắn ngang đường."
+    },
+    {
+      "word": "cheer",
+      "part_of_speech": "noun",
+      "ipa": "/ʧɪə/",
+      "meaning_vi": "cổ vũ, tung hô",
+      "example_en": "The fans cheered for their team loudly.",
+      "example_vi": "Người hâm mộ cổ vũ đội nhà thật to."
+    },
+    {
+      "word": "complex",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈkɔmpleks/",
+      "meaning_vi": "phức tạp, rắc rối",
+      "example_en": "The rules of this game are too complex.",
+      "example_vi": "Luật của trò chơi này quá phức tạp."
+    },
+    {
+      "word": "critic",
+      "part_of_speech": "noun",
+      "ipa": "/ˈkrɪtɪk/",
+      "meaning_vi": "nhà phê bình",
+      "example_en": "The food critic loved the new restaurant.",
+      "example_vi": "Nhà phê bình ẩm thực rất thích nhà hàng mới."
+    },
+    {
+      "word": "event",
+      "part_of_speech": "noun",
+      "ipa": "/ɪˈvent/",
+      "meaning_vi": "sự kiện, sự việc",
+      "example_en": "The school organizes many events every year.",
+      "example_vi": "Nhà trường tổ chức nhiều sự kiện mỗi năm."
+    },
+    {
+      "word": "exercise",
+      "part_of_speech": "noun",
+      "ipa": "/ˈeksəsaɪz/",
+      "meaning_vi": "tập luyện, rèn luyện (thể dục thể thao)",
+      "example_en": "Morning exercise keeps me healthy.",
+      "example_vi": "Tập thể dục buổi sáng giúp tôi khỏe mạnh."
+    },
+    {
+      "word": "fit",
+      "part_of_speech": "noun",
+      "ipa": "/fɪt/",
+      "meaning_vi": "vừa, thích hợp, phù hợp",
+      "example_en": "These shoes fit me perfectly.",
+      "example_vi": "Đôi giày này vừa với tôi hoàn hảo."
+    },
+    {
+      "word": "friendship",
+      "part_of_speech": "noun",
+      "ipa": "/ˈfrendʃɪp/",
+      "meaning_vi": "tình bạn",
+      "example_en": "Their friendship began in primary school.",
+      "example_vi": "Tình bạn của họ bắt đầu từ hồi tiểu học."
+    },
+    {
+      "word": "guide",
+      "part_of_speech": "noun",
+      "ipa": "/gaɪd/",
+      "meaning_vi": "hướng dẫn viên, người chỉ dẫn",
+      "example_en": "The tour guide told us about the temple.",
+      "example_vi": "Hướng dẫn viên kể cho chúng tôi về ngôi đền."
+    },
+    {
+      "word": "lack",
+      "part_of_speech": "noun",
+      "ipa": "/læk/",
+      "meaning_vi": "thiếu, không có",
+      "example_en": "The plants died from lack of water.",
+      "example_vi": "Cây chết vì thiếu nước."
+    },
+    {
+      "word": "passage",
+      "part_of_speech": "noun",
+      "ipa": "/ˈpæsɪʤ/",
+      "meaning_vi": "lối đi, sự đi qua, đoạn (bài văn, sách...)",
+      "example_en": "Read the passage and answer the questions.",
+      "example_vi": "Hãy đọc đoạn văn và trả lời câu hỏi."
+    },
+    {
+      "word": "perform",
+      "part_of_speech": "verb",
+      "ipa": "/pəˈfɔːm/",
+      "meaning_vi": "biểu diễn, trình bày, thực hiện",
+      "example_en": "The band will perform in the park tonight.",
+      "example_vi": "Ban nhạc sẽ biểu diễn ở công viên tối nay."
+    },
+    {
+      "word": "pressure",
+      "part_of_speech": "noun",
+      "ipa": "/ˈpreʃə/",
+      "meaning_vi": "áp lực",
+      "example_en": "He works well under pressure.",
+      "example_vi": "Anh ấy làm việc tốt dưới áp lực."
+    },
+    {
+      "word": "probable",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈprɔbəbl/",
+      "meaning_vi": "chắc hẳn , có lễ đúng",
+      "example_en": "Rain is probable this weekend.",
+      "example_vi": "Cuối tuần này nhiều khả năng có mưa."
+    },
+    {
+      "word": "public",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈpʌblɪk/",
+      "meaning_vi": "công cộng, công khai, công chúng",
+      "example_en": "The park is open to the public.",
+      "example_vi": "Công viên mở cửa cho công chúng."
+    },
+    {
+      "word": "strike",
+      "part_of_speech": "verb",
+      "ipa": "/straɪk/",
+      "meaning_vi": "đánh, tấn công,",
+      "example_en": "Lightning can strike tall trees.",
+      "example_vi": "Sét có thể đánh trúng những cây cao."
+    },
+    {
+      "word": "support",
+      "part_of_speech": "noun",
+      "ipa": "/səˈpɔːt/",
+      "meaning_vi": "hỗ trợ, ủng hộ",
+      "example_en": "My family always supports my decisions.",
+      "example_vi": "Gia đình luôn ủng hộ các quyết định của tôi."
+    },
+    {
+      "word": "task",
+      "part_of_speech": "noun",
+      "ipa": "/tɑːsk/",
+      "meaning_vi": "nhiệm vụ, công việc, bài tập, phận sự",
+      "example_en": "Cleaning the board is my task today.",
+      "example_vi": "Lau bảng là nhiệm vụ của tôi hôm nay."
+    },
+    {
+      "word": "term",
+      "part_of_speech": "noun",
+      "ipa": "/tɜːm/",
+      "meaning_vi": "thời hạn, kỳ hạn, lời lẽ",
+      "example_en": "We learn twenty words each term.",
+      "example_vi": "Chúng tôi học hai mươi từ mỗi học kỳ."
+    },
+    {
+      "word": "unite",
+      "part_of_speech": "verb",
+      "ipa": "/juːˈnaɪt/",
+      "meaning_vi": "đoàn kết, liên kết",
+      "example_en": "The flood united the whole village.",
+      "example_vi": "Trận lụt đã gắn kết cả ngôi làng."
+    },
+    {
+      "word": "associate",
+      "part_of_speech": "adjective",
+      "ipa": "/əˈsəusɪeɪt/",
+      "meaning_vi": "kết hợp, kết giao, liên hợp lại",
+      "example_en": "I associate this song with my childhood.",
+      "example_vi": "Tôi liên tưởng bài hát này với tuổi thơ."
+    },
+    {
+      "word": "environment",
+      "part_of_speech": "noun",
+      "ipa": "/ɪnˈvaɪər(ə)nmənt/",
+      "meaning_vi": "môi trường",
+      "example_en": "Plastic bags harm the environment.",
+      "example_vi": "Túi ni lông gây hại cho môi trường."
+    },
+    {
+      "word": "factory",
+      "part_of_speech": "noun",
+      "ipa": "/ˈfækt(ə)rɪ/",
+      "meaning_vi": "nhà máy, xí nghiệp",
+      "example_en": "My uncle works in a shoe factory.",
+      "example_vi": "Chú tôi làm việc trong một nhà máy giày."
+    },
+    {
+      "word": "feature",
+      "part_of_speech": "noun",
+      "ipa": "/ˈfiːʧə/",
+      "meaning_vi": "điểm đặc trưng, nét đặc biệt",
+      "example_en": "The best feature of this phone is its camera.",
+      "example_vi": "Điểm nổi bật nhất của điện thoại này là máy ảnh."
+    },
+    {
+      "word": "instance",
+      "part_of_speech": "noun",
+      "ipa": "/ˈɪn(t)stən(t)s/",
+      "meaning_vi": "thí dụ, ví dụ",
+      "example_en": "For instance, cats sleep most of the day.",
+      "example_vi": "Ví dụ, mèo ngủ gần như cả ngày."
+    },
+    {
+      "word": "involve",
+      "part_of_speech": "verb",
+      "ipa": "/ɪnˈvɔlv/",
+      "meaning_vi": "dính líu, dính dáng (dạng bị động) để hết tâm trí vào (cái gì)",
+      "example_en": "The project involves students from three schools.",
+      "example_vi": "Dự án có sự tham gia của học sinh ba trường."
+    },
+    {
+      "word": "medicine",
+      "part_of_speech": "noun",
+      "ipa": "/ˈmedɪsɪn/",
+      "meaning_vi": "thuốc",
+      "example_en": "Take this medicine after meals.",
+      "example_vi": "Uống thuốc này sau bữa ăn."
+    },
+    {
+      "word": "mix",
+      "part_of_speech": "verb",
+      "ipa": "/mɪks/",
+      "meaning_vi": "hỗn hợp, trộn lẫn",
+      "example_en": "Mix the eggs with sugar and flour.",
+      "example_vi": "Trộn trứng với đường và bột."
+    },
+    {
+      "word": "organize",
+      "part_of_speech": "verb",
+      "ipa": "/ˈɔːg(ə)naɪz/",
+      "meaning_vi": "tổ chức",
+      "example_en": "She organized a small party for her friends.",
+      "example_vi": "Cô ấy tổ chức một bữa tiệc nhỏ cho bạn bè."
+    },
+    {
+      "word": "period",
+      "part_of_speech": "noun",
+      "ipa": "/ˈpɪərɪəd/",
+      "meaning_vi": "thời kỳ, giai đoạn",
+      "example_en": "The Ly period lasted more than 200 years.",
+      "example_vi": "Thời kỳ nhà Lý kéo dài hơn 200 năm."
+    },
+    {
+      "word": "populate",
+      "part_of_speech": "verb",
+      "ipa": "/ˈpɔpjəleɪt/",
+      "meaning_vi": "ở, cư trú",
+      "example_en": "Fish populate the rivers of this region.",
+      "example_vi": "Cá sinh sống đầy các con sông của vùng này."
+    },
+    {
+      "word": "produce",
+      "part_of_speech": "noun",
+      "ipa": "/ˈprɔdjuːs/",
+      "meaning_vi": "sản xuất, ra quả",
+      "example_en": "This farm produces clean vegetables.",
+      "example_vi": "Nông trại này sản xuất rau sạch."
+    },
+    {
+      "word": "range",
+      "part_of_speech": "noun",
+      "ipa": "/reɪnʤ/",
+      "meaning_vi": "dải, phạm vi, khoảng",
+      "example_en": "The store has a wide range of toys.",
+      "example_vi": "Cửa hàng có đủ loại đồ chơi."
+    },
+    {
+      "word": "recognize",
+      "part_of_speech": "verb",
+      "ipa": "/ˈrekəgnaɪz/",
+      "meaning_vi": "nhận ra",
+      "example_en": "I didn't recognize you with short hair!",
+      "example_vi": "Tôi không nhận ra bạn với mái tóc ngắn!"
+    },
+    {
+      "word": "regular",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈregjələ/",
+      "meaning_vi": "thường lệ, đều đặn",
+      "example_en": "Regular practice makes your English better.",
+      "example_vi": "Luyện tập đều đặn giúp tiếng Anh của bạn tốt hơn."
+    },
+    {
+      "word": "sign",
+      "part_of_speech": "noun",
+      "ipa": "/saɪn/",
+      "meaning_vi": "dấu hiệu, ký hiệu; ký tên, ra hiệu",
+      "example_en": "The sign says the shop opens at eight.",
+      "example_vi": "Tấm biển ghi cửa hàng mở lúc tám giờ."
+    },
+    {
+      "word": "tip",
+      "part_of_speech": "noun",
+      "ipa": "/tɪp/",
+      "meaning_vi": "đầu mút, tiền thưởng phục vụ",
+      "example_en": "She gave me a useful tip for learning words.",
+      "example_vi": "Cô ấy cho tôi một mẹo hữu ích để học từ."
+    },
+    {
+      "word": "tradition",
+      "part_of_speech": "noun",
+      "ipa": "/trəˈdɪʃ(ə)n/",
+      "meaning_vi": "truyền thống",
+      "example_en": "Giving lucky money is a Tet tradition.",
+      "example_vi": "Lì xì là một truyền thống ngày Tết."
+    },
+    {
+      "word": "trash",
+      "part_of_speech": "noun",
+      "ipa": "/træʃ/",
+      "meaning_vi": "rác",
+      "example_en": "Put the trash in the bin, please.",
+      "example_vi": "Làm ơn bỏ rác vào thùng."
+    },
+    {
+      "word": "wide",
+      "part_of_speech": "adjective",
+      "ipa": "/waɪd/",
+      "meaning_vi": "rộng, rộng lớn",
+      "example_en": "The new road is very wide.",
+      "example_vi": "Con đường mới rất rộng."
+    },
+    {
+      "word": "advice",
+      "part_of_speech": "noun",
+      "ipa": "/ədˈvaɪs/",
+      "meaning_vi": "lời khuyên",
+      "example_en": "My teacher gave me useful advice.",
+      "example_vi": "Cô giáo cho tôi lời khuyên hữu ích."
+    },
+    {
+      "word": "along",
+      "part_of_speech": "adverb",
+      "ipa": "/əˈlɔŋ/",
+      "meaning_vi": "dọc theo",
+      "example_en": "We walked along the beach at sunset.",
+      "example_vi": "Chúng tôi đi dọc bãi biển lúc hoàng hôn."
+    },
+    {
+      "word": "attention",
+      "part_of_speech": "noun",
+      "ipa": "/əˈten(t)ʃ(ə)n/",
+      "meaning_vi": "sự chú ý",
+      "example_en": "Pay attention to the traffic lights.",
+      "example_vi": "Hãy chú ý đèn giao thông."
+    },
+    {
+      "word": "attract",
+      "part_of_speech": "verb",
+      "ipa": "/əˈtrækt/",
+      "meaning_vi": "hấp dẫn, thu hút",
+      "example_en": "The night market attracts many tourists.",
+      "example_vi": "Chợ đêm thu hút nhiều khách du lịch."
+    },
+    {
+      "word": "climb",
+      "part_of_speech": "noun",
+      "ipa": "/klaɪm/",
+      "meaning_vi": "trèo, leo",
+      "example_en": "We climbed to the top of the mountain.",
+      "example_vi": "Chúng tôi leo lên đỉnh núi."
+    },
+    {
+      "word": "drop",
+      "part_of_speech": "noun",
+      "ipa": "/drɔp/",
+      "meaning_vi": "rơi, sụt giảm",
+      "example_en": "Be careful not to drop the glass.",
+      "example_vi": "Cẩn thận đừng làm rơi cái ly."
+    },
+    {
+      "word": "final",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈfaɪn(ə)l/",
+      "meaning_vi": "cuối cùng, chung kết",
+      "example_en": "The final decision is yours.",
+      "example_vi": "Quyết định cuối cùng là của bạn."
+    },
+    {
+      "word": "further",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈfɜːðə/",
+      "meaning_vi": "xa hơn, bên kia",
+      "example_en": "The village is further than I thought.",
+      "example_vi": "Ngôi làng xa hơn tôi tưởng."
+    },
+    {
+      "word": "imply",
+      "part_of_speech": "verb",
+      "ipa": "/ɪmˈplaɪ/",
+      "meaning_vi": "ý nói; ngụ ý",
+      "example_en": "Her smile implied that she agreed.",
+      "example_vi": "Nụ cười của cô ấy ngụ ý rằng cô đồng ý."
+    },
+    {
+      "word": "maintain",
+      "part_of_speech": "verb",
+      "ipa": "/meɪnˈteɪn/",
+      "meaning_vi": "duy trì",
+      "example_en": "You must maintain your bike regularly.",
+      "example_vi": "Bạn phải bảo dưỡng xe đạp thường xuyên."
+    },
+    {
+      "word": "neither",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈnaɪðə/",
+      "meaning_vi": "...... nor không ... mà cũng không",
+      "example_en": "Neither of us knew the answer.",
+      "example_vi": "Cả hai chúng tôi đều không biết câu trả lời."
+    },
+    {
+      "word": "otherwise",
+      "part_of_speech": "adverb",
+      "ipa": "/ˈʌðəwaɪz/",
+      "meaning_vi": "nếu không thì, mặt khác, cách khác",
+      "example_en": "Leave now; otherwise you'll be late.",
+      "example_vi": "Đi ngay đi; nếu không bạn sẽ muộn."
+    },
+    {
+      "word": "physical",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈfɪzɪk(ə)l/",
+      "meaning_vi": "(thuộc) vật lý, (thuộc) vật chất",
+      "example_en": "Swimming is a great physical activity.",
+      "example_vi": "Bơi lội là một hoạt động thể chất tuyệt vời."
+    },
+    {
+      "word": "prove",
+      "part_of_speech": "verb",
+      "ipa": "/pruːv/",
+      "meaning_vi": "chứng minh",
+      "example_en": "The results prove that the method works.",
+      "example_vi": "Kết quả chứng minh phương pháp này hiệu quả."
+    },
+    {
+      "word": "react",
+      "part_of_speech": "verb",
+      "ipa": "/rɪˈækt/",
+      "meaning_vi": "phản ứng, đối phó",
+      "example_en": "How did she react to the news?",
+      "example_vi": "Cô ấy phản ứng thế nào với tin đó?"
+    },
+    {
+      "word": "ride",
+      "part_of_speech": "noun",
+      "ipa": "/raɪd/",
+      "meaning_vi": "cưỡi",
+      "example_en": "I ride my bike to school every day.",
+      "example_vi": "Tôi đạp xe đến trường mỗi ngày."
+    },
+    {
+      "word": "situated",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈsɪtjueɪtɪd/",
+      "meaning_vi": "ở (một nơi, một tình thế, một hoàn cảnh)",
+      "example_en": "The hotel is situated near the beach.",
+      "example_vi": "Khách sạn tọa lạc gần bãi biển."
+    },
+    {
+      "word": "society",
+      "part_of_speech": "noun",
+      "ipa": "/səˈsaɪətɪ/",
+      "meaning_vi": "xã hội",
+      "example_en": "Education is important for society.",
+      "example_vi": "Giáo dục rất quan trọng đối với xã hội."
+    },
+    {
+      "word": "standard",
+      "part_of_speech": "noun",
+      "ipa": "/ˈstændəd/",
+      "meaning_vi": "tiêu chuẩn",
+      "example_en": "This hotel meets international standards.",
+      "example_vi": "Khách sạn này đạt tiêu chuẩn quốc tế."
+    },
+    {
+      "word": "suggest",
+      "part_of_speech": "verb",
+      "ipa": "/səˈʤest/",
+      "meaning_vi": "gợi ý, đề nghị",
+      "example_en": "I suggest we take a short break.",
+      "example_vi": "Tôi đề nghị chúng ta nghỉ một chút."
+    },
+    {
+      "word": "actually",
+      "part_of_speech": "adverb",
+      "ipa": "/ˈækʧuəlɪ/",
+      "meaning_vi": "thực sự, quả thật",
+      "example_en": "Actually, I have never seen snow.",
+      "example_vi": "Thật ra, tôi chưa bao giờ thấy tuyết."
+    },
+    {
+      "word": "bite",
+      "part_of_speech": "noun",
+      "ipa": "/baɪt/",
+      "meaning_vi": "cắn, ngoạm",
+      "example_en": "Watch out, that dog may bite.",
+      "example_vi": "Coi chừng, con chó đó có thể cắn đấy."
+    },
+    {
+      "word": "coast",
+      "part_of_speech": "noun",
+      "ipa": "/kəust/",
+      "meaning_vi": "bờ biển",
+      "example_en": "The road runs along the coast.",
+      "example_vi": "Con đường chạy dọc theo bờ biển."
+    },
+    {
+      "word": "deal",
+      "part_of_speech": "noun",
+      "ipa": "/diːl/",
+      "meaning_vi": "giải quyết; đối phó; sự giao dịch",
+      "example_en": "We made a deal to share the work.",
+      "example_vi": "Chúng tôi thỏa thuận chia nhau công việc."
+    },
+    {
+      "word": "desert",
+      "part_of_speech": "noun",
+      "ipa": "/ˈdezət/",
+      "meaning_vi": "sa mạc",
+      "example_en": "Camels can cross the desert easily.",
+      "example_vi": "Lạc đà băng qua sa mạc dễ dàng."
+    },
+    {
+      "word": "earthquake",
+      "part_of_speech": "noun",
+      "ipa": "/ˈɜːθkweɪk/",
+      "meaning_vi": "trận động đất",
+      "example_en": "The earthquake shook the whole city.",
+      "example_vi": "Trận động đất làm rung chuyển cả thành phố."
+    },
+    {
+      "word": "effective",
+      "part_of_speech": "adjective",
+      "ipa": "/ɪˈfektɪv/",
+      "meaning_vi": "có hiệu quả",
+      "example_en": "Flashcards are an effective way to learn words.",
+      "example_vi": "Thẻ ghi nhớ là cách học từ hiệu quả."
+    },
+    {
+      "word": "examine",
+      "part_of_speech": "verb",
+      "ipa": "/ɪgˈzæmɪn/",
+      "meaning_vi": "kiểm tra",
+      "example_en": "The doctor examined the patient carefully.",
+      "example_vi": "Bác sĩ khám cho bệnh nhân cẩn thận."
+    },
+    {
+      "word": "false",
+      "part_of_speech": "adjective",
+      "ipa": "/fɔːls/",
+      "meaning_vi": "sai, nhầm",
+      "example_en": "Decide if each sentence is true or false.",
+      "example_vi": "Hãy xác định mỗi câu là đúng hay sai."
+    },
+    {
+      "word": "gift",
+      "part_of_speech": "noun",
+      "ipa": "/gɪft/",
+      "meaning_vi": "quà tặng; tặng, biếu, cho",
+      "example_en": "She got a lovely gift on her birthday.",
+      "example_vi": "Cô ấy nhận được một món quà dễ thương vào sinh nhật."
+    },
+    {
+      "word": "hunger",
+      "part_of_speech": "noun",
+      "ipa": "/ˈhʌŋgə/",
+      "meaning_vi": "sự đói, tình trạng đói",
+      "example_en": "The charity fights hunger in poor areas.",
+      "example_vi": "Tổ chức từ thiện chống nạn đói ở vùng nghèo."
+    },
+    {
+      "word": "imagine",
+      "part_of_speech": "verb",
+      "ipa": "/ɪˈmæʤɪn/",
+      "meaning_vi": "tưởng tượng, hình dung",
+      "example_en": "Imagine a world without phones.",
+      "example_vi": "Hãy tưởng tượng một thế giới không có điện thoại."
+    },
+    {
+      "word": "journey",
+      "part_of_speech": "noun",
+      "ipa": "/ˈʤɜːnɪ/",
+      "meaning_vi": "cuộc hành trình, chuyến đi",
+      "example_en": "The journey to Sapa took eight hours.",
+      "example_vi": "Cuộc hành trình đến Sa Pa mất tám tiếng."
+    },
+    {
+      "word": "puzzle",
+      "part_of_speech": "noun",
+      "ipa": "/ˈpʌzl/",
+      "meaning_vi": "trò chơi đố; câu đố, vấn đề khó",
+      "example_en": "The children finished the puzzle together.",
+      "example_vi": "Bọn trẻ cùng nhau hoàn thành trò chơi ghép hình."
+    },
+    {
+      "word": "quite",
+      "part_of_speech": "adverb",
+      "ipa": "/kwaɪt/",
+      "meaning_vi": "khá, hoàn toàn, hầu hết",
+      "example_en": "The test was quite difficult.",
+      "example_vi": "Bài kiểm tra khá là khó."
+    },
+    {
+      "word": "rather",
+      "part_of_speech": "adverb",
+      "ipa": "/ˈrɑːðə/",
+      "meaning_vi": "thích... hơn",
+      "example_en": "I would rather stay home tonight.",
+      "example_vi": "Tối nay tôi thích ở nhà hơn."
+    },
+    {
+      "word": "specific",
+      "part_of_speech": "adjective",
+      "ipa": "/spəˈsɪfɪk/",
+      "meaning_vi": "rành mạch, rõ ràng",
+      "example_en": "Give me a specific example, please.",
+      "example_vi": "Hãy cho tôi một ví dụ cụ thể."
+    },
+    {
+      "word": "tour",
+      "part_of_speech": "noun",
+      "ipa": "/tuə/",
+      "meaning_vi": "cuộc đi du lịch",
+      "example_en": "We took a tour around the old city.",
+      "example_vi": "Chúng tôi đi một tour quanh khu phố cổ."
+    },
+    {
+      "word": "trip",
+      "part_of_speech": "noun",
+      "ipa": "/trɪp/",
+      "meaning_vi": "chuyến đi",
+      "example_en": "Our school trip to Hanoi was fun.",
+      "example_vi": "Chuyến đi Hà Nội của trường chúng tôi rất vui."
+    },
+    {
+      "word": "value",
+      "part_of_speech": "noun",
+      "ipa": "/ˈvæljuː/",
+      "meaning_vi": "giá trị",
+      "example_en": "The value of this house has doubled.",
+      "example_vi": "Giá trị căn nhà này đã tăng gấp đôi."
+    },
+    {
+      "word": "band",
+      "part_of_speech": "noun",
+      "ipa": "/bænd/",
+      "meaning_vi": "ban nhạc, dải, băng, đai, nẹp",
+      "example_en": "The band played until midnight.",
+      "example_vi": "Ban nhạc chơi đến tận nửa đêm."
+    },
+    {
+      "word": "barely",
+      "part_of_speech": "adverb",
+      "ipa": "/ˈbeəlɪ/",
+      "meaning_vi": "vừa đủ, rỗng không, nghèo nàn",
+      "example_en": "I could barely hear her voice.",
+      "example_vi": "Tôi hầu như không nghe được giọng cô ấy."
+    },
+    {
+      "word": "boring",
+      "part_of_speech": "noun",
+      "ipa": "/ˈbɔːrɪŋ/",
+      "meaning_vi": "chán ngắt, buồn tẻ, sự khoan, sự đào",
+      "example_en": "The movie was so boring that I slept.",
+      "example_vi": "Bộ phim chán đến mức tôi ngủ luôn."
+    },
+    {
+      "word": "cancel",
+      "part_of_speech": "noun",
+      "ipa": "/ˈkæn(t)s(ə)l/",
+      "meaning_vi": "huỷ bỏ, bãi bỏ",
+      "example_en": "They canceled the picnic because of rain.",
+      "example_vi": "Họ hủy buổi dã ngoại vì trời mưa."
+    },
+    {
+      "word": "driveway",
+      "part_of_speech": "noun",
+      "ipa": "/ˈdraɪvweɪ/",
+      "meaning_vi": "đường lái xe vào nhà",
+      "example_en": "Dad parked the car in the driveway.",
+      "example_vi": "Bố đỗ xe ở lối vào nhà."
+    },
+    {
+      "word": "garbage",
+      "part_of_speech": "noun",
+      "ipa": "/ˈgɑːbɪʤ/",
+      "meaning_vi": "rác",
+      "example_en": "Take the garbage out before you sleep.",
+      "example_vi": "Hãy đem rác ra ngoài trước khi đi ngủ."
+    },
+    {
+      "word": "instrument",
+      "part_of_speech": "noun",
+      "ipa": "/ˈɪn(t)strəmənt/",
+      "meaning_vi": "dụng cụ, nhạc cụ",
+      "example_en": "The piano is my favorite instrument.",
+      "example_vi": "Đàn piano là nhạc cụ tôi thích nhất."
+    },
+    {
+      "word": "list",
+      "part_of_speech": "noun",
+      "ipa": "/lɪst/",
+      "meaning_vi": "danh sách; liệt kê, lập danh sách",
+      "example_en": "Make a list before you go shopping.",
+      "example_vi": "Hãy lập danh sách trước khi đi mua sắm."
+    },
+    {
+      "word": "magic",
+      "part_of_speech": "noun",
+      "ipa": "/ˈmæʤɪk/",
+      "meaning_vi": "phép thuật, ma thuật",
+      "example_en": "The children believe in magic.",
+      "example_vi": "Bọn trẻ tin vào phép thuật."
+    },
+    {
+      "word": "message",
+      "part_of_speech": "noun",
+      "ipa": "/ˈmesɪʤ/",
+      "meaning_vi": "thông điệp; đưa tin",
+      "example_en": "I left a message on your phone.",
+      "example_vi": "Tôi đã để lại tin nhắn trên điện thoại của bạn."
+    },
+    {
+      "word": "notice",
+      "part_of_speech": "noun",
+      "ipa": "/ˈnəutɪs/",
+      "meaning_vi": "chú ý, để ý, báo trước",
+      "example_en": "Did you notice her new haircut?",
+      "example_vi": "Bạn có để ý kiểu tóc mới của cô ấy không?"
+    },
+    {
+      "word": "own",
+      "part_of_speech": "adjective",
+      "ipa": "/əun/",
+      "meaning_vi": "sở hữu",
+      "example_en": "They own a small coffee shop.",
+      "example_vi": "Họ sở hữu một quán cà phê nhỏ."
+    },
+    {
+      "word": "predict",
+      "part_of_speech": "verb",
+      "ipa": "/prɪˈdɪkt/",
+      "meaning_vi": "đoán trước, dự đoán",
+      "example_en": "Nobody can predict the future.",
+      "example_vi": "Không ai có thể đoán trước tương lai."
+    },
+    {
+      "word": "professor",
+      "part_of_speech": "noun",
+      "ipa": "/prəˈfesə/",
+      "meaning_vi": "giáo sư",
+      "example_en": "The professor teaches history at the university.",
+      "example_vi": "Giáo sư dạy lịch sử ở trường đại học."
+    },
+    {
+      "word": "rush",
+      "part_of_speech": "noun",
+      "ipa": "/rʌʃ/",
+      "meaning_vi": "vội vã, đi gấp",
+      "example_en": "Don't rush; we have plenty of time.",
+      "example_vi": "Đừng vội; chúng ta còn nhiều thời gian."
+    },
+    {
+      "word": "schedule",
+      "part_of_speech": "noun",
+      "ipa": "/ˈʃedjuːl], [ˈskeʤuːl/",
+      "meaning_vi": "thời gian biểu, thời khóa biểu (bản kế hoạch có thời gian)",
+      "example_en": "My schedule is full this week.",
+      "example_vi": "Lịch của tôi tuần này kín rồi."
+    },
+    {
+      "word": "share",
+      "part_of_speech": "verb",
+      "ipa": "/ʃeə/",
+      "meaning_vi": "chia sẻ, cổ phần",
+      "example_en": "The two sisters share a bedroom.",
+      "example_vi": "Hai chị em dùng chung một phòng ngủ."
+    },
+    {
+      "word": "stage",
+      "part_of_speech": "noun",
+      "ipa": "/steɪʤ/",
+      "meaning_vi": "sân khấu, giai đoạn",
+      "example_en": "The singer walked onto the stage.",
+      "example_vi": "Ca sĩ bước lên sân khấu."
+    },
+    {
+      "word": "storm",
+      "part_of_speech": "noun",
+      "ipa": "/stɔːm/",
+      "meaning_vi": "dông tố, cơn bão",
+      "example_en": "The storm broke many trees in the park.",
+      "example_vi": "Cơn bão làm gãy nhiều cây trong công viên."
+    },
+    {
+      "word": "within",
+      "part_of_speech": "preposition",
+      "ipa": "/wɪˈðɪn/",
+      "meaning_vi": "trong vòng, trong phạm vi, bên trong, phía trong",
+      "example_en": "You will get a reply within two days.",
+      "example_vi": "Bạn sẽ nhận được trả lời trong vòng hai ngày."
+    },
+    {
+      "word": "advertise",
+      "part_of_speech": "verb",
+      "ipa": "/ˈædvətaɪz/",
+      "meaning_vi": "quảng cáo",
+      "example_en": "They advertise the new phone on TV.",
+      "example_vi": "Họ quảng cáo chiếc điện thoại mới trên TV."
+    },
+    {
+      "word": "assign",
+      "part_of_speech": "noun",
+      "ipa": "/əˈsaɪn/",
+      "meaning_vi": "phân việc, phân công",
+      "example_en": "The teacher assigned homework to each group.",
+      "example_vi": "Giáo viên giao bài tập cho từng nhóm."
+    },
+    {
+      "word": "audience",
+      "part_of_speech": "noun",
+      "ipa": "/ˈɔːdɪən(t)s/",
+      "meaning_vi": "thính giả, khán giả, bạn đọc",
+      "example_en": "The audience clapped for five minutes.",
+      "example_vi": "Khán giả vỗ tay suốt năm phút."
+    },
+    {
+      "word": "breakfast",
+      "part_of_speech": "noun",
+      "ipa": "/ˈbrekfəst/",
+      "meaning_vi": "bữa ăn sáng",
+      "example_en": "I had noodles for breakfast.",
+      "example_vi": "Tôi ăn mì cho bữa sáng."
+    },
+    {
+      "word": "competition",
+      "part_of_speech": "noun",
+      "ipa": "/ˌkɔmpəˈtɪʃ(ə)n/",
+      "meaning_vi": "sự cạnh tranh, cuộc thi",
+      "example_en": "She won the English speaking competition.",
+      "example_vi": "Cô ấy thắng cuộc thi nói tiếng Anh."
+    },
+    {
+      "word": "cool",
+      "part_of_speech": "adjective",
+      "ipa": "/kuːl/",
+      "meaning_vi": "mát mẻ, trầm tĩnh",
+      "example_en": "The weather is cool in October.",
+      "example_vi": "Thời tiết mát mẻ vào tháng Mười."
+    },
+    {
+      "word": "gain",
+      "part_of_speech": "noun",
+      "ipa": "/geɪn/",
+      "meaning_vi": "tăng tốc (tốc độ...); lên (cân...)",
+      "example_en": "He gained weight during the holiday.",
+      "example_vi": "Anh ấy tăng cân trong kỳ nghỉ."
+    },
+    {
+      "word": "importance",
+      "part_of_speech": "noun",
+      "ipa": "/ɪmˈpɔːt(ə)n(t)s/",
+      "meaning_vi": "sự quan trọng, tầm quan trọng",
+      "example_en": "Everyone knows the importance of sleep.",
+      "example_vi": "Ai cũng biết tầm quan trọng của giấc ngủ."
+    },
+    {
+      "word": "knowledge",
+      "part_of_speech": "noun",
+      "ipa": "/ˈnɔlɪʤ/",
+      "meaning_vi": "kiến thức, tri thức",
+      "example_en": "Books give us knowledge about the world.",
+      "example_vi": "Sách cho ta kiến thức về thế giới."
+    },
+    {
+      "word": "major",
+      "part_of_speech": "noun",
+      "ipa": "/ˈmeɪʤə/",
+      "meaning_vi": "chính, chủ yếu, trọng đại",
+      "example_en": "Traffic is a major problem in big cities.",
+      "example_vi": "Giao thông là vấn đề lớn ở các thành phố."
+    },
+    {
+      "word": "mean",
+      "part_of_speech": "noun",
+      "ipa": "/miːn/",
+      "meaning_vi": "verb : nghĩa là, có nghĩa là adj : hèn hạ, bần tiện, kém cỏi, n óng tính ???",
+      "example_en": "What does this word mean?",
+      "example_vi": "Từ này có nghĩa là gì?"
+    },
+    {
+      "word": "prefer",
+      "part_of_speech": "verb",
+      "ipa": "/prɪˈfɜː/",
+      "meaning_vi": "thích hơn, ưa hơn, đề bạt, đưa ra",
+      "example_en": "I prefer tea to coffee.",
+      "example_vi": "Tôi thích trà hơn cà phê."
+    },
+    {
+      "word": "president",
+      "part_of_speech": "noun",
+      "ipa": "/ˈprezɪd(ə)nt/",
+      "meaning_vi": "tổng thống, chủ tịch",
+      "example_en": "The president visited our city last week.",
+      "example_vi": "Tổng thống đã thăm thành phố chúng tôi tuần trước."
+    },
+    {
+      "word": "progress",
+      "part_of_speech": "noun",
+      "ipa": "/ˈprəugres/",
+      "meaning_vi": "noun&verb : tiến triển, tiến bộ, tiến hành",
+      "example_en": "You have made great progress this month.",
+      "example_vi": "Tháng này bạn đã tiến bộ vượt bậc."
+    },
+    {
+      "word": "respect",
+      "part_of_speech": "noun",
+      "ipa": "/rɪˈspekt/",
+      "meaning_vi": "noun&verb : tôn trọng, kính trọng, lưu tâm, chú ý",
+      "example_en": "Students should respect their teachers.",
+      "example_vi": "Học sinh nên tôn trọng thầy cô."
+    },
+    {
+      "word": "rich",
+      "part_of_speech": "adjective",
+      "ipa": "/rɪʧ/",
+      "meaning_vi": "giàu, giàu có",
+      "example_en": "He became rich by working hard.",
+      "example_vi": "Anh ấy trở nên giàu có nhờ làm việc chăm chỉ."
+    },
+    {
+      "word": "skill",
+      "part_of_speech": "noun",
+      "ipa": "/skɪl/",
+      "meaning_vi": "kỹ năng",
+      "example_en": "Listening is a difficult skill to learn.",
+      "example_vi": "Nghe là một kỹ năng khó học."
+    },
+    {
+      "word": "somehow",
+      "part_of_speech": "adverb",
+      "ipa": "/ˈsʌmhau/",
+      "meaning_vi": "vì lý do này khác, không biết làm sao",
+      "example_en": "Somehow we found the way home in the dark.",
+      "example_vi": "Không hiểu sao chúng tôi vẫn tìm được đường về trong bóng tối."
+    },
+    {
+      "word": "strength",
+      "part_of_speech": "noun",
+      "ipa": "/streŋθ/",
+      "meaning_vi": "sức mạnh, sức lực, sức khoẻ",
+      "example_en": "Lifting this box needs a lot of strength.",
+      "example_vi": "Nhấc cái thùng này cần rất nhiều sức lực."
+    },
+    {
+      "word": "vote",
+      "part_of_speech": "noun",
+      "ipa": "/vəut/",
+      "meaning_vi": "bỏ phiếu, bầu cử",
+      "example_en": "People vote for their leaders every five years.",
+      "example_vi": "Người dân bầu lãnh đạo năm năm một lần."
+    },
+    {
+      "word": "above",
+      "part_of_speech": "adverb",
+      "ipa": "/əˈbʌv/",
+      "meaning_vi": "ở trên, trên đầu",
+      "example_en": "The plane flew above the clouds.",
+      "example_vi": "Chiếc máy bay bay trên những đám mây."
+    },
+    {
+      "word": "ahead",
+      "part_of_speech": "adverb",
+      "ipa": "/əˈhed/",
+      "meaning_vi": "adv : thẳng phía trước adj : hơn, vượt",
+      "example_en": "The gas station is one kilometer ahead.",
+      "example_vi": "Trạm xăng ở phía trước một cây số."
+    },
+    {
+      "word": "amount",
+      "part_of_speech": "noun",
+      "ipa": "/əˈmaunt/",
+      "meaning_vi": "tổng giá trị (hợp đồng), tổng số (tiền)",
+      "example_en": "A small amount of salt is enough.",
+      "example_vi": "Một lượng muối nhỏ là đủ."
+    },
+    {
+      "word": "belief",
+      "part_of_speech": "noun",
+      "ipa": "/bɪˈliːf/",
+      "meaning_vi": "niềm tin, lòng tin, đức tin",
+      "example_en": "Her belief in herself helped her win.",
+      "example_vi": "Niềm tin vào bản thân đã giúp cô ấy chiến thắng."
+    },
+    {
+      "word": "center",
+      "part_of_speech": "noun",
+      "ipa": "/ˈsentə/",
+      "meaning_vi": "trung tâm",
+      "example_en": "The library is in the center of the city.",
+      "example_vi": "Thư viện nằm ở trung tâm thành phố."
+    },
+    {
+      "word": "common",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈkɔmən/",
+      "meaning_vi": "thông thường, chung, phổ thông",
+      "example_en": "Nguyen is a very common family name in Vietnam.",
+      "example_vi": "Nguyễn là một họ rất phổ biến ở Việt Nam."
+    },
+    {
+      "word": "cost",
+      "part_of_speech": "noun",
+      "ipa": "/kɔst/",
+      "meaning_vi": "chi phí, giá thành, phí tổn",
+      "example_en": "The total cost of the trip was two million dong.",
+      "example_vi": "Tổng chi phí chuyến đi là hai triệu đồng."
+    },
+    {
+      "word": "demonstrate",
+      "part_of_speech": "verb",
+      "ipa": "/ˈdemənstreɪt/",
+      "meaning_vi": "chứng minh, giải thích, biểu lộ, biểu tình",
+      "example_en": "The teacher demonstrated how to do the experiment.",
+      "example_vi": "Thầy giáo trình diễn cách làm thí nghiệm."
+    },
+    {
+      "word": "different",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈdɪf(ə)r(ə)nt/",
+      "meaning_vi": "khác biệt, khác nhau",
+      "example_en": "The twins wear different clothes to school.",
+      "example_vi": "Cặp song sinh mặc quần áo khác nhau đến trường."
+    },
+    {
+      "word": "evidence",
+      "part_of_speech": "noun",
+      "ipa": "/ˈevɪd(ə)n(t)s/",
+      "meaning_vi": "chứng cớ, bằng chứng",
+      "example_en": "There is no evidence that he broke the rule.",
+      "example_vi": "Không có bằng chứng nào cho thấy anh ấy phạm luật."
+    },
+    {
+      "word": "honesty",
+      "part_of_speech": "noun",
+      "ipa": "/ˈɔnɪstɪ/",
+      "meaning_vi": "tính trung thực, tính lương thiện",
+      "example_en": "Honesty is the best policy.",
+      "example_vi": "Trung thực là chính sách tốt nhất."
+    },
+    {
+      "word": "idiom",
+      "part_of_speech": "noun",
+      "ipa": "/ˈɪdɪəm/",
+      "meaning_vi": "thành ngữ",
+      "example_en": "English has thousands of idioms.",
+      "example_vi": "Tiếng Anh có hàng nghìn thành ngữ."
+    },
+    {
+      "word": "independent",
+      "part_of_speech": "adjective",
+      "ipa": "/ˌɪndɪˈpendənt/",
+      "meaning_vi": "độc lập, không phụ thuộc",
+      "example_en": "She became independent at eighteen.",
+      "example_vi": "Cô ấy trở nên độc lập từ năm mười tám tuổi."
+    },
+    {
+      "word": "inside",
+      "part_of_speech": "noun",
+      "ipa": "/ˌɪnˈsaɪd/",
+      "meaning_vi": "bên trong, phía trong, phần trong",
+      "example_en": "It's raining; let's stay inside.",
+      "example_vi": "Trời đang mưa; chúng ta ở trong nhà thôi."
+    },
+    {
+      "word": "master",
+      "part_of_speech": "noun",
+      "ipa": "/ˈmɑːstə/",
+      "meaning_vi": "bậc thầy, thợ cả",
+      "example_en": "He is a master of traditional cooking.",
+      "example_vi": "Ông ấy là bậc thầy về nấu ăn truyền thống."
+    },
+    {
+      "word": "memory",
+      "part_of_speech": "noun",
+      "ipa": "/ˈmem(ə)rɪ/",
+      "meaning_vi": "trí nhớ, ký ức, sự tưởng nhớ",
+      "example_en": "I have a happy memory of that summer.",
+      "example_vi": "Tôi có một ký ức đẹp về mùa hè năm đó."
+    },
+    {
+      "word": "proper",
+      "part_of_speech": "adjective",
+      "ipa": "/ˈprɔpə/",
+      "meaning_vi": "thích đáng, thích hợp, đúng mực",
+      "example_en": "Use the proper tool for the job.",
+      "example_vi": "Hãy dùng đúng dụng cụ cho công việc."
+    },
+    {
+      "word": "scan",
+      "part_of_speech": "verb",
+      "ipa": "/skæn/",
+      "meaning_vi": "quét, nhìn chăm chú, đọc lướt",
+      "example_en": "Scan the text quickly to find the answer.",
+      "example_vi": "Hãy đọc lướt văn bản để tìm câu trả lời."
+    },
+    {
+      "word": "section",
+      "part_of_speech": "noun",
+      "ipa": "/ˈsekʃ(ə)n/",
+      "meaning_vi": "mặt cắt, lát cắt, đoạn (trong sách)",
+      "example_en": "The book has a section about grammar.",
+      "example_vi": "Cuốn sách có một phần về ngữ pháp."
+    },
+    {
+      "word": "surface",
+      "part_of_speech": "noun",
+      "ipa": "/ˈsɜːfɪs/",
+      "meaning_vi": "bề mặt",
+      "example_en": "Leaves floated on the surface of the lake.",
+      "example_vi": "Lá cây nổi trên mặt hồ."
+    }
+  ]
+}

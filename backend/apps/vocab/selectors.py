@@ -29,3 +29,18 @@ def list_decks(*, owner: User) -> QuerySet[Deck]:
 def list_words(*, deck: Deck) -> QuerySet[UserWord]:
     """Words of one deck, newest first — a just-added word shows on top."""
     return deck.words.order_by("-created_at", "-id")
+
+
+def list_starter_decks() -> QuerySet[Deck]:
+    """System-curated decks any user may clone (SPEC §17.2-3) — same
+    annotations as list_decks so DeckSerializer renders them identically."""
+    return (
+        Deck.objects.filter(is_starter=True)
+        .annotate(
+            word_count=Count("words"),
+            mastered_count=Count(
+                "words", filter=Q(words__interval_days__gte=MASTERED_INTERVAL_DAYS)
+            ),
+        )
+        .order_by("name")
+    )

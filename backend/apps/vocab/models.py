@@ -21,6 +21,18 @@ class Deck(TimeStampedModel):
     visibility = models.CharField(
         max_length=10, choices=Visibility.choices, default=Visibility.PRIVATE
     )
+    is_starter = models.BooleanField(
+        default=False,
+        help_text="System-curated deck offered to every user for cloning (SPEC §17.2-3).",
+    )
+    source_deck = models.ForeignKey(
+        "self",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="clones",
+        help_text="The deck this one was cloned from; also hides already-cloned starters.",
+    )
 
     class Meta:
         constraints = [

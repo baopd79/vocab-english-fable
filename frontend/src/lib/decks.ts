@@ -9,6 +9,8 @@ export type Deck = {
   name: string;
   description: string;
   visibility: string;
+  is_starter: boolean;
+  source_deck: number | null;
   word_count: number;
   mastered_count: number;
   created_at: string;
@@ -37,6 +39,24 @@ export function useDeck(id: number) {
   return useQuery({
     queryKey: ["deck", id] as const,
     queryFn: () => api<Deck>(`/api/v1/decks/${id}`),
+  });
+}
+
+/** System starter decks anyone can clone (SPEC §17.2-3). */
+export function useStarterDecks() {
+  return useQuery({
+    queryKey: ["starter-decks"] as const,
+    queryFn: () => api<Paginated<Deck>>("/api/v1/decks/starter"),
+  });
+}
+
+/** Clone a starter deck into the user's account — copies content, never
+ * SRS progress, and costs no AI quota. */
+export function useCloneDeck() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => api<Deck>(`/api/v1/decks/${id}/clone`, { method: "POST" }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: decksKey }),
   });
 }
 
