@@ -1,8 +1,10 @@
 """Deck endpoints. Thin views: validate input, call service/selector, shape response."""
 
+from django.db.models import Q
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
+from rest_framework.permissions import AllowAny
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.throttling import BaseThrottle, ScopedRateThrottle
@@ -14,6 +16,8 @@ from . import selectors, services
 from .models import Deck, UserWord
 from .serializers import (
     DeckSerializer,
+    PublicDeckSerializer,
+    PublicWordSerializer,
     UserWordSerializer,
     UserWordUpdateSerializer,
     WordCreateSerializer,
@@ -48,12 +52,48 @@ class StarterDeckListView(APIView):
 class DeckCloneView(APIView):
     @extend_schema(request=None, responses=DeckSerializer)
     def post(self, request: Request, pk: int) -> Response:
-        # Only starter decks are cloneable in v1.1 (Task 16 will extend this
-        # to public decks); anything else — including other users' private
-        # decks — stays an indistinguishable 404 (SPEC §9).
-        source = get_object_or_404(Deck, pk=pk, is_starter=True)
+        # Cloneable sources: system starter decks and public decks (SPEC
+        # §17.2-13). Anything else — including other users' private decks —
+        # stays an indistinguishable 404 (SPEC §9).
+        cloneable = Deck.objects.filter(Q(is_starter=True) | Q(visibility=Deck.Visibility.PUBLIC))
+        source = get_object_or_404(cloneable, pk=pk)
         deck = services.clone_deck(owner=request.user, source=source)
         return Response(DeckSerializer(deck).data, status=status.HTTP_201_CREATED)
+
+
+class PublicDeckView(APIView):
+    """Share page, deck header (SPEC §17.3-Q4): anyone with the link may look.
+
+    No authenticator at all — a stale token in the header must never 401 a
+    public page — and a scoped per-IP throttle guards against scraping.
+    """
+
+    authentication_classes = []
+    permission_classes = [AllowAny]
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "share"
+
+    @extend_schema(responses=PublicDeckSerializer)
+    def get(self, request: Request, pk: int) -> Response:
+        deck = get_object_or_404(selectors.public_decks(), pk=pk)
+        return Response(PublicDeckSerializer(deck).data)
+
+
+class PublicDeckWordListView(APIView):
+    """Share page, word list — same anonymous access rules as PublicDeckView."""
+
+    authentication_classes = []
+    permission_classes = [AllowAny]
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "share"
+
+    @extend_schema(responses=PublicWordSerializer(many=True))
+    def get(self, request: Request, pk: int) -> Response:
+        deck = get_object_or_404(Deck, pk=pk, visibility=Deck.Visibility.PUBLIC)
+        words = selectors.list_words(deck=deck)
+        paginator = DefaultPagination()
+        page = paginator.paginate_queryset(words, request, view=self)
+        return paginator.get_paginated_response(PublicWordSerializer(page, many=True).data)
 
 
 class DeckDetailView(APIView):

@@ -30,7 +30,13 @@ def _require_ai_budget(*, word: str) -> None:
         raise AIBudgetExhausted
 
 
-def create_deck(*, owner: User, name: str, description: str = "") -> Deck:
+def create_deck(
+    *,
+    owner: User,
+    name: str,
+    description: str = "",
+    visibility: str = Deck.Visibility.PRIVATE,
+) -> Deck:
     """Create a deck, translating the unique (owner, name) clash into a 409.
 
     The try/except wraps the atomic block (not the reverse): once an
@@ -39,16 +45,26 @@ def create_deck(*, owner: User, name: str, description: str = "") -> Deck:
     """
     try:
         with transaction.atomic():
-            return Deck.objects.create(owner=owner, name=name, description=description)
+            return Deck.objects.create(
+                owner=owner, name=name, description=description, visibility=visibility
+            )
     except IntegrityError as exc:
         raise DeckNameConflict from exc
 
 
-def update_deck(*, deck: Deck, name: str | None = None, description: str | None = None) -> Deck:
+def update_deck(
+    *,
+    deck: Deck,
+    name: str | None = None,
+    description: str | None = None,
+    visibility: str | None = None,
+) -> Deck:
     if name is not None:
         deck.name = name
     if description is not None:
         deck.description = description
+    if visibility is not None:
+        deck.visibility = visibility
     try:
         with transaction.atomic():
             deck.save()

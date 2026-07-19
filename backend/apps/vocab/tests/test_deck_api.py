@@ -54,8 +54,15 @@ class TestCreateDeck:
         assert response.data["code"] == "deck_name_conflict"
         assert Deck.objects.filter(owner=user, name="IELTS").count() == 1
 
-    def test_visibility_is_read_only(self, client):
-        response = client.post("/api/v1/decks", {"name": "Hacky", "visibility": "public"})
+    def test_visibility_is_writable_since_sharing(self, client):
+        # Task 16 (SPEC §17.2-13): the owner controls visibility from day one.
+        response = client.post("/api/v1/decks", {"name": "Shared", "visibility": "public"})
+
+        assert response.status_code == 201
+        assert response.data["visibility"] == "public"
+
+    def test_visibility_defaults_to_private(self, client):
+        response = client.post("/api/v1/decks", {"name": "Solo"})
 
         assert response.status_code == 201
         assert response.data["visibility"] == "private"

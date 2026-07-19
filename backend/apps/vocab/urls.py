@@ -5,6 +5,8 @@ from .views import (
     DeckDetailView,
     DeckListView,
     DeckWordListView,
+    PublicDeckView,
+    PublicDeckWordListView,
     RetryEnrichmentView,
     StarterDeckListView,
     UserWordDetailView,
@@ -16,6 +18,12 @@ urlpatterns = [
     path("decks/starter", StarterDeckListView.as_view(), name="deck-starter-list"),
     path("decks/<int:pk>", DeckDetailView.as_view(), name="deck-detail"),
     path("decks/<int:pk>/clone", DeckCloneView.as_view(), name="deck-clone"),
+    path("decks/<int:pk>/public", PublicDeckView.as_view(), name="deck-public"),
+    path(
+        "decks/<int:pk>/public/words",
+        PublicDeckWordListView.as_view(),
+        name="deck-public-words",
+    ),
     path("decks/<int:pk>/words", DeckWordListView.as_view(), name="deck-word-list"),
     path("words/<int:pk>", UserWordDetailView.as_view(), name="word-detail"),
     path(

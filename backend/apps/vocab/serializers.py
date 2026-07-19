@@ -33,12 +33,11 @@ class DeckSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
         ]
-        # visibility stays private until the sharing feature ships; starter
+        # visibility is owner-writable (private/public — SPEC §17.2-13); starter
         # flag and clone lineage are set only by seed/clone services; SRS/audit
         # fields are never client-writable.
         read_only_fields = [
             "id",
-            "visibility",
             "is_starter",
             "source_deck",
             "created_at",
@@ -60,6 +59,41 @@ class DeckSerializer(serializers.ModelSerializer):
         if annotated is not None:
             return annotated
         return deck.words.filter(interval_days__gte=MASTERED_INTERVAL_DAYS).count()
+
+
+class PublicDeckSerializer(serializers.ModelSerializer):
+    """Share-page shape (SPEC §17.3-Q4): the owner's display name — never the
+    email — plus counts; no clone lineage, no timestamps."""
+
+    owner_name = serializers.CharField(source="owner.display_name", read_only=True)
+    word_count = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Deck
+        fields = ["id", "name", "description", "owner_name", "word_count"]
+        read_only_fields = fields
+
+    def get_word_count(self, deck: Deck) -> int:
+        annotated: int | None = getattr(deck, "word_count", None)
+        return annotated if annotated is not None else deck.words.count()
+
+
+class PublicWordSerializer(serializers.ModelSerializer):
+    """Word rows on the share page: content fields only — the owner's SRS
+    progress and enrichment bookkeeping stay private (SPEC §17.3-Q4)."""
+
+    class Meta:
+        model = UserWord
+        fields = [
+            "id",
+            "word_text",
+            "part_of_speech",
+            "ipa",
+            "meaning_vi",
+            "example_en",
+            "example_vi",
+        ]
+        read_only_fields = fields
 
 
 class UserWordSerializer(serializers.ModelSerializer):

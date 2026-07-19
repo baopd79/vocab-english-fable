@@ -1,20 +1,42 @@
 /** Deck data hooks (TanStack Query) over the /api/v1/decks endpoints. */
 
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { api, ApiError } from "./api";
+
+export type DeckVisibility = "private" | "public";
 
 export type Deck = {
   id: number;
   name: string;
   description: string;
-  visibility: string;
+  visibility: DeckVisibility;
   is_starter: boolean;
   source_deck: number | null;
   word_count: number;
   mastered_count: number;
   created_at: string;
   updated_at: string;
+};
+
+/** Share-page shape (SPEC §17.3-Q4) — owner display name, never the email. */
+export type PublicDeck = {
+  id: number;
+  name: string;
+  description: string;
+  owner_name: string;
+  word_count: number;
+};
+
+/** Word row on the share page: content only, no SRS/enrichment state. */
+export type PublicWord = {
+  id: number;
+  word_text: string;
+  part_of_speech: string;
+  ipa: string;
+  meaning_vi: string;
+  example_en: string;
+  example_vi: string;
 };
 
 export type Paginated<T> = {
@@ -47,6 +69,41 @@ export function useStarterDecks() {
   return useQuery({
     queryKey: ["starter-decks"] as const,
     queryFn: () => api<Paginated<Deck>>("/api/v1/decks/starter"),
+  });
+}
+
+/** The public share page for one deck — works without a session; a private
+ * or missing deck is a plain 404 (no retry: the answer won't change). */
+export function usePublicDeck(id: number) {
+  return useQuery({
+    queryKey: ["public-deck", id] as const,
+    queryFn: () => api<PublicDeck>(`/api/v1/decks/${id}/public`),
+    retry: false,
+  });
+}
+
+/** Paginated word list of a public deck, accumulated page by page. */
+export function usePublicDeckWords(id: number) {
+  return useInfiniteQuery({
+    queryKey: ["public-deck-words", id] as const,
+    queryFn: ({ pageParam }) =>
+      api<Paginated<PublicWord>>(`/api/v1/decks/${id}/public/words?page=${pageParam}`),
+    initialPageParam: 1,
+    getNextPageParam: (last, pages) => (last.next ? pages.length + 1 : undefined),
+    retry: false,
+  });
+}
+
+/** Owner-only toggle between private and public (SPEC §17.2-13). */
+export function useSetDeckVisibility() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, visibility }: { id: number; visibility: DeckVisibility }) =>
+      api<Deck>(`/api/v1/decks/${id}`, { method: "PATCH", body: JSON.stringify({ visibility }) }),
+    onSuccess: (deck) => {
+      queryClient.setQueryData(["deck", deck.id], deck);
+      queryClient.invalidateQueries({ queryKey: decksKey });
+    },
   });
 }
 

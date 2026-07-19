@@ -11,7 +11,7 @@ import { Badge, type BadgeVariant } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Field, Input } from "@/components/ui/input";
 import { SpeakerButton } from "@/components/ui/speaker-button";
-import { useDeck } from "@/lib/decks";
+import { useDeck, useSetDeckVisibility, type Deck } from "@/lib/decks";
 import {
   useAddWord,
   useDeleteWord,
@@ -46,6 +46,7 @@ export function DeckWordsContent({ deckId }: { deckId: number }) {
   const deckQuery = useDeck(deckId);
   const wordsQuery = useWords(deckId);
   const addWord = useAddWord(deckId);
+  const [sharing, setSharing] = useState(false);
 
   return (
     <main className="mx-auto flex w-full max-w-[1280px] flex-1 flex-col gap-6 px-4 py-10 sm:px-8">
@@ -61,18 +62,31 @@ export function DeckWordsContent({ deckId }: { deckId: number }) {
           <h1 className="font-display min-w-0 text-3xl font-extrabold tracking-tight">
             {deckQuery.data?.name ?? "…"}
           </h1>
-          <Link
-            href={`/decks/${deckId}/cram`}
-            className="border-chip-border bg-surface-2 text-muted-fg hover:text-primary-text hover:bg-surface ml-auto inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full border-[1.5px] px-4 text-sm font-bold backdrop-blur-md transition-colors"
-          >
-            <LightningIcon />
-            Ôn tự do
-          </Link>
+          <div className="ml-auto flex shrink-0 items-center gap-2.5">
+            <button
+              type="button"
+              onClick={() => setSharing((open) => !open)}
+              aria-expanded={sharing}
+              className="border-chip-border bg-surface-2 text-muted-fg hover:text-primary-text hover:bg-surface inline-flex h-10 cursor-pointer items-center gap-1.5 rounded-full border-[1.5px] px-4 text-sm font-bold backdrop-blur-md transition-colors"
+            >
+              <ShareIcon />
+              Chia sẻ
+            </button>
+            <Link
+              href={`/decks/${deckId}/cram`}
+              className="border-chip-border bg-surface-2 text-muted-fg hover:text-primary-text hover:bg-surface inline-flex h-10 items-center gap-1.5 rounded-full border-[1.5px] px-4 text-sm font-bold backdrop-blur-md transition-colors"
+            >
+              <LightningIcon />
+              Ôn tự do
+            </Link>
+          </div>
         </div>
         {deckQuery.data?.description && (
           <p className="text-muted-fg mt-2 text-[15px]">{deckQuery.data.description}</p>
         )}
       </header>
+
+      {sharing && deckQuery.data && <SharePanel deck={deckQuery.data} />}
 
       <AddWordForm
         submitting={addWord.isPending}
@@ -98,6 +112,65 @@ export function DeckWordsContent({ deckId }: { deckId: number }) {
         </ul>
       )}
     </main>
+  );
+}
+
+/** Share controls (SPEC §17.2-13): toggle public/private + copy the share
+ * link. The link only works while the deck stays public. */
+function SharePanel({ deck }: { deck: Deck }) {
+  const setVisibility = useSetDeckVisibility();
+  const [copied, setCopied] = useState(false);
+  const isPublic = deck.visibility === "public";
+  const shareUrl = `${window.location.origin}/share/${deck.id}`;
+
+  return (
+    <section className="glass animate-card-in flex flex-col gap-3 rounded-[20px] p-5 sm:p-6">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h2 className="text-[15px] font-bold">
+            {isPublic ? "Deck đang công khai" : "Deck đang riêng tư"}
+          </h2>
+          <p className="text-muted-fg text-sm">
+            {isPublic
+              ? "Ai có link đều xem được và thêm về tài khoản của họ (không kèm tiến độ ôn của bạn)."
+              : "Bật công khai để lấy link chia sẻ cho bạn bè."}
+          </p>
+        </div>
+        <Button
+          variant={isPublic ? "outline" : "primary"}
+          size="sm"
+          disabled={setVisibility.isPending}
+          onClick={() =>
+            setVisibility.mutate({ id: deck.id, visibility: isPublic ? "private" : "public" })
+          }
+        >
+          {isPublic ? "Tắt công khai" : "Bật công khai"}
+        </Button>
+      </div>
+      {isPublic && (
+        <div className="flex flex-wrap items-center gap-2.5">
+          <code className="border-chip-border bg-surface-2 text-muted-fg min-w-0 truncate rounded-full border-[1.5px] px-3.5 py-2 text-sm">
+            {shareUrl}
+          </code>
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={async () => {
+              await navigator.clipboard.writeText(shareUrl);
+              setCopied(true);
+              window.setTimeout(() => setCopied(false), 2000);
+            }}
+          >
+            {copied ? "Đã copy!" : "Copy link"}
+          </Button>
+        </div>
+      )}
+      {setVisibility.isError && (
+        <p role="alert" className="text-danger-text text-sm font-medium">
+          Không đổi được trạng thái chia sẻ. Vui lòng thử lại.
+        </p>
+      )}
+    </section>
   );
 }
 
@@ -341,6 +414,27 @@ function LightningIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path d="M13 2 4.5 13.5H11L9.5 22 19 10h-6.5L13 2z" />
+    </svg>
+  );
+}
+
+function ShareIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="18" cy="5" r="3" />
+      <circle cx="6" cy="12" r="3" />
+      <circle cx="18" cy="19" r="3" />
+      <path d="m8.6 10.5 6.8-3.9M8.6 13.5l6.8 3.9" />
     </svg>
   );
 }

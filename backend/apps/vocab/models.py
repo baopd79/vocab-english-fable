@@ -11,7 +11,7 @@ from apps.common.models import TimeStampedModel
 class Deck(TimeStampedModel):
     class Visibility(models.TextChoices):
         PRIVATE = "private", "Private"
-        # "public" is reserved for the sharing feature on the roadmap.
+        PUBLIC = "public", "Public"  # viewable + cloneable by anyone (SPEC §17.2-13)
 
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="decks"
