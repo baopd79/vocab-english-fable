@@ -135,7 +135,7 @@ Deck hệ thống đã enrich sẵn (management command seed, chạy trên VPS 1
 
 **Task 16: Deck công khai / chia sẻ (F2)** (M, deps: 15 — chốt §17.3-Q4 trước)
 Bật `visibility` public cho deck user; trang share (URL công khai) xem danh sách từ + nút clone (tái dùng cơ chế clone T15); deck private giữ 404.
-- [ ] AC: §17.2-13; test 404 cho deck private với user khác (quy tắc §9 không đổi)
+- [x] AC: §17.2-13; test 404 cho deck private với user khác (quy tắc §9 không đổi) — 2026-07-19: user verify trên prod (bật/tắt công khai, xem ẩn danh, clone)
 - Verify: `uv run pytest` + share link mở ở trình duyệt ẩn danh.
 
 ### Giai đoạn 6 — Đón khách & công bố
